@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.fastservices.sams.modules.addoutlet.AddOutletVM" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/rootLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottomLayout"
+            android:layout_alignParentTop="true">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/tilStoreName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    app:hintAnimationEnabled="false"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Outlet Name"
+                        android:inputType="text"
+                        android:paddingBottom="@dimen/et_padding"
+                        android:text="@={viewModel.outlet.OutletName}" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/tilOwnerName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginRight="5dp"
+                    app:hintAnimationEnabled="false"
+                    app:layout_constraintEnd_toStartOf="@+id/tilPhoneNumber"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tilStoreName">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Owner Name"
+                        android:inputType="text"
+                        android:paddingBottom="@dimen/et_padding"
+                        android:text="@={viewModel.outlet.OwnerName}" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/tilPhoneNumber"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="5dp"
+                    app:hintAnimationEnabled="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/tilOwnerName"
+                    app:layout_constraintTop_toBottomOf="@+id/tilStoreName">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Phone Number"
+                        android:inputType="phone"
+                        android:paddingBottom="@dimen/et_padding"
+                        android:text="@={viewModel.outlet.PhoneNumber}" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/tilStoreAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/tilOwnerName">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Outlet Address"
+                        android:inputType="text"
+                        android:paddingBottom="@dimen/et_padding"
+                        android:text="@={viewModel.outlet.OutletAddress}" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/tilLandMark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    app:hintAnimationEnabled="false"
+                    app:layout_constraintTop_toBottomOf="@+id/tilStoreAddress">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Land Mark"
+                        android:inputType="text"
+                        android:paddingBottom="@dimen/et_padding"
+                        android:text="@={viewModel.outlet.LandMark}" />
+                </android.support.design.widget.TextInputLayout>
+
+                <fr.ganfra.materialspinner.MaterialSpinner
+                    android:id="@+id/spSector"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tilLandMark"
+                    app:ms_enableFloatingLabel="true"
+                    app:ms_floatingLabelColor="@color/floating_label"
+                    app:ms_floatingLabelText="Locality / Sector"
+                    app:ms_hint="Locality / Sector"
+                    app:ms_multiline="false" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginStart="4dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Outlet Location"
+
+                    app:layout_constraintBottom_toBottomOf="@+id/btnTakeGPS"
+                    app:layout_constraintStart_toStartOf="@+id/spSector"
+                    app:layout_constraintTop_toTopOf="@+id/btnTakeGPS" />
+
+                <Button
+                    android:id="@+id/btnTakeGPS"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#f87c36"
+                    android:text="Take GPS"
+                    android:textColor="@color/white"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spSector" />
+
+
+                <TextView
+                    android:id="@+id/tvMapLink"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:autoLink="all"
+                    app:layout_constraintLeft_toLeftOf="@+id/spSector"
+                    app:layout_constraintRight_toRightOf="@+id/spSector"
+                    app:layout_constraintTop_toBottomOf="@+id/btnTakeGPS" />
+
+                <fr.ganfra.materialspinner.MaterialSpinner
+                    android:id="@+id/spChannel"
+                    android:layout_width="0dp"
+
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    app:layout_constraintEnd_toStartOf="@+id/spSubchannel"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvMapLink"
+                    app:ms_enableFloatingLabel="true"
+                    app:ms_floatingLabelColor="@color/floating_label"
+                    app:ms_floatingLabelText="Channel"
+                    app:ms_hint="Channel"
+                    app:ms_multiline="false" />
+
+                <!--<include-->
+                <!--android:id="@+id/include2"-->
+                <!--layout="@layout/my_spinner_view"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--app:layout_constraintEnd_toStartOf="@+id/include"-->
+                <!--app:layout_constraintHorizontal_bias="0.5"-->
+                <!--app:layout_constraintStart_toStartOf="parent"-->
+                <!--app:layout_constraintTop_toBottomOf="@+id/mapView" />-->
+
+                <fr.ganfra.materialspinner.MaterialSpinner
+
+                    android:id="@+id/spSubchannel"
+                    android:layout_width="0dp"
+
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/spChannel"
+                    app:layout_constraintTop_toTopOf="@+id/spChannel"
+                    app:ms_enableFloatingLabel="true"
+                    app:ms_floatingLabelColor="@color/floating_label"
+                    app:ms_floatingLabelText="Sub Channel"
+                    app:ms_hint="Sub Channel"
+                    app:ms_multiline="false" />
+
+
+                <TextView
+                    android:id="@+id/lblArea"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Area"
+                    app:layout_constraintBottom_toBottomOf="@+id/rgArea"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/rgArea" />
+
+                <RadioGroup
+                    android:id="@+id/rgArea"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toEndOf="@id/lblArea"
+                    app:layout_constraintTop_toBottomOf="@+id/spChannel">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="50dp"
+                        android:onCheckedChanged="@{()->viewModel.urbanSelected()}"
+                        android:text="Urban" />
+
+                    <RadioButton
+                        android:onCheckedChanged="@{()->viewModel.ruralSelected()}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rural" />
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/lblComments"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Comments"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rgArea" />
+
+                <EditText
+                    android:id="@+id/etComment"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rect_et"
+                    android:gravity="top|left"
+                    android:lines="3"
+                    android:padding="5dp"
+                    android:text="@={viewModel.outlet.Comments}"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/lblComments"
+                    app:layout_constraintTop_toTopOf="@+id/lblComments" />
+
+                <TextView
+                    android:id="@+id/lblPicture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="8dp"
+
+                    android:gravity="center_vertical"
+                    android:text="Take Pictures"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivCamera"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/ivCamera" />
+
+                <ImageView
+                    android:id="@+id/ivCamera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_camera"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etComment" />
+
+                <LinearLayout
+                    android:id="@+id/imagesContainer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:minHeight="30dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ivCamera">
+
+
+                </LinearLayout>
+
+            </android.support.constraint.ConstraintLayout>
+        </ScrollView>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/bottomLayout"
+            android:background="@drawable/bg_shadow"
+            android:elevation="2dp" />
+
+        <include
+            android:id="@+id/bottomLayout"
+            layout="@layout/layout_bottom_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottom_bar_height"
+            android:layout_alignParentBottom="true" />
+
+        <TextView
+            android:id="@+id/tvSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/rounded_rect_action_btn"
+            android:elevation="3dp"
+            android:text="Submit"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </RelativeLayout>
+</layout>

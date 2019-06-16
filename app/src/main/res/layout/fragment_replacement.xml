@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.fastservices.sams.modules.replacement.ReplacementVM" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottomLayout"
+            android:layout_alignParentTop="true">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/tvSelectedOutlet"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Select Outet"
+                    android:padding="15dp"
+                    android:textColor="@color/textcolor_black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/textcolor_grey"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSelectedOutlet" />
+
+
+                <RadioGroup
+                    android:id="@+id/rgReason"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSelectedOutlet">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:onCheckedChanged="@{()->viewModel.replacementRadioSelected()}"
+                        android:text="Replacement" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onCheckedChanged="@{()->viewModel.damageRadioSelected()}"
+                        android:text="Damage/Return" />
+                </RadioGroup>
+
+                <fr.ganfra.materialspinner.MaterialSpinner
+                    android:id="@+id/spReason"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rgReason"
+                    app:ms_enableFloatingLabel="true"
+                    app:ms_floatingLabelColor="@color/floating_label"
+                    app:ms_floatingLabelText="Reason"
+                    app:ms_hint="Reason"
+                    app:ms_multiline="false" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/tilDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    app:hintAnimationEnabled="false"
+                    app:layout_constraintTop_toBottomOf="@+id/spReason">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Description"
+                        android:inputType="text"
+                        android:paddingBottom="@dimen/et_padding"
+                        android:text="@={viewModel.description}"
+                        android:textSize="12sp" />
+                </android.support.design.widget.TextInputLayout>
+
+
+                <fr.ganfra.materialspinner.MaterialSpinner
+                    android:id="@+id/spSKU"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tilDescription"
+                    app:ms_enableFloatingLabel="true"
+                    app:ms_floatingLabelColor="@color/floating_label"
+                    app:ms_floatingLabelText="SKU"
+                    app:ms_hint="Add SKU"
+                    app:ms_multiline="false" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/tilQuantity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    app:hintAnimationEnabled="false"
+
+app:layout_constraintRight_toLeftOf="@+id/tvTotalAmount"
+                    app:layout_constraintEnd_toStartOf="@+id/tvTotalAmount"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spSKU">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:digits="0123456789"
+                        android:hint="Total Quantity"
+                        android:afterTextChanged="@{()->viewModel.onQuantityTextChanged()}"
+                        android:inputType="number"
+                        android:paddingBottom="@dimen/et_padding"
+                        android:text="@={viewModel.quantity}"
+                        android:textSize="12sp" />
+                </android.support.design.widget.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tvTotalAmount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@{viewModel.totalPrice}"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tilQuantity"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintLeft_toRightOf="@+id/tilQuantity"
+                    app:layout_constraintStart_toEndOf="@+id/tilQuantity"
+                    app:layout_constraintTop_toBottomOf="@+id/lblTotalAmount" />
+
+
+                <TextView
+                    android:id="@+id/lblTotalAmount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Total Amount"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintLeft_toRightOf="@+id/tilQuantity"
+                    app:layout_constraintStart_toEndOf="@+id/tilQuantity"
+                    app:layout_constraintTop_toTopOf="@+id/tilQuantity" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/tilInvoice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    app:hintAnimationEnabled="false"
+                    app:layout_constraintTop_toBottomOf="@+id/tilQuantity">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Invoice Number"
+                        android:inputType="number"
+                        android:paddingBottom="@dimen/et_padding"
+                        android:text="@={viewModel.invoiceNumber}"
+                        android:textSize="12sp" />
+
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/tilBatchNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    app:hintAnimationEnabled="false"
+                    app:layout_constraintTop_toBottomOf="@+id/tilInvoice">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Batch Number"
+                        android:inputType="number"
+                        android:paddingBottom="@dimen/et_padding"
+                        android:text="@={viewModel.batchNumber}"
+                        android:textSize="12sp" />
+
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <TextView
+                    android:id="@+id/lblPurchaseDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center_vertical"
+                    android:text="Purchase Date"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tilBatchNumber" />
+
+                <ImageView
+                    android:id="@+id/ivCalender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_mini_calender"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/lblPurchaseDate" />
+
+                <TextView
+                    android:id="@+id/tvPurchaseDate"
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+
+                    android:gravity="center_vertical"
+                    android:padding="7dp"
+                    android:text="Select a date"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lblPurchaseDate" />
+
+                <View
+                    android:id="@+id/divider1"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/textcolor_grey"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPurchaseDate" />
+
+                <TextView
+                    android:id="@+id/lblStockImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center_vertical"
+                    android:text="Stock Image"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider1" />
+
+                <ImageView
+                    android:id="@+id/ivCameraStockImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_camera"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider1" />
+
+                <LinearLayout
+                    android:id="@+id/imagesContainerStock"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:minHeight="30dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ivCameraStockImage">
+
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider2"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/textcolor_grey"
+                    app:layout_constraintTop_toBottomOf="@+id/imagesContainerStock" />
+
+                <TextView
+                    android:id="@+id/lblInvoiceImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center_vertical"
+                    android:text="Invoice Image"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+                <ImageView
+                    android:id="@+id/ivCameraInvoice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_camera"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+                <LinearLayout
+                    android:id="@+id/imagesContainerInvoice"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:minHeight="30dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ivCameraInvoice">
+
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider3"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/textcolor_grey"
+                    app:layout_constraintTop_toBottomOf="@+id/imagesContainerInvoice" />
+
+
+
+            </android.support.constraint.ConstraintLayout>
+        </ScrollView>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/bottomLayout"
+            android:background="@drawable/bg_shadow"
+            android:elevation="2dp" />
+
+        <include
+            android:id="@+id/bottomLayout"
+            layout="@layout/layout_bottom_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottom_bar_height"
+            android:layout_alignParentBottom="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/rounded_rect_action_btn"
+            android:elevation="3dp"
+            android:onClick="@{()->viewModel.onClickSubmit()}"
+            android:text="Submit"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,423 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:2:1-68:12
+INJECTED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:2:1-68:12
+INJECTED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:2:1-68:12
+INJECTED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:2:1-68:12
+MERGED from [com.android.databinding:adapters:3.3.2] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/adapters-3.3.2.aar/b7b66403eefefc84a67489935990533b/AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.databinding:library:3.3.2] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/library-3.3.2.aar/0f707b050321dc345a18f38efddd7f9e/AndroidManifest.xml:17:1-24:12
+MERGED from [:imagepicker] /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/libs/imagepicker/build/intermediates/library_manifest/release/AndroidManifest.xml:2:1-29:12
+MERGED from [com.android.support:design:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/design-28.0.0.aar/ebead5d21f0156b766d364d1006e2aa5/AndroidManifest.xml:17:1-24:12
+MERGED from [com.github.ganfra:material-spinner:2.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/material-spinner-2.0.0.aar/0af7d784d4378b71fc1a58f150c1cbd8/AndroidManifest.xml:2:1-10:12
+MERGED from [com.theartofdev.edmodo:android-image-cropper:2.4.2] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/android-image-cropper-2.4.2.aar/f32c80aefb8d387d217a0efed7dcb0f9/AndroidManifest.xml:2:1-12:12
+MERGED from [com.android.support:appcompat-v7:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/dfcd938421e2c37aa531e6dee76f11de/AndroidManifest.xml:17:1-22:12
+MERGED from [com.github.florent37:rxgps:1.0.2] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/rxgps-1.0.2.aar/4cf62dcd5b90787044a7857cafc53eb9/AndroidManifest.xml:2:1-14:12
+MERGED from [com.google.android.gms:play-services-location:15.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/play-services-location-15.0.1.aar/5df876ddc3a9c6e3883aa91c6736db32/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-base:15.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/953da9b67abaed13f703f3340f7ae45e/AndroidManifest.xml:17:1-29:12
+MERGED from [com.google.android.gms:play-services-places-placereport:15.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/play-services-places-placereport-15.0.1.aar/6e8204aed6a130512910dba9285cf093/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-tasks:15.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/play-services-tasks-15.0.1.aar/821e00fa98cacbcadc21fb9bbddeba3e/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-basement:15.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/9aae177b20c8a3640485da9293686ddd/AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-v4:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/support-v4-28.0.0.aar/24c17ea35a86d69be2fd3a1498c9a4e8/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.3.aar/1aa8fcd5f8857e097ea14e3912da4222/AndroidManifest.xml:2:1-11:12
+MERGED from [io.reactivex.rxjava2:rxandroid:2.1.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/rxandroid-2.1.0.aar/427844b0d320ae8bc854ed21300c5369/AndroidManifest.xml:15:1-20:12
+MERGED from [com.github.d-max:spots-dialog:1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/spots-dialog-1.1.aar/858be613a563f040d45c6de86459decf/AndroidManifest.xml:2:1-13:12
+MERGED from [com.github.alirezaashrafi:GoogleMapView:1.0.4] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/GoogleMapView-1.0.4.aar/4332e9dd619bfb314b3a7327e5cb96cb/AndroidManifest.xml:2:1-13:12
+MERGED from [com.github.Gavras:MultiLineRadioGroup:v1.0.0.6] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/MultiLineRadioGroup-v1.0.0.6.aar/405b566c15d69db37318373e03617168/AndroidManifest.xml:2:1-14:12
+MERGED from [com.amulyakhare:com.amulyakhare.textdrawable:1.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/com.amulyakhare.textdrawable-1.0.1.aar/2a184f3f023a7215e4f332244407a84d/AndroidManifest.xml:2:1-14:12
+MERGED from [com.github.bumptech.glide:glide:4.8.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/glide-4.8.0.aar/01cf1f9758a4bc6fa6acfc06f70ee636/AndroidManifest.xml:2:1-12:12
+MERGED from [android.arch.persistence.room:runtime:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/e4a9bb4af4ab19353c89cbb12743bc22/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:extensions:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/extensions-1.1.1.aar/74c4f98bdfad7cd568cbd2319653b20f/AndroidManifest.xml:17:1-30:12
+MERGED from [android.arch.lifecycle:reactivestreams:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/reactivestreams-1.1.1.aar/c13c557b466a5d9ffdd17fcefb33e64c/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-fragment:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/support-fragment-28.0.0.aar/adf40615ab483feb4de92517cd2d46d6/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-28.0.0.aar/33daabc394d5ecec8f2c58df903f0ef5/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:recyclerview-v7:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-28.0.0.aar/157cae9b012a8b0b016c80443bc7f944/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/support-core-ui-28.0.0.aar/a43eb47b2166498e32943b3eb758f769/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/support-core-utils-28.0.0.aar/25882af2624cc5c64af4bc1530d3d571/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-28.0.0.aar/14bb02307120019988d811bd0e1a58ea/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-media-compat:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/support-media-compat-28.0.0.aar/83dd4c15f71cfc6882ed25f244c2937a/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:transition:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/transition-28.0.0.aar/409e40143ffdcc889e50c5e058f06730/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:loader:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/loader-28.0.0.aar/019f2796440bb47d1c8158eab310af9d/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:viewpager:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/viewpager-28.0.0.aar/8c8c825d52c8e5e4e3e840819a2bd6e6/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:coordinatorlayout:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-28.0.0.aar/4f9a82f8df018564cc94011a6b364003/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:drawerlayout:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/drawerlayout-28.0.0.aar/d4e78a4c727f424bc22105dd320710b8/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:slidingpanelayout:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/slidingpanelayout-28.0.0.aar/e76ec3d8d19244ea5da7354ade4d24f7/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:customview:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/customview-28.0.0.aar/fb0d5648149bf2db4f19492e8814f23a/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/swiperefreshlayout-28.0.0.aar/55ef61474d3cd304dc0da9f38b60383e/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/asynclayoutinflater-28.0.0.aar/380cee301d5c12207d95cbc353574713/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/961d58ff6abd1aaa1c4bf4e495bfe0ad/AndroidManifest.xml:17:1-24:12
+MERGED from [android.arch.lifecycle:runtime:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/8de8587912eeb9d5584eca7fb8a0213b/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:versionedparcelable:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0.aar/ec684107c810017e7f9b696f9ac39b1b/AndroidManifest.xml:17:1-25:12
+MERGED from [com.android.support:cursoradapter:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/cursoradapter-28.0.0.aar/6b8af181212ee51c7782d30f3cd71161/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:cardview-v7:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/cardview-v7-28.0.0.aar/16eb3b5ab2baf6062e2578e988eba0bf/AndroidManifest.xml:17:1-22:12
+MERGED from [com.github.bumptech.glide:gifdecoder:4.8.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/gifdecoder-4.8.0.aar/5c066f6ad99cbbe1c246c6dc4f002367/AndroidManifest.xml:2:1-11:12
+MERGED from [android.arch.persistence:db-framework:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/db-framework-1.1.1.aar/5da3d1966d8d6529e4e4162598d42e0e/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.persistence:db:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/db-1.1.1.aar/66c5ea816a247e21411d23a2262323c1/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/livedata-1.1.1.aar/d8973cadadffec8b298c309c99e9cbe5/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.1.aar/99556057c807aadadc0155650efc3f87/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/198b485a6307f6fb1b80878755e50ea4/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.1.aar/3fc336673442a9d3e1a14e0f9a147528/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:documentfile:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/documentfile-28.0.0.aar/c138f17e93934f50ccf79ffce7633eb7/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-28.0.0.aar/1e3d59f7fb9b2779ecf6429bce6c4f30/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:print:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/print-28.0.0.aar/a9e086260216c84313625baa5a71ffb6/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:interpolator:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/interpolator-28.0.0.aar/015343210c6cb8c1704517ba878da273/AndroidManifest.xml:17:1-22:12
+MERGED from [com.tbruyelle.rxpermissions2:rxpermissions:0.9.4] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/rxpermissions-0.9.4.aar/4517fd9dff99b21d6b71fc33d45cdf88/AndroidManifest.xml:2:1-13:12
+MERGED from [io.reactivex:rxandroid:1.2.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/rxandroid-1.2.1.aar/9a0bc40d8eb7f02f7af080cf0998cf0c/AndroidManifest.xml:15:1-21:12
+INJECTED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:2:1-68:12
+INJECTED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:2:1-68:12
+INJECTED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:2:1-68:12
+	package
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:4:5-36
+		INJECTED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:2:1-68:12
+		INJECTED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml
+	xmlns:tools
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:3:5-51
+	android:versionCode
+		INJECTED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:2:1-68:12
+		INJECTED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:2:11-69
+application
+ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:6:5-66:19
+MERGED from [:imagepicker] /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/libs/imagepicker/build/intermediates/library_manifest/release/AndroidManifest.xml:16:5-27:19
+MERGED from [:imagepicker] /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/libs/imagepicker/build/intermediates/library_manifest/release/AndroidManifest.xml:16:5-27:19
+MERGED from [com.android.support:design:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/design-28.0.0.aar/ebead5d21f0156b766d364d1006e2aa5/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:design:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/design-28.0.0.aar/ebead5d21f0156b766d364d1006e2aa5/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-location:15.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/play-services-location-15.0.1.aar/5df876ddc3a9c6e3883aa91c6736db32/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-location:15.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/play-services-location-15.0.1.aar/5df876ddc3a9c6e3883aa91c6736db32/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-base:15.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/953da9b67abaed13f703f3340f7ae45e/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-base:15.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/953da9b67abaed13f703f3340f7ae45e/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-places-placereport:15.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/play-services-places-placereport-15.0.1.aar/6e8204aed6a130512910dba9285cf093/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-places-placereport:15.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/play-services-places-placereport-15.0.1.aar/6e8204aed6a130512910dba9285cf093/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-tasks:15.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/play-services-tasks-15.0.1.aar/821e00fa98cacbcadc21fb9bbddeba3e/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-tasks:15.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/play-services-tasks-15.0.1.aar/821e00fa98cacbcadc21fb9bbddeba3e/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-basement:15.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/9aae177b20c8a3640485da9293686ddd/AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:15.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/9aae177b20c8a3640485da9293686ddd/AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.3.aar/1aa8fcd5f8857e097ea14e3912da4222/AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.3.aar/1aa8fcd5f8857e097ea14e3912da4222/AndroidManifest.xml:9:5-20
+MERGED from [com.github.d-max:spots-dialog:1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/spots-dialog-1.1.aar/858be613a563f040d45c6de86459decf/AndroidManifest.xml:11:5-20
+MERGED from [com.github.d-max:spots-dialog:1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/spots-dialog-1.1.aar/858be613a563f040d45c6de86459decf/AndroidManifest.xml:11:5-20
+MERGED from [com.github.Gavras:MultiLineRadioGroup:v1.0.0.6] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/MultiLineRadioGroup-v1.0.0.6.aar/405b566c15d69db37318373e03617168/AndroidManifest.xml:12:5-20
+MERGED from [com.github.Gavras:MultiLineRadioGroup:v1.0.0.6] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/MultiLineRadioGroup-v1.0.0.6.aar/405b566c15d69db37318373e03617168/AndroidManifest.xml:12:5-20
+MERGED from [com.amulyakhare:com.amulyakhare.textdrawable:1.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/com.amulyakhare.textdrawable-1.0.1.aar/2a184f3f023a7215e4f332244407a84d/AndroidManifest.xml:12:5-20
+MERGED from [com.amulyakhare:com.amulyakhare.textdrawable:1.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/com.amulyakhare.textdrawable-1.0.1.aar/2a184f3f023a7215e4f332244407a84d/AndroidManifest.xml:12:5-20
+MERGED from [com.github.bumptech.glide:glide:4.8.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/glide-4.8.0.aar/01cf1f9758a4bc6fa6acfc06f70ee636/AndroidManifest.xml:10:5-20
+MERGED from [com.github.bumptech.glide:glide:4.8.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/glide-4.8.0.aar/01cf1f9758a4bc6fa6acfc06f70ee636/AndroidManifest.xml:10:5-20
+MERGED from [android.arch.lifecycle:extensions:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/extensions-1.1.1.aar/74c4f98bdfad7cd568cbd2319653b20f/AndroidManifest.xml:22:5-28:19
+MERGED from [android.arch.lifecycle:extensions:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/extensions-1.1.1.aar/74c4f98bdfad7cd568cbd2319653b20f/AndroidManifest.xml:22:5-28:19
+MERGED from [com.android.support:support-compat:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/961d58ff6abd1aaa1c4bf4e495bfe0ad/AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:support-compat:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/961d58ff6abd1aaa1c4bf4e495bfe0ad/AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:versionedparcelable:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0.aar/ec684107c810017e7f9b696f9ac39b1b/AndroidManifest.xml:22:5-23:19
+MERGED from [com.android.support:versionedparcelable:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0.aar/ec684107c810017e7f9b696f9ac39b1b/AndroidManifest.xml:22:5-23:19
+MERGED from [com.github.bumptech.glide:gifdecoder:4.8.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/gifdecoder-4.8.0.aar/5c066f6ad99cbbe1c246c6dc4f002367/AndroidManifest.xml:9:5-20
+MERGED from [com.github.bumptech.glide:gifdecoder:4.8.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/gifdecoder-4.8.0.aar/5c066f6ad99cbbe1c246c6dc4f002367/AndroidManifest.xml:9:5-20
+MERGED from [com.tbruyelle.rxpermissions2:rxpermissions:0.9.4] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/rxpermissions-0.9.4.aar/4517fd9dff99b21d6b71fc33d45cdf88/AndroidManifest.xml:11:5-20
+MERGED from [com.tbruyelle.rxpermissions2:rxpermissions:0.9.4] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/rxpermissions-0.9.4.aar/4517fd9dff99b21d6b71fc33d45cdf88/AndroidManifest.xml:11:5-20
+	android:appComponentFactory
+		ADDED from [com.android.support:support-compat:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/961d58ff6abd1aaa1c4bf4e495bfe0ad/AndroidManifest.xml:22:18-91
+	android:supportsRtl
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:12:9-35
+		REJECTED from [:imagepicker] /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/libs/imagepicker/build/intermediates/library_manifest/release/AndroidManifest.xml:19:9-35
+	android:label
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:9:9-41
+	android:fullBackupContent
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:11:9-42
+	tools:ignore
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:16:9-48
+	android:icon
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:8:9-41
+	android:allowBackup
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:10:9-36
+		REJECTED from [:imagepicker] /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/libs/imagepicker/build/intermediates/library_manifest/release/AndroidManifest.xml:17:9-35
+	android:theme
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:13:9-40
+	tools:replace
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:15:9-66
+	android:usesCleartextTraffic
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:14:9-44
+	android:name
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:7:9-40
+activity#com.fastservices.sams.MainActivity
+ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:17:9-22:59
+	android:screenOrientation
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:20:13-49
+	android:label
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:19:13-45
+	android:windowSoftInputMode
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:21:13-55
+	android:theme
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:22:13-56
+	android:name
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:18:13-41
+activity#com.fastservices.sams.modules.splash.SplashActvity
+ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:23:9-27:59
+	android:screenOrientation
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:26:13-49
+	android:label
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:25:13-45
+	android:theme
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:27:13-56
+	android:name
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:24:13-57
+activity#com.fastservices.sams.modules.companycode.CompanyCodeActivity
+ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:28:9-38:20
+	android:screenOrientation
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:31:13-49
+	android:label
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:30:13-45
+	android:theme
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:32:13-56
+	android:name
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:29:13-68
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:33:13-37:29
+action#android.intent.action.MAIN
+ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:34:17-69
+	android:name
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:34:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:36:17-77
+	android:name
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:36:27-74
+activity#com.fastservices.sams.modules.login.LoginActivity
+ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:40:9-44:59
+	android:screenOrientation
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:43:13-49
+	android:label
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:42:13-45
+	android:theme
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:44:13-56
+	android:name
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:41:13-56
+activity#com.fastservices.sams.outletselector.OutletSelectorActivity
+ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:45:9-49:59
+	android:screenOrientation
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:47:13-49
+	android:windowSoftInputMode
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:48:13-54
+	android:theme
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:49:13-56
+	android:name
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:46:13-66
+activity#com.fastservices.sams.modules.takeorder.TakeOrderActivity
+ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:50:9-54:59
+	android:screenOrientation
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:53:13-49
+	android:windowSoftInputMode
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:52:13-54
+	android:theme
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:54:13-56
+	android:name
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:51:13-64
+provider#android.support.v4.content.FileProvider
+ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:56:9-64:20
+	android:grantUriPermissions
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:60:13-47
+	android:authorities
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:58:13-56
+	android:exported
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:59:13-37
+	android:name
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:57:13-67
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:61:13-63:58
+	android:resource
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:63:17-55
+	android:name
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml:62:17-67
+uses-sdk
+INJECTED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml
+INJECTED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml
+MERGED from [com.android.databinding:adapters:3.3.2] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/adapters-3.3.2.aar/b7b66403eefefc84a67489935990533b/AndroidManifest.xml:22:5-44
+MERGED from [com.android.databinding:adapters:3.3.2] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/adapters-3.3.2.aar/b7b66403eefefc84a67489935990533b/AndroidManifest.xml:22:5-44
+MERGED from [com.android.databinding:library:3.3.2] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/library-3.3.2.aar/0f707b050321dc345a18f38efddd7f9e/AndroidManifest.xml:22:5-44
+MERGED from [com.android.databinding:library:3.3.2] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/library-3.3.2.aar/0f707b050321dc345a18f38efddd7f9e/AndroidManifest.xml:22:5-44
+MERGED from [:imagepicker] /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/libs/imagepicker/build/intermediates/library_manifest/release/AndroidManifest.xml:8:5-10:41
+MERGED from [:imagepicker] /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/libs/imagepicker/build/intermediates/library_manifest/release/AndroidManifest.xml:8:5-10:41
+MERGED from [com.android.support:design:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/design-28.0.0.aar/ebead5d21f0156b766d364d1006e2aa5/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:design:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/design-28.0.0.aar/ebead5d21f0156b766d364d1006e2aa5/AndroidManifest.xml:20:5-44
+MERGED from [com.github.ganfra:material-spinner:2.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/material-spinner-2.0.0.aar/0af7d784d4378b71fc1a58f150c1cbd8/AndroidManifest.xml:6:5-8:41
+MERGED from [com.github.ganfra:material-spinner:2.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/material-spinner-2.0.0.aar/0af7d784d4378b71fc1a58f150c1cbd8/AndroidManifest.xml:6:5-8:41
+MERGED from [com.theartofdev.edmodo:android-image-cropper:2.4.2] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/android-image-cropper-2.4.2.aar/f32c80aefb8d387d217a0efed7dcb0f9/AndroidManifest.xml:8:5-10:41
+MERGED from [com.theartofdev.edmodo:android-image-cropper:2.4.2] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/android-image-cropper-2.4.2.aar/f32c80aefb8d387d217a0efed7dcb0f9/AndroidManifest.xml:8:5-10:41
+MERGED from [com.android.support:appcompat-v7:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/dfcd938421e2c37aa531e6dee76f11de/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/dfcd938421e2c37aa531e6dee76f11de/AndroidManifest.xml:20:5-44
+MERGED from [com.github.florent37:rxgps:1.0.2] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/rxgps-1.0.2.aar/4cf62dcd5b90787044a7857cafc53eb9/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.florent37:rxgps:1.0.2] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/rxgps-1.0.2.aar/4cf62dcd5b90787044a7857cafc53eb9/AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.android.gms:play-services-location:15.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/play-services-location-15.0.1.aar/5df876ddc3a9c6e3883aa91c6736db32/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-location:15.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/play-services-location-15.0.1.aar/5df876ddc3a9c6e3883aa91c6736db32/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-base:15.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/953da9b67abaed13f703f3340f7ae45e/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:15.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/953da9b67abaed13f703f3340f7ae45e/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places-placereport:15.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/play-services-places-placereport-15.0.1.aar/6e8204aed6a130512910dba9285cf093/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places-placereport:15.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/play-services-places-placereport-15.0.1.aar/6e8204aed6a130512910dba9285cf093/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-tasks:15.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/play-services-tasks-15.0.1.aar/821e00fa98cacbcadc21fb9bbddeba3e/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:15.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/play-services-tasks-15.0.1.aar/821e00fa98cacbcadc21fb9bbddeba3e/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-basement:15.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/9aae177b20c8a3640485da9293686ddd/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:15.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/9aae177b20c8a3640485da9293686ddd/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/support-v4-28.0.0.aar/24c17ea35a86d69be2fd3a1498c9a4e8/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/support-v4-28.0.0.aar/24c17ea35a86d69be2fd3a1498c9a4e8/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.3.aar/1aa8fcd5f8857e097ea14e3912da4222/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.3.aar/1aa8fcd5f8857e097ea14e3912da4222/AndroidManifest.xml:5:5-7:41
+MERGED from [io.reactivex.rxjava2:rxandroid:2.1.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/rxandroid-2.1.0.aar/427844b0d320ae8bc854ed21300c5369/AndroidManifest.xml:18:5-43
+MERGED from [io.reactivex.rxjava2:rxandroid:2.1.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/rxandroid-2.1.0.aar/427844b0d320ae8bc854ed21300c5369/AndroidManifest.xml:18:5-43
+MERGED from [com.github.d-max:spots-dialog:1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/spots-dialog-1.1.aar/858be613a563f040d45c6de86459decf/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.d-max:spots-dialog:1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/spots-dialog-1.1.aar/858be613a563f040d45c6de86459decf/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.alirezaashrafi:GoogleMapView:1.0.4] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/GoogleMapView-1.0.4.aar/4332e9dd619bfb314b3a7327e5cb96cb/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.alirezaashrafi:GoogleMapView:1.0.4] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/GoogleMapView-1.0.4.aar/4332e9dd619bfb314b3a7327e5cb96cb/AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.Gavras:MultiLineRadioGroup:v1.0.0.6] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/MultiLineRadioGroup-v1.0.0.6.aar/405b566c15d69db37318373e03617168/AndroidManifest.xml:8:5-10:41
+MERGED from [com.github.Gavras:MultiLineRadioGroup:v1.0.0.6] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/MultiLineRadioGroup-v1.0.0.6.aar/405b566c15d69db37318373e03617168/AndroidManifest.xml:8:5-10:41
+MERGED from [com.amulyakhare:com.amulyakhare.textdrawable:1.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/com.amulyakhare.textdrawable-1.0.1.aar/2a184f3f023a7215e4f332244407a84d/AndroidManifest.xml:8:5-10:41
+MERGED from [com.amulyakhare:com.amulyakhare.textdrawable:1.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/com.amulyakhare.textdrawable-1.0.1.aar/2a184f3f023a7215e4f332244407a84d/AndroidManifest.xml:8:5-10:41
+MERGED from [com.github.bumptech.glide:glide:4.8.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/glide-4.8.0.aar/01cf1f9758a4bc6fa6acfc06f70ee636/AndroidManifest.xml:6:5-8:41
+MERGED from [com.github.bumptech.glide:glide:4.8.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/glide-4.8.0.aar/01cf1f9758a4bc6fa6acfc06f70ee636/AndroidManifest.xml:6:5-8:41
+MERGED from [android.arch.persistence.room:runtime:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/e4a9bb4af4ab19353c89cbb12743bc22/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.persistence.room:runtime:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/e4a9bb4af4ab19353c89cbb12743bc22/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:extensions:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/extensions-1.1.1.aar/74c4f98bdfad7cd568cbd2319653b20f/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:extensions:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/extensions-1.1.1.aar/74c4f98bdfad7cd568cbd2319653b20f/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:reactivestreams:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/reactivestreams-1.1.1.aar/c13c557b466a5d9ffdd17fcefb33e64c/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:reactivestreams:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/reactivestreams-1.1.1.aar/c13c557b466a5d9ffdd17fcefb33e64c/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/support-fragment-28.0.0.aar/adf40615ab483feb4de92517cd2d46d6/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/support-fragment-28.0.0.aar/adf40615ab483feb4de92517cd2d46d6/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-28.0.0.aar/33daabc394d5ecec8f2c58df903f0ef5/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-28.0.0.aar/33daabc394d5ecec8f2c58df903f0ef5/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-28.0.0.aar/157cae9b012a8b0b016c80443bc7f944/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-28.0.0.aar/157cae9b012a8b0b016c80443bc7f944/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/support-core-ui-28.0.0.aar/a43eb47b2166498e32943b3eb758f769/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/support-core-ui-28.0.0.aar/a43eb47b2166498e32943b3eb758f769/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/support-core-utils-28.0.0.aar/25882af2624cc5c64af4bc1530d3d571/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/support-core-utils-28.0.0.aar/25882af2624cc5c64af4bc1530d3d571/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-28.0.0.aar/14bb02307120019988d811bd0e1a58ea/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-28.0.0.aar/14bb02307120019988d811bd0e1a58ea/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/support-media-compat-28.0.0.aar/83dd4c15f71cfc6882ed25f244c2937a/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/support-media-compat-28.0.0.aar/83dd4c15f71cfc6882ed25f244c2937a/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/transition-28.0.0.aar/409e40143ffdcc889e50c5e058f06730/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/transition-28.0.0.aar/409e40143ffdcc889e50c5e058f06730/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/loader-28.0.0.aar/019f2796440bb47d1c8158eab310af9d/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/loader-28.0.0.aar/019f2796440bb47d1c8158eab310af9d/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/viewpager-28.0.0.aar/8c8c825d52c8e5e4e3e840819a2bd6e6/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/viewpager-28.0.0.aar/8c8c825d52c8e5e4e3e840819a2bd6e6/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-28.0.0.aar/4f9a82f8df018564cc94011a6b364003/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/coordinatorlayout-28.0.0.aar/4f9a82f8df018564cc94011a6b364003/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/drawerlayout-28.0.0.aar/d4e78a4c727f424bc22105dd320710b8/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/drawerlayout-28.0.0.aar/d4e78a4c727f424bc22105dd320710b8/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/slidingpanelayout-28.0.0.aar/e76ec3d8d19244ea5da7354ade4d24f7/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/slidingpanelayout-28.0.0.aar/e76ec3d8d19244ea5da7354ade4d24f7/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/customview-28.0.0.aar/fb0d5648149bf2db4f19492e8814f23a/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/customview-28.0.0.aar/fb0d5648149bf2db4f19492e8814f23a/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/swiperefreshlayout-28.0.0.aar/55ef61474d3cd304dc0da9f38b60383e/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/swiperefreshlayout-28.0.0.aar/55ef61474d3cd304dc0da9f38b60383e/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/asynclayoutinflater-28.0.0.aar/380cee301d5c12207d95cbc353574713/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/asynclayoutinflater-28.0.0.aar/380cee301d5c12207d95cbc353574713/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/961d58ff6abd1aaa1c4bf4e495bfe0ad/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/961d58ff6abd1aaa1c4bf4e495bfe0ad/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/8de8587912eeb9d5584eca7fb8a0213b/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/8de8587912eeb9d5584eca7fb8a0213b/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0.aar/ec684107c810017e7f9b696f9ac39b1b/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/versionedparcelable-28.0.0.aar/ec684107c810017e7f9b696f9ac39b1b/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/cursoradapter-28.0.0.aar/6b8af181212ee51c7782d30f3cd71161/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/cursoradapter-28.0.0.aar/6b8af181212ee51c7782d30f3cd71161/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/cardview-v7-28.0.0.aar/16eb3b5ab2baf6062e2578e988eba0bf/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/cardview-v7-28.0.0.aar/16eb3b5ab2baf6062e2578e988eba0bf/AndroidManifest.xml:20:5-44
+MERGED from [com.github.bumptech.glide:gifdecoder:4.8.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/gifdecoder-4.8.0.aar/5c066f6ad99cbbe1c246c6dc4f002367/AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.bumptech.glide:gifdecoder:4.8.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/gifdecoder-4.8.0.aar/5c066f6ad99cbbe1c246c6dc4f002367/AndroidManifest.xml:5:5-7:41
+MERGED from [android.arch.persistence:db-framework:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/db-framework-1.1.1.aar/5da3d1966d8d6529e4e4162598d42e0e/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.persistence:db-framework:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/db-framework-1.1.1.aar/5da3d1966d8d6529e4e4162598d42e0e/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.persistence:db:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/db-1.1.1.aar/66c5ea816a247e21411d23a2262323c1/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.persistence:db:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/db-1.1.1.aar/66c5ea816a247e21411d23a2262323c1/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/livedata-1.1.1.aar/d8973cadadffec8b298c309c99e9cbe5/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/livedata-1.1.1.aar/d8973cadadffec8b298c309c99e9cbe5/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.1.aar/99556057c807aadadc0155650efc3f87/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.1.aar/99556057c807aadadc0155650efc3f87/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/198b485a6307f6fb1b80878755e50ea4/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/198b485a6307f6fb1b80878755e50ea4/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.1.aar/3fc336673442a9d3e1a14e0f9a147528/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.1.aar/3fc336673442a9d3e1a14e0f9a147528/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/documentfile-28.0.0.aar/c138f17e93934f50ccf79ffce7633eb7/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/documentfile-28.0.0.aar/c138f17e93934f50ccf79ffce7633eb7/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-28.0.0.aar/1e3d59f7fb9b2779ecf6429bce6c4f30/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/localbroadcastmanager-28.0.0.aar/1e3d59f7fb9b2779ecf6429bce6c4f30/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/print-28.0.0.aar/a9e086260216c84313625baa5a71ffb6/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/print-28.0.0.aar/a9e086260216c84313625baa5a71ffb6/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/interpolator-28.0.0.aar/015343210c6cb8c1704517ba878da273/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/interpolator-28.0.0.aar/015343210c6cb8c1704517ba878da273/AndroidManifest.xml:20:5-44
+MERGED from [com.tbruyelle.rxpermissions2:rxpermissions:0.9.4] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/rxpermissions-0.9.4.aar/4517fd9dff99b21d6b71fc33d45cdf88/AndroidManifest.xml:7:5-9:41
+MERGED from [com.tbruyelle.rxpermissions2:rxpermissions:0.9.4] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/rxpermissions-0.9.4.aar/4517fd9dff99b21d6b71fc33d45cdf88/AndroidManifest.xml:7:5-9:41
+MERGED from [io.reactivex:rxandroid:1.2.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/rxandroid-1.2.1.aar/9a0bc40d8eb7f02f7af080cf0998cf0c/AndroidManifest.xml:19:5-43
+MERGED from [io.reactivex:rxandroid:1.2.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/rxandroid-1.2.1.aar/9a0bc40d8eb7f02f7af080cf0998cf0c/AndroidManifest.xml:19:5-43
+INJECTED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml
+INJECTED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml
+		ADDED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/AndroidManifest.xml
+uses-permission#android.permission.CAMERA
+ADDED from [:imagepicker] /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/libs/imagepicker/build/intermediates/library_manifest/release/AndroidManifest.xml:12:5-65
+	android:name
+		ADDED from [:imagepicker] /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/libs/imagepicker/build/intermediates/library_manifest/release/AndroidManifest.xml:12:22-62
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from [:imagepicker] /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/libs/imagepicker/build/intermediates/library_manifest/release/AndroidManifest.xml:13:5-80
+	android:name
+		ADDED from [:imagepicker] /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/libs/imagepicker/build/intermediates/library_manifest/release/AndroidManifest.xml:13:22-77
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from [:imagepicker] /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/libs/imagepicker/build/intermediates/library_manifest/release/AndroidManifest.xml:14:5-81
+	android:name
+		ADDED from [:imagepicker] /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/libs/imagepicker/build/intermediates/library_manifest/release/AndroidManifest.xml:14:22-78
+activity#com.theartofdev.edmodo.cropper.CropImageActivity
+ADDED from [:imagepicker] /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/libs/imagepicker/build/intermediates/library_manifest/release/AndroidManifest.xml:20:9-23:59
+	android:screenOrientation
+		ADDED from [:imagepicker] /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/libs/imagepicker/build/intermediates/library_manifest/release/AndroidManifest.xml:22:13-49
+	android:theme
+		ADDED from [:imagepicker] /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/libs/imagepicker/build/intermediates/library_manifest/release/AndroidManifest.xml:23:13-56
+	android:name
+		ADDED from [:imagepicker] /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/libs/imagepicker/build/intermediates/library_manifest/release/AndroidManifest.xml:21:13-76
+activity#com.imagepicker.pdfpicker.NormalFilePickActivity
+ADDED from [:imagepicker] /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/libs/imagepicker/build/intermediates/library_manifest/release/AndroidManifest.xml:24:9-26:52
+	android:screenOrientation
+		ADDED from [:imagepicker] /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/libs/imagepicker/build/intermediates/library_manifest/release/AndroidManifest.xml:26:13-49
+	android:name
+		ADDED from [:imagepicker] /Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/libs/imagepicker/build/intermediates/library_manifest/release/AndroidManifest.xml:25:13-76
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from [com.github.florent37:rxgps:1.0.2] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/rxgps-1.0.2.aar/4cf62dcd5b90787044a7857cafc53eb9/AndroidManifest.xml:11:5-81
+	android:name
+		ADDED from [com.github.florent37:rxgps:1.0.2] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/rxgps-1.0.2.aar/4cf62dcd5b90787044a7857cafc53eb9/AndroidManifest.xml:11:22-78
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from [com.github.florent37:rxgps:1.0.2] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/rxgps-1.0.2.aar/4cf62dcd5b90787044a7857cafc53eb9/AndroidManifest.xml:12:5-79
+	android:name
+		ADDED from [com.github.florent37:rxgps:1.0.2] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/rxgps-1.0.2.aar/4cf62dcd5b90787044a7857cafc53eb9/AndroidManifest.xml:12:22-76
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:15.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/953da9b67abaed13f703f3340f7ae45e/AndroidManifest.xml:23:9-26:75
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:15.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/953da9b67abaed13f703f3340f7ae45e/AndroidManifest.xml:25:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:15.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/953da9b67abaed13f703f3340f7ae45e/AndroidManifest.xml:26:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:15.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/953da9b67abaed13f703f3340f7ae45e/AndroidManifest.xml:24:13-79
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:15.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/9aae177b20c8a3640485da9293686ddd/AndroidManifest.xml:23:9-25:69
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:15.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/9aae177b20c8a3640485da9293686ddd/AndroidManifest.xml:25:13-66
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:15.0.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/9aae177b20c8a3640485da9293686ddd/AndroidManifest.xml:24:13-58
+uses-permission#android.permission.INTERNET
+ADDED from [com.github.alirezaashrafi:GoogleMapView:1.0.4] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/GoogleMapView-1.0.4.aar/4332e9dd619bfb314b3a7327e5cb96cb/AndroidManifest.xml:11:5-67
+	android:name
+		ADDED from [com.github.alirezaashrafi:GoogleMapView:1.0.4] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/GoogleMapView-1.0.4.aar/4332e9dd619bfb314b3a7327e5cb96cb/AndroidManifest.xml:11:22-64
+provider#android.arch.lifecycle.ProcessLifecycleOwnerInitializer
+ADDED from [android.arch.lifecycle:extensions:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/extensions-1.1.1.aar/74c4f98bdfad7cd568cbd2319653b20f/AndroidManifest.xml:23:9-27:43
+	android:authorities
+		ADDED from [android.arch.lifecycle:extensions:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/extensions-1.1.1.aar/74c4f98bdfad7cd568cbd2319653b20f/AndroidManifest.xml:25:13-68
+	android:multiprocess
+		ADDED from [android.arch.lifecycle:extensions:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/extensions-1.1.1.aar/74c4f98bdfad7cd568cbd2319653b20f/AndroidManifest.xml:27:13-40
+	android:exported
+		ADDED from [android.arch.lifecycle:extensions:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/extensions-1.1.1.aar/74c4f98bdfad7cd568cbd2319653b20f/AndroidManifest.xml:26:13-37
+	android:name
+		ADDED from [android.arch.lifecycle:extensions:1.1.1] /Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/extensions-1.1.1.aar/74c4f98bdfad7cd568cbd2319653b20f/AndroidManifest.xml:24:13-83

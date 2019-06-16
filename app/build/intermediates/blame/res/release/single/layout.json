@@ -1,0 +1,78 @@
+[
+    {
+        "merged": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/build/intermediates/incremental/mergeReleaseResources/stripped.dir/layout/fragment_sku_list.xml",
+        "source": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/res/layout/fragment_sku_list.xml"
+    },
+    {
+        "merged": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/build/intermediates/incremental/mergeReleaseResources/stripped.dir/layout/fragment_replacement.xml",
+        "source": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/res/layout/fragment_replacement.xml"
+    },
+    {
+        "merged": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/build/intermediates/incremental/mergeReleaseResources/stripped.dir/layout/fragment_sku_wise_summary.xml",
+        "source": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/res/layout/fragment_sku_wise_summary.xml"
+    },
+    {
+        "merged": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/build/intermediates/incremental/mergeReleaseResources/stripped.dir/layout/activity_company_code.xml",
+        "source": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/res/layout/activity_company_code.xml"
+    },
+    {
+        "merged": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/build/intermediates/incremental/mergeReleaseResources/stripped.dir/layout/fragment_stock_position.xml",
+        "source": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/res/layout/fragment_stock_position.xml"
+    },
+    {
+        "merged": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/build/intermediates/incremental/mergeReleaseResources/stripped.dir/layout/fragment_merchandising.xml",
+        "source": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/res/layout/fragment_merchandising.xml"
+    },
+    {
+        "merged": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/build/intermediates/incremental/mergeReleaseResources/stripped.dir/layout/fragment_pricing_report.xml",
+        "source": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/res/layout/fragment_pricing_report.xml"
+    },
+    {
+        "merged": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/build/intermediates/incremental/mergeReleaseResources/stripped.dir/layout/fragment_outlet.xml",
+        "source": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/res/layout/fragment_outlet.xml"
+    },
+    {
+        "merged": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/build/intermediates/incremental/mergeReleaseResources/stripped.dir/layout/fragment_order_summary.xml",
+        "source": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/res/layout/fragment_order_summary.xml"
+    },
+    {
+        "merged": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/build/intermediates/incremental/mergeReleaseResources/stripped.dir/layout/fragment_dashboard.xml",
+        "source": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/res/layout/fragment_dashboard.xml"
+    },
+    {
+        "merged": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/build/intermediates/incremental/mergeReleaseResources/stripped.dir/layout/fragment_outlet_no_order.xml",
+        "source": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/res/layout/fragment_outlet_no_order.xml"
+    },
+    {
+        "merged": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/build/intermediates/incremental/mergeReleaseResources/stripped.dir/layout/fragment_daily_productivity.xml",
+        "source": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/res/layout/fragment_daily_productivity.xml"
+    },
+    {
+        "merged": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/build/intermediates/incremental/mergeReleaseResources/stripped.dir/layout/activity_login.xml",
+        "source": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/res/layout/activity_login.xml"
+    },
+    {
+        "merged": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/build/intermediates/incremental/mergeReleaseResources/stripped.dir/layout/fragment_outlet_wise_summary.xml",
+        "source": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/res/layout/fragment_outlet_wise_summary.xml"
+    },
+    {
+        "merged": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/build/intermediates/incremental/mergeReleaseResources/stripped.dir/layout/fragment_take_order.xml",
+        "source": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/res/layout/fragment_take_order.xml"
+    },
+    {
+        "merged": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/build/intermediates/incremental/mergeReleaseResources/stripped.dir/layout/fragment_complaints.xml",
+        "source": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/res/layout/fragment_complaints.xml"
+    },
+    {
+        "merged": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/build/intermediates/incremental/mergeReleaseResources/stripped.dir/layout/fragment_order_details.xml",
+        "source": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/res/layout/fragment_order_details.xml"
+    },
+    {
+        "merged": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/build/intermediates/incremental/mergeReleaseResources/stripped.dir/layout/fragment_sync.xml",
+        "source": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/res/layout/fragment_sync.xml"
+    },
+    {
+        "merged": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/build/intermediates/incremental/mergeReleaseResources/stripped.dir/layout/fragment_add_outlet.xml",
+        "source": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/src/main/res/layout/fragment_add_outlet.xml"
+    }
+]

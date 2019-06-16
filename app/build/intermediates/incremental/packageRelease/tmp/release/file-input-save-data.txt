@@ -1,0 +1,11 @@
+#Internal package file, do not edit.
+#Mon May 27 21:18:06 PKT 2019
+1.base=/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/build/intermediates/transforms/dexMerger/release/0
+0.baseType=DIRECTORY
+1.baseType=DIRECTORY
+count=2
+1.set=DEX
+0.path=classes2.dex
+0.set=DEX
+0.base=/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/build/intermediates/transforms/dexMerger/release/0
+1.path=classes.dex

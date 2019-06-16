@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="25dp"
+    android:paddingTop="25dp"
+    android:paddingEnd="10dp"
+    android:paddingBottom="25dp">
+
+    <ImageView
+        android:id="@+id/ivOutletIcon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_store_grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvOutletName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:text="Gloria Jeans"
+        android:textColor="@color/textcolor_black"
+        android:textSize="@dimen/outlet_item_title_textsize"
+        app:layout_constraintBottom_toTopOf="@+id/tvAddress"
+        app:layout_constraintEnd_toStartOf="@+id/tvLabelUnitCarton"
+        app:layout_constraintStart_toEndOf="@+id/ivOutletIcon" />
+
+    <TextView
+        android:id="@+id/tvAddress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/outlet_item_text_top_margin"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:text="123, New town New 16008"
+        android:textColor="@color/textcolor_black"
+        android:textSize="@dimen/outlet_item_addr_textsize"
+        app:layout_constraintBottom_toTopOf="@+id/centerline"
+        app:layout_constraintEnd_toStartOf="@+id/tvLabelUnitCarton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tvOutletName"
+        app:layout_constraintTop_toBottomOf="@+id/centerline" />
+
+    <TextView
+        android:id="@+id/tvOwner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/outlet_item_text_top_margin"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:text="Asim"
+        android:textColor="@color/textcolor_black"
+        android:textSize="@dimen/outlet_item_addr_textsize"
+        app:layout_constraintEnd_toStartOf="@+id/tvLabelUnitCarton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tvOutletName"
+        app:layout_constraintTop_toBottomOf="@+id/tvAddress"
+        app:layout_constraintWidth_default="wrap" />
+
+    <TextView
+        android:id="@+id/tvLabelUnitCarton"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:text="Net Amount"
+        android:textColor="@color/textcolor_darkgrey"
+        android:textSize="@dimen/outlet_item_order_textsize"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/tvValueUnitCarton"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/tvValueUnitCarton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:text="PKR 45000"
+        android:textColor="@color/textcolor_darkgrey"
+        android:textSize="@dimen/outlet_item_order_textsize"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/ivOutletIcon"
+        app:layout_constraintLeft_toLeftOf="@+id/tvLabelUnitCarton"
+        app:layout_constraintRight_toRightOf="@+id/tvLabelUnitCarton" />
+
+
+    <TextView
+        android:id="@+id/tvUnorder"
+        android:layout_width="0dp"
+        android:layout_height="28dp"
+        android:background="@drawable/rounded_rect_green"
+        android:gravity="center"
+        android:text="No-order"
+        android:textColor="@color/textcolor_green"
+        android:textSize="12sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/ivOutletIcon"
+        app:layout_constraintRight_toRightOf="@+id/tvLabelUnitCarton"
+        app:layout_constraintStart_toStartOf="@+id/tvValueUnitCarton" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/centerline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.fastservices.sams.modules.dailyproductivity.DPViewModel" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/lblScheduledOutlets"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="left"
+            android:text="Scheduled Outlets"
+            android:textColor="@color/textcolor_black"
+            android:textSize="@dimen/textsize_order_summary"
+            app:layout_constraintEnd_toStartOf="@+id/tvScheduledOutlets"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvScheduledOutlets"
+            android:layout_width="@dimen/daily_production_item_width"
+            android:layout_height="@dimen/item_order_detail_height"
+            android:layout_marginStart="8dp"
+            android:background="#E2E2E2"
+            android:gravity="center"
+            android:textColor="@color/textcolor_black"
+            android:textSize="@dimen/textsize_order_summary"
+            android:text="@{viewModel.FOutletCount}"
+            app:layout_constraintBottom_toBottomOf="@+id/lblScheduledOutlets"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/lblScheduledOutlets"
+            app:layout_constraintTop_toTopOf="@+id/lblScheduledOutlets"
+            tools:text="5000" />
+
+
+        <TextView
+            android:id="@+id/lblVisitedOutlets"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="Visited Outlets"
+            android:textColor="@color/textcolor_black"
+            android:textSize="@dimen/textsize_order_summary"
+            app:layout_constraintBottom_toBottomOf="@+id/tvVisitedOutlets"
+            app:layout_constraintEnd_toStartOf="@+id/tvVisitedOutlets"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvVisitedOutlets" />
+
+        <TextView
+            android:id="@+id/tvVisitedOutlets"
+            android:layout_width="@dimen/daily_production_item_width"
+            android:layout_height="@dimen/item_order_detail_height"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:background="#E2E2E2"
+            android:gravity="center"
+            android:textColor="@color/textcolor_black"
+            android:textSize="@dimen/textsize_order_summary"
+            android:text="@{viewModel.FVisited}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/lblVisitedOutlets"
+            app:layout_constraintTop_toBottomOf="@+id/tvScheduledOutlets"
+            tools:text="123" />
+
+        <TextView
+            android:id="@+id/tvProductiveOutlets"
+            android:layout_width="@dimen/daily_production_item_width"
+            android:layout_height="@dimen/item_order_detail_height"
+            android:layout_marginTop="12dp"
+            android:background="#E2E2E2"
+            android:gravity="center"
+            android:text="@{viewModel.FProductive}"
+            android:textColor="@color/textcolor_black"
+            android:textSize="@dimen/textsize_order_summary"
+            app:layout_constraintEnd_toEndOf="@+id/tvScheduledOutlets"
+            app:layout_constraintTop_toBottomOf="@+id/tvVisitedOutlets"
+            tools:text="34" />
+
+        <TextView
+            android:id="@+id/lblProductiveOutlets"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="Productive Outlets"
+            android:textColor="@color/textcolor_black"
+            android:textSize="@dimen/textsize_order_summary"
+            app:layout_constraintBottom_toBottomOf="@+id/tvProductiveOutlets"
+            app:layout_constraintStart_toStartOf="@+id/lblVisitedOutlets"
+            app:layout_constraintTop_toTopOf="@+id/tvProductiveOutlets" />
+
+        <TextView
+            android:id="@+id/lblNonVisitedOutlet"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="Non Visited Outlets"
+            android:textColor="@color/textcolor_black"
+            android:textSize="@dimen/textsize_order_summary"
+            app:layout_constraintBottom_toBottomOf="@+id/tvNonVisitedOutlet"
+            app:layout_constraintStart_toStartOf="@+id/lblProductiveOutlets"
+            app:layout_constraintTop_toTopOf="@+id/tvNonVisitedOutlet" />
+
+        <TextView
+            android:id="@+id/tvNonVisitedOutlet"
+            android:layout_width="@dimen/daily_production_item_width"
+            android:layout_height="@dimen/item_order_detail_height"
+            android:layout_marginTop="12dp"
+            android:background="#E2E2E2"
+            android:gravity="center"
+            android:text="@{viewModel.FNonVisited}"
+            android:textColor="@color/textcolor_black"
+            android:textSize="@dimen/textsize_order_summary"
+            app:layout_constraintEnd_toEndOf="@+id/tvProductiveOutlets"
+            app:layout_constraintTop_toBottomOf="@+id/tvProductiveOutlets"
+            tools:text="5" />
+
+        <TextView
+            android:id="@+id/lblTotalSKUs"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="Total Booked SKUs"
+            android:textColor="@color/textcolor_black"
+            android:textSize="@dimen/textsize_order_summary"
+            app:layout_constraintBottom_toBottomOf="@+id/tvTotalSKUs"
+            app:layout_constraintStart_toStartOf="@+id/lblNonVisitedOutlet"
+            app:layout_constraintTop_toTopOf="@+id/tvTotalSKUs" />
+
+        <TextView
+            android:id="@+id/tvTotalSKUs"
+            android:layout_width="@dimen/daily_production_item_width"
+            android:layout_height="@dimen/item_order_detail_height"
+            android:layout_marginTop="12dp"
+            android:background="#E2E2E2"
+            android:gravity="center"
+            android:textColor="@color/textcolor_black"
+            android:text="@{viewModel.FTotalSKU}"
+            android:textSize="@dimen/textsize_order_summary"
+            app:layout_constraintEnd_toEndOf="@+id/tvNonVisitedOutlet"
+            app:layout_constraintTop_toBottomOf="@+id/tvNonVisitedOutlet"
+            tools:text="56" />
+
+        <TextView
+            android:id="@+id/tvTotalNetAmount"
+            android:layout_width="@dimen/daily_production_item_width"
+            android:layout_height="@dimen/item_order_detail_height"
+            android:layout_marginTop="12dp"
+            android:background="#E2E2E2"
+            android:gravity="center"
+            android:text="@{viewModel.FTotalAmount}"
+            android:textColor="@color/textcolor_black"
+            android:textSize="@dimen/textsize_order_summary"
+            app:layout_constraintEnd_toEndOf="@+id/tvTotalSKUs"
+            app:layout_constraintTop_toBottomOf="@+id/tvTotalSKUs"
+            tools:text="12500" />
+
+        <TextView
+            android:id="@+id/lblTotalNetAmount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="Total Booked Net Amount"
+            android:textColor="@color/textcolor_black"
+            android:textSize="@dimen/textsize_order_summary"
+            app:layout_constraintBottom_toBottomOf="@+id/tvTotalNetAmount"
+            app:layout_constraintStart_toStartOf="@+id/lblTotalSKUs"
+            app:layout_constraintTop_toTopOf="@+id/tvTotalNetAmount" />
+
+        <TextView
+            android:id="@+id/tvAvgSKU"
+            android:layout_width="@dimen/daily_production_item_width"
+            android:layout_height="@dimen/item_order_detail_height"
+            android:layout_marginTop="12dp"
+            android:background="#E2E2E2"
+            android:gravity="center"
+            android:text="@{viewModel.FAvgSKU}"
+            android:textColor="@color/textcolor_black"
+            android:textSize="@dimen/textsize_order_summary"
+            app:layout_constraintEnd_toEndOf="@+id/tvTotalNetAmount"
+            app:layout_constraintTop_toBottomOf="@+id/tvTotalNetAmount"
+            tools:text="2.14" />
+
+        <TextView
+            android:id="@+id/lblAvgSKU"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="Average SKU Per Order"
+            android:textColor="@color/textcolor_black"
+            android:textSize="@dimen/textsize_order_summary"
+            app:layout_constraintBottom_toBottomOf="@+id/tvAvgSKU"
+            app:layout_constraintStart_toStartOf="@+id/lblTotalNetAmount"
+            app:layout_constraintTop_toTopOf="@+id/tvAvgSKU" />
+
+        <TextView
+            android:id="@+id/tvAvgSKU2"
+            android:layout_width="@dimen/daily_production_item_width"
+            android:layout_height="@dimen/item_order_detail_height"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:background="#E2E2E2"
+            android:gravity="center"
+            android:textColor="@color/textcolor_black"
+            android:textSize="@dimen/textsize_order_summary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            android:text="@{viewModel.FAvgAmount}"
+            app:layout_constraintStart_toEndOf="@+id/lblAvgSKU2"
+            app:layout_constraintTop_toBottomOf="@+id/tvAvgSKU"
+            tools:text="350" />
+
+        <TextView
+            android:id="@+id/lblAvgSKU2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="Average Net Amount Per Order"
+            android:textColor="@color/textcolor_black"
+            android:textSize="@dimen/textsize_order_summary"
+            app:layout_constraintBottom_toBottomOf="@+id/tvAvgSKU2"
+            app:layout_constraintEnd_toStartOf="@+id/tvAvgSKU2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvAvgSKU2" />
+    </android.support.constraint.ConstraintLayout>
+</layout>

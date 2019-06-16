@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.fastservices.sams.modules.stockpositioning.StockPositioningVM" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/tvSelectedOutlet"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Select Outet"
+            android:padding="15dp"
+            android:textColor="@color/textcolor_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/textcolor_grey"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvSelectedOutlet" />
+
+
+        <TextView
+            android:id="@+id/lblItemName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Items"
+
+            android:textColor="@color/textcolor_green"
+            app:layout_constraintEnd_toStartOf="@+id/lblNumberOfPieces"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvSelectedOutlet" />
+
+        <TextView
+            android:id="@+id/lblNumberOfPieces"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="Qty"
+            android:textColor="@color/textcolor_green"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintStart_toEndOf="@+id/lblItemName"
+            app:layout_constraintTop_toBottomOf="@+id/tvSelectedOutlet" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvStockPositioning"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottomLayout"
+            app:layout_constraintEnd_toEndOf="@+id/lblNumberOfPieces"
+            app:layout_constraintStart_toStartOf="@+id/lblItemName"
+            app:layout_constraintTop_toBottomOf="@+id/lblItemName"
+            tools:itemCount="5"
+            tools:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_stock_positioning" />
+        <TextView
+            android:id="@+id/listEmptyLabel"
+            android:visibility="visible"
+            android:layout_width="0dp"
+            app:layout_constraintEnd_toEndOf="@+id/lblNumberOfPieces"
+            app:layout_constraintStart_toStartOf="@+id/lblItemName"
+            app:layout_constraintTop_toBottomOf="@+id/lblItemName"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:textStyle="italic"
+            android:layout_height="wrap_content"
+            android:text="No SKUs"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_shadow"
+            android:elevation="2dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottomLayout" />
+
+        <include
+            android:id="@+id/bottomLayout"
+            layout="@layout/layout_bottom_bar"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/btnSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_rect_action_btn"
+            android:elevation="3dp"
+            android:onClick="@{()->viewModel.addStockPositioning()}"
+            android:text="Add"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/bottomLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/bottomLayout"
+            app:layout_constraintVertical_bias="0.77" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

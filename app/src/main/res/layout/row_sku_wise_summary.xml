@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/tvSkuName"
+        app:layout_constraintEnd_toStartOf="@+id/tvSKUQty"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/item_order_detail_bg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:padding="10dp"
+        tools:text="SKU Name"
+        android:textColor="@color/textcolor_black"
+        android:textSize="@dimen/textsize_order_details" />
+
+    <TextView
+        android:id="@+id/tvSKUQty"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/item_order_detail_bg"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textColor="@color/textcolor_black"
+        android:textSize="@dimen/textsize_order_details"
+        app:layout_constraintBottom_toBottomOf="@+id/tvSkuName"
+        app:layout_constraintEnd_toStartOf="@+id/tvSKUAmount"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tvSkuName"
+        app:layout_constraintTop_toTopOf="@+id/tvSkuName"
+        tools:text="Trade P" />
+
+    <TextView
+        android:id="@+id/tvSKUAmount"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:background="@color/item_order_detail_bg"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textColor="@color/textcolor_black"
+        android:textSize="@dimen/textsize_order_details"
+        app:layout_constraintBottom_toBottomOf="@+id/tvSkuName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tvSKUQty"
+        app:layout_constraintTop_toTopOf="@+id/tvSkuName"
+        tools:text="Retail P" />
+
+</android.support.constraint.ConstraintLayout>
