@@ -3,7 +3,7 @@ package com.fastservices.sams.data.entities;
 import java.lang.System;
 
 @android.arch.persistence.room.Entity(tableName = "Outlet")
-@kotlin.Metadata(mv = {1, 1, 13}, bv = {1, 0, 3}, k = 1, d1 = {"\u00008\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\b\n\u0002\b\u0002\n\u0002\u0010\u000e\n\u0002\b\u000b\n\u0002\u0010\u0006\n\u0000\n\u0002\u0010\u0007\n\u0002\bx\n\u0002\u0010\u000b\n\u0000\n\u0002\u0010\u0000\n\u0002\b\u0003\b\u0087\b\u0018\u00002\u00020\u0001B\u0007\b\u0016\u00a2\u0006\u0002\u0010\u0002B\u00fd\u0001\u0012\u0006\u0010\u0003\u001a\u00020\u0004\u0012\u0006\u0010\u0005\u001a\u00020\u0004\u0012\u0006\u0010\u0006\u001a\u00020\u0007\u0012\u0006\u0010\b\u001a\u00020\u0007\u0012\u0006\u0010\t\u001a\u00020\u0007\u0012\u0006\u0010\n\u001a\u00020\u0007\u0012\u0006\u0010\u000b\u001a\u00020\u0007\u0012\u0006\u0010\f\u001a\u00020\u0004\u0012\u0006\u0010\r\u001a\u00020\u0004\u0012\u0006\u0010\u000e\u001a\u00020\u0004\u0012\u0006\u0010\u000f\u001a\u00020\u0004\u0012\u0006\u0010\u0010\u001a\u00020\u0004\u0012\u0006\u0010\u0011\u001a\u00020\u0004\u0012\u0006\u0010\u0012\u001a\u00020\u0013\u0012\u0006\u0010\u0014\u001a\u00020\u0015\u0012\u0006\u0010\u0016\u001a\u00020\u0004\u0012\u0006\u0010\u0017\u001a\u00020\u0004\u0012\u0006\u0010\u0018\u001a\u00020\u0004\u0012\u0006\u0010\u0019\u001a\u00020\u0007\u0012\u0006\u0010\u001a\u001a\u00020\u0013\u0012\u0006\u0010\u001b\u001a\u00020\u0013\u0012\u0006\u0010\u001c\u001a\u00020\u0007\u0012\u0006\u0010\u001d\u001a\u00020\u0007\u0012\u0006\u0010\u001e\u001a\u00020\u0007\u0012\u0006\u0010\u001f\u001a\u00020\u0007\u0012\u0006\u0010 \u001a\u00020\u0007\u0012\u0006\u0010!\u001a\u00020\u0004\u0012\u0006\u0010\"\u001a\u00020\u0007\u0012\u0006\u0010#\u001a\u00020\u0013\u0012\u0006\u0010$\u001a\u00020\u0007\u0012\u0006\u0010%\u001a\u00020\u0004\u00a2\u0006\u0002\u0010&J\t\u0010m\u001a\u00020\u0004H\u00c6\u0003J\t\u0010n\u001a\u00020\u0004H\u00c6\u0003J\t\u0010o\u001a\u00020\u0004H\u00c6\u0003J\t\u0010p\u001a\u00020\u0004H\u00c6\u0003J\t\u0010q\u001a\u00020\u0004H\u00c6\u0003J\t\u0010r\u001a\u00020\u0013H\u00c6\u0003J\t\u0010s\u001a\u00020\u0015H\u00c6\u0003J\t\u0010t\u001a\u00020\u0004H\u00c6\u0003J\t\u0010u\u001a\u00020\u0004H\u00c6\u0003J\t\u0010v\u001a\u00020\u0004H\u00c6\u0003J\t\u0010w\u001a\u00020\u0007H\u00c6\u0003J\t\u0010x\u001a\u00020\u0004H\u00c6\u0003J\t\u0010y\u001a\u00020\u0013H\u00c6\u0003J\t\u0010z\u001a\u00020\u0013H\u00c6\u0003J\t\u0010{\u001a\u00020\u0007H\u00c6\u0003J\t\u0010|\u001a\u00020\u0007H\u00c6\u0003J\t\u0010}\u001a\u00020\u0007H\u00c6\u0003J\t\u0010~\u001a\u00020\u0007H\u00c6\u0003J\t\u0010\u007f\u001a\u00020\u0007H\u00c6\u0003J\n\u0010\u0080\u0001\u001a\u00020\u0004H\u00c6\u0003J\n\u0010\u0081\u0001\u001a\u00020\u0007H\u00c6\u0003J\n\u0010\u0082\u0001\u001a\u00020\u0013H\u00c6\u0003J\n\u0010\u0083\u0001\u001a\u00020\u0007H\u00c6\u0003J\n\u0010\u0084\u0001\u001a\u00020\u0007H\u00c6\u0003J\n\u0010\u0085\u0001\u001a\u00020\u0004H\u00c6\u0003J\n\u0010\u0086\u0001\u001a\u00020\u0007H\u00c6\u0003J\n\u0010\u0087\u0001\u001a\u00020\u0007H\u00c6\u0003J\n\u0010\u0088\u0001\u001a\u00020\u0007H\u00c6\u0003J\n\u0010\u0089\u0001\u001a\u00020\u0007H\u00c6\u0003J\n\u0010\u008a\u0001\u001a\u00020\u0004H\u00c6\u0003J\n\u0010\u008b\u0001\u001a\u00020\u0004H\u00c6\u0003J\u00c0\u0002\u0010\u008c\u0001\u001a\u00020\u00002\b\b\u0002\u0010\u0003\u001a\u00020\u00042\b\b\u0002\u0010\u0005\u001a\u00020\u00042\b\b\u0002\u0010\u0006\u001a\u00020\u00072\b\b\u0002\u0010\b\u001a\u00020\u00072\b\b\u0002\u0010\t\u001a\u00020\u00072\b\b\u0002\u0010\n\u001a\u00020\u00072\b\b\u0002\u0010\u000b\u001a\u00020\u00072\b\b\u0002\u0010\f\u001a\u00020\u00042\b\b\u0002\u0010\r\u001a\u00020\u00042\b\b\u0002\u0010\u000e\u001a\u00020\u00042\b\b\u0002\u0010\u000f\u001a\u00020\u00042\b\b\u0002\u0010\u0010\u001a\u00020\u00042\b\b\u0002\u0010\u0011\u001a\u00020\u00042\b\b\u0002\u0010\u0012\u001a\u00020\u00132\b\b\u0002\u0010\u0014\u001a\u00020\u00152\b\b\u0002\u0010\u0016\u001a\u00020\u00042\b\b\u0002\u0010\u0017\u001a\u00020\u00042\b\b\u0002\u0010\u0018\u001a\u00020\u00042\b\b\u0002\u0010\u0019\u001a\u00020\u00072\b\b\u0002\u0010\u001a\u001a\u00020\u00132\b\b\u0002\u0010\u001b\u001a\u00020\u00132\b\b\u0002\u0010\u001c\u001a\u00020\u00072\b\b\u0002\u0010\u001d\u001a\u00020\u00072\b\b\u0002\u0010\u001e\u001a\u00020\u00072\b\b\u0002\u0010\u001f\u001a\u00020\u00072\b\b\u0002\u0010 \u001a\u00020\u00072\b\b\u0002\u0010!\u001a\u00020\u00042\b\b\u0002\u0010\"\u001a\u00020\u00072\b\b\u0002\u0010#\u001a\u00020\u00132\b\b\u0002\u0010$\u001a\u00020\u00072\b\b\u0002\u0010%\u001a\u00020\u0004H\u00c6\u0001J\u0017\u0010\u008d\u0001\u001a\u00030\u008e\u00012\n\u0010\u008f\u0001\u001a\u0005\u0018\u00010\u0090\u0001H\u00d6\u0003J\n\u0010\u0091\u0001\u001a\u00020\u0004H\u00d6\u0001J\t\u0010\u0092\u0001\u001a\u00020\u0007H\u0016R\u001e\u0010\u0003\u001a\u00020\u00048\u0006@\u0006X\u0087\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\'\u0010(\"\u0004\b)\u0010*R\u001a\u0010!\u001a\u00020\u0004X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b+\u0010(\"\u0004\b,\u0010*R\u001a\u0010\r\u001a\u00020\u0004X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b-\u0010(\"\u0004\b.\u0010*R\u001a\u0010\u0012\u001a\u00020\u0013X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b/\u00100\"\u0004\b1\u00102R\u001a\u0010\u0019\u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b3\u00104\"\u0004\b5\u00106R\u001e\u0010%\u001a\u00020\u00048\u0006@\u0006X\u0087\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b7\u0010(\"\u0004\b8\u0010*R\u001a\u0010\u0016\u001a\u00020\u0004X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b9\u0010(\"\u0004\b:\u0010*R\u001a\u0010\u0014\u001a\u00020\u0015X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b;\u0010<\"\u0004\b=\u0010>R\u001e\u0010$\u001a\u00020\u00078\u0006@\u0006X\u0087\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b?\u00104\"\u0004\b@\u00106R\u001a\u0010\u000b\u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bA\u00104\"\u0004\bB\u00106R\u001a\u0010#\u001a\u00020\u0013X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bC\u00100\"\u0004\bD\u00102R\u001a\u0010\"\u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bE\u00104\"\u0004\bF\u00106R\u001a\u0010\u001a\u001a\u00020\u0013X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bG\u00100\"\u0004\bH\u00102R\u001a\u0010\u001b\u001a\u00020\u0013X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bI\u00100\"\u0004\bJ\u00102R\u001a\u0010\u0005\u001a\u00020\u0004X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bK\u0010(\"\u0004\bL\u0010*R\u001a\u0010\u0006\u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bM\u00104\"\u0004\bN\u00106R\u001a\u0010\b\u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bO\u00104\"\u0004\bP\u00106R\u001a\u0010\t\u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bQ\u00104\"\u0004\bR\u00106R\u001a\u0010\u001c\u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bS\u00104\"\u0004\bT\u00106R\u001a\u0010\u001d\u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bU\u00104\"\u0004\bV\u00106R\u001a\u0010\u001e\u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bW\u00104\"\u0004\bX\u00106R\u001a\u0010\u001f\u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bY\u00104\"\u0004\bZ\u00106R\u001a\u0010 \u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b[\u00104\"\u0004\b\\\u00106R\u001a\u0010\u0011\u001a\u00020\u0004X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b]\u0010(\"\u0004\b^\u0010*R\u001e\u0010\u0017\u001a\u00020\u00048\u0006@\u0006X\u0087\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b_\u0010(\"\u0004\b`\u0010*R\u001a\u0010\u000e\u001a\u00020\u0004X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\ba\u0010(\"\u0004\bb\u0010*R\u001a\u0010\f\u001a\u00020\u0004X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bc\u0010(\"\u0004\bd\u0010*R\u001a\u0010\u0018\u001a\u00020\u0004X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\be\u0010(\"\u0004\bf\u0010*R\u001a\u0010\n\u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bg\u00104\"\u0004\bh\u00106R\u001a\u0010\u0010\u001a\u00020\u0004X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bi\u0010(\"\u0004\bj\u0010*R\u001a\u0010\u000f\u001a\u00020\u0004X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bk\u0010(\"\u0004\bl\u0010*\u00a8\u0006\u0093\u0001"}, d2 = {"Lcom/fastservices/sams/data/entities/Outlet;", "Ljava/io/Serializable;", "()V", "_id", "", "outletID", "outletName", "", "ownerName", "phoneNumber", "storeAddress", "landMark", "sectionID", "channelID", "routeID", "townID", "subChannelID", "promotionClass", "closing", "", "creditLimit", "", "creditDays", "registered", "sequenceNo", "comments", "latitude", "longtidue", "photoPath1", "photoPath2", "photoPath3", "photoPath4", "photoPath5", "areaTypeId", "lastOrderDate", "lastOrderAmount", "label", "credit", "(IILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IIIIIIDFIIILjava/lang/String;DDLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;DLjava/lang/String;I)V", "get_id", "()I", "set_id", "(I)V", "getAreaTypeId", "setAreaTypeId", "getChannelID", "setChannelID", "getClosing", "()D", "setClosing", "(D)V", "getComments", "()Ljava/lang/String;", "setComments", "(Ljava/lang/String;)V", "getCredit", "setCredit", "getCreditDays", "setCreditDays", "getCreditLimit", "()F", "setCreditLimit", "(F)V", "getLabel", "setLabel", "getLandMark", "setLandMark", "getLastOrderAmount", "setLastOrderAmount", "getLastOrderDate", "setLastOrderDate", "getLatitude", "setLatitude", "getLongtidue", "setLongtidue", "getOutletID", "setOutletID", "getOutletName", "setOutletName", "getOwnerName", "setOwnerName", "getPhoneNumber", "setPhoneNumber", "getPhotoPath1", "setPhotoPath1", "getPhotoPath2", "setPhotoPath2", "getPhotoPath3", "setPhotoPath3", "getPhotoPath4", "setPhotoPath4", "getPhotoPath5", "setPhotoPath5", "getPromotionClass", "setPromotionClass", "getRegistered", "setRegistered", "getRouteID", "setRouteID", "getSectionID", "setSectionID", "getSequenceNo", "setSequenceNo", "getStoreAddress", "setStoreAddress", "getSubChannelID", "setSubChannelID", "getTownID", "setTownID", "component1", "component10", "component11", "component12", "component13", "component14", "component15", "component16", "component17", "component18", "component19", "component2", "component20", "component21", "component22", "component23", "component24", "component25", "component26", "component27", "component28", "component29", "component3", "component30", "component31", "component4", "component5", "component6", "component7", "component8", "component9", "copy", "equals", "", "other", "", "hashCode", "toString", "app_debug"})
+@kotlin.Metadata(mv = {1, 1, 13}, bv = {1, 0, 3}, k = 1, d1 = {"\u00008\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\b\n\u0002\b\u0002\n\u0002\u0010\u000e\n\u0002\b\f\n\u0002\u0010\u0006\n\u0000\n\u0002\u0010\u0007\n\u0002\b{\n\u0002\u0010\u000b\n\u0000\n\u0002\u0010\u0000\n\u0002\b\u0003\b\u0087\b\u0018\u00002\u00020\u0001B\u0007\b\u0016\u00a2\u0006\u0002\u0010\u0002B\u0085\u0002\u0012\u0006\u0010\u0003\u001a\u00020\u0004\u0012\u0006\u0010\u0005\u001a\u00020\u0004\u0012\u0006\u0010\u0006\u001a\u00020\u0007\u0012\u0006\u0010\b\u001a\u00020\u0007\u0012\u0006\u0010\t\u001a\u00020\u0007\u0012\u0006\u0010\n\u001a\u00020\u0007\u0012\u0006\u0010\u000b\u001a\u00020\u0007\u0012\u0006\u0010\f\u001a\u00020\u0004\u0012\u0006\u0010\r\u001a\u00020\u0004\u0012\u0006\u0010\u000e\u001a\u00020\u0004\u0012\u0006\u0010\u000f\u001a\u00020\u0004\u0012\u0006\u0010\u0010\u001a\u00020\u0004\u0012\u0006\u0010\u0011\u001a\u00020\u0004\u0012\u0006\u0010\u0012\u001a\u00020\u0004\u0012\u0006\u0010\u0013\u001a\u00020\u0014\u0012\u0006\u0010\u0015\u001a\u00020\u0016\u0012\u0006\u0010\u0017\u001a\u00020\u0004\u0012\u0006\u0010\u0018\u001a\u00020\u0004\u0012\u0006\u0010\u0019\u001a\u00020\u0004\u0012\u0006\u0010\u001a\u001a\u00020\u0007\u0012\u0006\u0010\u001b\u001a\u00020\u0014\u0012\u0006\u0010\u001c\u001a\u00020\u0014\u0012\u0006\u0010\u001d\u001a\u00020\u0007\u0012\u0006\u0010\u001e\u001a\u00020\u0007\u0012\u0006\u0010\u001f\u001a\u00020\u0007\u0012\u0006\u0010 \u001a\u00020\u0007\u0012\u0006\u0010!\u001a\u00020\u0007\u0012\u0006\u0010\"\u001a\u00020\u0004\u0012\u0006\u0010#\u001a\u00020\u0007\u0012\u0006\u0010$\u001a\u00020\u0014\u0012\u0006\u0010%\u001a\u00020\u0007\u0012\u0006\u0010&\u001a\u00020\u0004\u00a2\u0006\u0002\u0010\'J\t\u0010p\u001a\u00020\u0004H\u00c6\u0003J\t\u0010q\u001a\u00020\u0004H\u00c6\u0003J\t\u0010r\u001a\u00020\u0004H\u00c6\u0003J\t\u0010s\u001a\u00020\u0004H\u00c6\u0003J\t\u0010t\u001a\u00020\u0004H\u00c6\u0003J\t\u0010u\u001a\u00020\u0004H\u00c6\u0003J\t\u0010v\u001a\u00020\u0014H\u00c6\u0003J\t\u0010w\u001a\u00020\u0016H\u00c6\u0003J\t\u0010x\u001a\u00020\u0004H\u00c6\u0003J\t\u0010y\u001a\u00020\u0004H\u00c6\u0003J\t\u0010z\u001a\u00020\u0004H\u00c6\u0003J\t\u0010{\u001a\u00020\u0004H\u00c6\u0003J\t\u0010|\u001a\u00020\u0007H\u00c6\u0003J\t\u0010}\u001a\u00020\u0014H\u00c6\u0003J\t\u0010~\u001a\u00020\u0014H\u00c6\u0003J\t\u0010\u007f\u001a\u00020\u0007H\u00c6\u0003J\n\u0010\u0080\u0001\u001a\u00020\u0007H\u00c6\u0003J\n\u0010\u0081\u0001\u001a\u00020\u0007H\u00c6\u0003J\n\u0010\u0082\u0001\u001a\u00020\u0007H\u00c6\u0003J\n\u0010\u0083\u0001\u001a\u00020\u0007H\u00c6\u0003J\n\u0010\u0084\u0001\u001a\u00020\u0004H\u00c6\u0003J\n\u0010\u0085\u0001\u001a\u00020\u0007H\u00c6\u0003J\n\u0010\u0086\u0001\u001a\u00020\u0007H\u00c6\u0003J\n\u0010\u0087\u0001\u001a\u00020\u0014H\u00c6\u0003J\n\u0010\u0088\u0001\u001a\u00020\u0007H\u00c6\u0003J\n\u0010\u0089\u0001\u001a\u00020\u0004H\u00c6\u0003J\n\u0010\u008a\u0001\u001a\u00020\u0007H\u00c6\u0003J\n\u0010\u008b\u0001\u001a\u00020\u0007H\u00c6\u0003J\n\u0010\u008c\u0001\u001a\u00020\u0007H\u00c6\u0003J\n\u0010\u008d\u0001\u001a\u00020\u0007H\u00c6\u0003J\n\u0010\u008e\u0001\u001a\u00020\u0004H\u00c6\u0003J\n\u0010\u008f\u0001\u001a\u00020\u0004H\u00c6\u0003J\u00ca\u0002\u0010\u0090\u0001\u001a\u00020\u00002\b\b\u0002\u0010\u0003\u001a\u00020\u00042\b\b\u0002\u0010\u0005\u001a\u00020\u00042\b\b\u0002\u0010\u0006\u001a\u00020\u00072\b\b\u0002\u0010\b\u001a\u00020\u00072\b\b\u0002\u0010\t\u001a\u00020\u00072\b\b\u0002\u0010\n\u001a\u00020\u00072\b\b\u0002\u0010\u000b\u001a\u00020\u00072\b\b\u0002\u0010\f\u001a\u00020\u00042\b\b\u0002\u0010\r\u001a\u00020\u00042\b\b\u0002\u0010\u000e\u001a\u00020\u00042\b\b\u0002\u0010\u000f\u001a\u00020\u00042\b\b\u0002\u0010\u0010\u001a\u00020\u00042\b\b\u0002\u0010\u0011\u001a\u00020\u00042\b\b\u0002\u0010\u0012\u001a\u00020\u00042\b\b\u0002\u0010\u0013\u001a\u00020\u00142\b\b\u0002\u0010\u0015\u001a\u00020\u00162\b\b\u0002\u0010\u0017\u001a\u00020\u00042\b\b\u0002\u0010\u0018\u001a\u00020\u00042\b\b\u0002\u0010\u0019\u001a\u00020\u00042\b\b\u0002\u0010\u001a\u001a\u00020\u00072\b\b\u0002\u0010\u001b\u001a\u00020\u00142\b\b\u0002\u0010\u001c\u001a\u00020\u00142\b\b\u0002\u0010\u001d\u001a\u00020\u00072\b\b\u0002\u0010\u001e\u001a\u00020\u00072\b\b\u0002\u0010\u001f\u001a\u00020\u00072\b\b\u0002\u0010 \u001a\u00020\u00072\b\b\u0002\u0010!\u001a\u00020\u00072\b\b\u0002\u0010\"\u001a\u00020\u00042\b\b\u0002\u0010#\u001a\u00020\u00072\b\b\u0002\u0010$\u001a\u00020\u00142\b\b\u0002\u0010%\u001a\u00020\u00072\b\b\u0002\u0010&\u001a\u00020\u0004H\u00c6\u0001J\u0017\u0010\u0091\u0001\u001a\u00030\u0092\u00012\n\u0010\u0093\u0001\u001a\u0005\u0018\u00010\u0094\u0001H\u00d6\u0003J\n\u0010\u0095\u0001\u001a\u00020\u0004H\u00d6\u0001J\t\u0010\u0096\u0001\u001a\u00020\u0007H\u0016R\u001e\u0010\u0003\u001a\u00020\u00048\u0006@\u0006X\u0087\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b(\u0010)\"\u0004\b*\u0010+R\u001a\u0010\"\u001a\u00020\u0004X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b,\u0010)\"\u0004\b-\u0010+R\u001a\u0010\r\u001a\u00020\u0004X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b.\u0010)\"\u0004\b/\u0010+R\u001a\u0010\u0013\u001a\u00020\u0014X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b0\u00101\"\u0004\b2\u00103R\u001a\u0010\u001a\u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b4\u00105\"\u0004\b6\u00107R\u001e\u0010&\u001a\u00020\u00048\u0006@\u0006X\u0087\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b8\u0010)\"\u0004\b9\u0010+R\u001a\u0010\u0017\u001a\u00020\u0004X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b:\u0010)\"\u0004\b;\u0010+R\u001a\u0010\u0015\u001a\u00020\u0016X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b<\u0010=\"\u0004\b>\u0010?R\u001e\u0010%\u001a\u00020\u00078\u0006@\u0006X\u0087\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b@\u00105\"\u0004\bA\u00107R\u001a\u0010\u000b\u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bB\u00105\"\u0004\bC\u00107R\u001a\u0010$\u001a\u00020\u0014X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bD\u00101\"\u0004\bE\u00103R\u001a\u0010#\u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bF\u00105\"\u0004\bG\u00107R\u001a\u0010\u001b\u001a\u00020\u0014X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bH\u00101\"\u0004\bI\u00103R\u001a\u0010\u000e\u001a\u00020\u0004X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bJ\u0010)\"\u0004\bK\u0010+R\u001a\u0010\u001c\u001a\u00020\u0014X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bL\u00101\"\u0004\bM\u00103R\u001a\u0010\u0005\u001a\u00020\u0004X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bN\u0010)\"\u0004\bO\u0010+R\u001a\u0010\u0006\u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bP\u00105\"\u0004\bQ\u00107R\u001a\u0010\b\u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bR\u00105\"\u0004\bS\u00107R\u001a\u0010\t\u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bT\u00105\"\u0004\bU\u00107R\u001a\u0010\u001d\u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bV\u00105\"\u0004\bW\u00107R\u001a\u0010\u001e\u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bX\u00105\"\u0004\bY\u00107R\u001a\u0010\u001f\u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bZ\u00105\"\u0004\b[\u00107R\u001a\u0010 \u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\\\u00105\"\u0004\b]\u00107R\u001a\u0010!\u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b^\u00105\"\u0004\b_\u00107R\u001a\u0010\u0012\u001a\u00020\u0004X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b`\u0010)\"\u0004\ba\u0010+R\u001e\u0010\u0018\u001a\u00020\u00048\u0006@\u0006X\u0087\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bb\u0010)\"\u0004\bc\u0010+R\u001a\u0010\u000f\u001a\u00020\u0004X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bd\u0010)\"\u0004\be\u0010+R\u001a\u0010\f\u001a\u00020\u0004X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bf\u0010)\"\u0004\bg\u0010+R\u001a\u0010\u0019\u001a\u00020\u0004X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bh\u0010)\"\u0004\bi\u0010+R\u001a\u0010\n\u001a\u00020\u0007X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bj\u00105\"\u0004\bk\u00107R\u001a\u0010\u0011\u001a\u00020\u0004X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bl\u0010)\"\u0004\bm\u0010+R\u001a\u0010\u0010\u001a\u00020\u0004X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\bn\u0010)\"\u0004\bo\u0010+\u00a8\u0006\u0097\u0001"}, d2 = {"Lcom/fastservices/sams/data/entities/Outlet;", "Ljava/io/Serializable;", "()V", "_id", "", "outletID", "outletName", "", "ownerName", "phoneNumber", "storeAddress", "landMark", "sectionID", "channelID", "localityID", "routeID", "townID", "subChannelID", "promotionClass", "closing", "", "creditLimit", "", "creditDays", "registered", "sequenceNo", "comments", "latitude", "longtidue", "photoPath1", "photoPath2", "photoPath3", "photoPath4", "photoPath5", "areaTypeId", "lastOrderDate", "lastOrderAmount", "label", "credit", "(IILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IIIIIIIDFIIILjava/lang/String;DDLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;DLjava/lang/String;I)V", "get_id", "()I", "set_id", "(I)V", "getAreaTypeId", "setAreaTypeId", "getChannelID", "setChannelID", "getClosing", "()D", "setClosing", "(D)V", "getComments", "()Ljava/lang/String;", "setComments", "(Ljava/lang/String;)V", "getCredit", "setCredit", "getCreditDays", "setCreditDays", "getCreditLimit", "()F", "setCreditLimit", "(F)V", "getLabel", "setLabel", "getLandMark", "setLandMark", "getLastOrderAmount", "setLastOrderAmount", "getLastOrderDate", "setLastOrderDate", "getLatitude", "setLatitude", "getLocalityID", "setLocalityID", "getLongtidue", "setLongtidue", "getOutletID", "setOutletID", "getOutletName", "setOutletName", "getOwnerName", "setOwnerName", "getPhoneNumber", "setPhoneNumber", "getPhotoPath1", "setPhotoPath1", "getPhotoPath2", "setPhotoPath2", "getPhotoPath3", "setPhotoPath3", "getPhotoPath4", "setPhotoPath4", "getPhotoPath5", "setPhotoPath5", "getPromotionClass", "setPromotionClass", "getRegistered", "setRegistered", "getRouteID", "setRouteID", "getSectionID", "setSectionID", "getSequenceNo", "setSequenceNo", "getStoreAddress", "setStoreAddress", "getSubChannelID", "setSubChannelID", "getTownID", "setTownID", "component1", "component10", "component11", "component12", "component13", "component14", "component15", "component16", "component17", "component18", "component19", "component2", "component20", "component21", "component22", "component23", "component24", "component25", "component26", "component27", "component28", "component29", "component3", "component30", "component31", "component32", "component4", "component5", "component6", "component7", "component8", "component9", "copy", "equals", "", "other", "", "hashCode", "toString", "app_debug"})
 public final class Outlet implements java.io.Serializable {
     @android.arch.persistence.room.PrimaryKey(autoGenerate = true)
     private int _id;
@@ -20,6 +20,7 @@ public final class Outlet implements java.io.Serializable {
     private java.lang.String landMark;
     private int sectionID;
     private int channelID;
+    private int localityID;
     private int routeID;
     private int townID;
     private int subChannelID;
@@ -133,6 +134,13 @@ public final class Outlet implements java.io.Serializable {
     }
     
     public final void setChannelID(int p0) {
+    }
+    
+    public final int getLocalityID() {
+        return 0;
+    }
+    
+    public final void setLocalityID(int p0) {
     }
     
     public final int getRouteID() {
@@ -310,7 +318,7 @@ public final class Outlet implements java.io.Serializable {
     java.lang.String ownerName, @org.jetbrains.annotations.NotNull()
     java.lang.String phoneNumber, @org.jetbrains.annotations.NotNull()
     java.lang.String storeAddress, @org.jetbrains.annotations.NotNull()
-    java.lang.String landMark, int sectionID, int channelID, int routeID, int townID, int subChannelID, int promotionClass, double closing, float creditLimit, int creditDays, int registered, int sequenceNo, @org.jetbrains.annotations.NotNull()
+    java.lang.String landMark, int sectionID, int channelID, int localityID, int routeID, int townID, int subChannelID, int promotionClass, double closing, float creditLimit, int creditDays, int registered, int sequenceNo, @org.jetbrains.annotations.NotNull()
     java.lang.String comments, double latitude, double longtidue, @org.jetbrains.annotations.NotNull()
     java.lang.String photoPath1, @org.jetbrains.annotations.NotNull()
     java.lang.String photoPath2, @org.jetbrains.annotations.NotNull()
@@ -383,16 +391,16 @@ public final class Outlet implements java.io.Serializable {
         return 0;
     }
     
-    public final double component14() {
+    public final int component14() {
+        return 0;
+    }
+    
+    public final double component15() {
         return 0.0;
     }
     
-    public final float component15() {
+    public final float component16() {
         return 0.0F;
-    }
-    
-    public final int component16() {
-        return 0;
     }
     
     public final int component17() {
@@ -403,22 +411,21 @@ public final class Outlet implements java.io.Serializable {
         return 0;
     }
     
-    @org.jetbrains.annotations.NotNull()
-    public final java.lang.String component19() {
-        return null;
+    public final int component19() {
+        return 0;
     }
     
-    public final double component20() {
-        return 0.0;
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String component20() {
+        return null;
     }
     
     public final double component21() {
         return 0.0;
     }
     
-    @org.jetbrains.annotations.NotNull()
-    public final java.lang.String component22() {
-        return null;
+    public final double component22() {
+        return 0.0;
     }
     
     @org.jetbrains.annotations.NotNull()
@@ -441,25 +448,30 @@ public final class Outlet implements java.io.Serializable {
         return null;
     }
     
-    public final int component27() {
+    @org.jetbrains.annotations.NotNull()
+    public final java.lang.String component27() {
+        return null;
+    }
+    
+    public final int component28() {
         return 0;
     }
     
     @org.jetbrains.annotations.NotNull()
-    public final java.lang.String component28() {
+    public final java.lang.String component29() {
         return null;
     }
     
-    public final double component29() {
+    public final double component30() {
         return 0.0;
     }
     
     @org.jetbrains.annotations.NotNull()
-    public final java.lang.String component30() {
+    public final java.lang.String component31() {
         return null;
     }
     
-    public final int component31() {
+    public final int component32() {
         return 0;
     }
     
@@ -469,7 +481,7 @@ public final class Outlet implements java.io.Serializable {
     java.lang.String ownerName, @org.jetbrains.annotations.NotNull()
     java.lang.String phoneNumber, @org.jetbrains.annotations.NotNull()
     java.lang.String storeAddress, @org.jetbrains.annotations.NotNull()
-    java.lang.String landMark, int sectionID, int channelID, int routeID, int townID, int subChannelID, int promotionClass, double closing, float creditLimit, int creditDays, int registered, int sequenceNo, @org.jetbrains.annotations.NotNull()
+    java.lang.String landMark, int sectionID, int channelID, int localityID, int routeID, int townID, int subChannelID, int promotionClass, double closing, float creditLimit, int creditDays, int registered, int sequenceNo, @org.jetbrains.annotations.NotNull()
     java.lang.String comments, double latitude, double longtidue, @org.jetbrains.annotations.NotNull()
     java.lang.String photoPath1, @org.jetbrains.annotations.NotNull()
     java.lang.String photoPath2, @org.jetbrains.annotations.NotNull()

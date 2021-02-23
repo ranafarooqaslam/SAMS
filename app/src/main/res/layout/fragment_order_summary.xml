@@ -76,8 +76,8 @@
             android:text="Distributor Discount: "
             android:textColor="@color/textcolor_black"
             android:textSize="@dimen/textsize_order_summary"
-            app:layout_constraintLeft_toLeftOf="@+id/lblCompanyDiscount"
-            app:layout_constraintTop_toBottomOf="@+id/lblCompanyDiscount"
+            app:layout_constraintLeft_toLeftOf="@+id/lblGrossAmount"
+            app:layout_constraintTop_toBottomOf="@+id/lblGrossAmount"
             tools:layout_editor_absoluteX="16dp" />
 
         <TextView
@@ -89,8 +89,8 @@
             android:text="Trade Offer:"
             android:textColor="@color/textcolor_black"
             android:textSize="@dimen/textsize_order_summary"
-            app:layout_constraintStart_toStartOf="@+id/lblDistDiscount"
-            app:layout_constraintTop_toBottomOf="@+id/lblDistDiscount" />
+            app:layout_constraintStart_toStartOf="@+id/lblCompanyDiscount"
+            app:layout_constraintTop_toBottomOf="@+id/lblCompanyDiscount" />
 
         <TextView
             android:id="@+id/lblNetAmount"
@@ -114,8 +114,8 @@
             android:text="Company Discount:"
             android:textColor="@color/textcolor_black"
             android:textSize="@dimen/textsize_order_summary"
-            app:layout_constraintStart_toStartOf="@+id/lblGrossAmount"
-            app:layout_constraintTop_toBottomOf="@+id/lblGrossAmount" />
+            app:layout_constraintStart_toStartOf="@+id/lblDistDiscount"
+            app:layout_constraintTop_toBottomOf="@+id/lblDistDiscount" />
 
         <TextView
             android:id="@+id/lblGST"

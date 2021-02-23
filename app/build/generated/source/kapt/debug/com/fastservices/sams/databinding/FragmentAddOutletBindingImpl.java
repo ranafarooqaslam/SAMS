@@ -22,17 +22,18 @@ public class FragmentAddOutletBindingImpl extends FragmentAddOutletBinding imple
         sViewsWithIds.put(R.id.tilStoreAddress, 14);
         sViewsWithIds.put(R.id.tilLandMark, 15);
         sViewsWithIds.put(R.id.spSector, 16);
-        sViewsWithIds.put(R.id.btnTakeGPS, 17);
-        sViewsWithIds.put(R.id.tvMapLink, 18);
-        sViewsWithIds.put(R.id.spChannel, 19);
-        sViewsWithIds.put(R.id.spSubchannel, 20);
-        sViewsWithIds.put(R.id.lblArea, 21);
-        sViewsWithIds.put(R.id.rgArea, 22);
-        sViewsWithIds.put(R.id.lblComments, 23);
-        sViewsWithIds.put(R.id.lblPicture, 24);
-        sViewsWithIds.put(R.id.ivCamera, 25);
-        sViewsWithIds.put(R.id.imagesContainer, 26);
-        sViewsWithIds.put(R.id.tvSubmit, 27);
+        sViewsWithIds.put(R.id.spLocality, 17);
+        sViewsWithIds.put(R.id.btnTakeGPS, 18);
+        sViewsWithIds.put(R.id.tvMapLink, 19);
+        sViewsWithIds.put(R.id.spChannel, 20);
+        sViewsWithIds.put(R.id.spSubchannel, 21);
+        sViewsWithIds.put(R.id.lblArea, 22);
+        sViewsWithIds.put(R.id.rgArea, 23);
+        sViewsWithIds.put(R.id.lblComments, 24);
+        sViewsWithIds.put(R.id.lblPicture, 25);
+        sViewsWithIds.put(R.id.ivCamera, 26);
+        sViewsWithIds.put(R.id.imagesContainer, 27);
+        sViewsWithIds.put(R.id.tvSubmit, 28);
     }
     // views
     @NonNull
@@ -281,31 +282,32 @@ public class FragmentAddOutletBindingImpl extends FragmentAddOutletBinding imple
     };
 
     public FragmentAddOutletBindingImpl(@Nullable android.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 28, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 29, sIncludes, sViewsWithIds));
     }
     private FragmentAddOutletBindingImpl(android.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
             , (android.view.View) bindings[9]
-            , (android.widget.Button) bindings[17]
+            , (android.widget.Button) bindings[18]
             , (android.widget.EditText) bindings[8]
-            , (android.widget.LinearLayout) bindings[26]
-            , (android.widget.ImageView) bindings[25]
-            , (android.widget.TextView) bindings[21]
-            , (android.widget.TextView) bindings[23]
+            , (android.widget.LinearLayout) bindings[27]
+            , (android.widget.ImageView) bindings[26]
+            , (android.widget.TextView) bindings[22]
             , (android.widget.TextView) bindings[24]
-            , (android.widget.RadioGroup) bindings[22]
+            , (android.widget.TextView) bindings[25]
+            , (android.widget.RadioGroup) bindings[23]
             , (android.widget.RelativeLayout) bindings[0]
             , (android.widget.ScrollView) bindings[10]
-            , (fr.ganfra.materialspinner.MaterialSpinner) bindings[19]
-            , (fr.ganfra.materialspinner.MaterialSpinner) bindings[16]
             , (fr.ganfra.materialspinner.MaterialSpinner) bindings[20]
+            , (fr.ganfra.materialspinner.MaterialSpinner) bindings[17]
+            , (fr.ganfra.materialspinner.MaterialSpinner) bindings[16]
+            , (fr.ganfra.materialspinner.MaterialSpinner) bindings[21]
             , (android.support.design.widget.TextInputLayout) bindings[15]
             , (android.support.design.widget.TextInputLayout) bindings[12]
             , (android.support.design.widget.TextInputLayout) bindings[13]
             , (android.support.design.widget.TextInputLayout) bindings[14]
             , (android.support.design.widget.TextInputLayout) bindings[11]
-            , (android.widget.TextView) bindings[18]
-            , (android.widget.TextView) bindings[27]
+            , (android.widget.TextView) bindings[19]
+            , (android.widget.TextView) bindings[28]
             );
         this.etComment.setTag(null);
         this.mboundView1 = (android.widget.EditText) bindings[1];

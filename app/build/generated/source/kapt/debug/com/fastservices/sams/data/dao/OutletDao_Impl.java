@@ -29,7 +29,7 @@ public class OutletDao_Impl implements OutletDao {
     this.__insertionAdapterOfOutlet = new EntityInsertionAdapter<Outlet>(__db) {
       @Override
       public String createQuery() {
-        return "INSERT OR REPLACE INTO `Outlet`(`_id`,`outletID`,`outletName`,`ownerName`,`phoneNumber`,`storeAddress`,`landMark`,`sectionID`,`channelID`,`routeID`,`townID`,`subChannelID`,`promotionClass`,`closing`,`creditLimit`,`creditDays`,`isRegistered`,`sequenceNo`,`comments`,`latitude`,`longtidue`,`photoPath1`,`photoPath2`,`photoPath3`,`photoPath4`,`photoPath5`,`areaTypeId`,`lastOrderDate`,`lastOrderAmount`,`isCredit`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        return "INSERT OR REPLACE INTO `Outlet`(`_id`,`outletID`,`outletName`,`ownerName`,`phoneNumber`,`storeAddress`,`landMark`,`sectionID`,`channelID`,`localityID`,`routeID`,`townID`,`subChannelID`,`promotionClass`,`closing`,`creditLimit`,`creditDays`,`isRegistered`,`sequenceNo`,`comments`,`latitude`,`longtidue`,`photoPath1`,`photoPath2`,`photoPath3`,`photoPath4`,`photoPath5`,`areaTypeId`,`lastOrderDate`,`lastOrderAmount`,`isCredit`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
       }
 
       @Override
@@ -63,61 +63,62 @@ public class OutletDao_Impl implements OutletDao {
         }
         stmt.bindLong(8, value.getSectionID());
         stmt.bindLong(9, value.getChannelID());
-        stmt.bindLong(10, value.getRouteID());
-        stmt.bindLong(11, value.getTownID());
-        stmt.bindLong(12, value.getSubChannelID());
-        stmt.bindLong(13, value.getPromotionClass());
-        stmt.bindDouble(14, value.getClosing());
-        stmt.bindDouble(15, value.getCreditLimit());
-        stmt.bindLong(16, value.getCreditDays());
-        stmt.bindLong(17, value.getRegistered());
-        stmt.bindLong(18, value.getSequenceNo());
+        stmt.bindLong(10, value.getLocalityID());
+        stmt.bindLong(11, value.getRouteID());
+        stmt.bindLong(12, value.getTownID());
+        stmt.bindLong(13, value.getSubChannelID());
+        stmt.bindLong(14, value.getPromotionClass());
+        stmt.bindDouble(15, value.getClosing());
+        stmt.bindDouble(16, value.getCreditLimit());
+        stmt.bindLong(17, value.getCreditDays());
+        stmt.bindLong(18, value.getRegistered());
+        stmt.bindLong(19, value.getSequenceNo());
         if (value.getComments() == null) {
-          stmt.bindNull(19);
+          stmt.bindNull(20);
         } else {
-          stmt.bindString(19, value.getComments());
+          stmt.bindString(20, value.getComments());
         }
-        stmt.bindDouble(20, value.getLatitude());
-        stmt.bindDouble(21, value.getLongtidue());
+        stmt.bindDouble(21, value.getLatitude());
+        stmt.bindDouble(22, value.getLongtidue());
         if (value.getPhotoPath1() == null) {
-          stmt.bindNull(22);
-        } else {
-          stmt.bindString(22, value.getPhotoPath1());
-        }
-        if (value.getPhotoPath2() == null) {
           stmt.bindNull(23);
         } else {
-          stmt.bindString(23, value.getPhotoPath2());
+          stmt.bindString(23, value.getPhotoPath1());
         }
-        if (value.getPhotoPath3() == null) {
+        if (value.getPhotoPath2() == null) {
           stmt.bindNull(24);
         } else {
-          stmt.bindString(24, value.getPhotoPath3());
+          stmt.bindString(24, value.getPhotoPath2());
         }
-        if (value.getPhotoPath4() == null) {
+        if (value.getPhotoPath3() == null) {
           stmt.bindNull(25);
         } else {
-          stmt.bindString(25, value.getPhotoPath4());
+          stmt.bindString(25, value.getPhotoPath3());
         }
-        if (value.getPhotoPath5() == null) {
+        if (value.getPhotoPath4() == null) {
           stmt.bindNull(26);
         } else {
-          stmt.bindString(26, value.getPhotoPath5());
+          stmt.bindString(26, value.getPhotoPath4());
         }
-        stmt.bindLong(27, value.getAreaTypeId());
-        if (value.getLastOrderDate() == null) {
-          stmt.bindNull(28);
+        if (value.getPhotoPath5() == null) {
+          stmt.bindNull(27);
         } else {
-          stmt.bindString(28, value.getLastOrderDate());
+          stmt.bindString(27, value.getPhotoPath5());
         }
-        stmt.bindDouble(29, value.getLastOrderAmount());
-        stmt.bindLong(30, value.getCredit());
+        stmt.bindLong(28, value.getAreaTypeId());
+        if (value.getLastOrderDate() == null) {
+          stmt.bindNull(29);
+        } else {
+          stmt.bindString(29, value.getLastOrderDate());
+        }
+        stmt.bindDouble(30, value.getLastOrderAmount());
+        stmt.bindLong(31, value.getCredit());
       }
     };
     this.__updateAdapterOfOutlet = new EntityDeletionOrUpdateAdapter<Outlet>(__db) {
       @Override
       public String createQuery() {
-        return "UPDATE OR ABORT `Outlet` SET `_id` = ?,`outletID` = ?,`outletName` = ?,`ownerName` = ?,`phoneNumber` = ?,`storeAddress` = ?,`landMark` = ?,`sectionID` = ?,`channelID` = ?,`routeID` = ?,`townID` = ?,`subChannelID` = ?,`promotionClass` = ?,`closing` = ?,`creditLimit` = ?,`creditDays` = ?,`isRegistered` = ?,`sequenceNo` = ?,`comments` = ?,`latitude` = ?,`longtidue` = ?,`photoPath1` = ?,`photoPath2` = ?,`photoPath3` = ?,`photoPath4` = ?,`photoPath5` = ?,`areaTypeId` = ?,`lastOrderDate` = ?,`lastOrderAmount` = ?,`isCredit` = ? WHERE `_id` = ?";
+        return "UPDATE OR ABORT `Outlet` SET `_id` = ?,`outletID` = ?,`outletName` = ?,`ownerName` = ?,`phoneNumber` = ?,`storeAddress` = ?,`landMark` = ?,`sectionID` = ?,`channelID` = ?,`localityID` = ?,`routeID` = ?,`townID` = ?,`subChannelID` = ?,`promotionClass` = ?,`closing` = ?,`creditLimit` = ?,`creditDays` = ?,`isRegistered` = ?,`sequenceNo` = ?,`comments` = ?,`latitude` = ?,`longtidue` = ?,`photoPath1` = ?,`photoPath2` = ?,`photoPath3` = ?,`photoPath4` = ?,`photoPath5` = ?,`areaTypeId` = ?,`lastOrderDate` = ?,`lastOrderAmount` = ?,`isCredit` = ? WHERE `_id` = ?";
       }
 
       @Override
@@ -151,56 +152,57 @@ public class OutletDao_Impl implements OutletDao {
         }
         stmt.bindLong(8, value.getSectionID());
         stmt.bindLong(9, value.getChannelID());
-        stmt.bindLong(10, value.getRouteID());
-        stmt.bindLong(11, value.getTownID());
-        stmt.bindLong(12, value.getSubChannelID());
-        stmt.bindLong(13, value.getPromotionClass());
-        stmt.bindDouble(14, value.getClosing());
-        stmt.bindDouble(15, value.getCreditLimit());
-        stmt.bindLong(16, value.getCreditDays());
-        stmt.bindLong(17, value.getRegistered());
-        stmt.bindLong(18, value.getSequenceNo());
+        stmt.bindLong(10, value.getLocalityID());
+        stmt.bindLong(11, value.getRouteID());
+        stmt.bindLong(12, value.getTownID());
+        stmt.bindLong(13, value.getSubChannelID());
+        stmt.bindLong(14, value.getPromotionClass());
+        stmt.bindDouble(15, value.getClosing());
+        stmt.bindDouble(16, value.getCreditLimit());
+        stmt.bindLong(17, value.getCreditDays());
+        stmt.bindLong(18, value.getRegistered());
+        stmt.bindLong(19, value.getSequenceNo());
         if (value.getComments() == null) {
-          stmt.bindNull(19);
+          stmt.bindNull(20);
         } else {
-          stmt.bindString(19, value.getComments());
+          stmt.bindString(20, value.getComments());
         }
-        stmt.bindDouble(20, value.getLatitude());
-        stmt.bindDouble(21, value.getLongtidue());
+        stmt.bindDouble(21, value.getLatitude());
+        stmt.bindDouble(22, value.getLongtidue());
         if (value.getPhotoPath1() == null) {
-          stmt.bindNull(22);
-        } else {
-          stmt.bindString(22, value.getPhotoPath1());
-        }
-        if (value.getPhotoPath2() == null) {
           stmt.bindNull(23);
         } else {
-          stmt.bindString(23, value.getPhotoPath2());
+          stmt.bindString(23, value.getPhotoPath1());
         }
-        if (value.getPhotoPath3() == null) {
+        if (value.getPhotoPath2() == null) {
           stmt.bindNull(24);
         } else {
-          stmt.bindString(24, value.getPhotoPath3());
+          stmt.bindString(24, value.getPhotoPath2());
         }
-        if (value.getPhotoPath4() == null) {
+        if (value.getPhotoPath3() == null) {
           stmt.bindNull(25);
         } else {
-          stmt.bindString(25, value.getPhotoPath4());
+          stmt.bindString(25, value.getPhotoPath3());
         }
-        if (value.getPhotoPath5() == null) {
+        if (value.getPhotoPath4() == null) {
           stmt.bindNull(26);
         } else {
-          stmt.bindString(26, value.getPhotoPath5());
+          stmt.bindString(26, value.getPhotoPath4());
         }
-        stmt.bindLong(27, value.getAreaTypeId());
-        if (value.getLastOrderDate() == null) {
-          stmt.bindNull(28);
+        if (value.getPhotoPath5() == null) {
+          stmt.bindNull(27);
         } else {
-          stmt.bindString(28, value.getLastOrderDate());
+          stmt.bindString(27, value.getPhotoPath5());
         }
-        stmt.bindDouble(29, value.getLastOrderAmount());
-        stmt.bindLong(30, value.getCredit());
-        stmt.bindLong(31, value.get_id());
+        stmt.bindLong(28, value.getAreaTypeId());
+        if (value.getLastOrderDate() == null) {
+          stmt.bindNull(29);
+        } else {
+          stmt.bindString(29, value.getLastOrderDate());
+        }
+        stmt.bindDouble(30, value.getLastOrderAmount());
+        stmt.bindLong(31, value.getCredit());
+        stmt.bindLong(32, value.get_id());
       }
     };
     this.__preparedStmtOfDeleteAll = new SharedSQLiteStatement(__db) {
@@ -262,6 +264,7 @@ public class OutletDao_Impl implements OutletDao {
       final int _cursorIndexOfLandMark = _cursor.getColumnIndexOrThrow("landMark");
       final int _cursorIndexOfSectionID = _cursor.getColumnIndexOrThrow("sectionID");
       final int _cursorIndexOfChannelID = _cursor.getColumnIndexOrThrow("channelID");
+      final int _cursorIndexOfLocalityID = _cursor.getColumnIndexOrThrow("localityID");
       final int _cursorIndexOfRouteID = _cursor.getColumnIndexOrThrow("routeID");
       final int _cursorIndexOfTownID = _cursor.getColumnIndexOrThrow("townID");
       final int _cursorIndexOfSubChannelID = _cursor.getColumnIndexOrThrow("subChannelID");
@@ -314,6 +317,9 @@ public class OutletDao_Impl implements OutletDao {
         final int _tmpChannelID;
         _tmpChannelID = _cursor.getInt(_cursorIndexOfChannelID);
         _item.setChannelID(_tmpChannelID);
+        final int _tmpLocalityID;
+        _tmpLocalityID = _cursor.getInt(_cursorIndexOfLocalityID);
+        _item.setLocalityID(_tmpLocalityID);
         final int _tmpRouteID;
         _tmpRouteID = _cursor.getInt(_cursorIndexOfRouteID);
         _item.setRouteID(_tmpRouteID);

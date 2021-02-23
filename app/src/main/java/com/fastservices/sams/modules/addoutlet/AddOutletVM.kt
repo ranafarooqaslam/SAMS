@@ -19,6 +19,7 @@ class AddOutletVM() : BaseVM() {
     val dataLoaded = MutableLiveData<String>()
 
     val sections = ArrayList<Section>()
+    val localities = ArrayList<Locality>()
 
     init {
         GlobalScope.launch(Dispatchers.IO) {
@@ -28,6 +29,7 @@ class AddOutletVM() : BaseVM() {
             dataLoaded.postValue(CHANNELS)
 
             sections.addAll(SamsApplication.getDB().sectionDao().getAll())
+            localities.addAll(SamsApplication.getDB().sectionDao().getAllLocality())
             dataLoaded.postValue(SECTIONS)
 
 

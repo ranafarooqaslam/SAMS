@@ -142,12 +142,13 @@ public class AppDatabase_Impl extends AppDatabase {
         _db.execSQL("CREATE TABLE IF NOT EXISTS `ORDER_DETAIL` (`ORDER_DETAIL_ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `DISTRIBUTOR_ID` INTEGER NOT NULL, `SALE_ORDER_ID` INTEGER NOT NULL, `SKU_ID` INTEGER NOT NULL, `QUANTITY_UNIT` INTEGER NOT NULL, `UNIT_PRICE` REAL NOT NULL, `GST_RATE` REAL NOT NULL, `AMOUNT` REAL NOT NULL, `STANDARD_DISCOUNT` REAL NOT NULL, `EXTRA_DISCOUNT` REAL NOT NULL, `GST_AMOUNT` REAL NOT NULL, `NET_AMOUNT` REAL NOT NULL, `TST_AMOUNT` REAL NOT NULL, `SED_AMOUNT` REAL NOT NULL, `UNITS_IN_CASE` INTEGER NOT NULL, `EXTRA_TAX` REAL NOT NULL, `GST_PRICE` REAL NOT NULL, `STANDARD_DISCOUNT_BY_VALUE` REAL NOT NULL, `STANDARD_DISCOUNT_PER_VALUE` REAL NOT NULL, `SED_AMOUNT_BY_VALUE` REAL NOT NULL, `SED_AMOUNT_PER_VALUE` REAL NOT NULL, `STANDARD_DISCOUNT_BY_VALUE_TO` REAL NOT NULL, `STANDARD_DISCOUNT_BY_VALUE_AD` REAL NOT NULL, `STANDARD_DISCOUNT_PER_VALUE_TO` REAL NOT NULL, `STANDARD_DISCOUNT_PER_VALUE_AD` REAL NOT NULL, `SED_AMOUNT_BY_VALUE_TO` REAL NOT NULL, `SED_AMOUNT_BY_VALUE_AD` REAL NOT NULL, `SED_AMOUNT_PER_VALUE_TO` REAL NOT NULL, `SED_AMOUNT_PER_VALUE_AD` REAL NOT NULL)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `SALE_ORDER_PROMOTION` (`SALE_ORDER_PROMOTION_ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `DISTRIBUTOR_ID` INTEGER NOT NULL, `SALE_ORDER_ID` INTEGER NOT NULL, `SCHEME_ID` INTEGER NOT NULL, `PROMOTION_ID` INTEGER NOT NULL, `BASKET_ID` INTEGER NOT NULL, `BASKET_DETAIL_ID` INTEGER NOT NULL, `PROMOTION_OFFER_ID` INTEGER NOT NULL, `SKU_ID` INTEGER NOT NULL, `QUANTITY` INTEGER NOT NULL, `UNIT_PRICE` REAL NOT NULL, `AMOUNT` REAL NOT NULL, `GST_RATE` REAL NOT NULL, `GST_AMOUNT` REAL NOT NULL, `TST_AMOUNT` REAL NOT NULL, `SED_AMOUNT` REAL NOT NULL, `master_Sku_Id` INTEGER NOT NULL, `EXTRA_TAX` REAL NOT NULL, `QUANTITY_TO` INTEGER NOT NULL, `QUANTITY_AD` INTEGER NOT NULL)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `ORDER_MASTER` (`SALE_ORDER_ID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `DISTRIBUTOR_ID` INTEGER NOT NULL, `PRINCIPAL_ID` INTEGER NOT NULL, `SOLD_TO` INTEGER NOT NULL, `TOWN_ID` INTEGER NOT NULL, `AREA_ID` INTEGER NOT NULL, `DOCUMENT_DATE` TEXT NOT NULL, `TOTAL_AMOUNT` REAL NOT NULL, `EXTRA_DISCOUNT_AMOUNT` REAL NOT NULL, `STANDARD_DISCOUNT_AMOUNT` REAL NOT NULL, `GST_AMOUNT` REAL NOT NULL, `TOTAL_NET_AMOUNT` REAL NOT NULL, `SCHEME_AMOUNT` REAL NOT NULL, `TST_AMOUNT` REAL NOT NULL, `SED_AMOUNT` REAL NOT NULL, `REMARKS` TEXT NOT NULL, `EXTRA_TAX` REAL NOT NULL, `STANDARD_DISCOUNT_BY_VALUE` REAL NOT NULL, `STANDARD_DISCOUNT_PER_VALUE` REAL NOT NULL, `SED_AMOUNT_BY_VALUE` REAL NOT NULL, `SED_AMOUNT_PER_VALUE` REAL NOT NULL, `STANDARD_DISCOUNT_BY_VALUE_TO` REAL NOT NULL, `STANDARD_DISCOUNT_BY_VALUE_AD` REAL NOT NULL, `STANDARD_DISCOUNT_PER_VALUE_TO` REAL NOT NULL, `STANDARD_DISCOUNT_PER_VALUE_AD` REAL NOT NULL, `SED_AMOUNT_BY_VALUE_TO` REAL NOT NULL, `SED_AMOUNT_BY_VALUE_AD` REAL NOT NULL, `SED_AMOUNT_PER_VALUE_TO` REAL NOT NULL, `SED_AMOUNT_PER_VALUE_AD` REAL NOT NULL, `TIME_IN` TEXT NOT NULL, `TIME_OUT` TEXT NOT NULL, `OUTLET_ID` INTEGER NOT NULL, `LATITUDE` REAL NOT NULL, `LONGITUDE` REAL NOT NULL, `PHOTO_PATH1` TEXT NOT NULL, `PHOTO_PATH2` TEXT NOT NULL, `PHOTO_PATH3` TEXT NOT NULL, `PHOTO_PATH4` TEXT NOT NULL, `PHOTO_PATH5` TEXT NOT NULL, `ORDER_PAYMENT_TYPE` INTEGER NOT NULL, `IS_SYNCED` INTEGER NOT NULL)");
-        _db.execSQL("CREATE TABLE IF NOT EXISTS `SKU` (`SKU_ID` INTEGER NOT NULL, `SKU_CODE` TEXT NOT NULL, `SKU_NAME` TEXT NOT NULL, `GST_ON` TEXT NOT NULL, `TRADE_PRICE` REAL NOT NULL, `GST_RATE` REAL NOT NULL, `UNITS_IN_CASE` INTEGER NOT NULL, `BRAND_ID` INTEGER NOT NULL, `WEIGHT` INTEGER NOT NULL, `DISTRIBUTOR_PRICE` REAL NOT NULL, `RETAIL_PRICE` REAL NOT NULL, `EXTR_Tax` REAL NOT NULL, `SEQUENCE_NUMBER` INTEGER NOT NULL, `UOM_DESC` TEXT NOT NULL, `CATEGORY_ID` INTEGER NOT NULL, PRIMARY KEY(`SKU_ID`))");
+        _db.execSQL("CREATE TABLE IF NOT EXISTS `SKU` (`SKU_ID` INTEGER NOT NULL, `SKU_CODE` TEXT NOT NULL, `SKU_NAME` TEXT NOT NULL, `GST_ON` TEXT NOT NULL, `TRADE_PRICE` REAL NOT NULL, `GST_RATE` REAL NOT NULL, `UNITS_IN_CASE` INTEGER NOT NULL, `BRAND_ID` INTEGER NOT NULL, `WEIGHT` REAL NOT NULL, `DISTRIBUTOR_PRICE` REAL NOT NULL, `RETAIL_PRICE` REAL NOT NULL, `EXTR_Tax` REAL NOT NULL, `SEQUENCE_NUMBER` INTEGER NOT NULL, `UOM_DESC` TEXT NOT NULL, `CATEGORY_ID` INTEGER NOT NULL, PRIMARY KEY(`SKU_ID`))");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `USER` (`USER_ID` INTEGER NOT NULL, `COMPANY_ID` INTEGER NOT NULL, `DISTRIBUTOR_ID` INTEGER NOT NULL, `ROLE_ID` INTEGER NOT NULL, `LOGIN_ID` TEXT NOT NULL, `PASSWORD` TEXT NOT NULL, `IS_ACTIVE` INTEGER NOT NULL, `LASTUPDATE_DATE` TEXT, PRIMARY KEY(`USER_ID`))");
-        _db.execSQL("CREATE TABLE IF NOT EXISTS `Outlet` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `outletID` INTEGER NOT NULL, `outletName` TEXT NOT NULL, `ownerName` TEXT NOT NULL, `phoneNumber` TEXT NOT NULL, `storeAddress` TEXT NOT NULL, `landMark` TEXT NOT NULL, `sectionID` INTEGER NOT NULL, `channelID` INTEGER NOT NULL, `routeID` INTEGER NOT NULL, `townID` INTEGER NOT NULL, `subChannelID` INTEGER NOT NULL, `promotionClass` INTEGER NOT NULL, `closing` REAL NOT NULL, `creditLimit` REAL NOT NULL, `creditDays` INTEGER NOT NULL, `isRegistered` INTEGER NOT NULL, `sequenceNo` INTEGER NOT NULL, `comments` TEXT NOT NULL, `latitude` REAL NOT NULL, `longtidue` REAL NOT NULL, `photoPath1` TEXT NOT NULL, `photoPath2` TEXT NOT NULL, `photoPath3` TEXT NOT NULL, `photoPath4` TEXT NOT NULL, `photoPath5` TEXT NOT NULL, `areaTypeId` INTEGER NOT NULL, `lastOrderDate` TEXT NOT NULL, `lastOrderAmount` REAL NOT NULL, `isCredit` INTEGER NOT NULL)");
-        _db.execSQL("CREATE TABLE IF NOT EXISTS `OutletLocal` (`OutletID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `OutletName` TEXT NOT NULL, `OwnerName` TEXT NOT NULL, `PhoneNumber` TEXT NOT NULL, `OutletAddress` TEXT NOT NULL, `LandMark` TEXT NOT NULL, `SectionID` INTEGER NOT NULL, `ChannelID` INTEGER NOT NULL, `TownID` INTEGER NOT NULL, `SubChannelID` INTEGER NOT NULL, `Comments` TEXT NOT NULL, `Latitude` REAL NOT NULL, `Longtidue` REAL NOT NULL, `PhotoPath1` TEXT NOT NULL, `PhotoPath2` TEXT NOT NULL, `PhotoPath3` TEXT NOT NULL, `PhotoPath4` TEXT NOT NULL, `PhotoPath5` TEXT NOT NULL, `AreaTypeId` INTEGER NOT NULL)");
+        _db.execSQL("CREATE TABLE IF NOT EXISTS `Outlet` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `outletID` INTEGER NOT NULL, `outletName` TEXT NOT NULL, `ownerName` TEXT NOT NULL, `phoneNumber` TEXT NOT NULL, `storeAddress` TEXT NOT NULL, `landMark` TEXT NOT NULL, `sectionID` INTEGER NOT NULL, `channelID` INTEGER NOT NULL, `localityID` INTEGER NOT NULL, `routeID` INTEGER NOT NULL, `townID` INTEGER NOT NULL, `subChannelID` INTEGER NOT NULL, `promotionClass` INTEGER NOT NULL, `closing` REAL NOT NULL, `creditLimit` REAL NOT NULL, `creditDays` INTEGER NOT NULL, `isRegistered` INTEGER NOT NULL, `sequenceNo` INTEGER NOT NULL, `comments` TEXT NOT NULL, `latitude` REAL NOT NULL, `longtidue` REAL NOT NULL, `photoPath1` TEXT NOT NULL, `photoPath2` TEXT NOT NULL, `photoPath3` TEXT NOT NULL, `photoPath4` TEXT NOT NULL, `photoPath5` TEXT NOT NULL, `areaTypeId` INTEGER NOT NULL, `lastOrderDate` TEXT NOT NULL, `lastOrderAmount` REAL NOT NULL, `isCredit` INTEGER NOT NULL)");
+        _db.execSQL("CREATE TABLE IF NOT EXISTS `OutletLocal` (`OutletID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `OutletName` TEXT NOT NULL, `OwnerName` TEXT NOT NULL, `PhoneNumber` TEXT NOT NULL, `OutletAddress` TEXT NOT NULL, `LandMark` TEXT NOT NULL, `SectionID` INTEGER NOT NULL, `LocalityID` INTEGER NOT NULL, `ChannelID` INTEGER NOT NULL, `TownID` INTEGER NOT NULL, `SubChannelID` INTEGER NOT NULL, `Comments` TEXT NOT NULL, `Latitude` REAL NOT NULL, `Longtidue` REAL NOT NULL, `PhotoPath1` TEXT NOT NULL, `PhotoPath2` TEXT NOT NULL, `PhotoPath3` TEXT NOT NULL, `PhotoPath4` TEXT NOT NULL, `PhotoPath5` TEXT NOT NULL, `AreaTypeId` INTEGER NOT NULL)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `MENU` (`androidMenuID` INTEGER NOT NULL, `menuName` TEXT NOT NULL, `isActive` INTEGER NOT NULL, PRIMARY KEY(`androidMenuID`))");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `SECTIONS` (`sectionID` INTEGER NOT NULL, `sectionCode` TEXT, `sectionName` TEXT, PRIMARY KEY(`sectionID`))");
+        _db.execSQL("CREATE TABLE IF NOT EXISTS `Locality` (`routeID` INTEGER NOT NULL, `routeCode` TEXT, `routeName` TEXT, `sectionID` INTEGER NOT NULL, PRIMARY KEY(`routeID`))");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `CHANNEL` (`id` INTEGER NOT NULL, `code` TEXT NOT NULL, `name` TEXT NOT NULL, `status` INTEGER NOT NULL, PRIMARY KEY(`id`))");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `SUBCHANNEL` (`id` INTEGER NOT NULL, `code` TEXT NOT NULL, `name` TEXT NOT NULL, `parentID` INTEGER NOT NULL, `status` INTEGER NOT NULL, PRIMARY KEY(`id`))");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `Merchandise` (`OutletID` INTEGER NOT NULL, `DocumentDate` TEXT, `Remarks` TEXT, `Image1Path1` TEXT, `Image1Path2` TEXT, `Image1Path3` TEXT, `Image1Path4` TEXT, `Image1Path5` TEXT, `Image2Path1` TEXT, `Image2Path2` TEXT, `Image2Path3` TEXT, `Image2Path4` TEXT, `Image2Path5` TEXT, PRIMARY KEY(`OutletID`))");
@@ -168,7 +169,7 @@ public class AppDatabase_Impl extends AppDatabase {
         _db.execSQL("CREATE TABLE IF NOT EXISTS `StockPositionMaster` (`OUTLET_ID` INTEGER NOT NULL, `IS_SYNCED` INTEGER NOT NULL, PRIMARY KEY(`OUTLET_ID`))");
         _db.execSQL("CREATE TABLE IF NOT EXISTS `Replacement` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `outletId` TEXT NOT NULL, `ReplacementTypeID` TEXT NOT NULL, `SKUID` TEXT NOT NULL, `Price` TEXT NOT NULL, `InvoiceNo` TEXT NOT NULL, `InvoiceDate` TEXT NOT NULL, `Description` TEXT NOT NULL, `StockImage1` TEXT NOT NULL, `StockImage2` TEXT NOT NULL, `StockImage3` TEXT NOT NULL, `StockImage4` TEXT NOT NULL, `StockImage5` TEXT NOT NULL, `InvoiceImage1` TEXT NOT NULL, `InvoiceImage2` TEXT NOT NULL, `InvoiceImage3` TEXT NOT NULL, `InvoiceImage4` TEXT NOT NULL, `InvoiceImage5` TEXT NOT NULL)");
         _db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"8078a3f433445f898e614ffa9e8d8482\")");
+        _db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"89e181994778aef287ad40a49e8998e6\")");
       }
 
       @Override
@@ -187,6 +188,7 @@ public class AppDatabase_Impl extends AppDatabase {
         _db.execSQL("DROP TABLE IF EXISTS `OutletLocal`");
         _db.execSQL("DROP TABLE IF EXISTS `MENU`");
         _db.execSQL("DROP TABLE IF EXISTS `SECTIONS`");
+        _db.execSQL("DROP TABLE IF EXISTS `Locality`");
         _db.execSQL("DROP TABLE IF EXISTS `CHANNEL`");
         _db.execSQL("DROP TABLE IF EXISTS `SUBCHANNEL`");
         _db.execSQL("DROP TABLE IF EXISTS `Merchandise`");
@@ -429,7 +431,7 @@ public class AppDatabase_Impl extends AppDatabase {
         _columnsSKU.put("GST_RATE", new TableInfo.Column("GST_RATE", "REAL", true, 0));
         _columnsSKU.put("UNITS_IN_CASE", new TableInfo.Column("UNITS_IN_CASE", "INTEGER", true, 0));
         _columnsSKU.put("BRAND_ID", new TableInfo.Column("BRAND_ID", "INTEGER", true, 0));
-        _columnsSKU.put("WEIGHT", new TableInfo.Column("WEIGHT", "INTEGER", true, 0));
+        _columnsSKU.put("WEIGHT", new TableInfo.Column("WEIGHT", "REAL", true, 0));
         _columnsSKU.put("DISTRIBUTOR_PRICE", new TableInfo.Column("DISTRIBUTOR_PRICE", "REAL", true, 0));
         _columnsSKU.put("RETAIL_PRICE", new TableInfo.Column("RETAIL_PRICE", "REAL", true, 0));
         _columnsSKU.put("EXTR_Tax", new TableInfo.Column("EXTR_Tax", "REAL", true, 0));
@@ -463,7 +465,7 @@ public class AppDatabase_Impl extends AppDatabase {
                   + " Expected:\n" + _infoUSER + "\n"
                   + " Found:\n" + _existingUSER);
         }
-        final HashMap<String, TableInfo.Column> _columnsOutlet = new HashMap<String, TableInfo.Column>(30);
+        final HashMap<String, TableInfo.Column> _columnsOutlet = new HashMap<String, TableInfo.Column>(31);
         _columnsOutlet.put("_id", new TableInfo.Column("_id", "INTEGER", true, 1));
         _columnsOutlet.put("outletID", new TableInfo.Column("outletID", "INTEGER", true, 0));
         _columnsOutlet.put("outletName", new TableInfo.Column("outletName", "TEXT", true, 0));
@@ -473,6 +475,7 @@ public class AppDatabase_Impl extends AppDatabase {
         _columnsOutlet.put("landMark", new TableInfo.Column("landMark", "TEXT", true, 0));
         _columnsOutlet.put("sectionID", new TableInfo.Column("sectionID", "INTEGER", true, 0));
         _columnsOutlet.put("channelID", new TableInfo.Column("channelID", "INTEGER", true, 0));
+        _columnsOutlet.put("localityID", new TableInfo.Column("localityID", "INTEGER", true, 0));
         _columnsOutlet.put("routeID", new TableInfo.Column("routeID", "INTEGER", true, 0));
         _columnsOutlet.put("townID", new TableInfo.Column("townID", "INTEGER", true, 0));
         _columnsOutlet.put("subChannelID", new TableInfo.Column("subChannelID", "INTEGER", true, 0));
@@ -503,7 +506,7 @@ public class AppDatabase_Impl extends AppDatabase {
                   + " Expected:\n" + _infoOutlet + "\n"
                   + " Found:\n" + _existingOutlet);
         }
-        final HashMap<String, TableInfo.Column> _columnsOutletLocal = new HashMap<String, TableInfo.Column>(19);
+        final HashMap<String, TableInfo.Column> _columnsOutletLocal = new HashMap<String, TableInfo.Column>(20);
         _columnsOutletLocal.put("OutletID", new TableInfo.Column("OutletID", "INTEGER", true, 1));
         _columnsOutletLocal.put("OutletName", new TableInfo.Column("OutletName", "TEXT", true, 0));
         _columnsOutletLocal.put("OwnerName", new TableInfo.Column("OwnerName", "TEXT", true, 0));
@@ -511,6 +514,7 @@ public class AppDatabase_Impl extends AppDatabase {
         _columnsOutletLocal.put("OutletAddress", new TableInfo.Column("OutletAddress", "TEXT", true, 0));
         _columnsOutletLocal.put("LandMark", new TableInfo.Column("LandMark", "TEXT", true, 0));
         _columnsOutletLocal.put("SectionID", new TableInfo.Column("SectionID", "INTEGER", true, 0));
+        _columnsOutletLocal.put("LocalityID", new TableInfo.Column("LocalityID", "INTEGER", true, 0));
         _columnsOutletLocal.put("ChannelID", new TableInfo.Column("ChannelID", "INTEGER", true, 0));
         _columnsOutletLocal.put("TownID", new TableInfo.Column("TownID", "INTEGER", true, 0));
         _columnsOutletLocal.put("SubChannelID", new TableInfo.Column("SubChannelID", "INTEGER", true, 0));
@@ -557,6 +561,20 @@ public class AppDatabase_Impl extends AppDatabase {
           throw new IllegalStateException("Migration didn't properly handle SECTIONS(com.fastservices.sams.data.entities.Section).\n"
                   + " Expected:\n" + _infoSECTIONS + "\n"
                   + " Found:\n" + _existingSECTIONS);
+        }
+        final HashMap<String, TableInfo.Column> _columnsLocality = new HashMap<String, TableInfo.Column>(4);
+        _columnsLocality.put("routeID", new TableInfo.Column("routeID", "INTEGER", true, 1));
+        _columnsLocality.put("routeCode", new TableInfo.Column("routeCode", "TEXT", false, 0));
+        _columnsLocality.put("routeName", new TableInfo.Column("routeName", "TEXT", false, 0));
+        _columnsLocality.put("sectionID", new TableInfo.Column("sectionID", "INTEGER", true, 0));
+        final HashSet<TableInfo.ForeignKey> _foreignKeysLocality = new HashSet<TableInfo.ForeignKey>(0);
+        final HashSet<TableInfo.Index> _indicesLocality = new HashSet<TableInfo.Index>(0);
+        final TableInfo _infoLocality = new TableInfo("Locality", _columnsLocality, _foreignKeysLocality, _indicesLocality);
+        final TableInfo _existingLocality = TableInfo.read(_db, "Locality");
+        if (! _infoLocality.equals(_existingLocality)) {
+          throw new IllegalStateException("Migration didn't properly handle Locality(com.fastservices.sams.data.entities.Locality).\n"
+                  + " Expected:\n" + _infoLocality + "\n"
+                  + " Found:\n" + _existingLocality);
         }
         final HashMap<String, TableInfo.Column> _columnsCHANNEL = new HashMap<String, TableInfo.Column>(4);
         _columnsCHANNEL.put("id", new TableInfo.Column("id", "INTEGER", true, 1));
@@ -908,7 +926,7 @@ public class AppDatabase_Impl extends AppDatabase {
                   + " Found:\n" + _existingReplacement);
         }
       }
-    }, "8078a3f433445f898e614ffa9e8d8482", "0150bdfd46dc8accf65045a46c26f6fb");
+    }, "89e181994778aef287ad40a49e8998e6", "a62673b3d8757fcf80636a602bd4e916");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(configuration.context)
         .name(configuration.name)
         .callback(_openCallback)
@@ -919,7 +937,7 @@ public class AppDatabase_Impl extends AppDatabase {
 
   @Override
   protected InvalidationTracker createInvalidationTracker() {
-    return new InvalidationTracker(this, "BRAND","CATEGORY","CUSTOMER_ORDER_STATUS","CUSTOMER_UNORDERED_STATUS","DISTRIBUTOR_AREA","ORDER_DETAIL","SALE_ORDER_PROMOTION","ORDER_MASTER","SKU","USER","Outlet","OutletLocal","MENU","SECTIONS","CHANNEL","SUBCHANNEL","Merchandise","ComplaintReason","ReplacementReason","OutletComplaint","NoOrderReason","NoOrderItem","SKUGroup","dtBasketDetail","dtBasketMaster","dtFreeSKUDetail","dtPromotion","dtPromotionCustomerType","dtPromotionOffer","dtPromotionValueClass","StockPosition","StockPositionMaster","Replacement");
+    return new InvalidationTracker(this, "BRAND","CATEGORY","CUSTOMER_ORDER_STATUS","CUSTOMER_UNORDERED_STATUS","DISTRIBUTOR_AREA","ORDER_DETAIL","SALE_ORDER_PROMOTION","ORDER_MASTER","SKU","USER","Outlet","OutletLocal","MENU","SECTIONS","Locality","CHANNEL","SUBCHANNEL","Merchandise","ComplaintReason","ReplacementReason","OutletComplaint","NoOrderReason","NoOrderItem","SKUGroup","dtBasketDetail","dtBasketMaster","dtFreeSKUDetail","dtPromotion","dtPromotionCustomerType","dtPromotionOffer","dtPromotionValueClass","StockPosition","StockPositionMaster","Replacement");
   }
 
   @Override
@@ -942,6 +960,7 @@ public class AppDatabase_Impl extends AppDatabase {
       _db.execSQL("DELETE FROM `OutletLocal`");
       _db.execSQL("DELETE FROM `MENU`");
       _db.execSQL("DELETE FROM `SECTIONS`");
+      _db.execSQL("DELETE FROM `Locality`");
       _db.execSQL("DELETE FROM `CHANNEL`");
       _db.execSQL("DELETE FROM `SUBCHANNEL`");
       _db.execSQL("DELETE FROM `Merchandise`");

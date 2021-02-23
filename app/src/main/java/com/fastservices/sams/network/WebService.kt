@@ -125,6 +125,9 @@ public interface WebService {
     public fun getSections(@Body body: PostBody<Parameters>): Deferred<ResponseListBody<Section>>
 
     @POST(EXEC_SP)
+    public fun getLocalities(@Body body: PostBody<Parameters>): Deferred<ResponseListBody<Locality>>
+
+    @POST(EXEC_SP)
     public fun getChannel(@Body body: PostBody<Map<String, String>>): Deferred<ResponseListBody<Channel>>
 
     @POST(EXEC_SP)

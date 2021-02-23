@@ -1376,7 +1376,27 @@ class PromotionCalculator(val login: UserInfo,
                         // Register
                         {
                             tempObj.gSTAmount = (tempObj.amount - (tempObj
+                                    .standardDiscount - (ObjTotalSED
+                                    + tempObj.getCLAIM_PER() * (tempObj.amount * tempObj.gSTRate / 100)
+                                    + tempObj.claimExtraAmount))) * tempObj.gSTRate / 100
+                            var a = tempObj.gSTAmount
+
+
+                        }else if((IsDistributorRegister == 0 && Customer.registered==1)||Customer.registered==0){
+                            tempObj.gSTAmount = tempObj.skuItem.DISTRIBUTOR_PRICE * tempObj.gSTRate / 100
+                            tempObj.gSTAmount *= tempObj.quantity
+                        }
+                        else{
+                            tempObj.gSTAmount = (tempObj.amount - (tempObj
                                     .standardDiscount - (ObjTotalSED_BY_VALUE_AD + ObjTotalSED_PER_VALUE_AD))) * tempObj.gSTRate / 100
+//                            tempObj.gSTAmount *= tempObj.quantity
+
+                        }
+                        if (tempObj.skuItem.GST_ON.contains("E")) {
+                            tempObj.gSTAmount = 0.0
+                        }
+                        else if (tempObj.skuItem.GST_ON.contains("R")) {
+                            tempObj.gSTAmount = 0.0
                         }
                     }
                     tempObj.extraTax = 0.0
@@ -1396,15 +1416,48 @@ class PromotionCalculator(val login: UserInfo,
 //                                        dbhelper.getSKU(tempObj.sKUID)
                                 if (dtsku.isNotEmpty()) {
                                     val rowSku = dtsku.get(0)
-                                    tempObj.extraTax = tempObj.amount - (tempObj
-                                            .standardDiscount - tempObj
-                                            .sedAmount) * rowSku.EXTR_Tax / 100
-                                    ObjTotalExtra_Tax = ObjTotalExtra_Tax + (tempObj.amount - (tempObj
+                                    tempObj.extraTax = (tempObj.amount - (tempObj.standardDiscount - (ObjTotalSED
+                                            + tempObj.getCLAIM_PER() * (tempObj.amount * tempObj.gSTRate / 100)
+                                            + tempObj.claimExtraAmount))) * rowSku.EXTR_Tax / 100
+                                    ObjTotalExtra_Tax += (tempObj.amount - (tempObj
+                                            .standardDiscount - (ObjTotalSED
+                                            + tempObj.getCLAIM_PER() * (tempObj.amount * tempObj.gSTRate / 100)
+                                            + tempObj.claimExtraAmount))) * rowSku.EXTR_Tax / 100
+                                }
+                            }
+                            if (tempObj.skuItem.GST_ON.contains("T") && Customer.registered == 1) {
+                                tempObj.extraTax = 0.0;
+                                ObjTotalExtra_Tax = 0.0;
+                            }
+
+                        }else if((IsDistributorRegister == 0 && Customer.registered==1)||Customer.registered==0){
+                            if (tempObj.skuItem.GST_ON.contains("T")) {
+                                val dtsku = SamsApplication.getDB().SKUDao().getAll(tempObj.sKUID)
+//                                        dbhelper.getSKU(tempObj.sKUID)
+                                if (dtsku.isNotEmpty()) {
+                                    val rowSku = dtsku.get(0)
+                                    tempObj.extraTax = (tempObj.skuItem.DISTRIBUTOR_PRICE - (tempObj.sedAmount)) * rowSku.EXTR_Tax / 100
+                                    ObjTotalExtra_Tax += (tempObj.skuItem.DISTRIBUTOR_PRICE) * rowSku.EXTR_Tax / 100
+
+                                    tempObj.extraTax *= tempObj.quantity
+                                    ObjTotalExtra_Tax*=tempObj.quantity
+                                }
+                            }
+                        }
+                        else{
+                            if (tempObj.skuItem.GST_ON.contains("T")) {
+                                val dtsku = SamsApplication.getDB().SKUDao().getAll(tempObj.sKUID)
+//                                        dbhelper.getSKU(tempObj.sKUID)
+                                if (dtsku.isNotEmpty()) {
+                                    val rowSku = dtsku.get(0)
+                                    tempObj.extraTax = (tempObj.amount - (tempObj.standardDiscount - tempObj.sedAmount)) * rowSku.EXTR_Tax / 100
+                                    ObjTotalExtra_Tax += (tempObj.amount - (tempObj
                                             .standardDiscount - (ObjTotalSED_BY_VALUE_AD + ObjTotalSED_PER_VALUE_AD))) * rowSku.EXTR_Tax / 100
                                 }
                             }
                         }
                     }
+
 
                     tempObj.standardDiscountByValueAd = tempObj
                             .standardDiscount
@@ -1438,10 +1491,13 @@ class PromotionCalculator(val login: UserInfo,
                     ObjStandardDiscount_PER_VALUE_TO = ObjStandardDiscount_PER_VALUE_TO + tempObj.standardDiscountPerValueTo
                     ObjStandardDiscount_PER_VALUE_AD = ObjStandardDiscount_PER_VALUE_AD + tempObj.standardDiscountPerValueAd
                     ObjTotalGST = ObjTotalGST + tempObj.gSTAmount
+//                    if (tempObj.skuItem.GST_ON.contains("T")) {
+//                        ObjTotalGST = ObjTotalGST + ObjTotalExtra_Tax
+//                    }
                     ObjTotalTST = ObjTotalTST + tempObj.tSTAmount
 //                    ajeeb c bakwas logic hy
                     tempObj.netAmount = tempObj.amount - tempObj.standardDiscount + tempObj.gSTAmount + tempObj.tSTAmount
-                    tempObj.gSTPrice = tempObj.price
+                    tempObj.gSTPrice = if((Customer.registered==0 && IsDistributorRegister == 0)||(Customer.registered==1 && IsDistributorRegister == 0)) tempObj.skuItem.DISTRIBUTOR_PRICE else tempObj.price
 
                 }
             }
@@ -1508,10 +1564,10 @@ class PromotionCalculator(val login: UserInfo,
                 summaryUIModel.grossAmout,
                 0.0,// Extra discount
                 ObjStandardDiscount,
-                summaryUIModel.gst,
+                summaryUIModel.gst-ObjTotalTST,
                 summaryUIModel.netAmount,
                 0.0,// SchemeAmount
-                0.0,// TstAmount
+                ObjTotalTST,// TstAmount
                 ObjTotalSED,// SedAmount
                 remarks,
                 ObjTotalExtra_Tax,// ExtraTax
@@ -1557,13 +1613,13 @@ class PromotionCalculator(val login: UserInfo,
                     it.sKUID,
                     it.quantity,
                     it.price,
-                    it.gSTRate,
+                    if(it.skuItem.GST_ON.contains("R")) 0.0 else it.gSTRate,
                     it.amount,
                     it.standardDiscount,
                     it.extraDiscount,
-                    it.gSTAmount,
-                    it.netAmount,
-                    0.0,
+                    if(it.skuItem.GST_ON.contains("R") || it.skuItem.GST_ON.contains("E")) 0.0 else it.gSTAmount,
+                    it.netAmount+it.extraTax,
+                    if(it.skuItem.GST_ON.contains("R")) it.tSTAmount else 0.0,
                     it.sedAmount,
                     it.unitInCase,
                     it.extraTax,
@@ -1598,7 +1654,7 @@ class PromotionCalculator(val login: UserInfo,
                     it.skU_ID,
                     it.quantity,
                     it.uniT_PRICE,
-                    it.amount,
+                    it.amount+it.extra_tax,
                     it.gsT_RATE,
                     it.gsT_AMOUNT,
                     it.tsT_AMOUNT,

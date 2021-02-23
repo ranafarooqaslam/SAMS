@@ -14,6 +14,7 @@ data class OutletLocal(
         var OutletAddress: String,
         var LandMark: String,
         var SectionID: Int,
+        var LocalityID: Int,
         var ChannelID: Int,
         var TownID: Int,
         var SubChannelID: Int,
@@ -31,7 +32,8 @@ data class OutletLocal(
         val output = when {
             OutletName.isEmpty() -> "Input store name"
             OutletAddress.isEmpty() -> "Input store Address"
-            SectionID == 0 -> "Set Locality/Sector"
+            SectionID == 0 -> "Set Section"
+            LocalityID == 0 -> "Set Locality"
             ChannelID == 0 -> "Set Channel"
             SubChannelID == 0 -> "Set Sub channel"
             Latitude == 0.0 || Longtidue == 0.0 -> "Set location via Take GPS button"
@@ -43,7 +45,7 @@ data class OutletLocal(
         return output
     }
 
-    constructor() : this(0, "", "", "", "", "", 0, 0, 0, 0, "", 0.0, 0.0, "", "", "", "", "",
+    constructor() : this(0, "", "", "", "", "", 0, 0,0, 0, 0, "", 0.0, 0.0, "", "", "", "", "",
             -1)
 
     override fun toString(): String {

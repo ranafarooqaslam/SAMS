@@ -59,6 +59,9 @@ public abstract class FragmentAddOutletBinding extends ViewDataBinding {
   public final MaterialSpinner spChannel;
 
   @NonNull
+  public final MaterialSpinner spLocality;
+
+  @NonNull
   public final MaterialSpinner spSector;
 
   @NonNull
@@ -92,10 +95,10 @@ public abstract class FragmentAddOutletBinding extends ViewDataBinding {
       int _localFieldCount, View bottomLayout, Button btnTakeGPS, EditText etComment,
       LinearLayout imagesContainer, ImageView ivCamera, TextView lblArea, TextView lblComments,
       TextView lblPicture, RadioGroup rgArea, RelativeLayout rootLayout, ScrollView scrollView,
-      MaterialSpinner spChannel, MaterialSpinner spSector, MaterialSpinner spSubchannel,
-      TextInputLayout tilLandMark, TextInputLayout tilOwnerName, TextInputLayout tilPhoneNumber,
-      TextInputLayout tilStoreAddress, TextInputLayout tilStoreName, TextView tvMapLink,
-      TextView tvSubmit) {
+      MaterialSpinner spChannel, MaterialSpinner spLocality, MaterialSpinner spSector,
+      MaterialSpinner spSubchannel, TextInputLayout tilLandMark, TextInputLayout tilOwnerName,
+      TextInputLayout tilPhoneNumber, TextInputLayout tilStoreAddress, TextInputLayout tilStoreName,
+      TextView tvMapLink, TextView tvSubmit) {
     super(_bindingComponent, _root, _localFieldCount);
     this.bottomLayout = bottomLayout;
     this.btnTakeGPS = btnTakeGPS;
@@ -109,6 +112,7 @@ public abstract class FragmentAddOutletBinding extends ViewDataBinding {
     this.rootLayout = rootLayout;
     this.scrollView = scrollView;
     this.spChannel = spChannel;
+    this.spLocality = spLocality;
     this.spSector = spSector;
     this.spSubchannel = spSubchannel;
     this.tilLandMark = tilLandMark;

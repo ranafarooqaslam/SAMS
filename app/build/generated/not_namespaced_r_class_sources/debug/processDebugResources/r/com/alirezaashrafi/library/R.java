@@ -28,7 +28,7 @@ public final class R {
         public static final int low = 0x7f0900fc;
         public static final int roadmap = 0x7f090130;
         public static final int satellite = 0x7f09013a;
-        public static final int terrain = 0x7f090175;
+        public static final int terrain = 0x7f090176;
     }
     public static final class string {
         private string() {}

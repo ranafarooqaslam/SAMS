@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.fastservices.sams.R
 import com.fastservices.sams.data.entities.Channel
+import com.fastservices.sams.data.entities.Locality
 import com.fastservices.sams.data.entities.Section
 import com.fastservices.sams.data.entities.SubChannel
 import com.fastservices.sams.databinding.FragmentAddOutletBinding
@@ -126,6 +127,23 @@ class AddOutletFragment : BaseFragment(), View.OnClickListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 (parent?.getItemAtPosition(position) as? Section)?.let {
                     viewModel.outlet.SectionID = it.sectionID
+                    populateLocalities()
+                }
+            }
+        }
+    }
+
+    fun populateLocalities() {
+        val adapterLocality = ArrayAdapter<Locality>(context, android.R.layout.simple_spinner_item, viewModel.localities.filter { it.sectionID == viewModel.outlet.SectionID })
+        adapterLocality.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spLocality.adapter = adapterLocality
+        spLocality.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                (parent?.getItemAtPosition(position) as? Locality)?.let {
+                    viewModel.outlet.LocalityID = it.routeID
                 }
             }
         }

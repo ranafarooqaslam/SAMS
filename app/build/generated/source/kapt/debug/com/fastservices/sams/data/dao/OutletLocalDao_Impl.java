@@ -26,7 +26,7 @@ public class OutletLocalDao_Impl implements OutletLocalDao {
     this.__insertionAdapterOfOutletLocal = new EntityInsertionAdapter<OutletLocal>(__db) {
       @Override
       public String createQuery() {
-        return "INSERT OR REPLACE INTO `OutletLocal`(`OutletID`,`OutletName`,`OwnerName`,`PhoneNumber`,`OutletAddress`,`LandMark`,`SectionID`,`ChannelID`,`TownID`,`SubChannelID`,`Comments`,`Latitude`,`Longtidue`,`PhotoPath1`,`PhotoPath2`,`PhotoPath3`,`PhotoPath4`,`PhotoPath5`,`AreaTypeId`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        return "INSERT OR REPLACE INTO `OutletLocal`(`OutletID`,`OutletName`,`OwnerName`,`PhoneNumber`,`OutletAddress`,`LandMark`,`SectionID`,`LocalityID`,`ChannelID`,`TownID`,`SubChannelID`,`Comments`,`Latitude`,`Longtidue`,`PhotoPath1`,`PhotoPath2`,`PhotoPath3`,`PhotoPath4`,`PhotoPath5`,`AreaTypeId`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
       }
 
       @Override
@@ -58,42 +58,43 @@ public class OutletLocalDao_Impl implements OutletLocalDao {
           stmt.bindString(6, value.getLandMark());
         }
         stmt.bindLong(7, value.getSectionID());
-        stmt.bindLong(8, value.getChannelID());
-        stmt.bindLong(9, value.getTownID());
-        stmt.bindLong(10, value.getSubChannelID());
+        stmt.bindLong(8, value.getLocalityID());
+        stmt.bindLong(9, value.getChannelID());
+        stmt.bindLong(10, value.getTownID());
+        stmt.bindLong(11, value.getSubChannelID());
         if (value.getComments() == null) {
-          stmt.bindNull(11);
+          stmt.bindNull(12);
         } else {
-          stmt.bindString(11, value.getComments());
+          stmt.bindString(12, value.getComments());
         }
-        stmt.bindDouble(12, value.getLatitude());
-        stmt.bindDouble(13, value.getLongtidue());
+        stmt.bindDouble(13, value.getLatitude());
+        stmt.bindDouble(14, value.getLongtidue());
         if (value.getPhotoPath1() == null) {
-          stmt.bindNull(14);
-        } else {
-          stmt.bindString(14, value.getPhotoPath1());
-        }
-        if (value.getPhotoPath2() == null) {
           stmt.bindNull(15);
         } else {
-          stmt.bindString(15, value.getPhotoPath2());
+          stmt.bindString(15, value.getPhotoPath1());
         }
-        if (value.getPhotoPath3() == null) {
+        if (value.getPhotoPath2() == null) {
           stmt.bindNull(16);
         } else {
-          stmt.bindString(16, value.getPhotoPath3());
+          stmt.bindString(16, value.getPhotoPath2());
         }
-        if (value.getPhotoPath4() == null) {
+        if (value.getPhotoPath3() == null) {
           stmt.bindNull(17);
         } else {
-          stmt.bindString(17, value.getPhotoPath4());
+          stmt.bindString(17, value.getPhotoPath3());
         }
-        if (value.getPhotoPath5() == null) {
+        if (value.getPhotoPath4() == null) {
           stmt.bindNull(18);
         } else {
-          stmt.bindString(18, value.getPhotoPath5());
+          stmt.bindString(18, value.getPhotoPath4());
         }
-        stmt.bindLong(19, value.getAreaTypeId());
+        if (value.getPhotoPath5() == null) {
+          stmt.bindNull(19);
+        } else {
+          stmt.bindString(19, value.getPhotoPath5());
+        }
+        stmt.bindLong(20, value.getAreaTypeId());
       }
     };
     this.__preparedStmtOfDeleteAll = new SharedSQLiteStatement(__db) {
@@ -142,6 +143,7 @@ public class OutletLocalDao_Impl implements OutletLocalDao {
       final int _cursorIndexOfOutletAddress = _cursor.getColumnIndexOrThrow("OutletAddress");
       final int _cursorIndexOfLandMark = _cursor.getColumnIndexOrThrow("LandMark");
       final int _cursorIndexOfSectionID = _cursor.getColumnIndexOrThrow("SectionID");
+      final int _cursorIndexOfLocalityID = _cursor.getColumnIndexOrThrow("LocalityID");
       final int _cursorIndexOfChannelID = _cursor.getColumnIndexOrThrow("ChannelID");
       final int _cursorIndexOfTownID = _cursor.getColumnIndexOrThrow("TownID");
       final int _cursorIndexOfSubChannelID = _cursor.getColumnIndexOrThrow("SubChannelID");
@@ -179,6 +181,9 @@ public class OutletLocalDao_Impl implements OutletLocalDao {
         final int _tmpSectionID;
         _tmpSectionID = _cursor.getInt(_cursorIndexOfSectionID);
         _item.setSectionID(_tmpSectionID);
+        final int _tmpLocalityID;
+        _tmpLocalityID = _cursor.getInt(_cursorIndexOfLocalityID);
+        _item.setLocalityID(_tmpLocalityID);
         final int _tmpChannelID;
         _tmpChannelID = _cursor.getInt(_cursorIndexOfChannelID);
         _item.setChannelID(_tmpChannelID);

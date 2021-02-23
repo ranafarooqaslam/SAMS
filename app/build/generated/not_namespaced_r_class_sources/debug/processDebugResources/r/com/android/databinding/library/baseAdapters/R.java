@@ -102,11 +102,11 @@ public final class R {
         public static final int onDateChanged = 0x7f090114;
         public static final int right_icon = 0x7f09012b;
         public static final int right_side = 0x7f09012c;
-        public static final int text = 0x7f090176;
-        public static final int text2 = 0x7f090177;
-        public static final int textWatcher = 0x7f09017e;
-        public static final int time = 0x7f09018c;
-        public static final int title = 0x7f09018d;
+        public static final int text = 0x7f090177;
+        public static final int text2 = 0x7f090178;
+        public static final int textWatcher = 0x7f09017f;
+        public static final int time = 0x7f09018d;
+        public static final int title = 0x7f09018e;
     }
     public static final class integer {
         private integer() {}

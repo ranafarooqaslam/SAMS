@@ -94,7 +94,7 @@
             app:layout_constraintStart_toEndOf="@+id/tvCartonCount"
             app:layout_constraintTop_toTopOf="@+id/tvCartonCount" />
 
-        <TextView
+        <EditText
             android:id="@+id/tvUnitCount"
             android:layout_width="wrap_content"
             android:layout_height="22dp"
@@ -102,6 +102,7 @@
             android:background="#d2d2d2"
             android:gravity="center"
             android:minWidth="40dp"
+            android:inputType="number"
             android:text="0"
             android:textColor="@color/textcolor_black"
             app:layout_constraintEnd_toEndOf="@+id/lblUnits"
@@ -121,7 +122,7 @@
             app:layout_constraintTop_toTopOf="@+id/lblUnits" />
 
 
-        <TextView
+        <EditText
             android:id="@+id/tvCartonCount"
             android:layout_width="wrap_content"
             android:layout_height="22dp"
@@ -129,6 +130,7 @@
             android:background="#d2d2d2"
             android:gravity="center"
             android:minWidth="40dp"
+            android:inputType="number"
             android:text="0"
             android:textColor="@color/textcolor_black"
             app:layout_constraintEnd_toEndOf="@+id/lblCarton"

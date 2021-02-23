@@ -3,9 +3,12 @@ package com.fastservices.sams.modules.skulist.dialog
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import com.fastservices.sams.R
 import com.fastservices.sams.data.entities.SKU
 import kotlinx.android.synthetic.main.dialog_quatitiy_selection.*
@@ -20,7 +23,8 @@ class QuantityDialogFragment : DialogFragment(), View.OnClickListener {
 
     var initialUnits = 0
     var initialCartons = 0
-
+    var unitsET: EditText? = null
+    var cartonsET: EditText? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -41,7 +45,32 @@ class QuantityDialogFragment : DialogFragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        unitsET = view.findViewById (R.id.tvUnitCount) as EditText
+        cartonsET = view.findViewById (R.id.tvCartonCount) as EditText
+        unitsET!!.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+            }
 
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(s!=null && s.isNotEmpty())
+                    units = Integer.parseInt(s.toString())
+            }
+        })
+        cartonsET!!.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(s!=null && s.isNotEmpty())
+                    cartons = Integer.parseInt(s.toString())
+            }
+        })
         tvItemName.text = item.SKU_NAME
         tvItemName.isSelected = true
 
@@ -53,8 +82,8 @@ class QuantityDialogFragment : DialogFragment(), View.OnClickListener {
         btnCancel.setOnClickListener(this)
         btnSave.setOnClickListener(this)
 
-        tvUnitCount.text = units.toString()
-        tvCartonCount.text = cartons.toString()
+        unitsET!!.text = Editable.Factory.getInstance().newEditable(units.toString())
+        cartonsET!!.text = Editable.Factory.getInstance().newEditable(cartons.toString())
     }
 
     override fun onClick(v: View?) {
@@ -69,8 +98,8 @@ class QuantityDialogFragment : DialogFragment(), View.OnClickListener {
 
         }
 
-        tvUnitCount.text = units.toString()
-        tvCartonCount.text = cartons.toString()
+        unitsET!!.text = Editable.Factory.getInstance().newEditable(units.toString())
+        cartonsET!!.text = Editable.Factory.getInstance().newEditable(cartons.toString())
 
     }
 

@@ -13,7 +13,7 @@ import com.fastservices.sams.data.entities.promotions.*
 
 @Database(entities = arrayOf(Brand::class, Category::class, CustomerOrderStatus::class,
         CustomerUnorderedStatus::class, DistributorArea::class, OrderDetail::class, OrderDetailFreeSKU::class,
-        OrderMaster::class, SKU::class, User::class, Outlet::class, OutletLocal::class,Menu::class, Section::class, Channel::class, SubChannel::class,
+        OrderMaster::class, SKU::class, User::class, Outlet::class, OutletLocal::class,Menu::class, Section::class,Locality::class, Channel::class, SubChannel::class,
         Merchandise::class, ComplaintReason::class,ReplacementReason::class, OutletComplaint::class,
         NoOrderReason::class, NoOrderItem::class,SKUGroup::class,
         dtBasketDetail::class, dtBasketMaster::class, dtFreeSKUDetail::class, dtPromotion::class,

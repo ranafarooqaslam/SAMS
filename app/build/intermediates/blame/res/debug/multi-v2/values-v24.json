@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/faizandastgir/Documents/Others/Fastservices/fs/Repos/SAMS/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v24/values-v24.xml",
+            "outputFile": "C:\\Users\\asadr\\Downloads\\Compressed\\SAMS\\SAMS\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v24\\values-v24.xml",
             "map": [
                 {
-                    "source": "/Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/dfcd938421e2c37aa531e6dee76f11de/res/values-v24/values-v24.xml",
+                    "source": "C:\\Users\\asadr\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\04e62a14ffb0d7725d36939c2fc1e54a\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "/Users/faizandastgir/.gradle/caches/transforms-1/files-1.1/support-media-compat-28.0.0.aar/83dd4c15f71cfc6882ed25f244c2937a/res/values-v24/values-v24.xml",
+                    "source": "C:\\Users\\asadr\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-28.0.0.aar\\e73d88bd1c372aa85c0f82abbbef0a69\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

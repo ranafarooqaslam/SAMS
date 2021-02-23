@@ -130,8 +130,23 @@
                     app:layout_constraintTop_toBottomOf="@+id/tilLandMark"
                     app:ms_enableFloatingLabel="true"
                     app:ms_floatingLabelColor="@color/floating_label"
-                    app:ms_floatingLabelText="Locality / Sector"
-                    app:ms_hint="Locality / Sector"
+                    app:ms_floatingLabelText="Section"
+                    app:ms_hint="Section"
+                    app:ms_multiline="false" />
+                <fr.ganfra.materialspinner.MaterialSpinner
+                    android:id="@+id/spLocality"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spSector"
+                    app:ms_enableFloatingLabel="true"
+                    app:ms_floatingLabelColor="@color/floating_label"
+                    app:ms_floatingLabelText="Locality"
+                    app:ms_hint="Locality"
                     app:ms_multiline="false" />
 
                 <TextView
@@ -143,7 +158,7 @@
                     android:text="Outlet Location"
 
                     app:layout_constraintBottom_toBottomOf="@+id/btnTakeGPS"
-                    app:layout_constraintStart_toStartOf="@+id/spSector"
+                    app:layout_constraintStart_toStartOf="@+id/spLocality"
                     app:layout_constraintTop_toTopOf="@+id/btnTakeGPS" />
 
                 <Button
@@ -154,7 +169,7 @@
                     android:text="Take GPS"
                     android:textColor="@color/white"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/spSector" />
+                    app:layout_constraintTop_toBottomOf="@+id/spLocality" />
 
 
                 <TextView

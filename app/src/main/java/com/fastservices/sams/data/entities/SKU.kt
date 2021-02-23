@@ -19,7 +19,7 @@ data class SKU(
         @SerializedName("gsT_RATE") var GST_RATE: Double,
         @SerializedName("unitS_IN_CASE") var UNITS_IN_CASE: Int,
         @SerializedName("branD_ID") var BRAND_ID: Int,
-        @SerializedName("weight") var WEIGHT: Int,
+        @SerializedName("weight") var WEIGHT: Double,
         @SerializedName("distributoR_PRICE") var DISTRIBUTOR_PRICE: Double,
         @SerializedName("retaiL_PRICE") var RETAIL_PRICE: Double,
         @SerializedName("extr_Tax") var EXTR_Tax: Float,
@@ -33,7 +33,7 @@ data class SKU(
 ) : Serializable {
 
 
-    constructor() : this(0, "", "", "", 0.0, 0.0, 0, 0, 0, 0.0, 0.0, 0f, 0, "", 0, 0, 0)
+    constructor() : this(0, "", "", "", 0.0, 0.0, 0, 0, 0.0, 0.0, 0.0, 0f, 0, "", 0, 0, 0)
 
     fun getSubTotal(): CharSequence? {
         val totalUnits = NO_OF_UNITS + NO_OF_CARTONS * UNITS_IN_CASE

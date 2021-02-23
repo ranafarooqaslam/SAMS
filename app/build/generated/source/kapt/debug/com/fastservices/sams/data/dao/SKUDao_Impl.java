@@ -51,7 +51,7 @@ public class SKUDao_Impl implements SKUDao {
         stmt.bindDouble(6, value.getGST_RATE());
         stmt.bindLong(7, value.getUNITS_IN_CASE());
         stmt.bindLong(8, value.getBRAND_ID());
-        stmt.bindLong(9, value.getWEIGHT());
+        stmt.bindDouble(9, value.getWEIGHT());
         stmt.bindDouble(10, value.getDISTRIBUTOR_PRICE());
         stmt.bindDouble(11, value.getRETAIL_PRICE());
         stmt.bindDouble(12, value.getEXTR_Tax());
@@ -146,8 +146,8 @@ public class SKUDao_Impl implements SKUDao {
         final int _tmpBRAND_ID;
         _tmpBRAND_ID = _cursor.getInt(_cursorIndexOfBRANDID);
         _item.setBRAND_ID(_tmpBRAND_ID);
-        final int _tmpWEIGHT;
-        _tmpWEIGHT = _cursor.getInt(_cursorIndexOfWEIGHT);
+        final double _tmpWEIGHT;
+        _tmpWEIGHT = _cursor.getDouble(_cursorIndexOfWEIGHT);
         _item.setWEIGHT(_tmpWEIGHT);
         final double _tmpDISTRIBUTOR_PRICE;
         _tmpDISTRIBUTOR_PRICE = _cursor.getDouble(_cursorIndexOfDISTRIBUTORPRICE);
@@ -227,8 +227,8 @@ public class SKUDao_Impl implements SKUDao {
         final int _tmpBRAND_ID;
         _tmpBRAND_ID = _cursor.getInt(_cursorIndexOfBRANDID);
         _item.setBRAND_ID(_tmpBRAND_ID);
-        final int _tmpWEIGHT;
-        _tmpWEIGHT = _cursor.getInt(_cursorIndexOfWEIGHT);
+        final double _tmpWEIGHT;
+        _tmpWEIGHT = _cursor.getDouble(_cursorIndexOfWEIGHT);
         _item.setWEIGHT(_tmpWEIGHT);
         final double _tmpDISTRIBUTOR_PRICE;
         _tmpDISTRIBUTOR_PRICE = _cursor.getDouble(_cursorIndexOfDISTRIBUTORPRICE);
@@ -308,8 +308,8 @@ public class SKUDao_Impl implements SKUDao {
         final int _tmpBRAND_ID;
         _tmpBRAND_ID = _cursor.getInt(_cursorIndexOfBRANDID);
         _item.setBRAND_ID(_tmpBRAND_ID);
-        final int _tmpWEIGHT;
-        _tmpWEIGHT = _cursor.getInt(_cursorIndexOfWEIGHT);
+        final double _tmpWEIGHT;
+        _tmpWEIGHT = _cursor.getDouble(_cursorIndexOfWEIGHT);
         _item.setWEIGHT(_tmpWEIGHT);
         final double _tmpDISTRIBUTOR_PRICE;
         _tmpDISTRIBUTOR_PRICE = _cursor.getDouble(_cursorIndexOfDISTRIBUTORPRICE);

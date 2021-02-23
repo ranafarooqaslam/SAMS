@@ -1632,6 +1632,7 @@ id snap
 id snapMargins
 id spCategory
 id spChannel
+id spLocality
 id spReason
 id spSKU
 id spSector

@@ -2,7 +2,7 @@ package com.fastservices.sams.modules.skulist.dialog;
 
 import java.lang.System;
 
-@kotlin.Metadata(mv = {1, 1, 13}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000D\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\b\n\u0002\b\u000b\n\u0002\u0018\u0002\n\u0002\b\b\n\u0002\u0010\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0005\u0018\u0000 (2\u00020\u00012\u00020\u0002:\u0001(B\u0005\u00a2\u0006\u0002\u0010\u0003J\u0012\u0010\u0019\u001a\u00020\u001a2\b\u0010\u001b\u001a\u0004\u0018\u00010\u001cH\u0016J\u0012\u0010\u001d\u001a\u00020\u001a2\b\u0010\u001e\u001a\u0004\u0018\u00010\u001fH\u0016J&\u0010 \u001a\u0004\u0018\u00010\u001c2\u0006\u0010!\u001a\u00020\"2\b\u0010#\u001a\u0004\u0018\u00010$2\b\u0010\u001e\u001a\u0004\u0018\u00010\u001fH\u0016J\u001a\u0010%\u001a\u00020\u001a2\u0006\u0010&\u001a\u00020\u001c2\b\u0010\u001e\u001a\u0004\u0018\u00010\u001fH\u0016J\u0006\u0010\'\u001a\u00020\u001aR\u001a\u0010\u0004\u001a\u00020\u0005X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u0006\u0010\u0007\"\u0004\b\b\u0010\tR\u001a\u0010\n\u001a\u00020\u0005X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u000b\u0010\u0007\"\u0004\b\f\u0010\tR\u001a\u0010\r\u001a\u00020\u0005X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u000e\u0010\u0007\"\u0004\b\u000f\u0010\tR\u001a\u0010\u0010\u001a\u00020\u0011X\u0086.\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u0012\u0010\u0013\"\u0004\b\u0014\u0010\u0015R\u001a\u0010\u0016\u001a\u00020\u0005X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u0017\u0010\u0007\"\u0004\b\u0018\u0010\t\u00a8\u0006)"}, d2 = {"Lcom/fastservices/sams/modules/skulist/dialog/QuantityDialogFragment;", "Landroid/support/v4/app/DialogFragment;", "Landroid/view/View$OnClickListener;", "()V", "cartons", "", "getCartons", "()I", "setCartons", "(I)V", "initialCartons", "getInitialCartons", "setInitialCartons", "initialUnits", "getInitialUnits", "setInitialUnits", "item", "Lcom/fastservices/sams/data/entities/SKU;", "getItem", "()Lcom/fastservices/sams/data/entities/SKU;", "setItem", "(Lcom/fastservices/sams/data/entities/SKU;)V", "units", "getUnits", "setUnits", "onClick", "", "v", "Landroid/view/View;", "onCreate", "savedInstanceState", "Landroid/os/Bundle;", "onCreateView", "inflater", "Landroid/view/LayoutInflater;", "container", "Landroid/view/ViewGroup;", "onViewCreated", "view", "saveCounts", "Companion", "app_debug"})
+@kotlin.Metadata(mv = {1, 1, 13}, bv = {1, 0, 3}, k = 1, d1 = {"\u0000L\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\b\n\u0002\b\u0005\n\u0002\u0018\u0002\n\u0002\b\u000b\n\u0002\u0018\u0002\n\u0002\b\u000b\n\u0002\u0010\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0005\u0018\u0000 12\u00020\u00012\u00020\u0002:\u00011B\u0005\u00a2\u0006\u0002\u0010\u0003J\u0012\u0010\"\u001a\u00020#2\b\u0010$\u001a\u0004\u0018\u00010%H\u0016J\u0012\u0010&\u001a\u00020#2\b\u0010\'\u001a\u0004\u0018\u00010(H\u0016J&\u0010)\u001a\u0004\u0018\u00010%2\u0006\u0010*\u001a\u00020+2\b\u0010,\u001a\u0004\u0018\u00010-2\b\u0010\'\u001a\u0004\u0018\u00010(H\u0016J\u001a\u0010.\u001a\u00020#2\u0006\u0010/\u001a\u00020%2\b\u0010\'\u001a\u0004\u0018\u00010(H\u0016J\u0006\u00100\u001a\u00020#R\u001a\u0010\u0004\u001a\u00020\u0005X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u0006\u0010\u0007\"\u0004\b\b\u0010\tR\u001c\u0010\n\u001a\u0004\u0018\u00010\u000bX\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\f\u0010\r\"\u0004\b\u000e\u0010\u000fR\u001a\u0010\u0010\u001a\u00020\u0005X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u0011\u0010\u0007\"\u0004\b\u0012\u0010\tR\u001a\u0010\u0013\u001a\u00020\u0005X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u0014\u0010\u0007\"\u0004\b\u0015\u0010\tR\u001a\u0010\u0016\u001a\u00020\u0017X\u0086.\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u0018\u0010\u0019\"\u0004\b\u001a\u0010\u001bR\u001a\u0010\u001c\u001a\u00020\u0005X\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b\u001d\u0010\u0007\"\u0004\b\u001e\u0010\tR\u001c\u0010\u001f\u001a\u0004\u0018\u00010\u000bX\u0086\u000e\u00a2\u0006\u000e\n\u0000\u001a\u0004\b \u0010\r\"\u0004\b!\u0010\u000f\u00a8\u00062"}, d2 = {"Lcom/fastservices/sams/modules/skulist/dialog/QuantityDialogFragment;", "Landroid/support/v4/app/DialogFragment;", "Landroid/view/View$OnClickListener;", "()V", "cartons", "", "getCartons", "()I", "setCartons", "(I)V", "cartonsET", "Landroid/widget/EditText;", "getCartonsET", "()Landroid/widget/EditText;", "setCartonsET", "(Landroid/widget/EditText;)V", "initialCartons", "getInitialCartons", "setInitialCartons", "initialUnits", "getInitialUnits", "setInitialUnits", "item", "Lcom/fastservices/sams/data/entities/SKU;", "getItem", "()Lcom/fastservices/sams/data/entities/SKU;", "setItem", "(Lcom/fastservices/sams/data/entities/SKU;)V", "units", "getUnits", "setUnits", "unitsET", "getUnitsET", "setUnitsET", "onClick", "", "v", "Landroid/view/View;", "onCreate", "savedInstanceState", "Landroid/os/Bundle;", "onCreateView", "inflater", "Landroid/view/LayoutInflater;", "container", "Landroid/view/ViewGroup;", "onViewCreated", "view", "saveCounts", "Companion", "app_debug"})
 public final class QuantityDialogFragment extends android.support.v4.app.DialogFragment implements android.view.View.OnClickListener {
     @org.jetbrains.annotations.NotNull()
     public com.fastservices.sams.data.entities.SKU item;
@@ -10,6 +10,10 @@ public final class QuantityDialogFragment extends android.support.v4.app.DialogF
     private int cartons;
     private int initialUnits;
     private int initialCartons;
+    @org.jetbrains.annotations.Nullable()
+    private android.widget.EditText unitsET;
+    @org.jetbrains.annotations.Nullable()
+    private android.widget.EditText cartonsET;
     public static final int RESULT_DATA_CHANGED = 4;
     @org.jetbrains.annotations.NotNull()
     public static final java.lang.String EXTRA_SKU = "extra_sku_item";
@@ -55,6 +59,24 @@ public final class QuantityDialogFragment extends android.support.v4.app.DialogF
     }
     
     public final void setInitialCartons(int p0) {
+    }
+    
+    @org.jetbrains.annotations.Nullable()
+    public final android.widget.EditText getUnitsET() {
+        return null;
+    }
+    
+    public final void setUnitsET(@org.jetbrains.annotations.Nullable()
+    android.widget.EditText p0) {
+    }
+    
+    @org.jetbrains.annotations.Nullable()
+    public final android.widget.EditText getCartonsET() {
+        return null;
+    }
+    
+    public final void setCartonsET(@org.jetbrains.annotations.Nullable()
+    android.widget.EditText p0) {
     }
     
     @java.lang.Override()

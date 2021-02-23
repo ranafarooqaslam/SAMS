@@ -20,6 +20,7 @@ data class Outlet(
         var landMark: String,
         var sectionID: Int,
         var channelID: Int,
+        var localityID: Int,
         var routeID: Int,
         var townID: Int,
         var subChannelID: Int,
@@ -50,7 +51,7 @@ data class Outlet(
 
 
 
-    constructor() : this(0,0, "", "", "", "", "", 0,  0, 0, 0, 0, 0, 0.0, 0f, 0, 0, 0, "", 0.0, 0.0, "", "", "", "", "",
+    constructor() : this(0,0, "", "", "", "", "", 0,  0, 0,0, 0, 0, 0, 0.0, 0f, 0, 0, 0, "", 0.0, 0.0, "", "", "", "", "",
             0,"",0.0,"",0)
 
     override fun toString(): String {
