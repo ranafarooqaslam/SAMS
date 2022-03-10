@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/lblItemName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="2dp"
+        android:background="@color/item_order_detail_bg"
+        android:gravity="center_vertical"
+        android:paddingLeft="5dp"
+        android:minHeight="30dp"
+        tools:text="Item Name some very very long name to be placed here"
+        android:textColor="@color/textcolor_black"
+        android:textSize="@dimen/textsize_order_details"
+        app:layout_constraintBottom_toBottomOf="@+id/lblNumberOfPieces"
+        app:layout_constraintEnd_toStartOf="@+id/lblNumberOfPieces"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lblNumberOfPieces" />
+
+    <TextView
+        android:id="@+id/lblNumberOfPieces"
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
+        android:background="@color/item_order_detail_bg"
+        android:gravity="center"
+        android:text="40"
+        android:textColor="@color/textcolor_black"
+        android:textSize="@dimen/textsize_order_details"
+        app:layout_constraintBottom_toBottomOf="@+id/lblItemName"
+        app:layout_constraintEnd_toStartOf="@+id/lblUnitPricesOfPieces"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/lblItemName"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lblUnitPricesOfPieces"
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
+        android:background="@color/item_order_detail_bg"
+        android:gravity="center"
+        android:text="12"
+        android:textColor="@color/textcolor_black"
+        android:textSize="@dimen/textsize_order_details"
+
+        app:layout_constraintBottom_toBottomOf="@+id/lblNumberOfPieces"
+        app:layout_constraintEnd_toStartOf="@+id/lblNumberCarton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/lblNumberOfPieces"
+        app:layout_constraintTop_toTopOf="@+id/lblNumberOfPieces" />
+
+    <TextView
+        android:id="@+id/lblNumberCarton"
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
+        android:background="@color/item_order_detail_bg"
+        android:gravity="center"
+        android:text="4"
+        android:textColor="@color/textcolor_black"
+        android:textSize="@dimen/textsize_order_details"
+        app:layout_constraintBottom_toBottomOf="@+id/lblUnitPricesOfPieces"
+        app:layout_constraintEnd_toStartOf="@+id/lblUnitPriceCarton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/lblUnitPricesOfPieces"
+        app:layout_constraintTop_toTopOf="@+id/lblUnitPricesOfPieces" />
+
+    <TextView
+        android:id="@+id/lblUnitPriceCarton"
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
+        android:background="@color/item_order_detail_bg"
+        android:gravity="center"
+        android:text="122.54"
+        android:textColor="@color/textcolor_black"
+        android:textSize="@dimen/textsize_order_details"
+        app:layout_constraintBottom_toBottomOf="@+id/lblNumberCarton"
+        app:layout_constraintEnd_toStartOf="@+id/lblTotalPrice"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/lblNumberCarton"
+        app:layout_constraintTop_toTopOf="@+id/lblNumberCarton" />
+
+    <TextView
+        android:id="@+id/lblTotalPrice"
+        android:layout_width="60dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
+        android:background="@color/item_order_detail_bg"
+        android:gravity="center"
+        android:text="5800"
+        android:textColor="@color/textcolor_black"
+        android:textSize="@dimen/textsize_order_details"
+        app:layout_constraintBottom_toBottomOf="@+id/lblUnitPriceCarton"
+        app:layout_constraintEnd_toStartOf="@+id/ivDelete"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/lblUnitPriceCarton"
+        app:layout_constraintTop_toTopOf="@+id/lblUnitPriceCarton" />
+
+    <ImageView
+        android:id="@+id/ivDelete"
+        android:layout_width="20dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="2dp"
+
+        android:gravity="center"
+        android:src="@drawable/ic_delete"
+        android:textColor="@color/textcolor_black"
+        app:layout_constraintBottom_toBottomOf="@+id/lblTotalPrice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/lblTotalPrice"
+        app:layout_constraintTop_toTopOf="@+id/lblTotalPrice" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblItemName" />
+</android.support.constraint.ConstraintLayout>

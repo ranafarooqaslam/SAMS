@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="1"
+    android:layout_marginBottom="10dp"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tvOutletCode"
+        android:layout_width="0dp"
+        android:layout_weight="0.18"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:gravity="center"
+        android:background="@color/item_order_detail_bg"
+        android:padding="10dp"
+        android:textColor="@color/textcolor_black"
+        android:textSize="@dimen/textsize_order_details"
+        tools:text="123" />
+
+    <TextView
+        android:id="@+id/tvOutletName"
+        android:layout_width="0dp"
+        android:layout_weight="0.38"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:background="@color/item_order_detail_bg"
+        android:gravity="center"
+        android:padding="10dp"
+        android:maxLines="1"
+        android:textColor="@color/textcolor_black"
+        android:textSize="@dimen/textsize_order_details"
+        tools:text="Farooq store" />
+
+    <TextView
+        android:id="@+id/tvNetAmount"
+        android:layout_width="0dp"
+        android:layout_weight="0.23"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:background="@color/item_order_detail_bg"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textColor="@color/textcolor_black"
+        android:textSize="@dimen/textsize_order_details"
+        tools:text="Net Value" />
+
+    <TextView
+        android:id="@+id/tvOrderTime"
+        android:layout_width="0dp"
+        android:layout_weight="0.21"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@color/item_order_detail_bg"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textColor="@color/textcolor_black"
+        android:textSize="@dimen/textsize_order_details"
+        tools:text="Net Value" />
+
+</LinearLayout>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#7e899a</color>
+    <color name="colorPrimaryDark">#171727</color>
+    <color name="colorAccent">#171727</color>
+    <color name="white">#ffffff</color>
+    <color name="textcolor_black">#171727</color>
+    <color name="textcolor_orange">#985633</color>
+    <color name="textcolor_grey">#c8d0d2</color>
+    <color name="textcolor_darkgrey">#9aa8a9</color>
+    <color name="textcolor_green">#5cbe88</color>
+    <color name="floating_label">#bebebe</color>
+    <color name="lbl_color">#bebebe</color>
+    <color name="item_order_detail_bg">#e2e2e2</color>
+    <color name="colorOrange">#f87c36</color>
+</resources>
