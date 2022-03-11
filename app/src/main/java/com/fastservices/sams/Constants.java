@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class Constants {
     public static Context appContext;
-    public static final boolean DEBUG = true;
+    public static final boolean DEBUG = false;
 
     @NotNull
     public static final String BASE_URL = "http://api.sams-online.pk/";

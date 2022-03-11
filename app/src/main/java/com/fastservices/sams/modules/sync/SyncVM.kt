@@ -35,6 +35,8 @@ import okhttp3.MediaType
 import okhttp3.RequestBody
 import java.lang.Runnable
 import android.R.attr.path
+import android.content.pm.ApplicationInfo
+import android.content.pm.PackageManager
 
 import com.amazonaws.services.s3.AmazonS3
 
@@ -89,13 +91,13 @@ class SyncVM() : BaseVM() {
 
                     }
 
-                    val auth = updateToken()
-                    if (auth == null) {
-                        errorLiveData.postValue("Auth error: Unable to upload photos")
-                    }
+                    //val auth = updateToken()
+                   // if (auth == null) {
+                     //   errorLiveData.postValue("Auth error: Unable to upload photos")
+                  //  }
 
                     try {
-                        uploadFilesToDrive(files, auth,"outlets")
+                        uploadFilesToDrive(files,"outlets")
                     } catch (e: Exception) {
                         e.printStackTrace()
 
@@ -148,7 +150,7 @@ class SyncVM() : BaseVM() {
 
                     try {
 
-                        uploadFilesToDrive(files, auth,"merchandises")
+                        uploadFilesToDrive(files,"merchandises")
                     } catch (e: Exception) {
                         e.printStackTrace()
                         errorLiveData.postValue("Auth error: Unable to upload photos")
@@ -208,7 +210,7 @@ class SyncVM() : BaseVM() {
                     try {
                         if (files.size > 0) syncLogger.postValue("Uploading order photos...")
 
-                        uploadFilesToDrive(files, auth,"orderMasters")
+                        uploadFilesToDrive(files,"orderMasters")
                     } catch (e: Exception) {
                         e.printStackTrace()
                         errorLiveData.postValue("Auth error: Unable to upload photos")
@@ -298,7 +300,7 @@ class SyncVM() : BaseVM() {
                     try {
                         if (files.size > 0) syncLogger.postValue("Uploading no order photos...")
 
-                        uploadFilesToDrive(files, auth,"noOrder")
+                        uploadFilesToDrive(files,"noOrder")
                     } catch (e: Exception) {
                         e.printStackTrace()
                         errorLiveData.postValue("Auth error: Unable to upload photos")
@@ -366,7 +368,7 @@ class SyncVM() : BaseVM() {
                     try {
                         if (files.size > 0) syncLogger.postValue("Uploading replacement photos...")
 
-                        uploadFilesToDrive(files, auth,"replacements")
+                        uploadFilesToDrive(files,"replacements")
                     } catch (e: Exception) {
                         e.printStackTrace()
                         errorLiveData.postValue("Auth error: Unable to upload photos")
@@ -427,9 +429,9 @@ class SyncVM() : BaseVM() {
         }
     }
 
-    private suspend fun uploadFilesToDrive(files: List<String>, auth: GoogleAuth?,screenName:String) {
+    private suspend fun uploadFilesToDrive(files: List<String>,screenName:String) {
 
-        if (auth == null) return
+
 
         files.forEachIndexed { index, it ->
             syncLogger.postValue("Uploading Image...")
@@ -458,19 +460,17 @@ class SyncVM() : BaseVM() {
         val clientCode=SamsApplication.getPreferenceManager().getCompanyCode()
         Log.d("S3Upload", "CompanyCode $clientCode")
 
-            /*user Sohail*/
-       // val ACCESS_KEY = "AKIA2DUFARGC6RN46JCH"
-       // val SECRET_KEY = "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"
 
-             /*user android*/
-        //val ACCESS_KEY = "AKIA2DUFARGCRTH7IWOT"
-        //val SECRET_KEY = "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"
 
-             /*user main*/
-        val ACCESS_KEY = "AKIAVQZUMKWTSRFLYK4F"
-        val SECRET_KEY = "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"
+        val ai: ApplicationInfo = Constants.appContext.packageManager
+           .getApplicationInfo(Constants.appContext.packageName, PackageManager.GET_META_DATA)
+        val value = ai.metaData["keyValue"]
+        val value1 = ai.metaData["AkeyValue"]
 
-        //val MY_BUCKET = "androidbucket"
+        val SECRET_KEY = value.toString()
+        val ACCESS_KEY = value1.toString()
+
+
         val MY_BUCKET = "sams-customers-images"
         val OBJECT_KEY = "$clientCode/$screenName/$name"
         Log.d("S3Upload", "OBJECT_KEY $OBJECT_KEY")
@@ -480,7 +480,7 @@ class SyncVM() : BaseVM() {
         s3.setRegion(com.amazonaws.regions.Region.getRegion(Regions.AP_SOUTHEAST_1))
         s3.setEndpoint("https://s3-ap-south-1.amazonaws.com/")
 
-        Log.e("Size ", "" + s3.listBuckets().size)
+
         val transferUtility = TransferUtility(s3, Constants.appContext)
 
         val observer = transferUtility.upload(MY_BUCKET, OBJECT_KEY, file)

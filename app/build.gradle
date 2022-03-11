@@ -5,6 +5,9 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+
+
 
 
 
@@ -14,8 +17,8 @@ android {
         applicationId "com.fastservices.sams"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 18
-        versionName "0.9.8"
+        versionCode 19
+        versionName "0.9.9"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

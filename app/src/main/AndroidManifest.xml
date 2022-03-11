@@ -72,6 +72,14 @@
             android:name="com.amazonaws.mobileconnectors.s3.transferutility.TransferService"
             android:enabled="true" />
 
+        <meta-data
+            android:name = "keyValue"
+            android:value = "${KEY}"/>
+
+        <meta-data
+            android:name = "AkeyValue"
+            android:value = "${AKEY}"/>
+
     </application>
 
 </manifest>
