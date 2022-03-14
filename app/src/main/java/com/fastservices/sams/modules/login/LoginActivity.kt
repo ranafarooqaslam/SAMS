@@ -32,9 +32,9 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         viewModel = ViewModelProviders.of(this).get(LoginVM::class.java)
         binding.viewModel = viewModel
 
-        ImageLoader.loadImage(ivLogo, intent.getStringExtra(EXTRA_LOGO))
+        ImageLoader.loadImage(ivLogo, intent.getStringExtra(EXTRA_LOGO).toString())
         Log.d("logoUrl", "onCreate: ")
-        ImageLoader.loadImage(ivCustomBackground, intent.getStringExtra(EXTRA_BACKGROUND_IMAGE))
+        ImageLoader.loadImage(ivCustomBackground, intent.getStringExtra(EXTRA_BACKGROUND_IMAGE).toString())
         super.onCreate(savedInstanceState)
 
 

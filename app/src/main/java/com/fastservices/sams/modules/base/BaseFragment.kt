@@ -144,7 +144,7 @@ abstract class BaseFragment : Fragment(), View.OnClickListener {
                     val builder = AlertDialog.Builder(activity)
                     builder.setTitle("Information")
                     try {
-                        val pInfo = context?.getPackageManager()?.getPackageInfo(activity?.getPackageName(), 0)
+                        val pInfo = activity?.getPackageName()?.let { context?.getPackageManager()?.getPackageInfo(it, 0) }
                         appVersion = pInfo?.versionName.plus(" (${pInfo?.versionCode})")
                     } catch (e: PackageManager.NameNotFoundException) {
                         e.printStackTrace()

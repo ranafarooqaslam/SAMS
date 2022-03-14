@@ -12,13 +12,13 @@ apply plugin: 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     defaultConfig {
         applicationId "com.fastservices.sams"
         minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 19
-        versionName "0.9.9"
+        targetSdkVersion 30
+        versionCode 20
+        versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
