@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.fastservices.sams.modules.sync.SyncVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <!--<TextView-->
+            <!--android:id="@+id/lblDownload"-->
+            <!--android:layout_width="100dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="25dp"-->
+            <!--android:text="Download"-->
+            <!--android:textColor="@color/textcolor_black"-->
+            <!--android:textSize="16sp"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text=":"-->
+            <!--android:textColor="@color/textcolor_black"-->
+            <!--android:textSize="16sp"-->
+            <!--app:layout_constraintStart_toEndOf="@+id/lblDownload"-->
+            <!--app:layout_constraintTop_toTopOf="@+id/lblDownload" />-->
+
+        <!--<ProgressBar-->
+            <!--android:id="@+id/pbDownload"-->
+            <!--style="?android:attr/progressBarStyleHorizontal"-->
+            <!--android:layout_width="200dp"-->
+            <!--android:layout_height="20dp"-->
+            <!--android:layout_marginLeft="30dp"-->
+            <!--android:max="100"-->
+            <!--android:progressDrawable="@drawable/progress_limit"-->
+            <!--app:layout_constraintLeft_toRightOf="@+id/lblDownload"-->
+            <!--app:layout_constraintRight_toRightOf="parent"-->
+            <!--app:layout_constraintTop_toTopOf="@+id/lblDownload"-->
+            <!--app:layout_constraintWidth_default="spread" />-->
+
+
+        <!--<TextView-->
+            <!--android:id="@+id/lblUpload"-->
+            <!--android:layout_width="100dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="25dp"-->
+            <!--android:text="Upload"-->
+            <!--android:textColor="@color/textcolor_black"-->
+            <!--android:textSize="16sp"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+
+            <!--app:layout_constraintTop_toBottomOf="@+id/lblDownload" />-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text=":"-->
+            <!--android:textColor="@color/textcolor_black"-->
+            <!--android:textSize="16sp"-->
+            <!--app:layout_constraintStart_toEndOf="@+id/lblUpload"-->
+            <!--app:layout_constraintTop_toTopOf="@+id/lblUpload" />-->
+
+        <!--<ProgressBar-->
+            <!--android:id="@+id/pbUpload"-->
+            <!--style="?android:attr/progressBarStyleHorizontal"-->
+            <!--android:layout_width="200dp"-->
+            <!--android:layout_height="20dp"-->
+            <!--android:layout_marginLeft="30dp"-->
+            <!--android:indeterminate="true"-->
+            <!--android:progressDrawable="@drawable/progress_limit"-->
+            <!--android:visibility="invisible"-->
+            <!--app:layout_constraintLeft_toRightOf="@+id/lblUpload"-->
+            <!--app:layout_constraintRight_toRightOf="parent"-->
+            <!--app:layout_constraintTop_toTopOf="@+id/lblUpload"-->
+            <!--app:layout_constraintWidth_default="spread" />-->
+
+
+        <TextView
+            android:id="@+id/lblLastSync"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Last Sync"
+            android:textColor="@color/textcolor_black"
+
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=":"
+            android:textColor="@color/textcolor_black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/lblLastSync"
+            app:layout_constraintTop_toTopOf="@+id/lblLastSync" />
+
+        <TextView
+            android:id="@+id/tvLastSync"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:progressDrawable="@drawable/progress_limit"
+            android:textColor="@color/textcolor_black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/lblLastSync"
+            app:layout_constraintTop_toTopOf="@+id/lblLastSync"
+            tools:text="12.12.2018 / 07:32 PM" />
+
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_shadow"
+            android:elevation="2dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottomLayout" />
+
+        <include
+            android:id="@+id/bottomLayout"
+            layout="@layout/layout_bottom_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottom_bar_height"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/tvSync"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_rect_action_btn"
+            android:elevation="3dp"
+            android:onClick="@{()->viewModel.startSyncData()}"
+            android:text="Sync Data"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/bottomLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/bottomLayout" />
+
+        <TextView
+            android:id="@+id/syncDescritpion"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="bottom"
+            android:padding="10dp"
+            android:scrollbars="vertical"
+            android:textColor="@color/textcolor_black"
+            app:layout_constraintBottom_toTopOf="@+id/tvSync"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvLastSync"
+            app:layout_constraintVertical_bias="0.96"
+            tools:text="Logs..." />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

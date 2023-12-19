@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.fastservices.sams.modules.takeorder.OrderVM" />
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:fillViewport="true"
+        android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:paddingTop="10dp">
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_shadow"
+            android:elevation="2dp"
+            android:textSize="@dimen/textsize_order_details"
+            app:layout_constraintBottom_toTopOf="@+id/bottomLayout" />
+
+        <include
+            android:id="@+id/bottomLayout"
+            layout="@layout/layout_bottom_bar"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/btnOrderComplete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_rect_action_btn"
+            android:elevation="3dp"
+            android:onClick="@{()->viewModel.saveOrderNow()}"
+            android:text="Order Complete"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/bottomLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/bottomLayout"
+            app:layout_constraintVertical_bias="0.77" />
+
+        <TextView
+            android:id="@+id/lblGrossAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/item_order_detail_height"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="Gross Amount:"
+            android:textColor="@color/textcolor_black"
+            android:textSize="@dimen/textsize_order_summary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/lblDistDiscount"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/item_order_detail_height"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="Distributor Discount: "
+            android:textColor="@color/textcolor_black"
+            android:textSize="@dimen/textsize_order_summary"
+            app:layout_constraintLeft_toLeftOf="@+id/lblGrossAmount"
+            app:layout_constraintTop_toBottomOf="@+id/lblGrossAmount"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <TextView
+            android:id="@+id/lblTradeOffer"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/item_order_detail_height"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="Trade Offer:"
+            android:textColor="@color/textcolor_black"
+            android:textSize="@dimen/textsize_order_summary"
+            app:layout_constraintStart_toStartOf="@+id/lblCompanyDiscount"
+            app:layout_constraintTop_toBottomOf="@+id/lblCompanyDiscount" />
+
+        <TextView
+            android:id="@+id/lblNetAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/item_order_detail_height"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="Net Amount:"
+            android:textColor="@color/colorOrange"
+            android:textSize="@dimen/textsize_order_summary"
+            app:layout_constraintStart_toStartOf="@+id/lblTradeOffer"
+            app:layout_constraintTop_toBottomOf="@+id/lblGST" />
+
+        <TextView
+            android:id="@+id/lblCompanyDiscount"
+            android:layout_width="150dp"
+            android:layout_height="@dimen/item_order_detail_height"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:text="Company Discount:"
+            android:textColor="@color/textcolor_black"
+            android:textSize="@dimen/textsize_order_summary"
+            app:layout_constraintStart_toStartOf="@+id/lblDistDiscount"
+            app:layout_constraintTop_toBottomOf="@+id/lblDistDiscount" />
+
+        <TextView
+            android:id="@+id/lblGST"
+            android:layout_width="wrap_content"
+
+            android:layout_height="@dimen/item_order_detail_height"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="GST: "
+            android:textColor="@color/textcolor_black"
+            android:textSize="@dimen/textsize_order_summary"
+            app:layout_constraintStart_toStartOf="@+id/lblCompanyDiscount"
+            app:layout_constraintTop_toBottomOf="@+id/lblTradeOffer" />
+
+
+        <TextView
+            android:id="@+id/tvGrossAmount"
+            android:layout_width="@dimen/summary_item_width"
+            android:layout_height="@dimen/item_order_detail_height"
+            android:background="#E2E2E2"
+            android:gravity="center"
+            android:textColor="@color/textcolor_black"
+            android:textSize="@dimen/textsize_order_summary"
+            app:layout_constraintBottom_toBottomOf="@+id/lblGrossAmount"
+            app:layout_constraintStart_toStartOf="@+id/tvCompanyDiscount"
+            app:layout_constraintTop_toTopOf="@+id/lblGrossAmount"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="5000" />
+
+
+        <TextView
+            android:id="@+id/tvDistDiscount"
+            android:layout_width="@dimen/summary_item_width"
+            android:layout_height="@dimen/item_order_detail_height"
+            android:background="#E2E2E2"
+            android:gravity="center"
+            android:textColor="@color/textcolor_black"
+            android:textSize="@dimen/textsize_order_summary"
+            app:layout_constraintStart_toStartOf="@+id/tvGST"
+            app:layout_constraintTop_toTopOf="@+id/lblDistDiscount"
+            tools:text="500" />
+
+        <TextView
+            android:id="@+id/tvTradeOffer"
+            android:layout_width="@dimen/summary_item_width"
+            android:layout_height="@dimen/item_order_detail_height"
+            android:background="#E2E2E2"
+            android:gravity="center"
+            android:textColor="@color/textcolor_black"
+            android:textSize="@dimen/textsize_order_summary"
+            app:layout_constraintBottom_toBottomOf="@+id/lblTradeOffer"
+            app:layout_constraintStart_toStartOf="@+id/tvDistDiscount"
+            app:layout_constraintTop_toTopOf="@+id/lblTradeOffer"
+            tools:text="500" />
+
+        <TextView
+            android:id="@+id/tvNetAmount"
+            android:layout_width="@dimen/summary_item_width"
+            android:layout_height="@dimen/item_order_detail_height"
+            android:background="#E2E2E2"
+            android:gravity="center"
+            android:textColor="@color/colorOrange"
+            android:textSize="@dimen/textsize_order_summary"
+            app:layout_constraintBottom_toBottomOf="@+id/lblNetAmount"
+            app:layout_constraintStart_toStartOf="@+id/tvTradeOffer"
+            app:layout_constraintTop_toTopOf="@+id/lblNetAmount"
+            tools:text="500" />
+
+        <TextView
+            android:id="@+id/tvCompanyDiscount"
+            android:layout_width="@dimen/summary_item_width"
+            android:layout_height="@dimen/item_order_detail_height"
+            android:layout_marginStart="10dp"
+            android:background="#E2E2E2"
+            android:gravity="center"
+            android:textColor="@color/textcolor_black"
+            android:textSize="@dimen/textsize_order_summary"
+            app:layout_constraintBottom_toBottomOf="@+id/lblCompanyDiscount"
+            app:layout_constraintStart_toEndOf="@+id/lblCompanyDiscount"
+            app:layout_constraintTop_toTopOf="@+id/lblCompanyDiscount"
+            tools:text="5000" />
+
+        <TextView
+            android:id="@+id/tvGST"
+            android:layout_width="@dimen/summary_item_width"
+            android:layout_height="@dimen/item_order_detail_height"
+            android:background="#E2E2E2"
+            android:gravity="center"
+            android:text="50"
+            android:textColor="@color/textcolor_black"
+            android:textSize="@dimen/textsize_order_summary"
+            app:layout_constraintBottom_toBottomOf="@+id/lblGST"
+            app:layout_constraintStart_toStartOf="@+id/tvCompanyDiscount"
+            app:layout_constraintTop_toTopOf="@+id/lblGST" />
+
+        <TextView
+            android:id="@+id/lblRemarks"
+            android:layout_width="wrap_content"
+            android:layout_height="14dp"
+            android:gravity="center"
+            android:text="Enter Remarks"
+            android:layout_marginTop="12dp"
+            android:textColor="@color/textcolor_green"
+            android:textSize="13sp"
+            app:layout_constraintLeft_toLeftOf="@+id/lblNetAmount"
+            app:layout_constraintTop_toBottomOf="@+id/lblNetAmount"
+            tools:layout_editor_absoluteX="20dp" />
+
+        <TextView
+            android:id="@+id/lblFreeSKUs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:gravity="center"
+            android:text="Free SKUs"
+            android:textColor="@color/textcolor_green"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="@+id/lblRemarks"
+            app:layout_constraintTop_toBottomOf="@+id/etRemarks" />
+
+        <EditText
+            android:id="@+id/etRemarks"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="#E2E2E2"
+            android:gravity="left|top"
+            android:hint="Enter remarks here..."
+            android:lines="3"
+            android:padding="10dp"
+            android:text="@={viewModel.remarks}"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/lblRemarks"
+            app:layout_constraintTop_toBottomOf="@+id/lblRemarks" />
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:minHeight="50dp"
+            app:layout_constraintBottom_toTopOf="@+id/radioGroup"
+            app:layout_constraintLeft_toLeftOf="@+id/lblFreeSKUs"
+            app:layout_constraintRight_toRightOf="@+id/etRemarks"
+            app:layout_constraintTop_toBottomOf="@+id/lblFreeSKUs"
+            app:layout_constraintVertical_bias="0.0">
+
+
+            <LinearLayout
+                android:id="@+id/llFreeSkusContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"></LinearLayout>
+
+
+        </ScrollView>
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="#2d3e50"
+            android:text="Back"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/btnOrderComplete"
+            app:layout_constraintEnd_toStartOf="@+id/btnCancel"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="@color/colorOrange"
+            android:text="Print Invoice"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/btnBack"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnBack"
+            app:layout_constraintTop_toTopOf="@+id/btnBack" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/btnBack"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <RadioButton
+                android:id="@+id/radioCash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onCheckedChanged="@{()->viewModel.paymentTypeCash()}"
+                android:text="Cash" />
+
+            <RadioButton
+                android:id="@+id/radioCredit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onCheckedChanged="@{()->viewModel.paymentTypeCredit()}"
+                android:text="Credit" />
+        </RadioGroup>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.fastservices.sams.modules.dashboard.DashboardVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_alignParentTop="true"
+            android:paddingBottom="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottomLayout"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:id="@+id/tvTakeOrder"
+                style="@style/dashboard_item_style"
+                android:drawableTop="@drawable/take_order_selector"
+                android:enabled="@{viewModel.menuItems.get(0).isActive}"
+                android:text="Take Order"
+                app:layout_constraintBottom_toTopOf="@+id/tvOutletCompaint"
+                app:layout_constraintEnd_toStartOf="@+id/tvAddOutlet"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.52" />
+
+            <TextView
+                android:id="@+id/tvOutletCompaint"
+                style="@style/dashboard_item_style"
+                android:enabled="@{viewModel.menuItems.get(2).isActive}"
+                android:drawableTop="@drawable/credit_management_selector"
+                android:text="Outlet Complaint"
+                app:layout_constraintBottom_toTopOf="@+id/tvViewReport"
+                app:layout_constraintEnd_toEndOf="@+id/tvTakeOrder"
+                app:layout_constraintStart_toStartOf="@+id/tvTakeOrder"
+                app:layout_constraintTop_toBottomOf="@+id/tvTakeOrder" />
+
+            <TextView
+                android:id="@+id/tvViewReport"
+                style="@style/dashboard_item_style"
+                android:drawableTop="@drawable/view_reports_selector"
+                android:text="View Report"
+                android:enabled="@{viewModel.menuItems.get(4).isActive}"
+                app:layout_constraintBottom_toTopOf="@+id/tvMerchendising"
+                app:layout_constraintEnd_toEndOf="@+id/tvOutletCompaint"
+                app:layout_constraintStart_toStartOf="@+id/tvOutletCompaint"
+                app:layout_constraintTop_toBottomOf="@+id/tvOutletCompaint" />
+
+            <TextView
+                android:id="@+id/tvMerchendising"
+                style="@style/dashboard_item_style"
+                android:drawableTop="@drawable/take_order_selector"
+                android:text="Merchandising"
+                android:enabled="@{viewModel.menuItems.get(6).isActive}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/tvViewReport"
+                app:layout_constraintStart_toStartOf="@+id/tvViewReport"
+                app:layout_constraintTop_toBottomOf="@+id/tvViewReport" />
+
+
+            <TextView
+                android:id="@+id/tvAddOutlet"
+                style="@style/dashboard_item_style"
+                android:drawableTop="@drawable/add_outlet_selector"
+                android:text="Add Outlet"
+                android:enabled="@{viewModel.menuItems.get(1).isActive}"
+                app:layout_constraintBottom_toTopOf="@+id/tvStockReturn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tvTakeOrder"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/tvStockReturn"
+                style="@style/dashboard_item_style"
+                android:drawableTop="@drawable/stock_return_selector"
+                android:text="Stock Return"
+                android:enabled="@{viewModel.menuItems.get(3).isActive}"
+                app:layout_constraintBottom_toTopOf="@+id/tvDataSync"
+                app:layout_constraintEnd_toEndOf="@+id/tvAddOutlet"
+                app:layout_constraintStart_toStartOf="@+id/tvAddOutlet"
+                app:layout_constraintTop_toBottomOf="@+id/tvAddOutlet" />
+
+            <TextView
+                android:id="@+id/tvDataSync"
+                style="@style/dashboard_item_style"
+                android:drawableTop="@drawable/data_sync_selector"
+                android:text="Data Sync"
+                android:enabled="@{viewModel.menuItems.get(5).isActive}"
+                app:layout_constraintBottom_toTopOf="@+id/tvStockPositioning"
+                app:layout_constraintEnd_toEndOf="@+id/tvStockReturn"
+                app:layout_constraintStart_toStartOf="@+id/tvStockReturn"
+                app:layout_constraintTop_toBottomOf="@+id/tvStockReturn" />
+
+            <TextView
+                android:id="@+id/tvStockPositioning"
+                style="@style/dashboard_item_style"
+                android:drawableTop="@drawable/stock_positioning_selector"
+                android:text="Stock Positioning"
+                android:enabled="@{viewModel.menuItems.get(7).isActive}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/tvDataSync"
+                app:layout_constraintStart_toStartOf="@+id/tvDataSync"
+                app:layout_constraintTop_toBottomOf="@+id/tvDataSync" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_shadow"
+            android:elevation="2dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottomLayout" />
+
+        <include
+            android:id="@+id/bottomLayout"
+            layout="@layout/layout_bottom_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottom_bar_height"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/tvStartMyDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_rect_action_btn"
+            android:elevation="3dp"
+            android:text="Start My Day"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:onClick="@{()->viewModel.startMyDay()}"
+            app:layout_constraintBottom_toTopOf="@+id/bottomLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/bottomLayout" />
+
+        <TextView
+            android:id="@+id/tvEndMyDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_rect_action_btn"
+            android:elevation="3dp"
+            android:text="End Day"
+            android:visibility="gone"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/bottomLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/bottomLayout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

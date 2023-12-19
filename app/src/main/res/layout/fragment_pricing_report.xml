@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.fastservices.sams.modules.pricing.PricingVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <fr.ganfra.materialspinner.MaterialSpinner
+            android:id="@+id/spCategory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:ms_enableFloatingLabel="true"
+            app:ms_floatingLabelColor="@color/floating_label"
+            app:ms_floatingLabelText="Category"
+            app:ms_hint="Category"
+            app:ms_multiline="false" />
+
+        <TextView
+            android:id="@+id/lblSkuName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:padding="10dp"
+            android:text="SKU Name"
+            android:textColor="@color/textcolor_green"
+            android:textSize="@dimen/textsize_order_details"
+            app:layout_constraintEnd_toStartOf="@+id/lblSKUTrade"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spCategory" />
+
+        <TextView
+            android:id="@+id/lblSKUTrade"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Trade Price"
+            android:textColor="@color/textcolor_green"
+            android:textSize="@dimen/textsize_order_details"
+            app:layout_constraintEnd_toStartOf="@+id/lblSKURetail"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/lblSkuName"
+            app:layout_constraintTop_toTopOf="@+id/lblSkuName" />
+
+        <TextView
+            android:id="@+id/lblSKURetail"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Retail Price"
+            android:textColor="@color/textcolor_green"
+            android:textSize="@dimen/textsize_order_details"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/lblSKUTrade"
+            app:layout_constraintTop_toTopOf="@+id/lblSkuName" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="0dp"
+            android:layout_marginBottom="10dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@+id/lblSkuName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:itemCount="10"
+            tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/row_sku_wise_summary"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

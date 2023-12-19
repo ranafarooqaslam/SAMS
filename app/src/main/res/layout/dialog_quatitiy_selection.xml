@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+    android:background="#CD000000">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/white"
+        android:padding="15dp">
+
+
+
+
+        <TextView
+            android:id="@+id/tvItemName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="2"
+            android:singleLine="true"
+            android:textColor="@color/textcolor_black"
+            android:textStyle="bold"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Lorem Ipsum" />
+
+        <TextView
+            android:id="@+id/lblUnits"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="50dp"
+            android:text="Units"
+            android:textColor="@color/textcolor_black"
+            app:layout_constraintEnd_toStartOf="@+id/lblCarton"
+            app:layout_constraintHorizontal_bias="0.58"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvItemName" />
+
+        <TextView
+            android:id="@+id/tvUnitSubtract"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="-"
+            android:textColor="@color/textcolor_black"
+            app:layout_constraintBottom_toBottomOf="@+id/tvUnitCount"
+            app:layout_constraintEnd_toStartOf="@+id/tvUnitCount"
+            app:layout_constraintTop_toTopOf="@+id/tvUnitCount" />
+
+        <TextView
+            android:id="@+id/tvCartonSubtract"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="-"
+            android:textColor="@color/textcolor_black"
+            app:layout_constraintBottom_toBottomOf="@+id/tvCartonCount"
+            app:layout_constraintEnd_toStartOf="@+id/tvCartonCount"
+            app:layout_constraintTop_toTopOf="@+id/tvCartonCount" />
+
+        <TextView
+            android:id="@+id/tvUnitPlus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="+"
+            android:textColor="@color/textcolor_black"
+            app:layout_constraintBottom_toBottomOf="@+id/tvUnitCount"
+            app:layout_constraintStart_toEndOf="@+id/tvUnitCount"
+            app:layout_constraintTop_toTopOf="@+id/tvUnitCount" />
+
+        <TextView
+            android:id="@+id/tvCartonPlus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="+"
+            android:textColor="@color/textcolor_black"
+            app:layout_constraintBottom_toBottomOf="@+id/tvCartonCount"
+            app:layout_constraintStart_toEndOf="@+id/tvCartonCount"
+            app:layout_constraintTop_toTopOf="@+id/tvCartonCount" />
+
+        <EditText
+            android:id="@+id/tvUnitCount"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:layout_marginTop="5dp"
+            android:background="#d2d2d2"
+            android:gravity="center"
+            android:minWidth="40dp"
+            android:inputType="number"
+            android:text="0"
+            android:textColor="@color/textcolor_black"
+            app:layout_constraintEnd_toEndOf="@+id/lblUnits"
+            app:layout_constraintStart_toStartOf="@+id/lblUnits"
+            app:layout_constraintTop_toBottomOf="@+id/lblUnits" />
+
+        <TextView
+            android:id="@+id/lblCarton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cartons"
+            android:textColor="@color/textcolor_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toEndOf="@+id/lblUnits"
+            app:layout_constraintTop_toTopOf="@+id/lblUnits" />
+
+
+        <EditText
+            android:id="@+id/tvCartonCount"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:layout_marginTop="5dp"
+            android:background="#d2d2d2"
+            android:gravity="center"
+            android:minWidth="40dp"
+            android:inputType="number"
+            android:text="0"
+            android:textColor="@color/textcolor_black"
+            app:layout_constraintEnd_toEndOf="@+id/lblCarton"
+            app:layout_constraintStart_toStartOf="@+id/lblCarton"
+            app:layout_constraintTop_toBottomOf="@+id/lblCarton" />
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="25dp"
+            android:backgroundTint="#2d3e50"
+            android:text="Save"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/btnCancel"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvUnitSubtract" />
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="#f87c36"
+            android:text="Cancel"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/btnSave"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnSave"
+            app:layout_constraintTop_toTopOf="@+id/btnSave" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

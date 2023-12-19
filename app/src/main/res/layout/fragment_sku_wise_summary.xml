@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.fastservices.sams.modules.skuwise.SKUWiseVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/lblSkuName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:padding="10dp"
+            android:text="SKU Name"
+            android:textColor="@color/textcolor_green"
+            android:textSize="@dimen/textsize_order_details"
+            app:layout_constraintEnd_toStartOf="@+id/lblSKUQty"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/lblSKUQty"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:padding="10dp"
+            android:text="Quantity\nCartons - Units"
+            android:gravity="center"
+            android:textColor="@color/textcolor_green"
+            android:textSize="@dimen/textsize_order_details"
+            app:layout_constraintEnd_toStartOf="@+id/lblSKUAmount"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/lblSkuName"
+            app:layout_constraintTop_toTopOf="@+id/lblSkuName" />
+
+        <TextView
+            android:id="@+id/lblSKUAmount"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:padding="10dp"
+            android:text="Net Value"
+            android:gravity="center"
+            android:textColor="@color/textcolor_green"
+            android:textSize="@dimen/textsize_order_details"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/lblSKUQty"
+            app:layout_constraintTop_toTopOf="@+id/lblSkuName" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="0dp"
+            android:layout_marginBottom="10dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@+id/lblSkuName"
+            app:layout_constraintBottom_toTopOf="@+id/tvTotal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:itemCount="5"
+            tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/row_sku_wise_summary"/>
+
+
+        <TextView
+            android:id="@+id/tvTotal"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/tvTotalQty"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/item_order_detail_bg"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:padding="10dp"
+            android:text="Total"
+            android:textColor="@color/textcolor_black"
+            android:textSize="@dimen/textsize_order_details" />
+
+        <TextView
+            android:id="@+id/tvTotalQty"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/item_order_detail_bg"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:text="@{viewModel.totalQty}"
+            android:textColor="@color/textcolor_black"
+            android:textSize="@dimen/textsize_order_details"
+            app:layout_constraintBottom_toBottomOf="@+id/tvTotal"
+            app:layout_constraintEnd_toStartOf="@+id/tvTotalAmount"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tvTotal"
+            app:layout_constraintTop_toTopOf="@+id/tvTotal"
+            tools:text="Quantity" />
+
+        <TextView
+            android:id="@+id/tvTotalAmount"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@color/item_order_detail_bg"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/textcolor_black"
+            android:textSize="@dimen/textsize_order_details"
+            app:layout_constraintBottom_toBottomOf="@+id/tvTotal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            android:text="@{viewModel.totalAmount}"
+            app:layout_constraintStart_toEndOf="@+id/tvTotalQty"
+            app:layout_constraintTop_toTopOf="@+id/tvTotal"
+            tools:text="Net Value" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

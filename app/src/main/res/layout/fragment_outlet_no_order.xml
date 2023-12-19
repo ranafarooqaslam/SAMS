@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.fastservices.sams.modules.outletnoorder.OutletNoOrderVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:background="@color/white">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/bottomLayout"
+            android:layout_height="0dp"
+          >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:paddingBottom="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/ivStore"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="15dp"
+                    android:src="@drawable/ic_store_grey"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/lblStoreName"
+                    style="@style/store_desc_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:drawableLeft="@drawable/ic_mini_user"
+
+                    android:text="Outlet name: "
+                    app:layout_constraintStart_toEndOf="@+id/ivStore"
+                    app:layout_constraintTop_toTopOf="@+id/ivStore" />
+
+                <TextView
+                    android:id="@+id/tvStoreName"
+                    style="@style/store_desc_style"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="@{viewModel.outlet.outletName}"
+                    app:layout_constraintBottom_toBottomOf="@+id/lblStoreName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/lblStoreName"
+                    app:layout_constraintTop_toTopOf="@+id/lblStoreName"
+                    tools:text="Gloria jeans" />
+
+                <TextView
+                    android:id="@+id/lblStoreAddress"
+                    style="@style/store_desc_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:drawableLeft="@drawable/ic_mini_location"
+                    android:text="Outlet address: "
+                    app:layout_constraintStart_toStartOf="@+id/lblStoreName"
+                    app:layout_constraintTop_toBottomOf="@+id/lblStoreName" />
+
+                <TextView
+                    android:id="@+id/tvStoreAddress"
+                    style="@style/store_desc_style"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center_vertical"
+                    android:text="@{viewModel.outlet.storeAddress}"
+                    app:layout_constraintBottom_toBottomOf="@+id/lblStoreAddress"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/lblStoreAddress"
+                    app:layout_constraintTop_toTopOf="@+id/lblStoreAddress"
+                    tools:text="Johar Town Lahore" />
+
+                <TextView
+                    android:id="@+id/lblOwnerName"
+                    style="@style/store_desc_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:drawableLeft="@drawable/ic_mini_user"
+                    android:text="Owner name: "
+                    app:layout_constraintStart_toStartOf="@+id/lblStoreAddress"
+                    app:layout_constraintTop_toBottomOf="@+id/lblStoreAddress" />
+
+                <TextView
+                    android:id="@+id/tvOwnerName"
+                    style="@style/store_desc_style"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center_vertical"
+                    android:text="@{viewModel.outlet.ownerName}"
+                    app:layout_constraintBottom_toBottomOf="@+id/lblOwnerName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/lblOwnerName"
+                    app:layout_constraintTop_toTopOf="@+id/lblOwnerName"
+                    tools:text="Abid Ali" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/detailsLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{viewModel.toggleDetailLayout}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintLeft_toLeftOf="@+id/lblOwnerName"
+                    app:layout_constraintStart_toStartOf="@+id/lblOwnerName"
+                    app:layout_constraintTop_toBottomOf="@+id/lblOwnerName">
+
+                    <TextView
+                        android:id="@+id/lblContactNumber"
+                        style="@style/store_desc_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:drawableLeft="@drawable/ic_mini_phone"
+                        android:text="Contact Number: "
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvContactNumber"
+                        style="@style/store_desc_style"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        app:layout_constraintBottom_toBottomOf="@+id/lblContactNumber"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/lblContactNumber"
+                        app:layout_constraintTop_toTopOf="@+id/lblContactNumber"
+                        tools:text="03331234567" />
+
+                    <TextView
+                        android:id="@+id/lblStoreType"
+                        style="@style/store_desc_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:drawableLeft="@drawable/ic_mini_store"
+                        android:text="Outlet type: "
+                        app:layout_constraintStart_toStartOf="@+id/lblContactNumber"
+                        app:layout_constraintTop_toBottomOf="@+id/lblContactNumber" />
+
+                    <TextView
+                        android:id="@+id/tvStoreType"
+                        style="@style/store_desc_style"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center_vertical"
+                        app:layout_constraintBottom_toBottomOf="@+id/lblStoreType"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/lblStoreType"
+                        app:layout_constraintTop_toTopOf="@+id/lblStoreType"
+                        tools:text="Lorem" />
+
+                    <TextView
+                        android:id="@+id/lblLastOrderDate"
+                        style="@style/store_desc_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:drawableLeft="@drawable/ic_mini_calender"
+                        android:text="Last Order Date: "
+                        app:layout_constraintStart_toStartOf="@+id/lblStoreType"
+                        app:layout_constraintTop_toBottomOf="@+id/lblStoreType" />
+
+                    <TextView
+                        android:id="@+id/tvLastOrderDate"
+                        style="@style/store_desc_style"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center_vertical"
+                        app:layout_constraintBottom_toBottomOf="@+id/lblLastOrderDate"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/lblLastOrderDate"
+                        app:layout_constraintTop_toTopOf="@+id/lblLastOrderDate"
+                        tools:text="05/01/2018" />
+
+                    <TextView
+                        android:id="@+id/lblLastOrderAmount"
+                        style="@style/store_desc_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:drawableLeft="@drawable/ic_mini_amount"
+                        android:text="Last Order Amount: "
+                        app:layout_constraintStart_toStartOf="@+id/lblLastOrderDate"
+                        app:layout_constraintTop_toBottomOf="@+id/lblLastOrderDate" />
+
+                    <TextView
+                        android:id="@+id/tvLastOrderAmount"
+                        style="@style/store_desc_style"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center_vertical"
+                        app:layout_constraintBottom_toBottomOf="@+id/lblLastOrderAmount"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/lblLastOrderAmount"
+                        app:layout_constraintTop_toTopOf="@+id/lblLastOrderAmount"
+                        tools:text="56000" />
+
+                    <TextView
+                        android:id="@+id/lblClosingBalance"
+                        style="@style/store_desc_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:drawableLeft="@drawable/ic_mini_wallet"
+                        android:text="Closing Balance: "
+                        app:layout_constraintStart_toStartOf="@+id/lblLastOrderAmount"
+                        app:layout_constraintTop_toBottomOf="@+id/lblLastOrderAmount" />
+
+                    <TextView
+                        android:id="@+id/tvClosingBalance"
+                        style="@style/store_desc_style"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center_vertical"
+                        android:text="20000"
+                        app:layout_constraintBottom_toBottomOf="@+id/lblClosingBalance"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/lblClosingBalance"
+                        app:layout_constraintTop_toTopOf="@+id/lblClosingBalance" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <ImageView
+                    android:id="@+id/ivCollapse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:onClick="@{()-> viewModel.collapseClicked()}"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_collapse"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/detailsLayout" />
+
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/textcolor_grey"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ivCollapse" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Outlet Location"
+                    app:layout_constraintBottom_toBottomOf="@+id/btnTakeGPS"
+                    app:layout_constraintStart_toStartOf="@+id/ivStore"
+                    app:layout_constraintTop_toTopOf="@+id/btnTakeGPS" />
+
+                <Button
+                    android:id="@+id/btnTakeGPS"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="15dp"
+                    android:backgroundTint="#f87c36"
+                    android:text="Check In"
+                    android:textColor="@color/white"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+                <TextView
+                    android:id="@+id/tvMapLink"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:autoLink="all"
+                    app:layout_constraintLeft_toLeftOf="@+id/ivStore"
+                    app:layout_constraintRight_toRightOf="@+id/btnTakeGPS"
+                    app:layout_constraintTop_toBottomOf="@+id/btnTakeGPS" />
+
+                <ImageView
+                    android:id="@+id/ivCamera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_camera"
+                    app:layout_constraintEnd_toEndOf="@+id/btnTakeGPS"
+                    app:layout_constraintTop_toBottomOf="@+id/tvMapLink" />
+
+                <TextView
+                    android:id="@+id/lblPicture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="8dp"
+
+                    android:gravity="center_vertical"
+                    android:text="Take Pictures"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivCamera"
+                    app:layout_constraintStart_toStartOf="@+id/ivStore"
+                    app:layout_constraintTop_toTopOf="@+id/ivCamera" />
+
+
+                <LinearLayout
+                    android:id="@+id/imagesContainer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:minHeight="30dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="@+id/btnTakeGPS"
+                    app:layout_constraintStart_toStartOf="@+id/ivStore"
+                    app:layout_constraintTop_toBottomOf="@+id/ivCamera">
+
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider2"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/textcolor_grey"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imagesContainer" />
+
+                <TextView
+                    android:id="@+id/lblReason"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/textcolor_black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider2"
+                    tools:text="Select reason for not tracking order at Gloria Jeans" />
+
+                <com.whygraphics.multilineradiogroup.MultiLineRadioGroup xmlns:multi_line_radio_group="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/multiLineRadioGroup"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    multi_line_radio_group:default_button="Reason 2"
+                    multi_line_radio_group:layout_constraintEnd_toEndOf="@+id/lblReason"
+                    multi_line_radio_group:layout_constraintStart_toStartOf="@+id/lblReason"
+                    multi_line_radio_group:layout_constraintTop_toBottomOf="@+id/lblReason"
+                    multi_line_radio_group:max_in_row="1" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enter Comments"
+                    android:textColor="@color/textcolor_green"
+                    app:layout_constraintStart_toStartOf="@+id/lblReason"
+                    app:layout_constraintTop_toBottomOf="@+id/multiLineRadioGroup" />
+
+                <EditText
+                    android:id="@+id/etRemarks"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/textcolor_grey"
+                    android:gravity="left|top"
+                    android:hint="Comment here..."
+                    android:lines="4"
+                    android:padding="10dp"
+                    android:text="@={viewModel.comments}"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toEndOf="@+id/lblReason"
+                    app:layout_constraintStart_toStartOf="@+id/textView2"
+                    app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_shadow"
+            android:elevation="2dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottomLayout" />
+
+        <include
+            android:id="@+id/bottomLayout"
+            layout="@layout/layout_bottom_bar"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/btnSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_rect_action_btn"
+            android:elevation="3dp"
+            android:onClick="@{()->viewModel.submitNoOrder()}"
+            android:text="Submit"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/bottomLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/bottomLayout"
+            app:layout_constraintVertical_bias="0.77" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

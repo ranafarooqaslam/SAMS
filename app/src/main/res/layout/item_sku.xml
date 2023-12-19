@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15dp">
+
+    <ImageView
+        android:id="@+id/ivSkuImage"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        app:layout_constraintBottom_toBottomOf="@+id/lblTradePrice"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvItemName"
+        tools:src="@drawable/ic_green_tick" />
+
+    <TextView
+        android:id="@+id/lblItemCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="SKU Code : "
+        android:textColor="@color/textcolor_black"
+        android:textSize="@dimen/textsize_sku_item"
+        app:layout_constraintLeft_toRightOf="@+id/ivSkuImage"
+        app:layout_constraintStart_toStartOf="@+id/tvItemName"
+        app:layout_constraintTop_toBottomOf="@+id/tvItemName" />
+
+    <TextView
+        android:id="@+id/lblOrderUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="U : "
+        android:textColor="@color/textcolor_black"
+        android:textSize="@dimen/textsize_sku_item"
+        app:layout_constraintLeft_toRightOf="@+id/ivSkuImage"
+        app:layout_constraintStart_toEndOf="@+id/tvItemCode"
+        app:layout_constraintTop_toTopOf="@+id/tvItemName" />
+
+    <TextView
+        android:id="@+id/tvOrderUnits"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="12"
+        android:textColor="@color/textcolor_black"
+        android:textSize="@dimen/textsize_sku_item"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/ivSkuImage"
+        app:layout_constraintStart_toStartOf="@+id/tvOrderCarton"
+        app:layout_constraintTop_toTopOf="@+id/lblOrderUnit" />
+
+    <TextView
+        android:id="@+id/tvOrderCarton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="12"
+        android:textColor="@color/textcolor_black"
+        android:textSize="@dimen/textsize_sku_item"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintLeft_toRightOf="@+id/ivSkuImage"
+        app:layout_constraintStart_toStartOf="@+id/tvSubtotal"
+        app:layout_constraintTop_toBottomOf="@+id/tvOrderUnits" />
+
+    <TextView
+        android:id="@+id/tvSubtotal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="2500"
+        android:textColor="@color/textcolor_black"
+        android:textSize="@dimen/textsize_sku_item"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@+id/ivSkuImage"
+        app:layout_constraintStart_toEndOf="@+id/lblSubtotal"
+        app:layout_constraintTop_toBottomOf="@+id/tvOrderCarton" />
+
+    <TextView
+        android:id="@+id/lblOrderCarton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="C : "
+        android:textColor="@color/textcolor_black"
+        android:textSize="@dimen/textsize_sku_item"
+        app:layout_constraintLeft_toRightOf="@+id/ivSkuImage"
+        app:layout_constraintStart_toStartOf="@+id/lblOrderUnit"
+        app:layout_constraintTop_toBottomOf="@+id/lblOrderUnit" />
+
+    <TextView
+        android:id="@+id/lblSubtotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_amount"
+        android:text=" : "
+        android:textColor="@color/textcolor_black"
+        android:textSize="@dimen/textsize_sku_item"
+        app:layout_constraintEnd_toEndOf="@+id/lblOrderCarton"
+        app:layout_constraintTop_toBottomOf="@+id/lblOrderCarton" />
+
+    <TextView
+        android:id="@+id/tvItemCode"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="0185"
+        android:textColor="@color/textcolor_black"
+        android:textSize="@dimen/textsize_sku_item"
+        app:layout_constraintLeft_toRightOf="@+id/ivSkuImage"
+        app:layout_constraintStart_toEndOf="@+id/lblItemCode"
+        app:layout_constraintTop_toTopOf="@+id/lblItemCode" />
+
+    <TextView
+        android:id="@+id/tvItemName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="1"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:text="Temp name"
+        android:textColor="@color/textcolor_black"
+        android:textSize="@dimen/textsize_sku_item"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@+id/ivSkuImage"
+        app:layout_constraintRight_toRightOf="@+id/tvItemCode"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvRetailPrice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="315.25"
+        android:textColor="@color/textcolor_black"
+        android:textSize="@dimen/textsize_sku_item"
+        app:layout_constraintEnd_toEndOf="@+id/tvItemCode"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toRightOf="@+id/ivSkuImage"
+        app:layout_constraintStart_toStartOf="@+id/tvItemCode"
+        app:layout_constraintTop_toTopOf="@+id/lblRetailPrice" />
+
+    <TextView
+        android:id="@+id/tvTradePrice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="215.25"
+        android:textColor="@color/textcolor_black"
+        android:textSize="@dimen/textsize_sku_item"
+        app:layout_constraintEnd_toEndOf="@+id/tvItemCode"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@+id/ivSkuImage"
+        app:layout_constraintStart_toStartOf="@+id/tvItemCode"
+        app:layout_constraintTop_toTopOf="@+id/lblTradePrice" />
+
+
+    <TextView
+        android:id="@+id/lblRetailPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="Retail Price : "
+        android:textColor="@color/textcolor_black"
+        android:textSize="@dimen/textsize_sku_item"
+        app:layout_constraintStart_toStartOf="@+id/lblItemCode"
+        app:layout_constraintTop_toBottomOf="@+id/lblItemCode" />
+
+    <TextView
+        android:id="@+id/lblTradePrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Trade Price : "
+        android:textColor="@color/textcolor_black"
+        android:textSize="@dimen/textsize_sku_item"
+        app:layout_constraintStart_toStartOf="@+id/lblItemCode"
+        app:layout_constraintTop_toBottomOf="@+id/lblRetailPrice" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
