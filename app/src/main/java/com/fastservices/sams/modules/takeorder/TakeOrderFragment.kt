@@ -22,6 +22,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.fastservices.sams.R
@@ -63,12 +64,11 @@ import java.util.*
 
 class TakeOrderFragment : BaseFragment(), ClickListener {
 
-
     lateinit var binding: FragmentTakeOrderBinding
     lateinit var viewModel: OrderVM
 
     override fun doBinding(inflater: LayoutInflater, container: ViewGroup?): View {
-        return DataBindingUtil.inflate<com.fastservices.sams.databinding.FragmentTakeOrderBinding>(inflater, getLayoutResId(), container, false).also {
+        return DataBindingUtil.inflate<FragmentTakeOrderBinding>(inflater, getLayoutResId(), container, false).also {
             binding = it
             binding.viewModel = viewModel
         }.root
@@ -82,29 +82,26 @@ class TakeOrderFragment : BaseFragment(), ClickListener {
 
     override fun getLayoutResId() = R.layout.fragment_take_order
 
-
     private var categoriesAdapter: CategoryAdapter? = null
 
+    @SuppressLint("SetTextI18n")
     override fun setUp() {
-
         filePickUtils = FilePickUtils(this, onFileChoose)
         lifeCycleCallBackManager = filePickUtils.callBackManager
 
-        val manager = androidx.recyclerview.widget.LinearLayoutManager(context)
+        val manager = LinearLayoutManager(context)
         rvCategories.layoutManager = manager
 
         val dividerItemDecoration =
-            androidx.recyclerview.widget.DividerItemDecoration(
-                rvCategories.getContext(),
+            DividerItemDecoration(
+                rvCategories.context,
                 manager.orientation
-            );
+            )
         rvCategories.addItemDecoration(dividerItemDecoration);
 
         btnTakeGPS.setOnClickListener(this)
         ivCamera.setOnClickListener(this)
         GlobalScope.launch {
-
-
             val output = SimpleDateFormat("EEE, dd MMM yyyy", Locale.US)
             viewModel.outlet?.let {
                 tvLastOrderAmount.text = RoundUp2Decimal(it.lastOrderAmount)
@@ -112,12 +109,13 @@ class TakeOrderFragment : BaseFragment(), ClickListener {
                 if (it.lastOrderDate.isNotEmpty()) {
                     try {
                         tvLastOrderDate.text = output.format(SamsApplication.sdf.parse(it.lastOrderDate))
-                    } catch (e: Exception) {
+                    }
+                    catch (e: Exception) {
                         tvLastOrderDate.text = it.lastOrderDate
                     }
-                } else {
+                }
+                else {
                     tvLastOrderDate.text = "Never"
-
                 }
 
                 tvClosingBalance.text = RoundUp2Decimal(it.closing)
@@ -126,57 +124,53 @@ class TakeOrderFragment : BaseFragment(), ClickListener {
             }
         }
 
-        if(viewModel.latitude != 0.0){
-            tvMapLink.setText("http://maps.google.com/maps?q=${viewModel.latitude},${viewModel.longtidue}")
+        if(viewModel.latitude != 0.0) {
+            tvMapLink.text = "http://maps.google.com/maps?q=${viewModel.latitude},${viewModel.longtidue}"
         }
         viewModel.images.forEach {
             addImageViewToContainer(it)
         }
-
-
     }
 
     override fun setVM() {
-        viewModel = ViewModelProviders.of(activity!!).get(OrderVM::class.java)
+        viewModel = ViewModelProviders.of(requireActivity()).get(OrderVM::class.java)
         viewModel.outlet = arguments?.getSerializable(ARGS_OUTLET) as? Outlet
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun setObservers() {
-        viewModel.categoriesLoaded.observe(viewLifecycleOwner, Observer { value ->
+        viewModel.categoriesLoaded.observe(viewLifecycleOwner) { value ->
             if (value == true) {
                 if (categoriesAdapter == null) {
                     categoriesAdapter = CategoryAdapter(viewModel.categories, this)
-
                 }
                 if (rvCategories.adapter == null)
                     rvCategories.adapter = categoriesAdapter
                 categoriesAdapter?.notifyDataSetChanged()
             }
-        })
+        }
 
-        viewModel.summaryClicked.observe(viewLifecycleOwner, Observer { value ->
+        viewModel.summaryClicked.observe(viewLifecycleOwner) { value ->
             if (value == true) {
                 viewModel.summaryClicked.postValue(false)
-                (activity as? BaseActivity)?.replaceFragment(OrderDetailFragment.newInstance(), true)
+                (activity as? BaseActivity)?.replaceFragment(
+                    OrderDetailFragment.newInstance(),
+                    true
+                )
             }
-        })
+        }
 
         viewModel.showEmptyView.observe(viewLifecycleOwner, Observer { show ->
-            if (show == true)
-                emptyView.visibility = View.VISIBLE
-            else
-                emptyView.visibility = View.GONE
+            if (show == true) emptyView.visibility = View.VISIBLE
+            else emptyView.visibility = View.GONE
         })
-
     }
 
     override fun onItemClicked(item: Category) {
-
         (activity as? BaseActivity)?.replaceFragment(SkuListFragment.newInstance(item), true)
     }
 
     override fun onClick(v: View?) {
-
         when (v?.id) {
             R.id.btnTakeGPS -> getGPSLocation()
             R.id.ivCamera -> takePicture()
@@ -184,67 +178,58 @@ class TakeOrderFragment : BaseFragment(), ClickListener {
                 val alert = AlertDialog.Builder(v.context)
                 alert.setTitle("Warning")
                 alert.setMessage("Do you want to delete this picture?")
-                alert.setPositiveButton("YES") { dialog, which ->
+                alert.setPositiveButton("YES") { dialog, _ ->
                     dialog.dismiss()
                     val fl = v.parent as FrameLayout
                     val uri = fl.tag as String
                     (fl.parent as? LinearLayout)?.removeView(fl)
                     viewModel.removeFileUri(uri)
                 }
-                alert.setNegativeButton("NO") { dialog, which ->
+                alert.setNegativeButton("NO") { dialog, _ ->
                     dialog.dismiss()
                 }
                 alert.show()
-
             }
             else -> super.onClick(v)
         }
-
     }
 
     private fun takePicture() {
         if (imagesContainer.childCount < 5)
-            filePickUtils.requestImageCamera(FilePickUtils.CAMERA_PERMISSION, false, false);
-
+            filePickUtils.requestImageCamera(FilePickUtils.CAMERA_PERMISSION, false, false)
     }
 
-    @SuppressLint("CheckResult")
+    @SuppressLint("CheckResult", "SetTextI18n")
     private fun getGPSLocation() {
-
-
-
         Log.d("LocationCheck", "getGPSLocation")
-        if(!isLocationEnabled(context!!)){
+        if(!isLocationEnabled(requireContext())) {
             Log.d("LocationCheck", "isLocationEnabled")
             val alert = AlertDialog.Builder(context)
             alert.setTitle("Location")
             alert.setMessage("Please enable location services")
-            alert.setPositiveButton("OK") { dialog,which->
+            alert.setPositiveButton("OK") { dialog, _ ->
                 startActivity( Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
                 dialog.dismiss()
             }
             alert.show()
-
             return
         }
         Log.d("LocationCheck", "getGPSLocation1")
 
-
-        lateinit var fusedLocationClient: FusedLocationProviderClient
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(context!!)
+        val fusedLocationClient: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext())
 
         if (ActivityCompat.checkSelfPermission(
-                context!!,
+                requireContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                context!!,
+                requireContext(),
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
             Log.d("LocationCheck", "getGPSLocation222")
             Log.d("LocationCheck", "getGPSLocation1")
             ActivityCompat.requestPermissions(
-                activity!!,
+                requireActivity(),
                 arrayOf(
                     Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION
                 ),
@@ -252,55 +237,54 @@ class TakeOrderFragment : BaseFragment(), ClickListener {
             )
             return
         }
-        fusedLocationClient.lastLocation
-            .addOnSuccessListener { location : Location? ->
-                // Got last known location. In some rare situations this can be null.
-                Log.d("LocationCheck", "getGPSLocation2")
-                if(viewModel.outlet!!.validateRadius==1){
+        fusedLocationClient.lastLocation.addOnSuccessListener { location : Location? ->
+            // Got last known location. In some rare situations this can be null.
+            Log.d("LocationCheck", "getGPSLocation2")
+            if(location != null) {
+                if(viewModel.outlet!!.validateRadius==1) {
                     Log.d("LocationCheck", "getGPSLocation3")
                     var currentLocation = location
 
 
                     var outletLocation = Location("")
-                    outletLocation.setLatitude(viewModel.outlet!!.latitude)
-                    outletLocation.setLongitude(viewModel.outlet!!.longtidue)
+                    outletLocation.latitude = viewModel.outlet!!.latitude
+                    outletLocation.longitude = viewModel.outlet!!.longtidue
 
                     var distance = currentLocation!!.distanceTo(outletLocation)
                     if (distance < viewModel.outlet!!.radius) {
                         Log.d("LocationCheck", "orderSummaryClicked: Within Radius")
                         viewModel.latitude = location!!.latitude
                         viewModel.longtidue = location!!.longitude
-                        tvMapLink.setText("http://maps.google.com/maps?q=${viewModel.latitude},${viewModel.longtidue}")
+                        tvMapLink.text = "http://maps.google.com/maps?q=${viewModel.latitude},${viewModel.longtidue}"
                         tvMapLink.linksClickable = true
                         tvMapLink.movementMethod = LinkMovementMethod()
-                    }else{
+                    }
+                    else {
                         Log.d("LocationCheck", "getGPSLocation4")
                         val alert = AlertDialog.Builder(context)
                         alert.setTitle("Location")
                         alert.setMessage("You are not within allowed radius of your outlet. To take order please make sure you are in your outlet.")
-                        alert.setPositiveButton("OK") { dialog,which->
+                        alert.setPositiveButton("OK") { dialog, _ ->
                             //startActivity( Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
                             dialog.dismiss()
                         }
                         alert.show()
                     }
-                }else{
+                }
+                else {
                     Log.d("LocationCheck", "getGPSLocation5")
-                    viewModel.latitude = location!!.latitude
-                    viewModel.longtidue = location!!.longitude
-                    tvMapLink.setText("http://maps.google.com/maps?q=${viewModel.latitude},${viewModel.longtidue}")
+                    viewModel.latitude  = location.latitude
+                    viewModel.longtidue = location.longitude
+                    tvMapLink.text = "http://maps.google.com/maps?q=${viewModel.latitude},${viewModel.longtidue}"
                     tvMapLink.linksClickable = true
                     tvMapLink.movementMethod = LinkMovementMethod()
                 }
-
                 Log.d("LocationCheck", "getGPSLocation6")
             }
-
-
-
-
-
-
+            else {
+                Toast.makeText(context, "Unable to get Location", Toast.LENGTH_SHORT).show()
+            }
+        }
 
         /* RxGps(activity).locationLowPower()
                  .subscribeOn(Schedulers.newThread())
@@ -368,16 +352,12 @@ class TakeOrderFragment : BaseFragment(), ClickListener {
 
     override fun onRequestPermissionsResult(requestCode: Int, @NonNull permissions: Array<String>, @NonNull grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (lifeCycleCallBackManager != null) {
-            lifeCycleCallBackManager.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        }
+        lifeCycleCallBackManager.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (lifeCycleCallBackManager != null) {
-            lifeCycleCallBackManager.onActivityResult(requestCode, resultCode, data)
-        }
+        lifeCycleCallBackManager.onActivityResult(requestCode, resultCode, data)
     }
 
 

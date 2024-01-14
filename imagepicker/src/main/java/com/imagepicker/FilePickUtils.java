@@ -153,23 +153,44 @@ public class FilePickUtils implements LifeCycleCallBackManager {
     }
 
     public void requestImageCamera(int requestCode, boolean allowCrop, boolean isFixedRatio) {
-        this.requestCode = requestCode;
-        this.allowCrop = allowCrop;
-        this.isFixedRatio = isFixedRatio;
-        boolean hasCameraPermission = checkPermission(Manifest.permission.CAMERA);
-        boolean hasStoragePermission = checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (android.os.Build.VERSION.SDK_INT >= 33) {
+            this.requestCode             = requestCode;
+            this.allowCrop               = allowCrop;
+            this.isFixedRatio            = isFixedRatio;
+            boolean hasCameraPermission  = checkPermission(Manifest.permission.CAMERA);
+            boolean hasImagePermission   = checkPermission(Manifest.permission.READ_MEDIA_IMAGES);
 
-        if (hasCameraPermission && hasStoragePermission) {
-            selectImageFromCamera();
-        } else if (!hasCameraPermission && !hasStoragePermission) {
-            requestPermissionForCameraStorage();
-        } else if (!hasCameraPermission) {
-            requestPermissionForCamera();
-        } else {
-            requestPermissionForCameraButStorage();
+            if (hasImagePermission && hasCameraPermission) {
+                selectImageFromCamera();
+            }
+            else if (!hasImagePermission && !hasCameraPermission) {
+                requestPermissionForCameraMediaStorage();
+            }
+            else if (!hasCameraPermission) {
+                requestPermissionForCamera();
+            }
+            else {
+                requestPermissionForMedia();
+            }
+        }
+        else {
+            this.requestCode = requestCode;
+            this.allowCrop = allowCrop;
+            this.isFixedRatio = isFixedRatio;
+            boolean hasCameraPermission = checkPermission(Manifest.permission.CAMERA);
+            boolean hasStoragePermission = checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+            if (hasCameraPermission && hasStoragePermission) {
+                selectImageFromCamera();
+            } else if (!hasCameraPermission && !hasStoragePermission) {
+                requestPermissionForCameraStorage();
+            } else if (!hasCameraPermission) {
+                requestPermissionForCamera();
+            } else {
+                requestPermissionForCameraButStorage();
+            }
         }
     }
-
 
     public void setMaxHeight(float maxHeight) {
         MAX_HEIGHT = maxHeight;
@@ -206,32 +227,47 @@ public class FilePickUtils implements LifeCycleCallBackManager {
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.M)
     private void requestPermissionForCamera() {
         final String[] permissions = new String[]{Manifest.permission.CAMERA};
         requestPermissionWithRationale(permissions, CAMERA_PERMISSION, "Camera");
     }
 
-    @TargetApi(Build.VERSION_CODES.M)
     private void requestPermissionForCameraButStorage() {
         final String[] permissions = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         requestPermissionWithRationale(permissions, CAMERA_BUT_STORAGE_PERMISSION, "Storage");
     }
 
-    @TargetApi(Build.VERSION_CODES.M)
+    @RequiresApi(api = 33)
+    private void requestPermissionForMedia() {
+        final String[] permissions = new String[]{Manifest.permission.READ_MEDIA_IMAGES};
+        requestPermissionWithRationale(permissions, CAMERA_BUT_STORAGE_PERMISSION, "Media");
+    }
+
+    @RequiresApi(api = 33)
+    private void requestPermissionForStorage() {
+        final String[] permissions = new String[]{Manifest.permission.READ_MEDIA_IMAGES};
+        requestPermissionWithRationale(permissions, STORAGE_PERMISSION_IMAGE, "Media & Storage");
+    }
+
     private void requestPermissionForExternalStorage() {
         final String[] permissions = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         requestPermissionWithRationale(permissions, STORAGE_PERMISSION_IMAGE, "Storage");
     }
 
-    @TargetApi(Build.VERSION_CODES.M)
     private void requestPermissionForCameraStorage() {
-        final String[] permissions = new String[]{Manifest.permission.CAMERA,
-                Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        final String[] permissions = new String[]{
+                Manifest.permission.CAMERA,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE};
         requestPermissionWithRationale(permissions, STORAGE_PERMISSION_CAMERA, "Camera & Storage");
     }
 
-    @TargetApi(Build.VERSION_CODES.M)
+    @RequiresApi(api = 33)
+    private void requestPermissionForCameraMediaStorage() {
+        final String[] permissions = new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_MEDIA_IMAGES};
+        requestPermissionWithRationale(permissions, STORAGE_PERMISSION_CAMERA, "Camera, Media & Storage");
+    }
+
     private void requestPermissionForFilePicker() {
         final String[] permissions = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         requestPermissionWithRationale(permissions, STORAGE_PERMISSION_FILE, "FilePicker");
@@ -247,14 +283,11 @@ public class FilePickUtils implements LifeCycleCallBackManager {
     }
 
     private boolean checkPermission(String permission) {
-        return Build.VERSION.SDK_INT < Build.VERSION_CODES.M
-                || ActivityCompat.checkSelfPermission(activity, permission)
-                == PackageManager.PERMISSION_GRANTED;
+        return ActivityCompat.checkSelfPermission(activity, permission) == PackageManager.PERMISSION_GRANTED;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private void requestPermissionWithRationale(final String permissions[], final int requestCode,
-                                                String rationaleDialogText) {
+
+    private void requestPermissionWithRationale(final String permissions[], final int requestCode, String rationaleDialogText) {
         boolean showRationale = false;
         for (String permission : permissions) {
             if (activity.shouldShowRequestPermissionRationale(permission)) {
@@ -289,7 +322,7 @@ public class FilePickUtils implements LifeCycleCallBackManager {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
+
     private void requestPermissions(String[] permissions, int requestCode) {
         if (fragment != null) {
             fragment.requestPermissions(permissions, requestCode);
@@ -298,7 +331,7 @@ public class FilePickUtils implements LifeCycleCallBackManager {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
+
     public void onRequestPermissionsResult(final int requestCode, final @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
         if(grantResults.length == 0) return;
@@ -387,9 +420,14 @@ public class FilePickUtils implements LifeCycleCallBackManager {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        boolean hasStoragePermission =
-                checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) || checkPermission(
-                        Manifest.permission.READ_EXTERNAL_STORAGE);
+        boolean hasStoragePermission = false;
+        if (android.os.Build.VERSION.SDK_INT >= 33) {
+            hasStoragePermission = checkPermission(Manifest.permission.READ_MEDIA_IMAGES);
+        }
+        else {
+            hasStoragePermission = checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) || checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE);
+        }
+
         if (resultCode == Activity.RESULT_OK && hasStoragePermission) {
             Uri uri;
             switch (requestCode) {

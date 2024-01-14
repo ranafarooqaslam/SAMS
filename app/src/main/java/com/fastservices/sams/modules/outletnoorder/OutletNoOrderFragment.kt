@@ -179,7 +179,7 @@ class OutletNoOrderFragment : BaseFragment() {
     private fun getGPSLocation() {
 
         Log.d("LocationCheck", "getGPSLocation")
-        if(!isLocationEnabled(context!!)){
+        if(!isLocationEnabled(requireContext())){
             Log.d("LocationCheck", "getGPSLocation1")
             val alert = AlertDialog.Builder(context)
             alert.setTitle("Location")

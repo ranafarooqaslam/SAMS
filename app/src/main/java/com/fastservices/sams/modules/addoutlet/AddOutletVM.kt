@@ -10,20 +10,16 @@ import kotlinx.coroutines.launch
 
 class AddOutletVM() : BaseVM() {
 
-    var outlet = OutletLocal()
-    var channels = ArrayList<Channel>()
+    var outlet      = OutletLocal()
+    var channels    = ArrayList<Channel>()
     var subChannels = ArrayList<SubChannel>()
-
-    val submit = MutableLiveData<Boolean>()
-
-    val dataLoaded = MutableLiveData<String>()
-
-    val sections = ArrayList<Section>()
-    val localities = ArrayList<Locality>()
+    val submit      = MutableLiveData<Boolean>()
+    val dataLoaded  = MutableLiveData<String>()
+    val sections    = ArrayList<Section>()
+    val localities  = ArrayList<Locality>()
 
     init {
         GlobalScope.launch(Dispatchers.IO) {
-
             channels.addAll(SamsApplication.getDB().channelDao().getAllChannel())
             subChannels.addAll(SamsApplication.getDB().channelDao().getAllSubChannel())
             dataLoaded.postValue(CHANNELS)
@@ -31,22 +27,16 @@ class AddOutletVM() : BaseVM() {
             sections.addAll(SamsApplication.getDB().sectionDao().getAll())
             localities.addAll(SamsApplication.getDB().sectionDao().getAllLocality())
             dataLoaded.postValue(SECTIONS)
-
-
         }
     }
 
-
     fun submitRequest() {
-
         GlobalScope.launch {
             outlet.checkValidity()?.let { errorLiveData.postValue(it) } ?: run {
                 SamsApplication.getDB().outletLocalDao().insert(outlet)
                 submit.postValue(true)
             }
         }
-
-
     }
 
     fun urbanSelected(){
@@ -79,7 +69,6 @@ class AddOutletVM() : BaseVM() {
         const val CHANNELS = "channels"
         const val SECTIONS = "sections"
     }
-
 }
 
 

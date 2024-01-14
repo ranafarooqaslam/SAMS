@@ -18,11 +18,8 @@ class RestClient(context: Context) {
 
     private var apiService: WebService
 
-
     init {
-        val gson = GsonBuilder()
-                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
-                .create()
+        val gson = GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create()
 
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -33,7 +30,8 @@ class RestClient(context: Context) {
             clientBuilder.addInterceptor(httpLoggingInterceptor)
         }
         clientBuilder.addInterceptor(TokenInterceptor(context))
-        clientBuilder.readTimeout(30, TimeUnit.SECONDS)
+        clientBuilder.readTimeout(60, TimeUnit.SECONDS)
+        clientBuilder.writeTimeout(60, TimeUnit.SECONDS)
         val okHttpClient = clientBuilder.build()
 
 
@@ -45,8 +43,6 @@ class RestClient(context: Context) {
                 .addCallAdapterFactory(CoroutineCallAdapterFactory())
                 .build()
         apiService = restAdapter.create(WebService::class.java)
-
-
     }
 
     fun getService(): WebService {

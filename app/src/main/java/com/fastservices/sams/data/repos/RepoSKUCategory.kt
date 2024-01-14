@@ -10,7 +10,6 @@ class RepoSKUCategory(val user: UserInfo) {
     private val SP_NAME = "spSelectSKU_HIERARCHYAndroid"
     private val params = mapOf("TypeID" to "59", "UserID" to user.UserId)
 
-
     suspend fun syncDownCategoies() {
         val categories = SamsApplication.getWebService().getCategories(PostBody(SP_NAME, params)).await().dataReturned
         SamsApplication.getDB().skuCategoryDao().deleteAll()

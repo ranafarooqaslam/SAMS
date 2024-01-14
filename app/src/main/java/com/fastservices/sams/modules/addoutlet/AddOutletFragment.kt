@@ -54,6 +54,7 @@ class AddOutletFragment : BaseFragment(), View.OnClickListener {
     private lateinit var viewModel: AddOutletVM
     private lateinit var binding: FragmentAddOutletBinding
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun setUp() {
         filePickUtils = FilePickUtils(this, onFileChoose)
         lifeCycleCallBackManager = filePickUtils.callBackManager
@@ -61,14 +62,11 @@ class AddOutletFragment : BaseFragment(), View.OnClickListener {
         ivCamera.setOnClickListener(this)
         tvSubmit.setOnClickListener(this)
 
-        scrollView.setOnTouchListener(View.OnTouchListener { v, event ->
+        scrollView.setOnTouchListener { _, _ ->
             val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
             imm?.hideSoftInputFromWindow(etComment.windowToken, 0)
-
             false
-        })
-
-
+        }
     }
 
     override fun getVM(): BaseVM? {
@@ -98,7 +96,7 @@ class AddOutletFragment : BaseFragment(), View.OnClickListener {
 
     private fun populateChannel() {
 
-        val adapterChannel = ArrayAdapter<Channel>(activity!!, android.R.layout.simple_spinner_item, viewModel.channels)
+        val adapterChannel = ArrayAdapter<Channel>(requireActivity(), android.R.layout.simple_spinner_item, viewModel.channels)
         adapterChannel.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spChannel.adapter = adapterChannel
         spChannel.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -117,7 +115,7 @@ class AddOutletFragment : BaseFragment(), View.OnClickListener {
     }
 
     private fun populateSections() {
-        val adapterSections = ArrayAdapter<Section>(activity!!, android.R.layout.simple_spinner_item, viewModel.sections)
+        val adapterSections = ArrayAdapter<Section>(requireActivity(), android.R.layout.simple_spinner_item, viewModel.sections)
         adapterSections.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spSector.adapter = adapterSections
         spSector.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -134,7 +132,7 @@ class AddOutletFragment : BaseFragment(), View.OnClickListener {
     }
 
     fun populateLocalities() {
-        val adapterLocality = ArrayAdapter<Locality>(activity!!, android.R.layout.simple_spinner_item, viewModel.localities.filter { it.sectionID == viewModel.outlet.SectionID })
+        val adapterLocality = ArrayAdapter<Locality>(requireActivity(), android.R.layout.simple_spinner_item, viewModel.localities.filter { it.sectionID == viewModel.outlet.SectionID })
         adapterLocality.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spLocality.adapter = adapterLocality
         spLocality.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -150,7 +148,7 @@ class AddOutletFragment : BaseFragment(), View.OnClickListener {
     }
 
     fun populateSubChannels() {
-        val adapterSubChannel = ArrayAdapter<SubChannel>(activity!!, android.R.layout.simple_spinner_item, viewModel.subChannels.filter { it.parentID == viewModel.outlet.ChannelID })
+        val adapterSubChannel = ArrayAdapter<SubChannel>(requireActivity(), android.R.layout.simple_spinner_item, viewModel.subChannels.filter { it.parentID == viewModel.outlet.ChannelID })
         adapterSubChannel.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spSubchannel.adapter = adapterSubChannel
         spSubchannel.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -194,24 +192,21 @@ class AddOutletFragment : BaseFragment(), View.OnClickListener {
                 val alert = AlertDialog.Builder(v.context)
                 alert.setTitle("Warning")
                 alert.setMessage("Do you want to delete this picture?")
-                alert.setPositiveButton("YES") { dialog, which ->
+                alert.setPositiveButton("YES") { dialog, _ ->
                     dialog.dismiss()
                     val fl = v.parent as FrameLayout
                     val uri = fl.tag as String
                     (fl.parent as? LinearLayout)?.removeView(fl)
                     viewModel.removeFileUri(uri)
                 }
-                alert.setNegativeButton("NO") { dialog, which ->
+                alert.setNegativeButton("NO") { dialog, _ ->
                     dialog.dismiss()
                 }
                 alert.show()
-
             }
             else -> super.onClick(v)
         }
-
     }
-
 
     private fun takePicture() {
         if (imagesContainer.childCount < 5)
@@ -221,12 +216,11 @@ class AddOutletFragment : BaseFragment(), View.OnClickListener {
 
     @SuppressLint("CheckResult")
     private fun getGPSLocation() {
-
-        if(!isLocationEnabled(context!!)){
+        if(!isLocationEnabled(requireContext())) {
             val alert = AlertDialog.Builder(context)
             alert.setTitle("Location")
             alert.setMessage("Please enable location services")
-            alert.setPositiveButton("OK") { dialog,which->
+            alert.setPositiveButton("OK") { dialog, which ->
                 startActivity( Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
                 dialog.dismiss()
             }

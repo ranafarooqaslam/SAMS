@@ -12,10 +12,7 @@ import com.fastservices.sams.prefs.PreferenceManager
 import java.text.SimpleDateFormat
 import java.util.*
 
-class SamsApplication : Application() {
-
-    val TAG = SamsApplication::class.java.getSimpleName()
-
+class SamsApplication: Application() {
 
     override fun onCreate() {
         super.onCreate()
@@ -28,15 +25,12 @@ class SamsApplication : Application() {
 
         if (appDatabase == null)
             appDatabase = AppDatabase.getInstance(applicationContext)
-
-
     }
-
 
     companion object {
         private var restClient: RestClient? = null
         private var appContext: Context? = null
-        private var glide: Glide? = null
+//        private var glide: Glide? = null
 
         private var preferenceManager: PreferenceManager? = null
         fun getWebService(): WebService {
@@ -45,7 +39,6 @@ class SamsApplication : Application() {
             }
             return restClient!!.getService()
         }
-
 
         fun getPreferenceManager(): PreferenceManager {
             return preferenceManager!!
@@ -58,7 +51,6 @@ class SamsApplication : Application() {
         private var appDatabase: AppDatabase? = null
 
         fun getDB(): AppDatabase {
-
             return appDatabase!!
         }
 

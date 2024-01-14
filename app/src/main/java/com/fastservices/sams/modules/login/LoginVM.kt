@@ -10,9 +10,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class LoginVM : BaseVM() {
-
-    val TAG = javaClass.name
-
     var username = ""
     var password = ""
 
@@ -22,7 +19,6 @@ class LoginVM : BaseVM() {
         if (username.isEmpty()) {
             errorLiveData.postValue("Please input username")
             return
-
         }
         if (password.isEmpty()) {
             errorLiveData.postValue("Please input password")
@@ -56,21 +52,16 @@ class LoginVM : BaseVM() {
 //                RepoPromotions(login).syncDown()
 //                RepoPromotionValueClass(login).syncDown()
 
-
-
-
                 loginSuccess.postValue(login)
                 SamsApplication.getPreferenceManager().hasUserLoggedIn(true)
-            } catch (e: Throwable) {
+            }
+            catch (e: Throwable) {
                 e.printStackTrace()
                 handleError(e)
-            } finally {
+            }
+            finally {
                 showLoader.postValue(false)
             }
-
-
         }
     }
-
-
 }

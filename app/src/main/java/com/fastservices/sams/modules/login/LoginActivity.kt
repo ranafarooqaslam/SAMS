@@ -20,14 +20,11 @@ import com.fastservices.sams.modules.companycode.CompanyCodeVM
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : BaseActivity(), View.OnClickListener {
-
-
     lateinit var binding: ActivityLoginBinding
 
     private lateinit var viewModel: LoginVM
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         viewModel = ViewModelProviders.of(this).get(LoginVM::class.java)
         binding.viewModel = viewModel
@@ -36,12 +33,9 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         Log.d("logoUrl", "onCreate: ")
         ImageLoader.loadImage(ivCustomBackground, intent.getStringExtra(EXTRA_BACKGROUND_IMAGE).toString())
         super.onCreate(savedInstanceState)
-
-
     }
 
     override fun setUp(savedInstanceState: Bundle?) {
-
         viewModel.loginSuccess.observe(this, Observer { _ ->
             openMainActivity()
         })
@@ -50,22 +44,17 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
             viewModel.username = "Daud"
             viewModel.password = "Daud"
         }
-
     }
-
 
     override fun getViewModel(): BaseVM? {
         return viewModel
     }
 
     override fun onClick(v: View?) {
-
         when (v?.id) {
             R.id.btnLogin -> openMainActivity()
         }
-
     }
-
 
     fun openMainActivity() {
         finish()
@@ -73,7 +62,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
     }
 
     companion object {
-
         val EXTRA_LOGO = "logo"
         val EXTRA_BACKGROUND_IMAGE = "background_image"
         fun getIntent(applicationContext: Context, clientInfo: ClientInfo) = Intent(applicationContext, LoginActivity::class.java).apply {
@@ -81,5 +69,4 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
             putExtra(EXTRA_BACKGROUND_IMAGE, clientInfo.BackGroundImage)
         }
     }
-
 }

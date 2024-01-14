@@ -33,7 +33,8 @@ class GoogleDriveClient(context: Context) {
             clientBuilder.addInterceptor(httpLoggingInterceptor)
         }
 //        clientBuilder.addInterceptor(TokenInterceptor(context))
-        clientBuilder.readTimeout(30, TimeUnit.SECONDS)
+        clientBuilder.readTimeout(60, TimeUnit.SECONDS)
+        clientBuilder.writeTimeout(60, TimeUnit.SECONDS)
         val okHttpClient = clientBuilder.build()
 
 

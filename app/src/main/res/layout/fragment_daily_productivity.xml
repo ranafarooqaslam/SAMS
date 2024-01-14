@@ -135,7 +135,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="start"
-            android:text="Total Booked SKUs"
+            android:text="UnProductive Outlets"
             android:textColor="@color/textcolor_black"
             android:textSize="@dimen/textsize_order_summary"
             app:layout_constraintBottom_toBottomOf="@+id/tvTotalSKUs"

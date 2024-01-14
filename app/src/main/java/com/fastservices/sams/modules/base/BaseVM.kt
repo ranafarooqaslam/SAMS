@@ -34,8 +34,6 @@ open class BaseVM : ViewModel() {
                 errorLiveData.postValue("Unknown error "  + e.message)
             }
         }
-
-
     }
 
     private fun getErrorMessage(responseBody: ResponseBody?): String? {

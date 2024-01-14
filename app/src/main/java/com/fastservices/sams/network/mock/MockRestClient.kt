@@ -14,12 +14,10 @@ import java.util.concurrent.TimeUnit
 class MockRestClient(context: Context) {
 
     private var apiService: MockWebService
-    val BASE_URL = "https://my-json-server.typicode.com/fdmirza/test-repo/"
+    private val BASE_URL = "https://my-json-server.typicode.com/fdmirza/test-repo/"
 
     init {
-        val gson = GsonBuilder()
-                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
-                .create()
+        val gson = GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create()
 
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -30,9 +28,9 @@ class MockRestClient(context: Context) {
             clientBuilder.addInterceptor(httpLoggingInterceptor)
         }
 //        clientBuilder.addInterceptor(TokenInterceptor(context))
-        clientBuilder.readTimeout(30, TimeUnit.SECONDS)
+        clientBuilder.readTimeout(60, TimeUnit.SECONDS)
+        clientBuilder.writeTimeout(60, TimeUnit.SECONDS)
         val okHttpClient = clientBuilder.build()
-
 
         val restAdapter = Retrofit.Builder()
                 .client(okHttpClient)
@@ -42,15 +40,9 @@ class MockRestClient(context: Context) {
                 .addCallAdapterFactory(CoroutineCallAdapterFactory())
                 .build()
         apiService = restAdapter.create(MockWebService::class.java)
-
-
     }
 
     fun getService(): MockWebService {
         return apiService
     }
-
-
-
-
 }

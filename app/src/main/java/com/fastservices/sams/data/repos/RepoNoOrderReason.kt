@@ -9,11 +9,9 @@ class RepoNoOrderReason {
     private val SP_NAME = "uspGetUnOrderStatus"
 
     suspend  fun syncDownData() {
-
         val reasons = getReasonsRemote()
         SamsApplication.getDB().noOrderReasonDao().deleteAll()
         SamsApplication.getDB().noOrderReasonDao().insertAll(reasons)
-
     }
 
      private suspend fun getReasonsRemote(): List<NoOrderReason> {

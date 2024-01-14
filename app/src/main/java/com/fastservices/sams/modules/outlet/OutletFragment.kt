@@ -27,7 +27,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-open class OutletFragment : BaseFragment(), ClickListener, View.OnClickListener {
+open class OutletFragment: BaseFragment(), ClickListener, View.OnClickListener {
 
     var outletsAdapter: OutletsAdapter? = null
 
@@ -55,7 +55,7 @@ open class OutletFragment : BaseFragment(), ClickListener, View.OnClickListener 
         rvOutlets.layoutManager = manager
         rvOutlets.adapter = outletsAdapter
         btnSection.setOnClickListener(this)
-        rvOutlets.setOnTouchListener { v, _ ->
+        rvOutlets.setOnTouchListener { _, _ ->
             val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
             imm?.hideSoftInputFromWindow(etFilter.windowToken, 0)
             false

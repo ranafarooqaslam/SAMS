@@ -1,14 +1,17 @@
 package com.fastservices.sams.modules.sync
 
-import androidx.lifecycle.MutableLiveData
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
+import com.amazonaws.auth.AWSCredentials
 import com.amazonaws.auth.BasicAWSCredentials
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferListener
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferState
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility
 import com.amazonaws.regions.Regions
+import com.amazonaws.services.s3.AmazonS3
 import com.amazonaws.services.s3.AmazonS3Client
 import com.fastservices.sams.Constants
+import com.fastservices.sams.R
 import com.fastservices.sams.SamsApplication
 import com.fastservices.sams.data.models.PostBodyOrder
 import com.fastservices.sams.data.models.google.*
@@ -17,21 +20,12 @@ import com.fastservices.sams.data.repos.promotions.*
 import com.fastservices.sams.modules.base.BaseVM
 import com.fastservices.sams.network.GoogleWebService
 import com.google.gson.Gson
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.io.File
-//import com.amazonaws.mobile.client.AWSMobileClient
-
-import kotlinx.coroutines.*
-import android.content.pm.ApplicationInfo
-import android.content.pm.PackageManager
-
-import com.amazonaws.services.s3.AmazonS3
-
-import com.amazonaws.auth.AWSCredentials
-import java.security.Security
-
 
 class SyncVM() : BaseVM() {
-
 
     var googleService: GoogleWebService? = null
 
@@ -39,14 +33,10 @@ class SyncVM() : BaseVM() {
 
     val syncLogger = MutableLiveData<String>()
 
-
     fun startSyncData() {
-
         syncStatus.postValue("start")
         uploadData()
-
     }
-
 
     private fun uploadData() {
         showLoader.postValue(true)
@@ -60,7 +50,7 @@ class SyncVM() : BaseVM() {
                 val user = SamsApplication.getPreferenceManager().getUser()
                 if (user != null) {
                     val outlets = SamsApplication.getDB().outletLocalDao().getAll()
-                    var files = arrayListOf<String>()
+                    val files = arrayListOf<String>()
                     outlets.forEach {
                         if (it.PhotoPath1.isNotEmpty()) it.PhotoPath1 =
                             addTofiles(files, it.PhotoPath1,"outlets")
@@ -90,8 +80,7 @@ class SyncVM() : BaseVM() {
                         var names = ""
                         outlets.forEach { names = names.plus(it.OutletName).plus(" ") }
                         syncLogger.postValue("Inserting Outlet ${names}...")
-                        val response = SamsApplication.getWebService()
-                            .insertOutlet(user.DistributionID, user.UserId, outlets).await()
+                        val response = SamsApplication.getWebService().insertOutlet(user.DistributionID, user.UserId, outlets).await()
                         if (response.Satus == "Error") {
                             errorLiveData.postValue(response.Message)
                             showLoader.postValue(false)
@@ -141,7 +130,7 @@ class SyncVM() : BaseVM() {
                         val response = SamsApplication.getWebService()
                             .insertMerchandising(user.DistributionID, user.UserId, merchandises)
                             .await()
-                        if (response.Satus.equals("Error")) {
+                        if (response.Satus == "Error") {
                             errorLiveData.postValue(response.Message)
                             showLoader.postValue(false)
                             return@launch
@@ -303,7 +292,7 @@ class SyncVM() : BaseVM() {
                             SamsApplication.getDocumentDate(),
                             stocks
                         ).await()
-                        if (response.Satus.equals("OK")) {
+                        if (response.Satus == "OK") {
 
                             SamsApplication.getDB().stockPositioningMasterDao().delete(it)
                             SamsApplication.getDB().stockPostioningDao().delete(stocks)
@@ -397,13 +386,12 @@ class SyncVM() : BaseVM() {
 
     private suspend fun uploadFilesToDrive(files: List<String>,screenName:String) {
 
-
-
         files.forEachIndexed { index, it ->
             syncLogger.postValue("Uploading Image...")
             val file = File(it)
-            val name = file.name.replace("jpg", "jpeg")
-            s3Upload(file, name,screenName)
+//            val file = File("/storage/emulated/0/Pictures/SAMS Online/test.jpg")
+//            val name = file.name.replace("jpg", "jpeg")
+            s3Upload(file, file.name, screenName)
             //delay(2000)
 
 
@@ -421,20 +409,34 @@ class SyncVM() : BaseVM() {
     /*S3 bucket work Sohail*/
 
     private fun s3Upload(file: File, name: String, screenName:String) {
-        Log.d("S3Upload", "in S3Upload Function")
         Log.d("S3Upload", "name $name")
         val clientCode=SamsApplication.getPreferenceManager().getCompanyCode()
         Log.d("S3Upload", "CompanyCode $clientCode")
 
+/*        val ai : ApplicationInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            Constants.appContext.packageManager.getApplicationInfo(Constants.appContext.packageName, PackageManager.ApplicationInfoFlags.of(0))
+        } else {
+            Constants.appContext.packageManager.getApplicationInfo(Constants.appContext.packageName, 0)
+        }*/
+
+//        val ai: ApplicationInfo = Constants.appContext.packageManager
+//           .getApplicationInfo(Constants.appContext.packageName, PackageManager.GET_META_DATA)
+
+//        val metaData: Bundle = ai.metaData
+//
+//        if (metaData.containsKey("keyValue") && metaData.containsKey("AkeyValue")) {
+//            val metadataValue = metaData.getString("keyValue")
+//            val metadataAValue = metaData.getString("AkeyValue")
+//        } else {
+//            throw java.lang.Exception()
+//        }
 
 
-        val ai: ApplicationInfo = Constants.appContext.packageManager
-           .getApplicationInfo(Constants.appContext.packageName, PackageManager.GET_META_DATA)
-        val value = ai.metaData["keyValue"]
-        val value1 = ai.metaData["AkeyValue"]
+        val value  = Constants.appContext.resources.getString(R.string.kk)
+        val value1 = Constants.appContext.resources.getString(R.string.akk)
 
-        val SECRET_KEY = value.toString()
-        val ACCESS_KEY = value1.toString()
+        val SECRET_KEY = "2$value" + "H"
+        val ACCESS_KEY = "AK$value1" + "GF"
 
 
         val MY_BUCKET = "sams-customers-images"
@@ -442,34 +444,38 @@ class SyncVM() : BaseVM() {
         Log.d("S3Upload", "OBJECT_KEY $OBJECT_KEY")
         val credentials: AWSCredentials = BasicAWSCredentials(ACCESS_KEY, SECRET_KEY)
         val s3: AmazonS3 = AmazonS3Client(credentials)
-        Security.setProperty("networkaddress.cache.ttl", "60")
-        s3.setRegion(com.amazonaws.regions.Region.getRegion(Regions.AP_SOUTHEAST_1))
+//        Security.setProperty("networkaddress.cache.ttl", "60")
+        s3.setRegion(com.amazonaws.regions.Region.getRegion(Regions.AP_SOUTH_1))
         s3.setEndpoint("https://s3-ap-south-1.amazonaws.com/")
 
+        Log.d("S3Upload", "File exist: " + file.exists())
 
         val transferUtility = TransferUtility(s3, Constants.appContext)
+        Log.d("S3Upload", "Bucket Region: " + s3.regionName)
+        Log.d("S3Upload", "File Url: " + s3.getUrl(MY_BUCKET, OBJECT_KEY))
 
         val observer = transferUtility.upload(MY_BUCKET, OBJECT_KEY, file)
         observer.setTransferListener(object : TransferListener {
             override fun onStateChanged(id: Int, state: TransferState) {
-
                 if (state == TransferState.COMPLETED) {
                     Log.d("S3Upload", "UPLOAD -Complete: ")
-
-                }else if (state == TransferState.FAILED){
+                }
+                else if (state == TransferState.FAILED) {
                     Log.d("S3Upload", "UPLOAD -Failed:")
                 }
             }
 
             override fun onProgressChanged(id: Int, bytesCurrent: Long, bytesTotal: Long) {
                 val percentage = (bytesCurrent / bytesTotal * 100).toInt()
-                Log.d("S3Upload", "UPLOAD - - ID: $id, percent done = $percentage")
+                Log.d("S3Upload",
+                    "UPLOAD - - ID: $id, percent done = $percentage$bytesCurrent---$bytesTotal"
+                )
 
             }
 
             override fun onError(id: Int, ex: java.lang.Exception) {
                 // do something
-                Log.e("S3Upload  ", "Error:" + ex)
+                Log.e("S3Upload", "Error:$ex")
             }
         })
     }
