@@ -69,6 +69,25 @@
         app:layout_constraintWidth_default="wrap" />
 
     <TextView
+        android:id="@+id/btGetDirection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:background="#f87c36"
+        android:gravity="center"
+        android:paddingStart="7dp"
+        android:paddingEnd="7dp"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
+        android:layout_marginEnd="7dp"
+        android:text="Get Direction"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvLabelUnitCarton"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
         android:id="@+id/tvLabelUnitCarton"
         android:layout_width="90dp"
         android:layout_height="wrap_content"
@@ -90,7 +109,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/ivOutletIcon"
         app:layout_constraintLeft_toLeftOf="@+id/tvLabelUnitCarton"
         app:layout_constraintRight_toRightOf="@+id/tvLabelUnitCarton" />
-
 
     <TextView
         android:id="@+id/tvUnorder"

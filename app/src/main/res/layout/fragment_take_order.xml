@@ -13,7 +13,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:background="@color/white">
 
         <androidx.core.widget.NestedScrollView
@@ -23,9 +22,7 @@
             app:layout_constraintBottom_toTopOf="@+id/bottomLayout"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-
-            >
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -270,7 +267,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/ivCollapse" />
 
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -318,13 +314,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_marginBottom="8dp"
-
                     android:gravity="center_vertical"
                     android:text="Take Pictures"
                     app:layout_constraintBottom_toBottomOf="@+id/ivCamera"
                     app:layout_constraintStart_toStartOf="@+id/ivStore"
                     app:layout_constraintTop_toTopOf="@+id/ivCamera" />
-
 
                 <LinearLayout
                     android:id="@+id/imagesContainer"
@@ -335,7 +329,6 @@
                     app:layout_constraintEnd_toEndOf="@+id/btnTakeGPS"
                     app:layout_constraintStart_toStartOf="@+id/ivStore"
                     app:layout_constraintTop_toBottomOf="@+id/ivCamera">
-
 
                 </LinearLayout>
 
@@ -348,74 +341,160 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imagesContainer" />
 
-                <ImageView
-                    android:id="@+id/ivSorting"
-                    android:layout_width="wrap_content"
+                <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="@{()->viewModel.sorting()}"
-                    android:padding="15dp"
-
-                    app:layout_constraintLeft_toLeftOf="@+id/ivStore"
-                    app:layout_constraintTop_toBottomOf="@+id/divider2" />
-                <!--android:src="@{viewModel.ascending.getBoolean() ? @drawable/ic_sort_asc : @drawable/ic_sort_desc}"-->
-                <LinearLayout
-                    android:id="@+id/searchLayout"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-
-                    android:background="@drawable/rect_et"
                     android:orientation="horizontal"
-                    app:layout_constraintBottom_toBottomOf="@+id/ivSorting"
-                    app:layout_constraintLeft_toRightOf="@+id/ivSorting"
-                    app:layout_constraintRight_toRightOf="@+id/btnTakeGPS"
-                    app:layout_constraintTop_toTopOf="@+id/ivSorting">
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@+id/divider2">
 
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_gravity="center_vertical"
-                        android:padding="3dp"
-                        android:src="@drawable/ic_search" />
+                    <RadioButton
+                        android:id="@+id/radioTakeOrder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:layout_marginEnd="16dp"
+                        android:text="Take Order"/>
 
-                    <EditText
-                        android:id="@+id/etFilter"
+                    <RadioButton
+                        android:id="@+id/radioNoOrder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:text="No Order"/>
+
+                </RadioGroup>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/takeOrderLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="15dp"
+                    app:layout_constraintTop_toBottomOf="@+id/radioGroup">
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@null"
-                        android:hint="filter..."
-                        android:imeOptions="actionDone"
-                        android:inputType="text"
-                        android:lines="1"
-                        android:onTextChanged="@{(text, start, before, count) -> viewModel.applyFilter(text.toString())}"
-                        android:text="@={viewModel.searchQuery}"
-                        android:textSize="12sp" />
-                </LinearLayout>
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ivSorting"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="@{()->viewModel.sorting()}" />
+
+                        <LinearLayout
+                            android:id="@+id/searchLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center_vertical"
+                                android:padding="3dp"
+                                android:src="@drawable/ic_search" />
+
+                            <EditText
+                                android:id="@+id/etFilter"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:paddingLeft="16dp"
+                                android:paddingTop="8dp"
+                                android:paddingRight="16dp"
+                                android:paddingBottom="8dp"
+                                android:background="@drawable/rect_et"
+                                android:hint="filter..."
+                                android:imeOptions="actionDone"
+                                android:inputType="text"
+                                android:lines="1"
+                                android:onTextChanged="@{(text, start, before, count) -> viewModel.applyFilter(text.toString())}"
+                                android:text="@={viewModel.searchQuery}"
+                                android:textSize="12sp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvCategories"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintLeft_toLeftOf="@+id/ivStore"
-                    app:layout_constraintRight_toRightOf="@+id/btnTakeGPS"
-                    app:layout_constraintTop_toBottomOf="@+id/ivSorting" />
+                    android:layout_marginTop="16dp" />
 
                 <TextView
                     android:id="@+id/emptyView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     android:gravity="center"
-                    android:padding="10dp"
+                    android:padding="15dp"
                     android:text="...No items..."
                     android:textColor="@color/textcolor_grey"
                     android:textStyle="italic"
-                    app:layout_constraintTop_toBottomOf="@+id/ivSorting" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:layout_gravity="center"/>
 
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/noOrderLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="15dp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@+id/radioGroup">
+
+                    <TextView
+                        android:id="@+id/lblReasonTakeOrder"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/textcolor_black"
+                        tools:text="Select reason for not tracking order at Gloria Jeans" />
+
+                    <com.whygraphics.multilineradiogroup.MultiLineRadioGroup
+                        xmlns:multi_line_radio_group="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/multiLineRadioGroupTakeOrder"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp"
+                        multi_line_radio_group:default_button="Reason 2"
+                        multi_line_radio_group:max_in_row="1" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Enter Comments"
+                        android:textColor="@color/textcolor_green" />
+
+                    <EditText
+                        android:id="@+id/etRemarks"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/textcolor_grey"
+                        android:gravity="left|top"
+                        android:hint="Comment here..."
+                        android:lines="4"
+                        android:padding="10dp"
+                        android:text="@={viewModel.comments}"
+                        android:textSize="13sp" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>
 
@@ -434,6 +513,7 @@
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <TextView
+            android:id="@+id/orderSummary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_rect_action_btn"

@@ -45,8 +45,6 @@ class SyncVM() : BaseVM() {
             try {
                 syncLogger.postValue("Uploading...")
                 delay(1000)
-                val gson = Gson()
-
                 val user = SamsApplication.getPreferenceManager().getUser()
                 if (user != null) {
                     val outlets = SamsApplication.getDB().outletLocalDao().getAll()
@@ -85,7 +83,8 @@ class SyncVM() : BaseVM() {
                             errorLiveData.postValue(response.Message)
                             showLoader.postValue(false)
                             return@launch
-                        } else {
+                        }
+                        else {
                             SamsApplication.getDB().outletLocalDao().deleteAll()
                         }
                     }
@@ -263,7 +262,8 @@ class SyncVM() : BaseVM() {
                         if (files.size > 0) syncLogger.postValue("Uploading no order photos...")
 
                         uploadFilesToDrive(files,"noOrder")
-                    } catch (e: Exception) {
+                    }
+                    catch (e: Exception) {
                         e.printStackTrace()
                         errorLiveData.postValue("Auth error: Unable to upload photos")
                     }
@@ -292,8 +292,8 @@ class SyncVM() : BaseVM() {
                             SamsApplication.getDocumentDate(),
                             stocks
                         ).await()
-                        if (response.Satus == "OK") {
 
+                        if (response.Satus == "OK") {
                             SamsApplication.getDB().stockPositioningMasterDao().delete(it)
                             SamsApplication.getDB().stockPostioningDao().delete(stocks)
                         }
@@ -345,6 +345,7 @@ class SyncVM() : BaseVM() {
                                 SamsApplication.getDocumentDate(),
                                 listOf(it)
                             ).await()
+
                             if (response.Satus == "OK") {
                                 SamsApplication.getDB().replacementDao().delete(it)
                             }

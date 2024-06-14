@@ -1,5 +1,6 @@
 package com.fastservices.sams.modules.sync
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.databinding.DataBindingUtil
@@ -27,7 +28,6 @@ class SyncFragment : BaseFragment(), View.OnClickListener {
         }.root
     }
 
-
     override fun getLayoutResId() = R.layout.fragment_sync
 
     override fun getTitle() = "SAMS Dashboard"
@@ -35,19 +35,14 @@ class SyncFragment : BaseFragment(), View.OnClickListener {
     private lateinit var viewModel: SyncVM
 
     override fun setUp() {
-
         tvLastSync.text = SamsApplication.getPreferenceManager().getLastSync()
         syncDescritpion.movementMethod = ScrollingMovementMethod()
-
     }
-
 
     override fun onClick(v: View?) {
         when (v?.id) {
-
             else -> super.onClick(v)
         }
-
     }
 
     override fun getVM(): BaseVM? {
@@ -58,11 +53,9 @@ class SyncFragment : BaseFragment(), View.OnClickListener {
         Constants.appContext= context?.applicationContext
         viewModel = ViewModelProviders.of(this).get(SyncVM::class.java)
         context?.let { viewModel.googleService = GoogleDriveClient(it).getService() }
-
     }
 
     override fun setObservers() {
-
         viewModel.syncStatus.observe(viewLifecycleOwner, Observer { status ->
             if (status == null)
                 return@Observer
@@ -71,24 +64,24 @@ class SyncFragment : BaseFragment(), View.OnClickListener {
                 "start" -> syncStart()
                 "error" -> syncError()
             }
-
         })
 
         viewModel.syncLogger.observe(viewLifecycleOwner, Observer { log->
             log?.let {
                 val logLine = it.plus("\n")
                 syncDescritpion.text = syncDescritpion.text.toString().plus(logLine)
-
             }
         })
     }
 
+    @SuppressLint("SetTextI18n")
     private fun syncError() {
         tvSync.isEnabled = true
         tvSync.alpha = 1f
-        syncDescritpion.text = " ** Sync Error **".plus("\n")
+        syncDescritpion.text = syncDescritpion.text.toString().plus("\n") + " ** Sync Error **".plus("\n")
     }
 
+    @SuppressLint("SetTextI18n")
     private fun syncStart() {
         tvSync.isEnabled = false
         tvSync.alpha = 0.5f
@@ -104,11 +97,9 @@ class SyncFragment : BaseFragment(), View.OnClickListener {
     }
 
     companion object {
-
         fun newInstance() = SyncFragment().apply {
             val args = Bundle()
             arguments = args
         }
     }
-
 }

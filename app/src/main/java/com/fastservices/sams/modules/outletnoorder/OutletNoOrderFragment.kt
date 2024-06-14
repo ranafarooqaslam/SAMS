@@ -3,15 +3,11 @@ package com.fastservices.sams.modules.outletnoorder
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.content.pm.PackageManager
-import androidx.databinding.DataBindingUtil
 import android.location.Location
 import android.os.Bundle
 import android.provider.Settings
-import androidx.core.app.ActivityCompat
 import android.text.method.LinkMovementMethod
 import android.util.Log
 import android.view.LayoutInflater
@@ -19,6 +15,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RadioButton
+import androidx.core.app.ActivityCompat
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.fastservices.sams.R
@@ -29,28 +29,14 @@ import com.fastservices.sams.databinding.FragmentOutletNoOrderBinding
 import com.fastservices.sams.modules.addoutlet.isLocationEnabled
 import com.fastservices.sams.modules.base.BaseFragment
 import com.fastservices.sams.modules.base.BaseVM
-import com.github.florent37.rxgps.RxGps
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.imagepicker.FilePickUtils
 import com.imagepicker.LifeCycleCallBackManager
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.annotations.NonNull
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_outlet_no_order.*
-import kotlinx.android.synthetic.main.fragment_outlet_no_order.btnTakeGPS
-import kotlinx.android.synthetic.main.fragment_outlet_no_order.imagesContainer
-import kotlinx.android.synthetic.main.fragment_outlet_no_order.ivCamera
-import kotlinx.android.synthetic.main.fragment_outlet_no_order.tvClosingBalance
-import kotlinx.android.synthetic.main.fragment_outlet_no_order.tvContactNumber
-import kotlinx.android.synthetic.main.fragment_outlet_no_order.tvLastOrderAmount
-import kotlinx.android.synthetic.main.fragment_outlet_no_order.tvLastOrderDate
-import kotlinx.android.synthetic.main.fragment_outlet_no_order.tvMapLink
-import kotlinx.android.synthetic.main.fragment_outlet_no_order.tvStoreType
-import kotlinx.android.synthetic.main.fragment_take_order.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -74,22 +60,19 @@ class OutletNoOrderFragment : BaseFragment() {
 
     override fun getLayoutResId() = R.layout.fragment_outlet_no_order
 
-
+    @SuppressLint("SetTextI18n")
     override fun setUp() {
         filePickUtils = FilePickUtils(this, onFileChoose)
         lifeCycleCallBackManager = filePickUtils.callBackManager
-        multiLineRadioGroup.setOnCheckedChangeListener { viewGroup: ViewGroup?, radioButton: RadioButton? ->
-
+        multiLineRadioGroup.setOnCheckedChangeListener { _: ViewGroup?, radioButton: RadioButton? ->
             viewModel.selectedReasonId = radioButton?.id ?: -1
         }
 
         lblReason.text = "Select reason for not tracking order at ${viewModel.outlet?.outletName}"
 
         GlobalScope.launch {
-
-//            val input = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.US)
             val output = SimpleDateFormat("EEE, dd MMM yyyy", Locale.US)
-            viewModel.outlet?.let {
+            viewModel.outlet.let {
                 tvLastOrderAmount.text = RoundUp2Decimal(it.lastOrderAmount)
                 tvContactNumber.text = it.phoneNumber
                 if (it.lastOrderDate.isNotEmpty()) {
@@ -144,9 +127,7 @@ class OutletNoOrderFragment : BaseFragment() {
         })
 
         viewModel.dataInserted.observe(viewLifecycleOwner, Observer {
-
             activity?.supportFragmentManager?.popBackStack()
-
         })
 
     }
@@ -184,7 +165,7 @@ class OutletNoOrderFragment : BaseFragment() {
             val alert = AlertDialog.Builder(context)
             alert.setTitle("Location")
             alert.setMessage("Please enable location services")
-            alert.setPositiveButton("OK") { dialog,which->
+            alert.setPositiveButton("OK") { dialog, which->
                 startActivity( Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
                 dialog.dismiss()
             }
@@ -192,21 +173,20 @@ class OutletNoOrderFragment : BaseFragment() {
 
             return
         }
-        lateinit var fusedLocationClient: FusedLocationProviderClient
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(context!!)
+        val fusedLocationClient: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext())
 
         if (ActivityCompat.checkSelfPermission(
-                context!!,
+                requireContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                context!!,
+                requireContext(),
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
             Log.d("LocationCheck", "getGPSLocation222")
             Log.d("LocationCheck", "getGPSLocation1")
             ActivityCompat.requestPermissions(
-                activity!!,
+                requireActivity(),
                 arrayOf(
                     Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION
                 ),

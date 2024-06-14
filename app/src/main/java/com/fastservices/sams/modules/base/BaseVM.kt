@@ -9,14 +9,10 @@ import java.io.IOException
 import java.net.SocketTimeoutException
 import io.reactivex.disposables.CompositeDisposable
 
-
 open class BaseVM : ViewModel() {
-
     var compositeDisposable = CompositeDisposable()
     val errorLiveData = MutableLiveData<String>()
-
     val showLoader = MutableLiveData<Boolean>()
-
 
     fun handleError(e: Throwable) {
         when (e) {
@@ -44,10 +40,10 @@ open class BaseVM : ViewModel() {
             if (error.isEmpty()) error = jsonObject.optString("error")
             if (error.isEmpty()) error = "Unknown error"
             error
-        } catch (e: Exception) {
+        }
+        catch (e: Exception) {
             e.message
         }
-
     }
 
     fun destroy() {

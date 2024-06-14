@@ -8,20 +8,15 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.fastservices.sams.R
-import com.fastservices.sams.data.entities.Category
 import com.fastservices.sams.data.entities.RoundUp2Decimal
 import com.fastservices.sams.data.entities.SKU
 import java.lang.ref.WeakReference
 import com.amulyakhare.textdrawable.TextDrawable
 
-
-class SkuAdapter(val data: List<SKU>, val clickListener: ClickListener) : androidx.recyclerview.widget.RecyclerView.Adapter<SkuVH>() {
+class SkuAdapter(val data: List<SKU>, val clickListener: ClickListener): RecyclerView.Adapter<SkuVH>() {
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): SkuVH {
-        val itemView = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_sku, parent, false)
-
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_sku, parent, false)
         return SkuVH(itemView, clickListener)
-
     }
 
     override fun getItemCount(): Int {
@@ -33,7 +28,7 @@ class SkuAdapter(val data: List<SKU>, val clickListener: ClickListener) : androi
     }
 }
 
-class SkuVH(val view: View, listener: ClickListener) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view), View.OnClickListener {
+class SkuVH(val view: View, listener: ClickListener) : RecyclerView.ViewHolder(view), View.OnClickListener {
     private lateinit var item: SKU
     val refListener = WeakReference<ClickListener>(listener)
     val tvItemCode = view.findViewById<TextView>(R.id.tvItemCode)
@@ -52,9 +47,7 @@ class SkuVH(val view: View, listener: ClickListener) : androidx.recyclerview.wid
             rootLayout.id -> refListener.get()?.onItemClicked(item)
             tvItemName.id -> v.isSelected = true
         }
-
     }
-
 
     fun bind(item: SKU) {
         this.item = item
@@ -84,8 +77,6 @@ class SkuVH(val view: View, listener: ClickListener) : androidx.recyclerview.wid
         tvOrderUnits.text = item.NO_OF_UNITS.toString()
         tvOrderCartona.text = item.NO_OF_CARTONS.toString()
         tvSubtotal.text = item.getSubTotal()
-
-
     }
 }
 

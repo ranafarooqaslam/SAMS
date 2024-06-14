@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.fastservices.sams.modules.outletnoorder.OutletNoOrderVM" />
@@ -389,7 +388,6 @@
                     app:layout_constraintEnd_toEndOf="@+id/lblReason"
                     app:layout_constraintStart_toStartOf="@+id/textView2"
                     app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

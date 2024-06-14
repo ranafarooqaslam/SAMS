@@ -13,14 +13,11 @@ class DashboardVM : BaseVM() {
     val dayStarted = MutableLiveData<Boolean>()
     val dayEnded = MutableLiveData<Boolean>()
 
-
     val TAG = "DashboardVM"
     var menuItems: List<Menu>? = null
 
     init {
-
         checkDayStarted()
-
     }
 
     fun startMyDay() {
@@ -35,11 +32,11 @@ class DashboardVM : BaseVM() {
                     dayStarted.postValue(true)
                     dayEnded.postValue(false)
                 }
-            } catch (e: Exception) {
+            }
+            catch (e: Exception) {
                 handleError(e)
                 e.printStackTrace()
             }
-
             showLoader.postValue(false)
         }
     }
@@ -51,7 +48,6 @@ class DashboardVM : BaseVM() {
                 dayStarted.postValue(true)
                 dayEnded.postValue(false)
             }
-
         }
     }
 

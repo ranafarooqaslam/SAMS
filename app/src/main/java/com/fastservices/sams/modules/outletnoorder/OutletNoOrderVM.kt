@@ -17,7 +17,8 @@ import java.util.*
 
 class OutletNoOrderVM : BaseVM() {
 
-    val sdf = SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS", Locale.getDefault())
+    val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault())
+//    val sdf = SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS", Locale.getDefault())
 
     lateinit var outlet: Outlet
 
@@ -34,7 +35,9 @@ class OutletNoOrderVM : BaseVM() {
     var comments = ""
 
     var timeIn = ""
+
     var latitude: Double = 0.0
+
     var longtidue: Double = 0.0
 
     var files = arrayOf("","","","","")
@@ -48,63 +51,58 @@ class OutletNoOrderVM : BaseVM() {
     }
 
     fun collapseClicked() {
-
         if (toggleDetailLayout.get() == View.VISIBLE) {
             toggleDetailLayout.set(View.GONE)
-        } else {
+        }
+        else {
             toggleDetailLayout.set(View.VISIBLE)
         }
     }
 
     fun submitNoOrder() {
 
-        if(selectedReasonId == -1){
+        if(selectedReasonId == -1) {
             errorLiveData.postValue("Select any reason")
             return
         }
 
-        if(longtidue == 0.0 || latitude == 0.0){
+        if(longtidue == 0.0 || latitude == 0.0) {
             errorLiveData.postValue("Location not selected. Press Take GPS button")
             return
         }
         var pictureTaken = false
-        for(i in 0 until files.size){
-            if(files[i].isNotEmpty()){
+        for(i in 0 until files.size) {
+            if(files[i].isNotEmpty()) {
                 pictureTaken = true
                 break
             }
         }
-        if(!pictureTaken){
+        if(!pictureTaken) {
             errorLiveData.postValue("Please take at least one picture.")
             return
         }
-
 
         if (selectedReasonId != -1) {
             GlobalScope.launch {
                 val item = NoOrderItem(outlet.outletID, outlet.sectionID.toString(),
                         SamsApplication.getDocumentDate(), selectedReasonId.toString(),
                         timeIn, sdf.format(Date()), comments,latitude,longtidue,
-                        files[0],files[1],files[2],files[3],files[4])
+                        files[0], files[1], files[2], files[3], files[4])
 
                 RepoNoOrder(SamsApplication.getPreferenceManager().getUser()).insertItem(item)
 
                 dataInserted.postValue(true)
             }
-
-
         }
     }
 
     fun imageTaken(fileUri: String?) {
         fileUri ?: return
         for(i in 0 until 5){
-            if(files[i].isEmpty()){
+            if(files[i].isEmpty()) {
                 files[i] = fileUri
                 break
             }
         }
     }
-
-
 }

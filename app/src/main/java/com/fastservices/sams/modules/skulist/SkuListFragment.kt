@@ -1,5 +1,6 @@
 package com.fastservices.sams.modules.skulist
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
@@ -23,7 +24,6 @@ import kotlinx.android.synthetic.main.fragment_sku_list.*
 
 class SkuListFragment : BaseFragment(), ClickListener {
 
-
     lateinit var binding: com.fastservices.sams.databinding.FragmentSkuListBinding
     private var adapter: SkuAdapter? = null
 
@@ -38,22 +38,19 @@ class SkuListFragment : BaseFragment(), ClickListener {
         return activityViewModel
     }
 
-    override fun getTitle() = "Take Order"//viewModel.category?.SKU_HIE_NAME ?: "SKUs"
+    override fun getTitle() = "Take Order" //viewModel.category?.SKU_HIE_NAME ?: "SKUs"
 
     override fun getLayoutResId() = R.layout.fragment_sku_list
 
-
     override fun setUp() {
-
-        val manager = androidx.recyclerview.widget.LinearLayoutManager(context)
+        val manager = LinearLayoutManager(context)
         rvSKUs.layoutManager = manager
-        val category = arguments?.getSerializable(ARGS_CATEGORY) as? Category ?: return
+        val category = arguments?.getSerializable(ARGS_CATEGORY) as? Category?: return
 
         activityViewModel.categoryId = category.SKU_HIE_ID
         activityViewModel.loadSKUs()
         if (adapter == null) {
             adapter = SkuAdapter(activityViewModel.skuAdapterDataList, this)
-
         }
 
         if (rvSKUs.adapter == null) {
@@ -69,11 +66,11 @@ class SkuListFragment : BaseFragment(), ClickListener {
 
     override fun setVM() {
         activityViewModel = ViewModelProviders.of(requireActivity()).get(OrderVM::class.java)
-        //   activityViewModel.category = arguments?.getSerializable(ARGS_CATEGORY) as? Category
+//   activityViewModel.category = arguments?.getSerializable(ARGS_CATEGORY) as? Category
     }
 
+    @SuppressLint("NotifyDataSetChanged", "SetTextI18n")
     override fun setObservers() {
-
         activityViewModel.dataListUpdated.observe(viewLifecycleOwner, Observer { value ->
             value ?: return@Observer
             if (value) {
@@ -81,19 +78,20 @@ class SkuListFragment : BaseFragment(), ClickListener {
             }
         })
 
-        activityViewModel.summaryClicked.observe(viewLifecycleOwner, Observer { value ->
+        activityViewModel.summaryClicked.observe(viewLifecycleOwner) { value ->
             if (value == true) {
                 activityViewModel.summaryClicked.postValue(false)
-                (activity as? BaseActivity)?.replaceFragment(OrderDetailFragment.newInstance(), true)
+                (activity as? BaseActivity)?.replaceFragment(
+                    OrderDetailFragment.newInstance(),
+                    true
+                )
             }
-        })
+        }
 
-        activityViewModel.grossAmountObservable.observe(viewLifecycleOwner, Observer { value ->
+        activityViewModel.grossAmountObservable.observe(viewLifecycleOwner) { value ->
             if (value != null)
-                tvTotalPrice.text = "Total Amount : ${value}"
-        })
-
-
+                tvTotalPrice.text = "Total Amount : $value"
+        }
     }
 
     override fun onPause() {
@@ -101,24 +99,20 @@ class SkuListFragment : BaseFragment(), ClickListener {
     }
 
     override fun onItemClicked(item: SKU) {
-
         val dialog = QuantityDialogFragment.newInstance(item)
         dialog.setTargetFragment(this, 2)
         dialog.show(requireFragmentManager(), "dialog")
-
     }
 
     override fun onDetach() {
         super.onDetach()
         Log.e("sku","detached")
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (resultCode == QuantityDialogFragment.RESULT_DATA_CHANGED) {
-            // update activityViewModel
             activityViewModel.updateSKU(data?.getSerializableExtra(QuantityDialogFragment.EXTRA_SKU) as SKU,
                     data.getIntExtra(QuantityDialogFragment.EXTRA_UNITS, 0),
                     data.getIntExtra(QuantityDialogFragment.EXTRA_CARTONS, 0))
@@ -130,16 +124,12 @@ class SkuListFragment : BaseFragment(), ClickListener {
     }
 
     override fun onClick(v: View?) {
-
         when (v?.id) {
             else -> super.onClick(v)
         }
-
     }
 
-
     companion object {
-
         const val ARGS_CATEGORY = "args_categoruy"
 
         fun newInstance(category: Category) = SkuListFragment().apply {

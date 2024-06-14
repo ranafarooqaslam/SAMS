@@ -14,7 +14,6 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 
 class TakeOrderActivity : BaseActivity() {
 
-
     private lateinit var viewModel: OrderVM
 
     override fun setUp(savedInstanceState: Bundle?) {
@@ -26,7 +25,6 @@ class TakeOrderActivity : BaseActivity() {
         if (savedInstanceState == null) {
             replaceFragment(TakeOrderFragment.newInstance(intent.getSerializableExtra(EXTRA_OUTLET) as Outlet), false)
         }
-
     }
 
     override fun getViewModel(): BaseVM? {
@@ -34,7 +32,7 @@ class TakeOrderActivity : BaseActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item?.itemId == android.R.id.home){
+        if(item.itemId == android.R.id.home) {
             onBackPressed()
         }
         return super.onOptionsItemSelected(item!!)

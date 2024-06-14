@@ -151,13 +151,13 @@ abstract class BaseFragment : androidx.fragment.app.Fragment(), View.OnClickList
                 R.id.logout -> {
                     val builder = AlertDialog.Builder(activity)
                     builder.setTitle("Logout Confirmation")
-                    builder.setMessage("Are you sure you want to logout. All unsync data will be erased")
+                    builder.setMessage("Are you sure you want to logout?")
                     builder.setPositiveButton("Yes") { dialog, _ ->
                         dialog.dismiss()
                         startActivity(Intent(activity?.applicationContext, CompanyCodeActivity::class.java))
                         GlobalScope.launch {
                             SamsApplication.getPreferenceManager().logout()
-                            SamsApplication.getDB().clearAllTables()
+//                            SamsApplication.getDB().clearAllTables()
                             activity?.finish()
                         }
                     }

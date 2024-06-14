@@ -3,26 +3,22 @@ package com.fastservices.sams.modules.takeorder
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.content.pm.PackageManager
-import androidx.databinding.DataBindingUtil
 import android.location.Location
 import android.os.Bundle
 import android.provider.Settings
-import androidx.core.app.ActivityCompat
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.text.method.LinkMovementMethod
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.Toast
+import android.widget.*
+import androidx.core.app.ActivityCompat
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.fastservices.sams.R
@@ -37,34 +33,20 @@ import com.fastservices.sams.modules.base.BaseFragment
 import com.fastservices.sams.modules.base.BaseVM
 import com.fastservices.sams.modules.orderdetails.OrderDetailFragment
 import com.fastservices.sams.modules.skulist.SkuListFragment
-import com.github.florent37.rxgps.RxGps
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.imagepicker.FilePickUtils
 import com.imagepicker.LifeCycleCallBackManager
-import com.tommasoberlose.progressdialog.ProgressDialogFragment
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.annotations.NonNull
-import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.fragment_outlet_no_order.*
 import kotlinx.android.synthetic.main.fragment_take_order.*
-import kotlinx.android.synthetic.main.fragment_take_order.btnTakeGPS
-import kotlinx.android.synthetic.main.fragment_take_order.imagesContainer
-import kotlinx.android.synthetic.main.fragment_take_order.ivCamera
-import kotlinx.android.synthetic.main.fragment_take_order.tvClosingBalance
-import kotlinx.android.synthetic.main.fragment_take_order.tvContactNumber
-import kotlinx.android.synthetic.main.fragment_take_order.tvLastOrderAmount
-import kotlinx.android.synthetic.main.fragment_take_order.tvLastOrderDate
-import kotlinx.android.synthetic.main.fragment_take_order.tvMapLink
-import kotlinx.android.synthetic.main.fragment_take_order.tvStoreType
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
-class TakeOrderFragment : BaseFragment(), ClickListener {
+class TakeOrderFragment: BaseFragment(), ClickListener {
 
-    lateinit var binding: FragmentTakeOrderBinding
+    lateinit var binding:   FragmentTakeOrderBinding
     lateinit var viewModel: OrderVM
 
     override fun doBinding(inflater: LayoutInflater, container: ViewGroup?): View {
@@ -89,6 +71,8 @@ class TakeOrderFragment : BaseFragment(), ClickListener {
         filePickUtils = FilePickUtils(this, onFileChoose)
         lifeCycleCallBackManager = filePickUtils.callBackManager
 
+        lblReasonTakeOrder.text = "Select reason for not tracking order at ${viewModel.outlet?.outletName}"
+
         val manager = LinearLayoutManager(context)
         rvCategories.layoutManager = manager
 
@@ -108,7 +92,7 @@ class TakeOrderFragment : BaseFragment(), ClickListener {
                 tvContactNumber.text = it.phoneNumber
                 if (it.lastOrderDate.isNotEmpty()) {
                     try {
-                        tvLastOrderDate.text = output.format(SamsApplication.sdf.parse(it.lastOrderDate))
+                        tvLastOrderDate.text = output.format(SamsApplication.sdf.parse(it.lastOrderDate)!!)
                     }
                     catch (e: Exception) {
                         tvLastOrderDate.text = it.lastOrderDate
@@ -130,6 +114,36 @@ class TakeOrderFragment : BaseFragment(), ClickListener {
         viewModel.images.forEach {
             addImageViewToContainer(it)
         }
+
+        radioTakeOrder.setOnCheckedChangeListener { _, b ->
+            if(b) {
+                viewModel.optionSelected.value = 1
+                orderSummary.text = "Order Summary"
+                takeOrderLayout.visibility = View.VISIBLE
+                noOrderLayout.visibility   = View.GONE
+            }
+            else {
+                takeOrderLayout.visibility = View.GONE
+                noOrderLayout.visibility   = View.VISIBLE
+            }
+        }
+
+        radioNoOrder.setOnCheckedChangeListener { _, b ->
+            if(b) {
+                viewModel.optionSelected.value = 2
+                orderSummary.text = "Submit"
+                takeOrderLayout.visibility = View.GONE
+                noOrderLayout.visibility   = View.VISIBLE
+            }
+            else {
+                takeOrderLayout.visibility = View.VISIBLE
+                noOrderLayout.visibility   = View.GONE
+            }
+        }
+
+        multiLineRadioGroupTakeOrder.setOnCheckedChangeListener { _: ViewGroup?, radioButton: RadioButton? ->
+            viewModel.selectedReasonId = radioButton?.id ?: -1
+        }
     }
 
     override fun setVM() {
@@ -139,6 +153,13 @@ class TakeOrderFragment : BaseFragment(), ClickListener {
 
     @SuppressLint("NotifyDataSetChanged")
     override fun setObservers() {
+
+        viewModel.dataInserted.observe(viewLifecycleOwner) { dt ->
+            if(dt) {
+                requireActivity().onBackPressedDispatcher.onBackPressed()
+            }
+        }
+
         viewModel.categoriesLoaded.observe(viewLifecycleOwner) { value ->
             if (value == true) {
                 if (categoriesAdapter == null) {
@@ -160,10 +181,23 @@ class TakeOrderFragment : BaseFragment(), ClickListener {
             }
         }
 
-        viewModel.showEmptyView.observe(viewLifecycleOwner, Observer { show ->
-            if (show == true) emptyView.visibility = View.VISIBLE
-            else emptyView.visibility = View.GONE
-        })
+        viewModel.showEmptyView.observe(viewLifecycleOwner) { show ->
+            if (show == true) {
+                emptyView.visibility = View.VISIBLE
+            }
+            else {
+                emptyView.visibility = View.GONE
+            }
+        }
+
+        viewModel.dataLoaded.observe(viewLifecycleOwner) { _ ->
+            viewModel.reasons.forEach {
+                val radio = RadioButton(context)
+                radio.text = it.unOrderReason
+                radio.id = it.unOrderReasonID
+                multiLineRadioGroupTakeOrder.addButtons(radio)
+            }
+        }
     }
 
     override fun onItemClicked(item: Category) {
@@ -237,20 +271,21 @@ class TakeOrderFragment : BaseFragment(), ClickListener {
             )
             return
         }
+
         fusedLocationClient.lastLocation.addOnSuccessListener { location : Location? ->
             // Got last known location. In some rare situations this can be null.
             Log.d("LocationCheck", "getGPSLocation2")
             if(location != null) {
                 if(viewModel.outlet!!.validateRadius==1) {
                     Log.d("LocationCheck", "getGPSLocation3")
-                    var currentLocation = location
+                    val currentLocation = location
 
 
-                    var outletLocation = Location("")
+                    val outletLocation = Location("")
                     outletLocation.latitude = viewModel.outlet!!.latitude
                     outletLocation.longitude = viewModel.outlet!!.longtidue
 
-                    var distance = currentLocation!!.distanceTo(outletLocation)
+                    val distance = currentLocation!!.distanceTo(outletLocation)
                     if (distance < viewModel.outlet!!.radius) {
                         Log.d("LocationCheck", "orderSummaryClicked: Within Radius")
                         viewModel.latitude = location!!.latitude
@@ -330,11 +365,6 @@ class TakeOrderFragment : BaseFragment(), ClickListener {
                                  tvMapLink.linksClickable = true
                                  tvMapLink.movementMethod = LinkMovementMethod()
                              }
-
-
-
-
-
                          }, { throwable ->
                      if (throwable is RxGps.PermissionException) {
                          //the user does not allow the permission
@@ -344,9 +374,7 @@ class TakeOrderFragment : BaseFragment(), ClickListener {
                          ProgressDialogFragment.hideProgressBar(activity!!)
                      }
                  }
-
                  )*/
-
     }
 
 
@@ -362,11 +390,9 @@ class TakeOrderFragment : BaseFragment(), ClickListener {
 
 
     private val onFileChoose = FilePickUtils.OnFileChoose { fileUri, requestCode, size ->
-       addImageViewToContainer(fileUri)
-
+        addImageViewToContainer(fileUri)
         viewModel.imageTaken(fileUri)
-
-
+        viewModel.imageTakenNoOrder(fileUri)
     }
 
     private fun addImageViewToContainer(fileUri: String?) {

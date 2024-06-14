@@ -9,9 +9,7 @@ import com.fastservices.sams.SamsApplication
 import com.fastservices.sams.data.entities.*
 import com.fastservices.sams.data.entities.promotions.dtFreeSKUDetail
 import com.fastservices.sams.data.models.SummaryUIModel
-import com.fastservices.sams.data.repos.PromotionCalculatorUpdated
-import com.fastservices.sams.data.repos.RepoSKU
-import com.fastservices.sams.data.repos.RepoSKUCategory
+import com.fastservices.sams.data.repos.*
 import com.fastservices.sams.modules.base.BaseVM
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -22,15 +20,15 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-
 class OrderVM() : BaseVM() {
 
     val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault())
 
-    val timeIn: String
+    val timeIn: String = sdf.format(Date())
 
     val summaryModelLiveData = MutableLiveData<SummaryUIModel>()
 
+    var comments = ""
 
     var categoryId: Int? = null
 
@@ -42,12 +40,17 @@ class OrderVM() : BaseVM() {
 
     var categories = ArrayList<Category>()
 
-    // unfiltered
+    var selectedReasonId: Int = -1
+
+    val dataLoaded = MutableLiveData<Boolean>()
+
     private lateinit var allCategories: List<Category>
 
     val categoriesLoaded = MutableLiveData<Boolean>()
 
     val showEmptyView = MutableLiveData<Boolean>()
+
+    val optionSelected = MutableLiveData<Int>(1) // 1 for order, 2 for no order
 
     private lateinit var SKUs: List<SKU>
 
@@ -58,21 +61,28 @@ class OrderVM() : BaseVM() {
     val grossAmountObservable = MutableLiveData<String>()
 
     val totalUnitsObservable = MutableLiveData<Int>()
-    val totalCartonssObservable = MutableLiveData<Int>()
 
+    val totalCartonssObservable = MutableLiveData<Int>()
 
     var searchQuery = ""
 
     var ascending = ObservableField<Boolean>(false)
 
     val images = ArrayList<String>()
+
+    var files = arrayOf("","","","","")
+
     var latitude: Double = 0.0
+
     var longtidue: Double = 0.0
 
     var paymentType: Int = 0
 
+    val dataInserted = MutableLiveData<Boolean>()
+
+    lateinit var reasons: List<NoOrderReason>
+
     init {
-        timeIn = sdf.format(Date())
         GlobalScope.launch {
             val user = SamsApplication.getPreferenceManager().getUser()
             SKUs = RepoSKU(user!!).getAllSKUs()
@@ -80,6 +90,8 @@ class OrderVM() : BaseVM() {
             categories.addAll(allCategories)
             categoriesLoaded.postValue(true)
             showEmptyView.postValue(allCategories.isEmpty())
+            reasons = RepoNoOrderReason().getAll()
+            dataLoaded.postValue(true)
         }
     }
 
@@ -87,91 +99,125 @@ class OrderVM() : BaseVM() {
 
     fun getOrders() = orderList
 
-    fun orderSummaryClicked() {
-       // errorLiveData.postValue("outlet Radius= "+ (outlet?.radius ?:0 ))
-        Log.d("orderSummary", "orderSummaryClicked: Radius: "+outlet?.radius ?: 99.toString())
-        Log.d("orderSummary", "orderSummaryClicked: Radius: "+outlet?.validateRadius ?: 99.toString())
-        if (latitude == 0.0 || longtidue == 0.0) {
-            errorLiveData.postValue("Location not set. Please tap on Take GPS")
+    fun submitNoOrder() {
+
+        if(selectedReasonId == -1) {
+            errorLiveData.postValue("Select any reason")
             return
         }
 
-        if(outlet!!.validateRadius==1){
-            var currentLocation = Location("")
-            currentLocation.setLatitude(latitude)
-            currentLocation.setLongitude(longtidue)
-
-            var outletLocation = Location("")
-            outletLocation.setLatitude(outlet!!.latitude)
-            outletLocation.setLongitude(outlet!!.longtidue)
-
-            var distance = currentLocation.distanceTo(outletLocation);
-            if (distance < outlet!!.radius) {
-                Log.d("LocationCheck", "orderSummaryClicked: Within Radius")
-            }else{
-                errorLiveData.postValue("You are not within allowed radius of your outlet. To take order please make sure you are in your outlet.")
-                return
+        if(longtidue == 0.0 || latitude == 0.0) {
+            errorLiveData.postValue("Location not selected. Press Take GPS button")
+            return
+        }
+        var pictureTaken = false
+        for(i in 0 until files.size) {
+            if(files[i].isNotEmpty()) {
+                pictureTaken = true
+                break
             }
         }
-
-        if (images.isEmpty()) {
-            errorLiveData.postValue("Take at least one image to proceed")
+        if(!pictureTaken) {
+            errorLiveData.postValue("Please take at least one picture.")
             return
         }
 
+        if (selectedReasonId != -1) {
+            GlobalScope.launch {
+                val item = NoOrderItem(outlet?.outletID!!, outlet?.sectionID.toString(),
+                    SamsApplication.getDocumentDate(), selectedReasonId.toString(),
+                    timeIn, sdf.format(Date()), comments,latitude,longtidue,
+                    files[0], files[1], files[2], files[3], files[4])
 
-
-
-        if (orderList.isNotEmpty())
-            summaryClicked.postValue(true)
-        else
-            errorLiveData.postValue("No Items selected")
+                RepoNoOrder(SamsApplication.getPreferenceManager().getUser()).insertItem(item)
+                dataInserted.postValue(true)
+            }
+        }
     }
 
+    fun orderSummaryClicked() {
+        if(optionSelected.value == 2) {
+            submitNoOrder()
+        }
+        else {
+           // errorLiveData.postValue("outlet Radius= "+ (outlet?.radius ?:0 ))
+            Log.d("orderSummary", ("orderSummaryClicked: Radius: " + outlet?.radius) ?: 99.toString())
+            Log.d("orderSummary",
+                ("orderSummaryClicked: Radius: " + outlet?.validateRadius) ?: 99.toString()
+            )
+            if (latitude == 0.0 || longtidue == 0.0) {
+                errorLiveData.postValue("Location not set. Please tap on Take GPS")
+                return
+            }
 
+            if(outlet!!.validateRadius==1) {
+                var currentLocation = Location("")
+                currentLocation.latitude = latitude
+                currentLocation.longitude = longtidue
 
+                var outletLocation = Location("")
+                outletLocation.latitude = outlet!!.latitude
+                outletLocation.longitude = outlet!!.longtidue
+
+                var distance = currentLocation.distanceTo(outletLocation);
+                if (distance < outlet!!.radius) {
+                    Log.d("LocationCheck", "orderSummaryClicked: Within Radius")
+                }
+                else {
+                    errorLiveData.postValue("You are not within allowed radius of your outlet. To take order please make sure you are in your outlet.")
+                    return
+                }
+            }
+
+            if (images.isEmpty()) {
+                errorLiveData.postValue("Take at least one image to proceed")
+                return
+            }
+
+            if (orderList.isNotEmpty())
+                summaryClicked.postValue(true)
+            else
+                errorLiveData.postValue("No Items selected")
+        }
+    }
 
     private var promotionHelper: PromotionCalculatorUpdated? = null
 
     private var freeSkus: java.util.ArrayList<dtFreeSKUDetail>? = null
 
-
     fun collapseClicked() {
-
         if (toggleDetailLayout.get() == View.VISIBLE) {
             toggleDetailLayout.set(View.GONE)
-        } else {
+        }
+        else {
             toggleDetailLayout.set(View.VISIBLE)
         }
     }
 
     fun applyFilter(q: String) {
-
         categories.clear()
         categories.addAll(
-
-                allCategories.filter {
-                    it.SKU_HIE_NAME.contains(q, true)
-                }
+            allCategories.filter {
+                it.SKU_HIE_NAME.contains(q, true)
+            }
         )
         categoriesLoaded.postValue(true)
     }
 
     fun sorting() {
-
         if (ascending.get() == true) {
             ascending.set(false)
             categories.sortBy {
                 it.SKU_HIE_NAME
             }
-        } else {
+        }
+        else {
             ascending.set(true)
             categories.sortByDescending {
                 it.SKU_HIE_NAME
             }
         }
         categoriesLoaded.postValue(true)
-
     }
 
     fun imageTaken(fileUri: String?) {
@@ -188,7 +234,6 @@ class OrderVM() : BaseVM() {
         if (unit > 0 || carton > 0)
             orderList.add(orderItem)
         calculateGrossAmount()
-
     }
 
     fun removeOrderItem(item: OrderItem): Int {
@@ -209,16 +254,13 @@ class OrderVM() : BaseVM() {
             units += it.skuItem.NO_OF_UNITS
             cartons += it.skuItem.NO_OF_CARTONS
         }
-
         grossAmountObservable.postValue(DecimalFormattedAmount(RoundUp2Decimal(result).toDouble()))
         totalUnitsObservable.postValue(units)
         totalCartonssObservable.postValue(cartons)
     }
 
-
     fun getSkuList(category_id: Int): List<SKU> {
         // filter skus by Category Id
-
         return SKUs.filter { it.CATEGORY_ID == category_id }
     }
 
@@ -253,7 +295,6 @@ class OrderVM() : BaseVM() {
             freeSkus = promotionHelper?.GetPromotion()
             freeSKusLoaded.postValue(freeSkus)
         }
-
     }
 
     var remarks = ""
@@ -262,30 +303,23 @@ class OrderVM() : BaseVM() {
         val timeOut = sdf.format(Date())
 
         GlobalScope.launch {
-
             val user = SamsApplication.getPreferenceManager().getUser() ?: return@launch
 
             showLoader.postValue(true)
             val orderMasterRowId = promotionHelper?.saveOrderMaster(remarks, timeIn, timeOut, latitude, longtidue, images, paymentType)
             if (orderMasterRowId == null || orderMasterRowId == -1L) {
                 errorLiveData.postValue("Error while saving Order Master")
-            } else {
+            }
+            else {
                 promotionHelper?.saveOrderDetail(orderMasterRowId, user.DistributionID, freeSkus)
                 orderSavedLiveData.postValue(true)
             }
-
             showLoader.postValue(false)
-
-
         }
-
-
     }
 
     fun removeFileUri(uri: String) {
-
         images.remove(uri)
-
     }
 
     var skuAdapterDataList :ArrayList<SKU> = ArrayList<SKU>()
@@ -294,10 +328,9 @@ class OrderVM() : BaseVM() {
         applySKUFilter("")
 
     }
+
     val searchQuerySKU: ObservableField<String> = ObservableField<String>()
     fun applySKUFilter(input: String) {
-
-
         skuAdapterDataList.clear()
 
         skuAdapterDataList.addAll(
@@ -306,7 +339,16 @@ class OrderVM() : BaseVM() {
                             it.SKU_NAME.contains(input, true) )
                 }
         )
-
         dataListUpdated.postValue(true)
+    }
+
+    fun imageTakenNoOrder(fileUri: String?) {
+        fileUri ?: return
+        for(i in 0 until 5){
+            if(files[i].isEmpty()){
+                files[i] = fileUri
+                break
+            }
+        }
     }
 }

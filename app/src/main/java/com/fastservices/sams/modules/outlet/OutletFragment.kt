@@ -77,7 +77,7 @@ open class OutletFragment: BaseFragment(), ClickListener, View.OnClickListener {
     override fun setObservers() {
         viewModel.notifyAdapter.observe(viewLifecycleOwner) { _ ->
             if (outletsAdapter == null) {
-                outletsAdapter = OutletsAdapter(viewModel.outletList, viewModel.noOrdersList, this)
+                outletsAdapter = OutletsAdapter(viewModel.outletList, viewModel.noOrdersList, this, requireActivity())
                 rvOutlets.adapter = outletsAdapter
             }
             outletsAdapter?.notifyDataSetChanged()
