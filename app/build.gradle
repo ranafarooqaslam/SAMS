@@ -8,14 +8,14 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 
 android {
-    compileSdkVersion 33
+    compileSdk 34
     buildToolsVersion "33.0.0"
     defaultConfig {
         applicationId "com.fastservices.sams"
-        minSdkVersion 23
-        targetSdkVersion 33
-        versionCode 30
-        versionName "1.0.8"
+        minSdkVersion 24
+        targetSdkVersion 34
+        versionCode 31
+        versionName "1.0.9"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
     buildTypes {

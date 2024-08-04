@@ -109,6 +109,7 @@ class SkuListFragment : BaseFragment(), ClickListener {
         Log.e("sku","detached")
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -117,7 +118,8 @@ class SkuListFragment : BaseFragment(), ClickListener {
                     data.getIntExtra(QuantityDialogFragment.EXTRA_UNITS, 0),
                     data.getIntExtra(QuantityDialogFragment.EXTRA_CARTONS, 0))
 
-            activityViewModel.addOrderItem(data?.getSerializableExtra(QuantityDialogFragment.EXTRA_SKU) as SKU,
+            activityViewModel.addOrderItem(
+                data.getSerializableExtra(QuantityDialogFragment.EXTRA_SKU) as SKU,
                     data.getIntExtra(QuantityDialogFragment.EXTRA_UNITS, 0),
                     data.getIntExtra(QuantityDialogFragment.EXTRA_CARTONS, 0))
         }

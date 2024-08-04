@@ -47,6 +47,7 @@ open class OutletFragment: BaseFragment(), ClickListener, View.OnClickListener {
     override fun getLayoutResId() = R.layout.fragment_outlet
 
     private lateinit var viewModel: OutletsVM
+
     private lateinit var binding: FragmentOutletBinding
 
     @SuppressLint("ClickableViewAccessibility")
@@ -55,10 +56,21 @@ open class OutletFragment: BaseFragment(), ClickListener, View.OnClickListener {
         rvOutlets.layoutManager = manager
         rvOutlets.adapter = outletsAdapter
         btnSection.setOnClickListener(this)
+        btnOutOfArea.setOnClickListener(this)
+
         rvOutlets.setOnTouchListener { _, _ ->
             val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
             imm?.hideSoftInputFromWindow(etFilter.windowToken, 0)
             false
+        }
+
+        checkOutOfArea.setOnCheckedChangeListener { _, b ->
+            if(b) {
+                btnOutOfArea.visibility = View.VISIBLE
+            }
+            else {
+                btnOutOfArea.visibility = View.GONE
+            }
         }
     }
 
@@ -85,6 +97,7 @@ open class OutletFragment: BaseFragment(), ClickListener, View.OnClickListener {
     }
 
     private var sectionPopup: PopupMenu? = null
+    private var sectionOutOfAreaPopup: PopupMenu? = null
 
     private fun populateSectionSpinner() {
         sectionPopup = PopupMenu(activity, btnSection)
@@ -99,6 +112,19 @@ open class OutletFragment: BaseFragment(), ClickListener, View.OnClickListener {
         }
     }
 
+    private fun populateOutOfAreaSectionSpinner() {
+        sectionOutOfAreaPopup = PopupMenu(activity, btnOutOfArea)
+        viewModel.sectionsOutOfArea?.forEach {
+            sectionOutOfAreaPopup?.menu?.add(0, it.sectionID, 0, it.sectionName)
+        }
+
+        sectionOutOfAreaPopup?.setOnMenuItemClickListener { item ->
+            btnOutOfArea.text = item.title
+            viewModel.applyOutOfAreaFilter(item.itemId)
+            true
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val scope = CoroutineScope(Dispatchers.Main)
@@ -107,7 +133,7 @@ open class OutletFragment: BaseFragment(), ClickListener, View.OnClickListener {
             delay(500)
             if (!viewModel.sections.isNullOrEmpty()) {
                 populateSectionSpinner()
-
+                populateOutOfAreaSectionSpinner()
                 btnSection.text = viewModel.sections!![0].sectionName
                 sectionPopup?.menu?.get(0)?.itemId?.let { viewModel.applyAreaFilter(it) }
             }
@@ -121,6 +147,11 @@ open class OutletFragment: BaseFragment(), ClickListener, View.OnClickListener {
                     populateSectionSpinner()
                 sectionPopup?.show()
             }
+            btnOutOfArea.id -> {
+                if (sectionOutOfAreaPopup == null)
+                    populateOutOfAreaSectionSpinner()
+                sectionOutOfAreaPopup?.show()
+            }
             else -> super.onClick(v)
         }
     }
@@ -129,7 +160,6 @@ open class OutletFragment: BaseFragment(), ClickListener, View.OnClickListener {
         outletsAdapter?.getItemAtPosition(position)?.let {
             (activity as? BaseActivity)?.replaceFragment(OutletNoOrderFragment.newInstance(it), true)
         }
-
     }
 
     override fun onClickItem(position: Int) {
@@ -137,13 +167,9 @@ open class OutletFragment: BaseFragment(), ClickListener, View.OnClickListener {
         outletsAdapter?.getItemAtPosition(position)?.let {
             TakeOrderActivity.startActivity(requireContext(), it)
         }
-
     }
 
     companion object {
-
-        fun newInstance() = OutletFragment().apply {
-
-        }
+        fun newInstance() = OutletFragment().apply { }
     }
 }

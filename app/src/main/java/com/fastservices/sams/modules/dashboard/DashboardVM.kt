@@ -52,7 +52,6 @@ class DashboardVM : BaseVM() {
     }
 
     fun endMyDay() {
-
         GlobalScope.launch {
             try {
                 val user = SamsApplication.getPreferenceManager().getUser() ?: return@launch
@@ -66,14 +65,12 @@ class DashboardVM : BaseVM() {
                 }
                 dayEnded.postValue(true)
                 dayStarted.postValue(false)
-
-            } catch (e: Exception) {
+            }
+            catch (e: Exception) {
                 e.printStackTrace()
                 handleError(e)
             }
-
             showLoader.postValue(false)
-
         }
     }
 }

@@ -7,7 +7,9 @@ import androidx.room.PrimaryKey
 data class Section(
         @PrimaryKey val sectionID: Int,
         val sectionCode: String?,
-        val sectionName: String?
+        val sectionName: String?,
+        val mapType: String?,
+        val allowOutAreaBooking: Int?,
 ) {
 
     override fun toString(): String {

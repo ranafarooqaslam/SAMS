@@ -13,6 +13,7 @@ import com.fastservices.sams.modules.base.BaseVM
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.util.Locale
 
 class OutletsVM() : BaseVM() {
 
@@ -30,6 +31,8 @@ class OutletsVM() : BaseVM() {
     val notifyAdapter = MutableLiveData<Boolean>()
 
     var sections: List<Section>? = null
+
+    var sectionsOutOfArea: List<Section>? = null
 
     var sectionAreaId = -1
 
@@ -79,9 +82,31 @@ class OutletsVM() : BaseVM() {
         notifyAdapter.postValue(true)
     }
 
-    fun loadSections() {
+    fun applyOutOfAreaFilter(areaId: Int) {
+        outletList.clear()
+        sectionAreaId = areaId
+        searchQuery.set("")
+        if (areaId == -1) {
+            outletList.addAll(allOutlets)
+        }
+        else
+            outletList.addAll(
+                allOutlets.filter {
+                    it.sectionID == sectionAreaId
+                }
+            )
+        notifyAdapter.postValue(true)
+    }
+
+    private fun loadSections() {
         GlobalScope.launch(Dispatchers.IO) {
-            sections = SamsApplication.getDB().sectionDao().getAll()
+            sections = SamsApplication.getDB().sectionDao().getAll().filter { f -> f.mapType?.lowercase(
+                Locale.getDefault()
+            ) == "mapped" }
+
+            sectionsOutOfArea = SamsApplication.getDB().sectionDao().getAll().filter { f -> f.mapType?.lowercase(
+                Locale.getDefault()
+            ) == "not mapped" && f.allowOutAreaBooking == 1 }
         }
     }
 
@@ -93,9 +118,7 @@ class OutletsVM() : BaseVM() {
             }
             noOrdersList?.clear()
             noOrdersList?.addAll(SamsApplication.getDB().noOrderDao().getAllOutletIDs())
-
             addCartonsInformation()
-
             notifyAdapter.postValue(true)
         }
     }
@@ -104,7 +127,6 @@ class OutletsVM() : BaseVM() {
         val orders = SamsApplication.getDB().orderMasterDao().getAll()
         allOutlets.forEach { item->
             orders.find { it.OUTLET_ID == item.outletID }?.let { o->
-
                 item.label = DecimalFormattedAmount(RoundUp2Decimal(o.TOTAL_NET_AMOUNT).toDouble())
             }
         }

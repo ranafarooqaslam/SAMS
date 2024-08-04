@@ -6,7 +6,6 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 import java.text.DecimalFormat
-import java.text.NumberFormat
 import java.util.*
 
 @Entity(tableName = "SKU")
@@ -27,13 +26,12 @@ data class SKU(
         @SerializedName("uoM_DESC") var UOM_DESC: String,
         @SerializedName("categorY_ID") var CATEGORY_ID:Int,
         @Ignore var NO_OF_UNITS: Int = 0,
-        @Ignore var NO_OF_CARTONS: Int = 0
-
-
+        @Ignore var NO_OF_CARTONS: Int = 0,
+        @SerializedName("closingStockToShow") var closingStockToShow: String?,
+        @SerializedName("closingStockToValidate") var closingStockToValidate: String?,
 ) : Serializable {
 
-
-    constructor() : this(0, "", "", "", 0.0, 0.0, 0, 0, 0.0, 0.0, 0.0, 0f, 0, "", 0, 0, 0)
+    constructor() : this(0, "", "", "", 0.0, 0.0, 0, 0, 0.0, 0.0, 0.0, 0f, 0, "", 0, 0, 0, null, null)
 
     fun getSubTotal(): CharSequence? {
         val totalUnits = NO_OF_UNITS + NO_OF_CARTONS * UNITS_IN_CASE
@@ -45,7 +43,7 @@ data class SKU(
     }
 }
 
-fun RoundUp2Decimal(d: Double) = "%.2f".format(d)
+fun RoundUp2Decimal(d: Double?) = "%.2f".format(d)
 
 fun RoundUp4Decimal(d: Double) = "%.4f".format(d).toDouble()
 

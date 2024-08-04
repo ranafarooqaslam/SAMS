@@ -2,7 +2,6 @@ package com.fastservices.sams.modules.skuwise
 
 import androidx.lifecycle.MutableLiveData
 import androidx.databinding.ObservableField
-import android.util.Log
 import com.fastservices.sams.SamsApplication
 import com.fastservices.sams.data.entities.DecimalFormattedAmount
 import com.fastservices.sams.data.entities.RoundUp2Decimal

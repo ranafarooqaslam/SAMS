@@ -1,6 +1,5 @@
 package com.fastservices.sams.modules.outletwise
 
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,6 @@ import com.fastservices.sams.R
 import com.fastservices.sams.data.entities.DecimalFormattedAmount
 import com.fastservices.sams.data.entities.RoundUp2Decimal
 import com.fastservices.sams.data.models.OutletWiseSummaryModel
-import com.fastservices.sams.data.models.SKUWiseSummaryModel
 
 
 class OutletWiseAdapter(val data: List<OutletWiseSummaryModel>) : androidx.recyclerview.widget.RecyclerView.Adapter<OutletVH>() {

@@ -35,6 +35,7 @@ class SkuVH(val view: View, listener: ClickListener) : RecyclerView.ViewHolder(v
     val tvItemName = view.findViewById<TextView>(R.id.tvItemName)
     val tvRetailPrice = view.findViewById<TextView>(R.id.tvRetailPrice)
     val tvTradePrice = view.findViewById<TextView>(R.id.tvTradePrice)
+    val tvStockRemainPrice = view.findViewById<TextView>(R.id.tvStockRemainPrice)
     val rootLayout = view.findViewById<View>(R.id.rootLayout)
 
     val tvOrderUnits = view.findViewById<TextView>(R.id.tvOrderUnits)
@@ -61,6 +62,7 @@ class SkuVH(val view: View, listener: ClickListener) : RecyclerView.ViewHolder(v
         tvItemName.text = item.SKU_NAME
         tvRetailPrice.text = RoundUp2Decimal(item.RETAIL_PRICE)
         tvTradePrice.text = RoundUp2Decimal(item.TRADE_PRICE)
+        tvStockRemainPrice.text = item.closingStockToShow
 
         if (item.NO_OF_UNITS > 0 || item.NO_OF_CARTONS > 0) {
             ivIcon.setImageResource(R.drawable.ic_green_tick)

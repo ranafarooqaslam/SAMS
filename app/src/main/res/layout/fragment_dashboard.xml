@@ -24,7 +24,6 @@
             app:layout_constraintBottom_toTopOf="@+id/bottomLayout"
             app:layout_constraintTop_toTopOf="parent">
 
-
             <TextView
                 android:id="@+id/tvTakeOrder"
                 style="@style/dashboard_item_style"

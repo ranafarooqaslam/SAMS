@@ -12,9 +12,11 @@
     <activity
         android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
         android:screenOrientation="portrait"
+        android:exported="true"
         android:theme="@style/Base.Theme.AppCompat"/>
 
     <activity android:name=".pdfpicker.NormalFilePickActivity"
+        android:exported="true"
         android:screenOrientation="portrait"/>
 
 

@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.fastservices.sams.R
 import com.fastservices.sams.databinding.FragmentDashboardBinding
@@ -32,7 +31,6 @@ class DashboardFragment: BaseFragment(), View.OnClickListener {
             binding.viewModel = viewModel
         }.root
     }
-
 
     override fun getLayoutResId() = R.layout.fragment_dashboard
 
@@ -93,37 +91,29 @@ class DashboardFragment: BaseFragment(), View.OnClickListener {
     }
 
     override fun setObservers() {
-        viewModel.dayStarted.observe(viewLifecycleOwner, Observer { res ->
-
-            if(res == true){
+        viewModel.dayStarted.observe(viewLifecycleOwner) { res ->
+            if (res == true) {
                 binding.viewModel = viewModel
                 binding.notifyChange()
                 tvStartMyDay.visibility = View.GONE
                 tvEndMyDay.visibility = View.VISIBLE
             }
+        }
 
-
-        })
-
-        viewModel.dayEnded.observe(viewLifecycleOwner, Observer { res ->
-
-            if(res == true){
+        viewModel.dayEnded.observe(viewLifecycleOwner) { res ->
+            if (res == true) {
                 binding.viewModel = viewModel
                 binding.notifyChange()
                 tvStartMyDay.visibility = View.VISIBLE
                 tvEndMyDay.visibility = View.GONE
             }
-
-
-        })
+        }
     }
 
     companion object {
-
         fun newInstance() = DashboardFragment().apply {
             val args = Bundle()
             arguments = args
         }
     }
-
 }

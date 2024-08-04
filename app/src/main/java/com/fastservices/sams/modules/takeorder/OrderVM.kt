@@ -323,29 +323,30 @@ class OrderVM() : BaseVM() {
     }
 
     var skuAdapterDataList :ArrayList<SKU> = ArrayList<SKU>()
-    fun loadSKUs(){
+
+    fun loadSKUs() {
         searchQuerySKU.set("")
         applySKUFilter("")
 
     }
 
     val searchQuerySKU: ObservableField<String> = ObservableField<String>()
+
     fun applySKUFilter(input: String) {
         skuAdapterDataList.clear()
 
         skuAdapterDataList.addAll(
-                SKUs.filter {
-                    (it.CATEGORY_ID == categoryId &&
-                            it.SKU_NAME.contains(input, true) )
-                }
+            SKUs.filter {
+                (it.CATEGORY_ID == categoryId && it.SKU_NAME.contains(input, true))
+            }
         )
         dataListUpdated.postValue(true)
     }
 
     fun imageTakenNoOrder(fileUri: String?) {
         fileUri ?: return
-        for(i in 0 until 5){
-            if(files[i].isEmpty()){
+        for(i in 0 until 5) {
+            if(files[i].isEmpty()) {
                 files[i] = fileUri
                 break
             }

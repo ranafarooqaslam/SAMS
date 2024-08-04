@@ -156,12 +156,10 @@
         app:layout_constraintStart_toStartOf="@+id/tvItemCode"
         app:layout_constraintTop_toTopOf="@+id/lblTradePrice" />
 
-
     <TextView
         android:id="@+id/lblRetailPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:text="Retail Price : "
         android:textColor="@color/textcolor_black"
         android:textSize="@dimen/textsize_sku_item"
@@ -178,5 +176,33 @@
         android:textSize="@dimen/textsize_sku_item"
         app:layout_constraintStart_toStartOf="@+id/lblItemCode"
         app:layout_constraintTop_toBottomOf="@+id/lblRetailPrice" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/lblItemCode"
+        app:layout_constraintTop_toBottomOf="@+id/lblTradePrice"
+        android:gravity="center_vertical"
+        android:layout_marginTop="2dp">
+
+        <TextView
+            android:id="@+id/lblStockRemain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Closing Stock :  "
+            android:textColor="@color/textcolor_black"
+            android:textSize="@dimen/textsize_sku_item"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvStockRemainPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="215.25"
+            android:textColor="@color/textcolor_black"
+            android:textSize="@dimen/textsize_sku_item" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

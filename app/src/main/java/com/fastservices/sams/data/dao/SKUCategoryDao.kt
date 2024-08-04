@@ -8,8 +8,6 @@ import com.fastservices.sams.data.entities.Category
 
 @Dao
 interface SKUCategoryDao {
-
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(sections: List<Category>)
 

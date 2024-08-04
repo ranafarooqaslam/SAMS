@@ -9,7 +9,7 @@ import com.fastservices.sams.R
 import com.fastservices.sams.data.entities.Category
 import java.lang.ref.WeakReference
 
-class CategoryAdapter(val data: List<Category>, val clickListener: ClickListener) : androidx.recyclerview.widget.RecyclerView.Adapter<CategoryVH>() {
+class CategoryAdapter(val data: List<Category>, val clickListener: ClickListener) : RecyclerView.Adapter<CategoryVH>() {
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): CategoryVH {
         val itemView = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_category, parent, false)
@@ -27,7 +27,7 @@ class CategoryAdapter(val data: List<Category>, val clickListener: ClickListener
     }
 }
 
-class CategoryVH(val view: View, listener: ClickListener) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view), View.OnClickListener {
+class CategoryVH(val view: View, listener: ClickListener) : RecyclerView.ViewHolder(view), View.OnClickListener {
     private lateinit var item: Category
     val refListener = WeakReference<ClickListener>(listener)
     val tv = view.findViewById<TextView>(android.R.id.text1)

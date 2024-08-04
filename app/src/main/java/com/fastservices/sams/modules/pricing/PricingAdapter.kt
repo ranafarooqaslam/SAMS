@@ -1,6 +1,5 @@
 package com.fastservices.sams.modules.pricing
 
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,8 +8,6 @@ import com.fastservices.sams.R
 import com.fastservices.sams.data.entities.DecimalFormattedAmount
 import com.fastservices.sams.data.entities.RoundUp2Decimal
 import com.fastservices.sams.data.entities.SKU
-import com.fastservices.sams.data.models.SKUPricingModel
-import com.fastservices.sams.data.models.SKUWiseSummaryModel
 
 
 class PricingAdapter(val data: List<SKU>) : androidx.recyclerview.widget.RecyclerView.Adapter<SkuVH>() {
