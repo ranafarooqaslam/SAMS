@@ -23,7 +23,6 @@ import com.fastservices.sams.modules.takeorder.OrderVM
 import kotlinx.android.synthetic.main.fragment_sku_list.*
 
 class SkuListFragment : BaseFragment(), ClickListener {
-
     lateinit var binding: com.fastservices.sams.databinding.FragmentSkuListBinding
     private var adapter: SkuAdapter? = null
 

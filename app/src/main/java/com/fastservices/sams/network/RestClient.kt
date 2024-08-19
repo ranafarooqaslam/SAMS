@@ -30,8 +30,8 @@ class RestClient(context: Context) {
             clientBuilder.addInterceptor(httpLoggingInterceptor)
         }
         clientBuilder.addInterceptor(TokenInterceptor(context))
-        clientBuilder.readTimeout(60, TimeUnit.SECONDS)
-        clientBuilder.writeTimeout(60, TimeUnit.SECONDS)
+        clientBuilder.readTimeout(70, TimeUnit.SECONDS)
+        clientBuilder.writeTimeout(70, TimeUnit.SECONDS)
         val okHttpClient = clientBuilder.build()
 
 

@@ -15,7 +15,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.util.Locale
 
-class OutletsVM() : BaseVM() {
+class OutletsVM(): BaseVM() {
 
     val TAG = "OutletsVM"
     val outletList: ObservableArrayList<Outlet> = ObservableArrayList()
@@ -36,6 +36,8 @@ class OutletsVM() : BaseVM() {
 
     var sectionAreaId = -1
 
+    val outOfAreaAvailable = MutableLiveData<Boolean>()
+
     init {
         loadOutlets()
         loadSections()
@@ -53,7 +55,6 @@ class OutletsVM() : BaseVM() {
     }
 
     fun applyFilter(input: String) {
-
         outletList.clear()
 
         outletList.addAll(
@@ -106,7 +107,11 @@ class OutletsVM() : BaseVM() {
 
             sectionsOutOfArea = SamsApplication.getDB().sectionDao().getAll().filter { f -> f.mapType?.lowercase(
                 Locale.getDefault()
-            ) == "not mapped" && f.allowOutAreaBooking == 1 }
+            ) == "not mapped" && f.allowOutAreaBooking == 1 }?:ArrayList()
+
+            GlobalScope.launch (Dispatchers.Main) {
+                outOfAreaAvailable.value = (sectionsOutOfArea!!.size ?: 0) > 0
+            }
         }
     }
 

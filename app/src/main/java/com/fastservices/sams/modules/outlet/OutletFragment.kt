@@ -47,7 +47,6 @@ open class OutletFragment: BaseFragment(), ClickListener, View.OnClickListener {
     override fun getLayoutResId() = R.layout.fragment_outlet
 
     private lateinit var viewModel: OutletsVM
-
     private lateinit var binding: FragmentOutletBinding
 
     @SuppressLint("ClickableViewAccessibility")
@@ -64,12 +63,23 @@ open class OutletFragment: BaseFragment(), ClickListener, View.OnClickListener {
             false
         }
 
+        viewModel.outOfAreaAvailable.observe(this) { t ->
+            if (t == true) {
+                checkBoxLayout.visibility = View.VISIBLE
+            } else {
+                checkBoxLayout.visibility = View.GONE
+            }
+        }
+
         checkOutOfArea.setOnCheckedChangeListener { _, b ->
             if(b) {
                 btnOutOfArea.visibility = View.VISIBLE
             }
             else {
                 btnOutOfArea.visibility = View.GONE
+                btnSection.text = viewModel.sections!![0].sectionName
+                sectionPopup?.menu?.get(0)?.itemId?.let { viewModel.applyAreaFilter(it) }
+                btnOutOfArea.text = "Out of Area"
             }
         }
     }

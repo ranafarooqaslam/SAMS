@@ -1,5 +1,6 @@
 package com.fastservices.sams.data.repos
 
+import android.util.Log
 import com.fastservices.sams.SamsApplication
 import com.fastservices.sams.data.entities.SKU
 import com.fastservices.sams.data.models.PostBody
@@ -15,6 +16,13 @@ class RepoSKU(val user: UserInfo) {
     )
 
     suspend fun syncDownSKUs() {
+        SamsApplication.getPreferenceManager().getClientCode()?.let {
+            Log.d("ZKB1989", it)
+        }
+        SamsApplication.getPreferenceManager().getToken()?.let {
+            Log.d("ZKB1989", it)
+        }
+
         val skus = SamsApplication.getWebService().getSKUs(PostBody(SP_NAME, params)).await().dataReturned
         SamsApplication.getDB().SKUDao().deleteAll()
         SamsApplication.getDB().SKUDao().insertAll(skus)
