@@ -24,7 +24,13 @@ class AddOutletVM() : BaseVM() {
             subChannels.addAll(SamsApplication.getDB().channelDao().getAllSubChannel())
             dataLoaded.postValue(CHANNELS)
 
-            sections.addAll(SamsApplication.getDB().sectionDao().getAll())
+            val xt = SamsApplication.getDB().sectionDao().getAll()
+            if(xt.isNotEmpty() && xt[0].allowOutAreaBooking == 0) {
+                sections.addAll(xt.filter { f -> f.mapType == "Mapped" })
+            }
+            else {
+                sections.addAll(xt)
+            }
             localities.addAll(SamsApplication.getDB().sectionDao().getAllLocality())
             dataLoaded.postValue(SECTIONS)
         }

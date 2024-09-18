@@ -34,7 +34,6 @@ import io.reactivex.annotations.NonNull
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_add_outlet.*
 
-
 class AddOutletFragment : BaseFragment(), View.OnClickListener {
 
     val TAG = "AddOutletFragment"
@@ -45,7 +44,6 @@ class AddOutletFragment : BaseFragment(), View.OnClickListener {
             binding.viewModel = viewModel
         }.root
     }
-
 
     override fun getTitle() = "Add Outlet"
 
@@ -119,8 +117,7 @@ class AddOutletFragment : BaseFragment(), View.OnClickListener {
         adapterSections.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spSector.adapter = adapterSections
         spSector.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-            }
+            override fun onNothingSelected(parent: AdapterView<*>?) { }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 (parent?.getItemAtPosition(position) as? Section)?.let {
