@@ -46,29 +46,27 @@ class OrderDetailFragment : BaseFragment(), DeleteClickListener {
     override fun getLayoutResId() = R.layout.fragment_order_details
 
     override fun setUp() {
-
-        val manager: androidx.recyclerview.widget.RecyclerView.LayoutManager = androidx.recyclerview.widget.LinearLayoutManager(
+        val manager: RecyclerView.LayoutManager = LinearLayoutManager(
             context
-        ) as androidx.recyclerview.widget.RecyclerView.LayoutManager
+        )
         rvOrderItems.layoutManager = manager
-
         rvOrderItems.adapter = OrderDetailAdapter(viewModel.getOrders(), this)
     }
 
     override fun setVM() {
-
-        viewModel = ViewModelProviders.of(activity!!).get(OrderVM::class.java)
-
+        viewModel = ViewModelProviders.of(requireActivity()).get(OrderVM::class.java)
     }
 
     override fun setObservers() {
-
-        viewModel.summaryClicked.observe(viewLifecycleOwner, Observer { value ->
+        viewModel.summaryClicked.observe(viewLifecycleOwner) { value ->
             if (value == true) {
                 viewModel.summaryClicked.postValue(false)
-                (activity as? BaseActivity)?.replaceFragment(OrderSummaryFragment.newInstance(), true)
+                (activity as? BaseActivity)?.replaceFragment(
+                    OrderSummaryFragment.newInstance(),
+                    true
+                )
             }
-        })
+        }
 
         viewModel.grossAmountObservable.observe(viewLifecycleOwner, Observer { value ->
             if (value != null) {

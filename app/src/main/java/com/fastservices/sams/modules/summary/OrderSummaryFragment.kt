@@ -18,7 +18,6 @@ import kotlinx.android.synthetic.main.fragment_order_summary.*
 
 class OrderSummaryFragment : BaseFragment() {
 
-
     override fun getTitle() = "Take Order"
 
 
@@ -55,24 +54,22 @@ class OrderSummaryFragment : BaseFragment() {
     }
 
     override fun setVM() {
-
         viewModel = ViewModelProviders.of(requireActivity()).get(OrderVM::class.java)
-
     }
 
     override fun setObservers() {
-
-
-        viewModel.summaryModelLiveData.observe(viewLifecycleOwner, Observer { data ->
+        viewModel.summaryModelLiveData.observe(viewLifecycleOwner) { data ->
             if (data != null) {
                 tvGrossAmount.text = DecimalFormattedAmount(RoundUp4Decimal(data.grossAmout))
-                tvCompanyDiscount.text =  DecimalFormattedAmount(RoundUp4Decimal(data.companyDiscount))
-                tvGST.text =  DecimalFormattedAmount(RoundUp4Decimal(data.gst))
-                tvDistDiscount.text =  DecimalFormattedAmount(RoundUp4Decimal(data.distributorDiscount))
-                tvTradeOffer.text =  DecimalFormattedAmount(RoundUp4Decimal(data.tradeOffer))
+                tvCompanyDiscount.text =
+                    DecimalFormattedAmount(RoundUp4Decimal(data.companyDiscount))
+                tvGST.text = DecimalFormattedAmount(RoundUp4Decimal(data.gst))
+                tvDistDiscount.text =
+                    DecimalFormattedAmount(RoundUp4Decimal(data.distributorDiscount))
+                tvTradeOffer.text = DecimalFormattedAmount(RoundUp4Decimal(data.tradeOffer))
                 tvNetAmount.text = DecimalFormattedAmount(RoundUp4Decimal(data.netAmount))
             }
-        })
+        }
 
         viewModel.freeSKusLoaded.observe(viewLifecycleOwner, Observer { list ->
             // display free skus
@@ -87,11 +84,11 @@ class OrderSummaryFragment : BaseFragment() {
             }
         })
 
-        viewModel.orderSavedLiveData.observe(viewLifecycleOwner, Observer { value ->
+        viewModel.orderSavedLiveData.observe(viewLifecycleOwner) { value ->
             if (value == true) {
                 activity?.finish()
             }
-        })
+        }
     }
 
     override fun onClick(v: View?) {
@@ -102,7 +99,6 @@ class OrderSummaryFragment : BaseFragment() {
     }
 
     companion object {
-
         fun newInstance() = OrderSummaryFragment().apply {
 
         }

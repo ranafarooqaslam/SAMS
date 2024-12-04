@@ -1,6 +1,5 @@
 package com.fastservices.sams.data.entities.promotions;
 
-
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -8,8 +7,6 @@ import com.google.gson.annotations.SerializedName;
 
 @Entity
 public class dtPromotionValueClass {
-
-
     @SerializedName("promotioN_VOLUMECLASS_ID")
     @PrimaryKey public int PROMOTION_VOLUMECLASS_ID;
     @SerializedName("schemE_ID")

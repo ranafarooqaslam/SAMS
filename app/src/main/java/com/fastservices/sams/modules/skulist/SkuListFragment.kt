@@ -22,7 +22,7 @@ import com.fastservices.sams.modules.skulist.dialog.QuantityDialogFragment
 import com.fastservices.sams.modules.takeorder.OrderVM
 import kotlinx.android.synthetic.main.fragment_sku_list.*
 
-class SkuListFragment : BaseFragment(), ClickListener {
+class SkuListFragment: BaseFragment(), ClickListener {
     lateinit var binding: com.fastservices.sams.databinding.FragmentSkuListBinding
     private var adapter: SkuAdapter? = null
 
@@ -37,7 +37,7 @@ class SkuListFragment : BaseFragment(), ClickListener {
         return activityViewModel
     }
 
-    override fun getTitle() = "Take Order" //viewModel.category?.SKU_HIE_NAME ?: "SKUs"
+    override fun getTitle() = "Take Order" // viewModel.category?.SKU_HIE_NAME ?: "SKUs"
 
     override fun getLayoutResId() = R.layout.fragment_sku_list
 
@@ -98,7 +98,7 @@ class SkuListFragment : BaseFragment(), ClickListener {
     }
 
     override fun onItemClicked(item: SKU) {
-        val dialog = QuantityDialogFragment.newInstance(item)
+        val dialog = QuantityDialogFragment.newInstance(item, activityViewModel.appSettingData.value?:false)
         dialog.setTargetFragment(this, 2)
         dialog.show(requireFragmentManager(), "dialog")
     }
@@ -115,12 +115,13 @@ class SkuListFragment : BaseFragment(), ClickListener {
         if (resultCode == QuantityDialogFragment.RESULT_DATA_CHANGED) {
             activityViewModel.updateSKU(data?.getSerializableExtra(QuantityDialogFragment.EXTRA_SKU) as SKU,
                     data.getIntExtra(QuantityDialogFragment.EXTRA_UNITS, 0),
-                    data.getIntExtra(QuantityDialogFragment.EXTRA_CARTONS, 0))
+                    data.getIntExtra(QuantityDialogFragment.EXTRA_CARTONS, 0),
+                    data.getIntExtra(QuantityDialogFragment.EXTRA_DISCOUNT, 0))
 
-            activityViewModel.addOrderItem(
-                data.getSerializableExtra(QuantityDialogFragment.EXTRA_SKU) as SKU,
+            activityViewModel.addOrderItem(data.getSerializableExtra(QuantityDialogFragment.EXTRA_SKU) as SKU,
                     data.getIntExtra(QuantityDialogFragment.EXTRA_UNITS, 0),
-                    data.getIntExtra(QuantityDialogFragment.EXTRA_CARTONS, 0))
+                    data.getIntExtra(QuantityDialogFragment.EXTRA_CARTONS, 0),
+                    data.getIntExtra(QuantityDialogFragment.EXTRA_DISCOUNT, 0))
         }
     }
 

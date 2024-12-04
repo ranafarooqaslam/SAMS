@@ -34,6 +34,7 @@ data class OrderDetail(
         @SerializedName("SedAmountByValueTo") var SED_AMOUNT_BY_VALUE_TO: Double,
         @SerializedName("SedAmountByValueAD") var SED_AMOUNT_BY_VALUE_AD: Double,
         @SerializedName("SedAmountPerValueTo") var SED_AMOUNT_PER_VALUE_TO: Double,
-        @SerializedName("SedAmountPerValueAd") var SED_AMOUNT_PER_VALUE_AD: Double
+        @SerializedName("SedAmountPerValueAd") var SED_AMOUNT_PER_VALUE_AD: Double,
+        @SerializedName("SpecialDiscount") var SPECIAL_DISCOUNT: Double,
 ) {
 }

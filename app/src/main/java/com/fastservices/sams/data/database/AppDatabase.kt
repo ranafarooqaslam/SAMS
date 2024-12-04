@@ -7,6 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.fastservices.sams.data.dao.AppSettingValueDao
 import com.fastservices.sams.data.dao.ChannelDao
 import com.fastservices.sams.data.dao.ComplaintReasonsDao
 import com.fastservices.sams.data.dao.MenuDao
@@ -34,6 +35,7 @@ import com.fastservices.sams.data.dao.promotions.PromotionCustomerDao
 import com.fastservices.sams.data.dao.promotions.PromotionDao
 import com.fastservices.sams.data.dao.promotions.PromotionOfferDao
 import com.fastservices.sams.data.dao.promotions.PromotionValueDao
+import com.fastservices.sams.data.entities.AppSettingValueClass
 import com.fastservices.sams.data.entities.Brand
 import com.fastservices.sams.data.entities.Category
 import com.fastservices.sams.data.entities.Channel
@@ -69,11 +71,9 @@ import com.fastservices.sams.data.entities.promotions.dtPromotionCustomerType
 import com.fastservices.sams.data.entities.promotions.dtPromotionOffer
 import com.fastservices.sams.data.entities.promotions.dtPromotionValueClass
 
-
-@Database(entities = [Brand::class, Category::class, CustomerOrderStatus::class, CustomerUnorderedStatus::class, DistributorArea::class, OrderDetail::class, OrderDetailFreeSKU::class, OrderMaster::class, SKU::class, User::class, Outlet::class, OutletLocal::class, Menu::class, Section::class, Locality::class, Channel::class, SubChannel::class, Merchandise::class, ComplaintReason::class, ReplacementReason::class, OutletComplaint::class, NoOrderReason::class, NoOrderItem::class, SKUGroup::class, dtBasketDetail::class, dtBasketMaster::class, dtFreeSKUDetail::class, dtPromotion::class, dtPromotionCustomerType::class, dtPromotionOffer::class, dtPromotionValueClass::class, StockPosition::class, StockPositionMaster::class, Replacement::class], version = 2)
+@Database(entities = [AppSettingValueClass::class, Brand::class, Category::class, CustomerOrderStatus::class, CustomerUnorderedStatus::class, DistributorArea::class, OrderDetail::class, OrderDetailFreeSKU::class, OrderMaster::class, SKU::class, User::class, Outlet::class, OutletLocal::class, Menu::class, Section::class, Locality::class, Channel::class, SubChannel::class, Merchandise::class, ComplaintReason::class, ReplacementReason::class, OutletComplaint::class, NoOrderReason::class, NoOrderItem::class, SKUGroup::class, dtBasketDetail::class, dtBasketMaster::class, dtFreeSKUDetail::class, dtPromotion::class, dtPromotionCustomerType::class, dtPromotionOffer::class, dtPromotionValueClass::class, StockPosition::class, StockPositionMaster::class, Replacement::class], version = 3)
 @TypeConverters(DateTypeConverters::class)
 abstract class AppDatabase : RoomDatabase() {
-
     abstract fun outletDao(): OutletDao
     abstract fun outletLocalDao(): OutletLocalDao
     abstract fun userDao(): UserDao
@@ -91,13 +91,9 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun orderMasterDao():OrderMasterDao
     abstract fun orderDetailDao():OrderDetailDao
     abstract fun orderDetailFreeSkusDao():OrderDetailFreeSKUDao
-
     abstract fun stockPositioningMasterDao():StockMasterDao
     abstract fun stockPostioningDao():StockPositioningDao
-
     abstract fun replacementDao():ReplacementDao
-
-
     abstract fun promotionDao():PromotionDao
     abstract fun promotionValueDao():PromotionValueDao
     abstract fun promotionCustomerDao():PromotionCustomerDao
@@ -105,11 +101,12 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun basketDetailDao():BasketDetailDao
     abstract fun promotionOfferDao():PromotionOfferDao
     abstract fun skuGroupDao(): SKUGroupDao
+    abstract fun AppSettingValueDao(): AppSettingValueDao
 
     companion object {
         private var INSTANCE: AppDatabase? = null
 
-        val MIGRATION_1_2: Migration = object : Migration(1, 2) {
+        val MIGRATION_1_2: Migration = object: Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {
                 database.execSQL("ALTER TABLE SECTIONS " + "ADD COLUMN mapType TEXT")
                 database.execSQL("ALTER TABLE SECTIONS " + "ADD COLUMN allowOutAreaBooking INTEGER")
@@ -118,11 +115,21 @@ abstract class AppDatabase : RoomDatabase() {
             }
         }
 
+        val MIGRATION_2_3: Migration = object: Migration(2, 3) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("CREATE TABLE AppSetting (" +
+                        "VOLUMECLASS_ID INTEGER NOT NULL PRIMARY KEY," +
+                        "isManualDiscount INTEGER NOT NULL" +
+                        ");")
+                database.execSQL("ALTER TABLE ORDER_DETAIL " + "ADD COLUMN SPECIAL_DISCOUNT DOUBLE")
+            }
+        }
+
         fun getInstance(context: Context): AppDatabase? {
             if (INSTANCE == null) {
                 synchronized(AppDatabase::class) {
                     INSTANCE = Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, "sams.db")
-                        .addMigrations(MIGRATION_1_2)
+                        .addMigrations(MIGRATION_2_3)
                         .build()
                 }
             }

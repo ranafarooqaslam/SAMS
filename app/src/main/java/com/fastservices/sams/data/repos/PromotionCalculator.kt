@@ -1739,7 +1739,6 @@ class PromotionCalculator(
     ) {
         val orderList = myShoping
         orderList.forEach {
-
             val orderDetail = OrderDetail(
                 0,
                 distributionID.toInt(),
@@ -1769,7 +1768,8 @@ class PromotionCalculator(
                 it.sedAmountByValueAD,
                 it.sedAmountByValueTo,
                 it.sedAmountPerValueTo,
-                it.sedAmountPerValueAd
+                it.sedAmountPerValueAd,
+                (it.amount * it.skuItem!!.SPECIAL_DISCOUNT) /100
             )
 
             SamsApplication.getDB().orderDetailDao().insert(orderDetail)
@@ -1797,7 +1797,6 @@ class PromotionCalculator(
                 it.extra_tax,
                 it.quantity_TO,
                 it.quantity_AD
-
             )
             SamsApplication.getDB().orderDetailFreeSkusDao().insert(orderDetailFreeSKU)
         }

@@ -49,9 +49,11 @@ public interface WebService {
     @POST(EXEC_SP)
     fun getSKUGroups(@Body body: PostBody<Map<String, String>>): Deferred<ResponseListBody<SKUGroup>>
 
-
     @POST(EXEC_SP)
     fun getPromotionValue(@Body body: PostBody<Map<String, String>>): Deferred<ResponseListBody<dtPromotionValueClass>>
+
+    @POST(EXEC_SP)
+    fun getAppSetting(@Body body: PostBody<Map<String, String>>): Deferred<ResponseListBody<AppSettingValueClass>>
 
     @POST(INSERT_NO_ORDER)
     fun insertNoOrder(@Query("DistributorID", encoded = true) DistributorID: String,
@@ -100,10 +102,9 @@ public interface WebService {
                     @Query("OrderPaymentType") OrderPaymentType: Int): Deferred<ResponseInsertOrder>
 
     @POST(INSERT_STOCK_POSITIONING)
-    fun insertStockPositioning(@Query("DistributorID") DistributorID: String, @Query("UserID") userId: String
-                               , @Query("CustomerID") CustomerID: String,
+    fun insertStockPositioning(@Query("DistributorID") DistributorID: String, @Query("UserID") userId: String,
+                               @Query("CustomerID") CustomerID: String,
                                @Query("DocumentDate") DocumentDate: String, @Body body: List<StockPosition>): Deferred<InsertAPIResponse>
-
 
     @POST(INSERT_REPLACEMENT)
     fun insertReplacement(@Query("DistributorID") DistributorID: String, @Query("UserID") userId: String

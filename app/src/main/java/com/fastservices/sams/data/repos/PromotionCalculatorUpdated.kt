@@ -1594,11 +1594,17 @@ class PromotionCalculatorUpdated(
 //                ObjTotalGST + ObjTotalExtra_Tax + ObjTotalTST + ObjFreeTST + ObjFreeGSTAmount
             val totalPrintedGST = ObjTotalGST + ObjTotalTST + ObjFreeTST + ObjFreeGSTAmount
 
+            var specialTotalDiscount = 0.0
+            myShoping.forEachIndexed { _, orderItem ->
+                specialTotalDiscount += (((orderItem.amount * orderItem.skuItem.SPECIAL_DISCOUNT) / 100)
+                    ?: 0.0).toDouble()
+            }
+
             val objStaVal =
                 ObjStandardDiscount_By_VALUE + ObjStandardDiscount_PER_VALUE + ObjStandardDiscount_By_VALUE_TO + ObjStandardDiscount_By_VALUE_AD + ObjStandardDiscount_PER_VALUE_TO + ObjStandardDiscount_PER_VALUE_AD + ObjTotalSED_BY_VALUE + ObjTotalSED_PER_VALUE
             summaryUIModel = SummaryUIModel(
 //                ObjStandardDiscount - ObjTotalSED,
-                ObjStandardDiscount_Distrbutor,
+                ObjStandardDiscount_Distrbutor + specialTotalDiscount,
 //                (ObjStandardDiscount_PER_VALUE - ObjTotalSED_PER_VALUE) + ObjTotalSED_BY_VALUE,
                 ObjTotalSED_BY_VALUE_AD + ObjTotalSED_PER_VALUE_AD,
                 ObjTotalSED_BY_VALUE_TO + ObjTotalSED_PER_VALUE_TO,
@@ -1705,7 +1711,6 @@ class PromotionCalculatorUpdated(
     ) {
         val orderList = myShoping
         orderList.forEach {
-
             val orderDetail = OrderDetail(
                 0,
                 distributionID.toInt(),
@@ -1715,7 +1720,7 @@ class PromotionCalculatorUpdated(
                 it.price,
                 if (it.skuItem.GST_ON.contains("R")) 0.0 else it.gSTRate,
                 it.amount,
-                it.standardDiscount,
+                it.standardDiscount + (it.amount * it.skuItem!!.SPECIAL_DISCOUNT) /100,
                 it.extraDiscount,
                 if (it.skuItem.GST_ON.contains("R") || it.skuItem.GST_ON.contains("E")) 0.0 else (it.gSTAmount - it.extraTax),
                 it.netAmount + it.extraTax,
@@ -1735,12 +1740,11 @@ class PromotionCalculatorUpdated(
                 it.sedAmountByValueAD,
                 it.sedAmountByValueTo,
                 it.sedAmountPerValueTo,
-                it.sedAmountPerValueAd
+                it.sedAmountPerValueAd,
+                (it.amount * it.skuItem!!.SPECIAL_DISCOUNT) /100
             )
-
             SamsApplication.getDB().orderDetailDao().insert(orderDetail)
         }
-
         freeSkus?.forEach {
             val orderDetailFreeSKU = OrderDetailFreeSKU(
                 0,

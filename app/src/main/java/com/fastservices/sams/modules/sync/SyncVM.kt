@@ -550,9 +550,8 @@ class SyncVM() : BaseVM() {
                     RepoPromotions(user).syncDown()
                     syncLogger.postValue("Downloading promotions value class...")
                     RepoPromotionValueClass(user).syncDown()
-
-
-
+                    syncLogger.postValue("Downloading App Setting...")
+                    RepoAppSetting(user).syncDown()
 
                     SamsApplication.getPreferenceManager().updateLastSync()
                     syncLogger.postValue("Downloading completed successfully...")

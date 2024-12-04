@@ -26,7 +26,7 @@
 
     <TextView
         android:id="@+id/lblNumberOfPieces"
-        android:layout_width="50dp"
+        android:layout_width="40dp"
         android:layout_height="0dp"
         android:layout_marginStart="2dp"
         android:layout_marginEnd="2dp"
@@ -61,7 +61,7 @@
 
     <TextView
         android:id="@+id/lblNumberCarton"
-        android:layout_width="50dp"
+        android:layout_width="40dp"
         android:layout_height="0dp"
         android:layout_marginStart="2dp"
         android:layout_marginEnd="2dp"
@@ -75,6 +75,23 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/lblUnitPricesOfPieces"
         app:layout_constraintTop_toTopOf="@+id/lblUnitPricesOfPieces" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/lblDiscount"-->
+<!--        android:layout_width="40dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_marginStart="2dp"-->
+<!--        android:layout_marginEnd="2dp"-->
+<!--        android:background="@color/item_order_detail_bg"-->
+<!--        android:gravity="center"-->
+<!--        android:text="4"-->
+<!--        android:textColor="@color/textcolor_black"-->
+<!--        android:textSize="@dimen/textsize_order_details"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/lblUnitPricesOfPieces"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/lblUnitPriceCarton"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/lblUnitPricesOfPieces"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/lblUnitPricesOfPieces" />-->
 
     <TextView
         android:id="@+id/lblUnitPriceCarton"

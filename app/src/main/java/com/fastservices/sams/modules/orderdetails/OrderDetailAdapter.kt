@@ -12,29 +12,22 @@ import java.util.*
 
 class OrderDetailAdapter(var data: ArrayList<OrderItem>, val clickListener: DeleteClickListener) : androidx.recyclerview.widget.RecyclerView.Adapter<OrderRowVH>() {
     override fun onCreateViewHolder(parent: ViewGroup, type: Int): OrderRowVH {
-        val itemView = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_order_details, parent, false)
-
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_order_details, parent, false)
         return OrderRowVH(itemView, clickListener)
     }
 
     override fun getItemCount(): Int {
-
         return data.size
     }
 
     override fun onBindViewHolder(holder: OrderRowVH, position: Int) {
-
         holder.bind(data[position])
-
-
     }
-
 }
 
-class OrderRowVH(view: View, clicklistner: DeleteClickListener) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view), View.OnClickListener {
+class OrderRowVH(view: View, clicklistner: DeleteClickListener): androidx.recyclerview.widget.RecyclerView.ViewHolder(view), View.OnClickListener {
 
-    val ref = WeakReference<DeleteClickListener>(clicklistner)
+    val ref = WeakReference(clicklistner)
 
     lateinit var item: OrderItem
 
@@ -60,8 +53,6 @@ class OrderRowVH(view: View, clicklistner: DeleteClickListener) : androidx.recyc
         lblTotalPrice.text = RoundUp2Decimal(orderItem.quantity * orderItem.price)
         ivDelete.setOnClickListener(this)
     }
-
-
 }
 
 interface DeleteClickListener {

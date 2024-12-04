@@ -16,6 +16,7 @@ import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -47,6 +48,8 @@ class OrderVM() : BaseVM() {
     private lateinit var allCategories: List<Category>
 
     val categoriesLoaded = MutableLiveData<Boolean>()
+
+    val appSettingData = MutableLiveData<Boolean>(false)
 
     val showEmptyView = MutableLiveData<Boolean>()
 
@@ -86,8 +89,14 @@ class OrderVM() : BaseVM() {
         GlobalScope.launch {
             val user = SamsApplication.getPreferenceManager().getUser()
             SKUs = RepoSKU(user!!).getAllSKUs()
-            allCategories = RepoSKUCategory(user!!).getCategoriesLocal()
+            allCategories = RepoSKUCategory(user).getCategoriesLocal()
             categories.addAll(allCategories)
+            val appSettings = RepoAppSetting(user).getSetting()
+            if(appSettings.isNotEmpty()) {
+                withContext(Dispatchers.Main) {
+                    appSettingData.postValue(appSettings[0].isManualDiscount == 1)
+                }
+            }
             categoriesLoaded.postValue(true)
             showEmptyView.postValue(allCategories.isEmpty())
             reasons = RepoNoOrderReason().getAll()
@@ -224,8 +233,8 @@ class OrderVM() : BaseVM() {
         fileUri?.let { images.add(it) }
     }
 
-    fun addOrderItem(sku: SKU, unit: Int, carton: Int) {
-
+    fun addOrderItem(sku: SKU, unit: Int, carton: Int, discount: Int) {
+        sku.SPECIAL_DISCOUNT = discount
         val orderItem = OrderItem(sku, outlet?.outletID ?: 0)
         val find = orderList.find { it.sKUID == sku.SKU_ID }
         find?.let {
@@ -264,12 +273,11 @@ class OrderVM() : BaseVM() {
         return SKUs.filter { it.CATEGORY_ID == category_id }
     }
 
-
-    fun updateSKU(sku: SKU, units: Int, cartons: Int) {
-
+    fun updateSKU(sku: SKU, units: Int, cartons: Int, discount: Int) {
         SKUs.find { it.SKU_ID == sku.SKU_ID }?.apply {
             NO_OF_UNITS = units
             NO_OF_CARTONS = cartons
+            SPECIAL_DISCOUNT = discount?:0
         }
         dataListUpdated.postValue(true)
     }
@@ -289,7 +297,7 @@ class OrderVM() : BaseVM() {
             val user = SamsApplication.getPreferenceManager().getUser() ?: return@launch
             val gson = Gson()
             val json = gson.toJson(getOrders())
-            val type = object : TypeToken<ArrayList<OrderItem>>() {}.type
+            val type = object: TypeToken<ArrayList<OrderItem>>() {}.type
             val list = gson.fromJson(json, type) as ArrayList<OrderItem>
             promotionHelper = PromotionCalculatorUpdated(user, summaryModelLiveData, ArrayList<OrderItem>(list), outlet!!)
             freeSkus = promotionHelper?.GetPromotion()
@@ -299,6 +307,7 @@ class OrderVM() : BaseVM() {
 
     var remarks = ""
     var orderSavedLiveData = MutableLiveData<Boolean>()
+
     fun saveOrderNow() {
         val timeOut = sdf.format(Date())
 
@@ -327,7 +336,6 @@ class OrderVM() : BaseVM() {
     fun loadSKUs() {
         searchQuerySKU.set("")
         applySKUFilter("")
-
     }
 
     val searchQuerySKU: ObservableField<String> = ObservableField<String>()
