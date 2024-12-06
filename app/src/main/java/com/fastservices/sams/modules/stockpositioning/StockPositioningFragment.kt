@@ -20,8 +20,6 @@ import com.fastservices.sams.modules.base.BaseFragment
 import com.fastservices.sams.modules.base.BaseVM
 import com.fastservices.sams.modules.outlet.OutletSelectorFragment
 import com.fastservices.sams.outletselector.OutletSelectorActivity
-import kotlinx.android.synthetic.main.fragment_stock_position.*
-import kotlinx.android.synthetic.main.layout_bottom_bar.*
 
 class StockPositioningFragment : BaseFragment() ,IOnBackPressed{
     override fun onBackPressed(): Boolean {
@@ -50,13 +48,11 @@ class StockPositioningFragment : BaseFragment() ,IOnBackPressed{
     var adapter: StockPositioningAdapter? = null
 
     override fun setUp() {
-
-        val manager: androidx.recyclerview.widget.RecyclerView.LayoutManager = androidx.recyclerview.widget.LinearLayoutManager(
+        val manager: RecyclerView.LayoutManager = LinearLayoutManager(
             context
-        ) as androidx.recyclerview.widget.RecyclerView.LayoutManager
-        rvStockPositioning.layoutManager = manager
-
-        tvSelectedOutlet.setOnClickListener(this)
+        )
+        binding.rvStockPositioning.layoutManager = manager
+        binding.tvSelectedOutlet.setOnClickListener(this)
     }
 
     override fun setVM() {
@@ -64,41 +60,37 @@ class StockPositioningFragment : BaseFragment() ,IOnBackPressed{
     }
 
     override fun setObservers() {
-
-        viewModel.skusLoaded.observe(viewLifecycleOwner, Observer { value ->
+        viewModel.skusLoaded.observe(viewLifecycleOwner) { value ->
             if (value == true) {
 
                 if (adapter == null) {
                     adapter = StockPositioningAdapter(viewModel.sku)
                 }
-                if(viewModel.sku.isNotEmpty())  listEmptyLabel.visibility = View.GONE else View.VISIBLE
-                if (rvStockPositioning.adapter == null)
-                    rvStockPositioning.adapter = adapter
+                if (viewModel.sku.isNotEmpty()) binding.listEmptyLabel.visibility =
+                    View.GONE else View.VISIBLE
+                if (binding.rvStockPositioning.adapter == null)
+                    binding.rvStockPositioning.adapter = adapter
                 else
                     adapter?.notifyDataSetChanged()
-
             }
-        })
+        }
 
-        viewModel.stockAdded.observe(viewLifecycleOwner, Observer { value->
-
-            if(value == true){
+        viewModel.stockAdded.observe(viewLifecycleOwner) { value ->
+            if (value == true) {
                 showToast("Stock positioning Added")
                 activity?.supportFragmentManager?.popBackStack()
             }
-        })
-
+        }
     }
 
     override fun onClick(v: View?) {
-
         when (v?.id) {
-            tvSelectedOutlet.id -> {
+            binding.tvSelectedOutlet.id -> {
                 if(viewModel.selectedOutlet == null)
                 OutletSelectorActivity.startActivity(this)
                 else showConfirmationDialog()
             }
-            ivHome.id -> {
+            binding.bottomLayout.ivHome.id -> {
                 showClosingDialog()
             }
             else -> super.onClick(v)
@@ -147,7 +139,7 @@ class StockPositioningFragment : BaseFragment() ,IOnBackPressed{
                 // outlet selected
                 viewModel.selectedOutlet = data?.getSerializableExtra(OutletSelectorFragment.EXTRA_SELECTED_OUTLET) as? Outlet
                 viewModel.selectedOutlet?.let {
-                    tvSelectedOutlet.text = it.outletName
+                    binding.tvSelectedOutlet.text = it.outletName
                 }
                 viewModel.outletSelected()
 

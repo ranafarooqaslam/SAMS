@@ -9,17 +9,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.fastservices.sams.R
 import com.fastservices.sams.data.entities.DecimalFormattedAmount
-import com.fastservices.sams.data.entities.RoundUp2Decimal
 import com.fastservices.sams.data.entities.RoundUp4Decimal
 import com.fastservices.sams.modules.base.BaseFragment
 import com.fastservices.sams.modules.base.BaseVM
 import com.fastservices.sams.modules.takeorder.OrderVM
-import kotlinx.android.synthetic.main.fragment_order_summary.*
 
 class OrderSummaryFragment : BaseFragment() {
-
     override fun getTitle() = "Take Order"
-
 
     private lateinit var viewModel: OrderVM
     private lateinit var binding: com.fastservices.sams.databinding.FragmentOrderSummaryBinding
@@ -35,22 +31,20 @@ class OrderSummaryFragment : BaseFragment() {
         return viewModel
     }
 
-
     override fun getLayoutResId() = R.layout.fragment_order_summary
 
     override fun setUp() {
-
         viewModel.performCalculations()
 
         if (viewModel.outlet?.credit == 1) {
-            radioCredit.isChecked = true
-
-        } else {
-            radioCash.isChecked = true
+            binding.radioCredit.isChecked = true
+        }
+        else {
+            binding.radioCash.isChecked = true
         }
         viewModel.paymentType = viewModel.outlet?.credit ?: 0
 
-        btnBack.setOnClickListener(this)
+        binding.btnBack.setOnClickListener(this)
     }
 
     override fun setVM() {
@@ -60,29 +54,29 @@ class OrderSummaryFragment : BaseFragment() {
     override fun setObservers() {
         viewModel.summaryModelLiveData.observe(viewLifecycleOwner) { data ->
             if (data != null) {
-                tvGrossAmount.text = DecimalFormattedAmount(RoundUp4Decimal(data.grossAmout))
-                tvCompanyDiscount.text =
+                binding.tvGrossAmount.text = DecimalFormattedAmount(RoundUp4Decimal(data.grossAmout))
+                binding.tvCompanyDiscount.text =
                     DecimalFormattedAmount(RoundUp4Decimal(data.companyDiscount))
-                tvGST.text = DecimalFormattedAmount(RoundUp4Decimal(data.gst))
-                tvDistDiscount.text =
+                binding.tvGST.text = DecimalFormattedAmount(RoundUp4Decimal(data.gst))
+                binding.tvDistDiscount.text =
                     DecimalFormattedAmount(RoundUp4Decimal(data.distributorDiscount))
-                tvTradeOffer.text = DecimalFormattedAmount(RoundUp4Decimal(data.tradeOffer))
-                tvNetAmount.text = DecimalFormattedAmount(RoundUp4Decimal(data.netAmount))
+                binding.tvTradeOffer.text = DecimalFormattedAmount(RoundUp4Decimal(data.tradeOffer))
+                binding.tvNetAmount.text = DecimalFormattedAmount(RoundUp4Decimal(data.netAmount))
             }
         }
 
-        viewModel.freeSKusLoaded.observe(viewLifecycleOwner, Observer { list ->
-            // display free skus
+        viewModel.freeSKusLoaded.observe(viewLifecycleOwner) { list ->
             if (list != null) {
-                llFreeSkusContainer.removeAllViews()
+                binding.llFreeSkusContainer.removeAllViews()
                 list.forEach {
-                    val view = LayoutInflater.from(context).inflate(R.layout.item_free_sku, null, false)
+                    val view =
+                        LayoutInflater.from(context).inflate(R.layout.item_free_sku, null, false)
                     view.findViewById<TextView>(R.id.tvSkuName).text = it.skU_Name
                     view.findViewById<TextView>(R.id.tvSkuQuantity).text = it.quantity.toString()
-                    llFreeSkusContainer.addView(view)
+                    binding.llFreeSkusContainer.addView(view)
                 }
             }
-        })
+        }
 
         viewModel.orderSavedLiveData.observe(viewLifecycleOwner) { value ->
             if (value == true) {
@@ -92,15 +86,13 @@ class OrderSummaryFragment : BaseFragment() {
     }
 
     override fun onClick(v: View?) {
-        when(v?.id){
-            btnBack.id -> activity?.onBackPressed()
+        when(v?.id) {
+            binding.btnBack.id -> activity?.onBackPressed()
             else -> super.onClick(v)
         }
     }
 
     companion object {
-        fun newInstance() = OrderSummaryFragment().apply {
-
-        }
+        fun newInstance() = OrderSummaryFragment().apply { }
     }
 }

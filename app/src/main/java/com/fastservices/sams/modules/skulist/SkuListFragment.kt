@@ -20,7 +20,6 @@ import com.fastservices.sams.modules.base.BaseVM
 import com.fastservices.sams.modules.orderdetails.OrderDetailFragment
 import com.fastservices.sams.modules.skulist.dialog.QuantityDialogFragment
 import com.fastservices.sams.modules.takeorder.OrderVM
-import kotlinx.android.synthetic.main.fragment_sku_list.*
 
 class SkuListFragment: BaseFragment(), ClickListener {
     lateinit var binding: com.fastservices.sams.databinding.FragmentSkuListBinding
@@ -37,13 +36,13 @@ class SkuListFragment: BaseFragment(), ClickListener {
         return activityViewModel
     }
 
-    override fun getTitle() = "Take Order" // viewModel.category?.SKU_HIE_NAME ?: "SKUs"
+    override fun getTitle() = "Take Order"
 
     override fun getLayoutResId() = R.layout.fragment_sku_list
 
     override fun setUp() {
         val manager = LinearLayoutManager(context)
-        rvSKUs.layoutManager = manager
+        binding.rvSKUs.layoutManager = manager
         val category = arguments?.getSerializable(ARGS_CATEGORY) as? Category?: return
 
         activityViewModel.categoryId = category.SKU_HIE_ID
@@ -52,12 +51,12 @@ class SkuListFragment: BaseFragment(), ClickListener {
             adapter = SkuAdapter(activityViewModel.skuAdapterDataList, this)
         }
 
-        if (rvSKUs.adapter == null) {
-            rvSKUs.adapter = adapter
+        if (binding.rvSKUs.adapter == null) {
+            binding.rvSKUs.adapter = adapter
             if (adapter!!.itemCount > 0)
-                emptyView.visibility = View.GONE
+                binding.emptyView.visibility = View.GONE
             else
-                emptyView.visibility = View.VISIBLE
+                binding.emptyView.visibility = View.VISIBLE
         }
     }
 
@@ -65,7 +64,6 @@ class SkuListFragment: BaseFragment(), ClickListener {
 
     override fun setVM() {
         activityViewModel = ViewModelProviders.of(requireActivity()).get(OrderVM::class.java)
-//   activityViewModel.category = arguments?.getSerializable(ARGS_CATEGORY) as? Category
     }
 
     @SuppressLint("NotifyDataSetChanged", "SetTextI18n")
@@ -89,7 +87,7 @@ class SkuListFragment: BaseFragment(), ClickListener {
 
         activityViewModel.grossAmountObservable.observe(viewLifecycleOwner) { value ->
             if (value != null)
-                tvTotalPrice.text = "Total Amount : $value"
+                binding.tvTotalPrice.text = "Total Amount : $value"
         }
     }
 

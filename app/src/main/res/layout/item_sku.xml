@@ -17,6 +17,18 @@
         tools:src="@drawable/ic_green_tick" />
 
     <TextView
+        android:id="@+id/ivSkuText"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/lblTradePrice"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvItemName"
+        android:textColor="#989898"
+        android:textSize="16sp"
+        android:text=""/>
+
+    <TextView
         android:id="@+id/lblItemCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

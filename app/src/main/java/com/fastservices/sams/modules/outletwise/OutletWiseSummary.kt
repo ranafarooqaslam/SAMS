@@ -9,10 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.fastservices.sams.R
 import com.fastservices.sams.databinding.FragmentOutletWiseSummaryBinding
-import com.fastservices.sams.databinding.FragmentSkuWiseSummaryBinding
 import com.fastservices.sams.modules.base.BaseFragment
 import com.fastservices.sams.modules.base.BaseVM
-import kotlinx.android.synthetic.main.fragment_sku_wise_summary.*
 
 class OutletWiseSummary : BaseFragment() {
     override fun getVM(): BaseVM? {
@@ -40,10 +38,8 @@ class OutletWiseSummary : BaseFragment() {
     private lateinit var viewModel: OutletWiseVM
 
     override fun setUp() {
-
-        val manager = androidx.recyclerview.widget.LinearLayoutManager(context)
-        recyclerView.layoutManager = manager
-
+        val manager = LinearLayoutManager(context)
+        binding.recyclerView.layoutManager = manager
     }
 
     override fun setObservers() {
@@ -51,18 +47,17 @@ class OutletWiseSummary : BaseFragment() {
         viewModel.dataLoaded.observe(viewLifecycleOwner, Observer { value ->
 
             if (value == true) {
-                if (recyclerView.adapter == null) {
+                if (binding.recyclerView.adapter == null) {
                     val adapter = OutletWiseAdapter(viewModel.summary)
-                    recyclerView.adapter = adapter
+                    binding.recyclerView.adapter = adapter
                 } else {
-                    recyclerView.adapter?.notifyDataSetChanged()
+                    binding.recyclerView.adapter?.notifyDataSetChanged()
                 }
             }
         })
     }
 
     companion object {
-
         fun newInstance() = OutletWiseSummary()
     }
 }

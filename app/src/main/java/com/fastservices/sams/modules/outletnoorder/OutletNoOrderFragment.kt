@@ -34,7 +34,6 @@ import com.google.android.gms.location.LocationServices
 import com.imagepicker.FilePickUtils
 import com.imagepicker.LifeCycleCallBackManager
 import io.reactivex.annotations.NonNull
-import kotlinx.android.synthetic.main.fragment_outlet_no_order.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -64,37 +63,35 @@ class OutletNoOrderFragment : BaseFragment() {
     override fun setUp() {
         filePickUtils = FilePickUtils(this, onFileChoose)
         lifeCycleCallBackManager = filePickUtils.callBackManager
-        multiLineRadioGroup.setOnCheckedChangeListener { _: ViewGroup?, radioButton: RadioButton? ->
+        binding.multiLineRadioGroup.setOnCheckedChangeListener { _: ViewGroup?, radioButton: RadioButton? ->
             viewModel.selectedReasonId = radioButton?.id ?: -1
         }
 
-        lblReason.text = "Select reason for not tracking order at ${viewModel.outlet?.outletName}"
+        binding.lblReason.text = "Select reason for not tracking order at ${viewModel.outlet?.outletName}"
 
         GlobalScope.launch {
             val output = SimpleDateFormat("EEE, dd MMM yyyy", Locale.US)
             viewModel.outlet.let {
-                tvLastOrderAmount.text = RoundUp2Decimal(it.lastOrderAmount)
-                tvContactNumber.text = it.phoneNumber
+                binding.tvLastOrderAmount.text = RoundUp2Decimal(it.lastOrderAmount)
+                binding.tvContactNumber.text = it.phoneNumber
                 if (it.lastOrderDate.isNotEmpty()) {
                     try {
-                        tvLastOrderDate.text = output.format(SamsApplication.sdf.parse(it.lastOrderDate))
+                        binding.tvLastOrderDate.text = output.format(SamsApplication.sdf.parse(it.lastOrderDate))
                     } catch (e: Exception) {
-                        tvLastOrderDate.text = it.lastOrderDate
+                        binding.tvLastOrderDate.text = it.lastOrderDate
                     }
                 } else {
-                    tvLastOrderDate.text = "Never"
-
+                    binding.tvLastOrderDate.text = "Never"
                 }
 
-                tvClosingBalance.text = RoundUp2Decimal(it.closing)
+                binding.tvClosingBalance.text = RoundUp2Decimal(it.closing)
                 val channelName = SamsApplication.getDB().channelDao().getSubChannelName(it.subChannelID)
-                tvStoreType.text = channelName
+                binding.tvStoreType.text = channelName
             }
         }
 
-        btnTakeGPS.setOnClickListener(this)
-        ivCamera.setOnClickListener(this)
-
+        binding.btnTakeGPS.setOnClickListener(this)
+        binding.ivCamera.setOnClickListener(this)
     }
 
     override fun setVM() {
@@ -113,23 +110,18 @@ class OutletNoOrderFragment : BaseFragment() {
     }
 
     override fun setObservers() {
-
-        viewModel.dataLoaded.observe(viewLifecycleOwner, Observer { _ ->
-
+        viewModel.dataLoaded.observe(viewLifecycleOwner) { _ ->
             viewModel.reasons.forEach {
-
                 val radio = RadioButton(context)
                 radio.text = it.unOrderReason
                 radio.id = it.unOrderReasonID
-                multiLineRadioGroup.addButtons(radio)
+                binding.multiLineRadioGroup.addButtons(radio)
             }
-
-        })
+        }
 
         viewModel.dataInserted.observe(viewLifecycleOwner, Observer {
             activity?.supportFragmentManager?.popBackStack()
         })
-
     }
 
     private val onFileChoose = FilePickUtils.OnFileChoose { fileUri, requestCode, size ->
@@ -143,7 +135,7 @@ class OutletNoOrderFragment : BaseFragment() {
 
 
         viewModel.imageTaken(fileUri)
-        imagesContainer.addView(v)
+        binding.imagesContainer.addView(v)
 
     }
 
@@ -151,7 +143,7 @@ class OutletNoOrderFragment : BaseFragment() {
     lateinit var lifeCycleCallBackManager: LifeCycleCallBackManager
 
     private fun takePicture() {
-        if (imagesContainer.childCount < 5)
+        if (binding.imagesContainer.childCount < 5)
             filePickUtils.requestImageCamera(FilePickUtils.CAMERA_PERMISSION, false, false);
 
     }
@@ -212,10 +204,10 @@ class OutletNoOrderFragment : BaseFragment() {
                         Log.d("LocationCheck", "orderSummaryClicked: Within Radius")
                         viewModel.latitude = location!!.latitude
                         viewModel.longtidue = location!!.longitude
-                        tvMapLink.setText("http://maps.google.com/maps?q=${viewModel.latitude},${viewModel.longtidue}")
-                        tvMapLink.linksClickable = true
-                        tvMapLink.movementMethod = LinkMovementMethod()
-                    }else{
+                        binding.tvMapLink.setText("http://maps.google.com/maps?q=${viewModel.latitude},${viewModel.longtidue}")
+                        binding.tvMapLink.linksClickable = true
+                        binding.tvMapLink.movementMethod = LinkMovementMethod()
+                    } else {
                         Log.d("LocationCheck", "getGPSLocation4")
                         val alert = AlertDialog.Builder(context)
                         alert.setTitle("Location")
@@ -231,17 +223,17 @@ class OutletNoOrderFragment : BaseFragment() {
                     Log.d("LocationCheck", "getGPSLocation5")
                     viewModel.latitude = location!!.latitude
                     viewModel.longtidue = location!!.longitude
-                    tvMapLink.setText("http://maps.google.com/maps?q=${viewModel.latitude},${viewModel.longtidue}")
-                    tvMapLink.linksClickable = true
-                    tvMapLink.movementMethod = LinkMovementMethod()
+                    binding.tvMapLink.text = "http://maps.google.com/maps?q=${viewModel.latitude},${viewModel.longtidue}"
+                    binding.tvMapLink.linksClickable = true
+                    binding.tvMapLink.movementMethod = LinkMovementMethod()
                 }
             }
             else {
                 viewModel.latitude = 34.77
                 viewModel.longtidue = 77.67
-                tvMapLink.text = "http://maps.google.com/maps?q=${viewModel.latitude},${viewModel.longtidue}"
-                tvMapLink.linksClickable = true
-                tvMapLink.movementMethod = LinkMovementMethod()
+                binding.tvMapLink.text = "http://maps.google.com/maps?q=${viewModel.latitude},${viewModel.longtidue}"
+                binding.tvMapLink.linksClickable = true
+                binding.tvMapLink.movementMethod = LinkMovementMethod()
             }
             Log.d("LocationCheck", "getGPSLocation6")
         }

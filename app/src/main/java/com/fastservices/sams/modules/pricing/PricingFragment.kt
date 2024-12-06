@@ -3,7 +3,6 @@ package com.fastservices.sams.modules.pricing
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,26 +13,23 @@ import com.fastservices.sams.data.entities.Category
 import com.fastservices.sams.databinding.FragmentPricingReportBinding
 import com.fastservices.sams.modules.base.BaseFragment
 import com.fastservices.sams.modules.base.BaseVM
-import kotlinx.android.synthetic.main.fragment_pricing_report.*
 
 class PricingFragment : BaseFragment() {
     override fun getVM(): BaseVM? {
         return viewModel
     }
 
-
     override fun setVM() {
         viewModel = ViewModelProviders.of(this).get(PricingVM::class.java)
     }
 
-    lateinit var binding: com.fastservices.sams.databinding.FragmentPricingReportBinding
+    lateinit var binding: FragmentPricingReportBinding
     override fun doBinding(inflater: LayoutInflater, container: ViewGroup?): View {
         return DataBindingUtil.inflate<FragmentPricingReportBinding>(inflater, getLayoutResId(), container, false).also {
             binding = it
             binding.viewModel = viewModel
         }.root
     }
-
 
     override fun getLayoutResId() = R.layout.fragment_pricing_report
 
@@ -42,22 +38,16 @@ class PricingFragment : BaseFragment() {
     private lateinit var viewModel: PricingVM
 
     override fun setUp() {
-
         val manager = androidx.recyclerview.widget.LinearLayoutManager(context)
-        recyclerView.layoutManager = manager
-
+        binding.recyclerView.layoutManager = manager
     }
 
     private fun populateCategory() {
-
-        val adapterChannel = ArrayAdapter<Category>(activity!!, android.R.layout.simple_spinner_item, viewModel.category)
+        val adapterChannel = ArrayAdapter<Category>(requireActivity(), android.R.layout.simple_spinner_item, viewModel.category)
         adapterChannel.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spCategory.adapter = adapterChannel
-        spCategory.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
-
+        binding.spCategory.adapter = adapterChannel
+        binding.spCategory.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) { }
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 (parent?.getItemAtPosition(position) as? Category)?.let {
                     viewModel.loadSKUs(it.SKU_HIE_ID)
@@ -66,18 +56,14 @@ class PricingFragment : BaseFragment() {
                 }
             }
         }
-
-
     }
 
     override fun setObservers() {
-
-        viewModel.skuLoaded.observe(viewLifecycleOwner, Observer { value ->
-
+        viewModel.skuLoaded.observe(viewLifecycleOwner) { value ->
             if (value == true) {
-                recyclerView.adapter = PricingAdapter(viewModel.sku)
+                binding.recyclerView.adapter = PricingAdapter(viewModel.sku)
             }
-        })
+        }
 
         viewModel.categoryLoaded.observe(viewLifecycleOwner, Observer { value ->
             if (value == true) {
@@ -87,7 +73,6 @@ class PricingFragment : BaseFragment() {
     }
 
     companion object {
-
         fun newInstance() = PricingFragment()
     }
 }

@@ -13,12 +13,9 @@ import android.view.ViewGroup
 import com.fastservices.sams.R
 import com.fastservices.sams.modules.base.BaseFragment
 import com.fastservices.sams.modules.base.BaseVM
-import kotlinx.android.synthetic.main.fragment_complaints.*
-import androidx.recyclerview.widget.DividerItemDecoration
 import com.fastservices.sams.data.entities.Outlet
 import com.fastservices.sams.modules.outlet.OutletSelectorFragment
 import com.fastservices.sams.outletselector.OutletSelectorActivity
-
 
 class ComplaintsFragment : BaseFragment() {
 
@@ -49,7 +46,7 @@ class ComplaintsFragment : BaseFragment() {
         viewModel.reasonsLoaded.observe(viewLifecycleOwner, Observer { value ->
             if (value == null) return@Observer
             if (value == true) {
-                rvComplaintReasons.adapter?.notifyDataSetChanged()
+                binding.rvComplaintReasons.adapter?.notifyDataSetChanged()
             }
         })
         viewModel.complaintStatus.observe(viewLifecycleOwner, Observer { value ->
@@ -62,25 +59,24 @@ class ComplaintsFragment : BaseFragment() {
 
     override fun setUp() {
 
-        val manager = androidx.recyclerview.widget.LinearLayoutManager(context)
-        rvComplaintReasons.layoutManager = manager
+        val manager = LinearLayoutManager(context)
+        binding.rvComplaintReasons.layoutManager = manager
         val dividerItemDecoration =
             androidx.recyclerview.widget.DividerItemDecoration(
-                rvComplaintReasons.getContext(),
+                binding.rvComplaintReasons.context,
                 manager.orientation
             )
 
-        rvComplaintReasons.addItemDecoration(dividerItemDecoration)
+        binding.rvComplaintReasons.addItemDecoration(dividerItemDecoration)
 
-        rvComplaintReasons.adapter = ReasonsAdapter(viewModel.reasons)
+        binding.rvComplaintReasons.adapter = ReasonsAdapter(viewModel.reasons)
 
-        tvSelectedOutlet.setOnClickListener(this)
-
+        binding.tvSelectedOutlet.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
         when(v?.id){
-            tvSelectedOutlet.id -> OutletSelectorActivity.startActivity(this)
+            binding.tvSelectedOutlet.id -> OutletSelectorActivity.startActivity(this)
             else -> super.onClick(v)
         }
     }
@@ -92,10 +88,8 @@ class ComplaintsFragment : BaseFragment() {
                 // outlet selected
                 viewModel.selectedOutlet = data?.getSerializableExtra(OutletSelectorFragment.EXTRA_SELECTED_OUTLET) as? Outlet
                 viewModel.selectedOutlet?.let {
-                    tvSelectedOutlet.text = it.outletName
+                    binding.tvSelectedOutlet.text = it.outletName
                 }
-
-
             }
         }
     }

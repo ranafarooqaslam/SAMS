@@ -1,7 +1,6 @@
 package com.imagepicker;
 
 import android.Manifest;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.DialogInterface;
@@ -16,9 +15,9 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.media.ExifInterface;
 import android.net.Uri;
-import android.os.Build;
 import android.provider.MediaStore;
 import android.provider.Settings;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
@@ -30,8 +29,6 @@ import android.widget.Toast;
 import com.imagepicker.pdfpicker.Constant;
 import com.imagepicker.pdfpicker.NormalFile;
 import com.imagepicker.pdfpicker.NormalFilePickActivity;
-import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -45,10 +42,6 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func0;
 import rx.schedulers.Schedulers;
-
-/**
- * Created by krupal on 10/10/16.
- */
 
 public class FilePickUtils implements LifeCycleCallBackManager {
 
@@ -332,8 +325,7 @@ public class FilePickUtils implements LifeCycleCallBackManager {
     }
 
 
-    public void onRequestPermissionsResult(final int requestCode, final @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(final int requestCode, final @NonNull String[] permissions, @NonNull int[] grantResults) {
         if(grantResults.length == 0) return;
         if (requestCode == STORAGE_PERMISSION_IMAGE
                 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -419,7 +411,6 @@ public class FilePickUtils implements LifeCycleCallBackManager {
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
         boolean hasStoragePermission = false;
         if (android.os.Build.VERSION.SDK_INT >= 33) {
             hasStoragePermission = checkPermission(Manifest.permission.READ_MEDIA_IMAGES);
@@ -434,10 +425,9 @@ public class FilePickUtils implements LifeCycleCallBackManager {
                 case GALLERY_PICTURE:
                     if (allowCrop) {
                         size = 1;
-                        performCrop(data.getData());
-                    } else {
-                        /*onFileChoose(data.getData().toString());*/
-
+//                        performCrop(data.getData());
+                    }
+                    else {
                         if (multipleImageSelected) {
                             if (data.getClipData() != null) {
                                 ClipData mClipData = data.getClipData();
@@ -462,29 +452,26 @@ public class FilePickUtils implements LifeCycleCallBackManager {
                                 performImageProcessing(data.getData().toString(), FileType.IMG_FILE);
                             }
                         }
-
-
                     }
                     break;
                 case CAMERA_PICTURE:
                     uri = imageUrl;
                     if (allowCrop) {
                         size = 1;
-                        performCrop(uri);
-                    } else {
-                        /*onFileChoose(uri.getPath());*/
-
+//                        performCrop(uri);
+                    }
+                    else {
                         performImageProcessing(uri.toString(),
                                 FileType.IMG_FILE);
                     }
                     break;
-                case CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE:
-                    size = 1;
-                    CropImage.ActivityResult result = CropImage.getActivityResult(data);
-                    Uri resultUri = result.getUri();
-                    performImageProcessing(resultUri.toString(),
-                            FileType.IMG_FILE);
-                    break;
+//                case CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE:
+//                    size = 1;
+//                    CropImage.ActivityResult result = CropImage.getActivityResult(data);
+//                    Uri resultUri = result.getUri();
+//                    performImageProcessing(resultUri.toString(),
+//                            FileType.IMG_FILE);
+//                    break;
                 case Constant.REQUEST_CODE_PICK_FILE:
                     ArrayList<NormalFile> list = data.getParcelableArrayListExtra(Constant.RESULT_PICK_FILE);
                     for (NormalFile file : list) {
@@ -700,20 +687,20 @@ public class FilePickUtils implements LifeCycleCallBackManager {
         }
     }
 
-    private void performCrop(Uri uri) {
-        FileUri cropFile = AppUtils.createImageFile(activity, "CROP");
-        if (fragment != null) {
-            CropImage.activity(uri).setOutputUri(cropFile.getImageUrl())
-                    .setGuidelines(CropImageView.Guidelines.ON)
-                    .setFixAspectRatio(true)
-                    .start(activity, fragment);
-        } else {
-            CropImage.activity(uri).setOutputUri(cropFile.getImageUrl())
-                    .setGuidelines(CropImageView.Guidelines.ON)
-                    .setFixAspectRatio(true)
-                    .start(activity);
-        }
-    }
+//    private void performCrop(Uri uri) {
+//        FileUri cropFile = AppUtils.createImageFile(activity, "CROP");
+//        if (fragment != null) {
+//            CropImage.activity(uri).setOutputUri(cropFile.getImageUrl())
+//                    .setGuidelines(CropImageView.Guidelines.ON)
+//                    .setFixAspectRatio(true)
+//                    .start(activity, fragment);
+//        } else {
+//            CropImage.activity(uri).setOutputUri(cropFile.getImageUrl())
+//                    .setGuidelines(CropImageView.Guidelines.ON)
+//                    .setFixAspectRatio(true)
+//                    .start(activity);
+//        }
+//    }
 
     private enum FileType {
         IMG_FILE,

@@ -15,20 +15,17 @@ import com.fastservices.sams.modules.base.BaseFragment
 import com.fastservices.sams.modules.base.BaseVM
 import com.fastservices.sams.modules.summary.OrderSummaryFragment
 import com.fastservices.sams.modules.takeorder.OrderVM
-import kotlinx.android.synthetic.main.fragment_order_details.*
 
 class OrderDetailFragment : BaseFragment(), DeleteClickListener {
     override fun onItemDeleted(item: OrderItem) {
-
-
         val index = viewModel.removeOrderItem(item)
-        rvOrderItems.adapter?.notifyItemRemoved(index)
+        binding.rvOrderItems.adapter?.notifyItemRemoved(index)
     }
 
     override fun getTitle() = "Take Order"
 
-
     private lateinit var viewModel: OrderVM
+
     private lateinit var binding: com.fastservices.sams.databinding.FragmentOrderDetailsBinding
 
     override fun doBinding(inflater: LayoutInflater, container: ViewGroup?): View {
@@ -49,8 +46,8 @@ class OrderDetailFragment : BaseFragment(), DeleteClickListener {
         val manager: RecyclerView.LayoutManager = LinearLayoutManager(
             context
         )
-        rvOrderItems.layoutManager = manager
-        rvOrderItems.adapter = OrderDetailAdapter(viewModel.getOrders(), this)
+        binding.rvOrderItems.layoutManager = manager
+        binding.rvOrderItems.adapter = OrderDetailAdapter(viewModel.getOrders(), this)
     }
 
     override fun setVM() {
@@ -70,31 +67,25 @@ class OrderDetailFragment : BaseFragment(), DeleteClickListener {
 
         viewModel.grossAmountObservable.observe(viewLifecycleOwner, Observer { value ->
             if (value != null) {
-                tvTotalPrice.text = "Gross Amount : ${value}"
-                lblFooterTotalPrice.text = value.toString()
+                binding.tvTotalPrice.text = "Gross Amount : $value"
+                binding.lblFooterTotalPrice.text = value.toString()
             }
         })
 
         viewModel.totalUnitsObservable.observe(viewLifecycleOwner, Observer { value->
-
-            if(value != null){
-                tvFooterTotalUnit.text = value.toString()
+            if(value != null) {
+                binding.tvFooterTotalUnit.text = value.toString()
             }
-
         })
 
         viewModel.totalCartonssObservable.observe(viewLifecycleOwner, Observer { value->
             if(value != null){
-                tvFooterCartons.text = value.toString()
+                binding.tvFooterCartons.text = value.toString()
             }
         })
-
     }
 
     companion object {
-
-        fun newInstance() = OrderDetailFragment().apply {
-
-        }
+        fun newInstance() = OrderDetailFragment().apply { }
     }
 }

@@ -38,7 +38,6 @@ import com.google.android.gms.location.LocationServices
 import com.imagepicker.FilePickUtils
 import com.imagepicker.LifeCycleCallBackManager
 import io.reactivex.annotations.NonNull
-import kotlinx.android.synthetic.main.fragment_take_order.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -71,77 +70,77 @@ class TakeOrderFragment: BaseFragment(), ClickListener {
         filePickUtils = FilePickUtils(this, onFileChoose)
         lifeCycleCallBackManager = filePickUtils.callBackManager
 
-        lblReasonTakeOrder.text = "Select reason for not tracking order at ${viewModel.outlet?.outletName}"
+        binding.lblReasonTakeOrder.text = "Select reason for not tracking order at ${viewModel.outlet?.outletName}"
 
         val manager = LinearLayoutManager(context)
-        rvCategories.layoutManager = manager
+        binding.rvCategories.layoutManager = manager
 
         val dividerItemDecoration =
             DividerItemDecoration(
-                rvCategories.context,
+                binding.rvCategories.context,
                 manager.orientation
             )
-        rvCategories.addItemDecoration(dividerItemDecoration);
+        binding.rvCategories.addItemDecoration(dividerItemDecoration);
 
-        btnTakeGPS.setOnClickListener(this)
-        ivCamera.setOnClickListener(this)
+        binding.btnTakeGPS.setOnClickListener(this)
+        binding.ivCamera.setOnClickListener(this)
         GlobalScope.launch {
             val output = SimpleDateFormat("EEE, dd MMM yyyy", Locale.US)
             viewModel.outlet?.let {
-                tvLastOrderAmount.text = RoundUp2Decimal(it.lastOrderAmount)
-                tvContactNumber.text = it.phoneNumber
+                binding.tvLastOrderAmount.text = RoundUp2Decimal(it.lastOrderAmount)
+                binding.tvContactNumber.text = it.phoneNumber
                 if (it.lastOrderDate.isNotEmpty()) {
                     try {
-                        tvLastOrderDate.text = output.format(SamsApplication.sdf.parse(it.lastOrderDate)!!)
+                        binding.tvLastOrderDate.text = output.format(SamsApplication.sdf.parse(it.lastOrderDate)!!)
                     }
                     catch (e: Exception) {
-                        tvLastOrderDate.text = it.lastOrderDate
+                        binding.tvLastOrderDate.text = it.lastOrderDate
                     }
                 }
                 else {
-                    tvLastOrderDate.text = "Never"
+                    binding.tvLastOrderDate.text = "Never"
                 }
 
-                tvClosingBalance.text = RoundUp2Decimal(it.closing)
+                binding.tvClosingBalance.text = RoundUp2Decimal(it.closing)
                 val channelName = SamsApplication.getDB().channelDao().getSubChannelName(it.subChannelID)
-                tvStoreType.text = channelName
+                binding.tvStoreType.text = channelName
             }
         }
 
         if(viewModel.latitude != 0.0) {
-            tvMapLink.text = "http://maps.google.com/maps?q=${viewModel.latitude},${viewModel.longtidue}"
+            binding.tvMapLink.text = "http://maps.google.com/maps?q=${viewModel.latitude},${viewModel.longtidue}"
         }
         viewModel.images.forEach {
             addImageViewToContainer(it)
         }
 
-        radioTakeOrder.setOnCheckedChangeListener { _, b ->
+        binding.radioTakeOrder.setOnCheckedChangeListener { _, b ->
             if(b) {
                 viewModel.optionSelected.value = 1
-                orderSummary.text = "Order Summary"
-                takeOrderLayout.visibility = View.VISIBLE
-                noOrderLayout.visibility   = View.GONE
+                binding.orderSummary.text = "Order Summary"
+                binding.takeOrderLayout.visibility = View.VISIBLE
+                binding.noOrderLayout.visibility   = View.GONE
             }
             else {
-                takeOrderLayout.visibility = View.GONE
-                noOrderLayout.visibility   = View.VISIBLE
+                binding.takeOrderLayout.visibility = View.GONE
+                binding.noOrderLayout.visibility   = View.VISIBLE
             }
         }
 
-        radioNoOrder.setOnCheckedChangeListener { _, b ->
+        binding.radioNoOrder.setOnCheckedChangeListener { _, b ->
             if(b) {
                 viewModel.optionSelected.value = 2
-                orderSummary.text = "Submit"
-                takeOrderLayout.visibility = View.GONE
-                noOrderLayout.visibility   = View.VISIBLE
+                binding.orderSummary.text = "Submit"
+                binding.takeOrderLayout.visibility = View.GONE
+                binding.noOrderLayout.visibility   = View.VISIBLE
             }
             else {
-                takeOrderLayout.visibility = View.VISIBLE
-                noOrderLayout.visibility   = View.GONE
+                binding.takeOrderLayout.visibility = View.VISIBLE
+                binding.noOrderLayout.visibility   = View.GONE
             }
         }
 
-        multiLineRadioGroupTakeOrder.setOnCheckedChangeListener { _: ViewGroup?, radioButton: RadioButton? ->
+        binding.multiLineRadioGroupTakeOrder.setOnCheckedChangeListener { _: ViewGroup?, radioButton: RadioButton? ->
             viewModel.selectedReasonId = radioButton?.id ?: -1
         }
     }
@@ -165,8 +164,8 @@ class TakeOrderFragment: BaseFragment(), ClickListener {
                 if (categoriesAdapter == null) {
                     categoriesAdapter = CategoryAdapter(viewModel.categories, this)
                 }
-                if (rvCategories.adapter == null)
-                    rvCategories.adapter = categoriesAdapter
+                if (binding.rvCategories.adapter == null)
+                    binding.rvCategories.adapter = categoriesAdapter
                 categoriesAdapter?.notifyDataSetChanged()
             }
         }
@@ -183,10 +182,10 @@ class TakeOrderFragment: BaseFragment(), ClickListener {
 
         viewModel.showEmptyView.observe(viewLifecycleOwner) { show ->
             if (show == true) {
-                emptyView.visibility = View.VISIBLE
+                binding.emptyView.visibility = View.VISIBLE
             }
             else {
-                emptyView.visibility = View.GONE
+                binding.emptyView.visibility = View.GONE
             }
         }
 
@@ -195,7 +194,7 @@ class TakeOrderFragment: BaseFragment(), ClickListener {
                 val radio = RadioButton(context)
                 radio.text = it.unOrderReason
                 radio.id = it.unOrderReasonID
-                multiLineRadioGroupTakeOrder.addButtons(radio)
+                binding.multiLineRadioGroupTakeOrder.addButtons(radio)
             }
         }
     }
@@ -229,7 +228,7 @@ class TakeOrderFragment: BaseFragment(), ClickListener {
     }
 
     private fun takePicture() {
-        if (imagesContainer.childCount < 5)
+        if (binding.imagesContainer.childCount < 5)
             filePickUtils.requestImageCamera(FilePickUtils.CAMERA_PERMISSION, false, false)
     }
 
@@ -280,7 +279,6 @@ class TakeOrderFragment: BaseFragment(), ClickListener {
                     Log.d("LocationCheck", "getGPSLocation3")
                     val currentLocation = location
 
-
                     val outletLocation = Location("")
                     outletLocation.latitude = viewModel.outlet!!.latitude
                     outletLocation.longitude = viewModel.outlet!!.longtidue
@@ -290,9 +288,9 @@ class TakeOrderFragment: BaseFragment(), ClickListener {
                         Log.d("LocationCheck", "orderSummaryClicked: Within Radius")
                         viewModel.latitude = location!!.latitude
                         viewModel.longtidue = location!!.longitude
-                        tvMapLink.text = "http://maps.google.com/maps?q=${viewModel.latitude},${viewModel.longtidue}"
-                        tvMapLink.linksClickable = true
-                        tvMapLink.movementMethod = LinkMovementMethod()
+                        binding.tvMapLink.text = "http://maps.google.com/maps?q=${viewModel.latitude},${viewModel.longtidue}"
+                        binding.tvMapLink.linksClickable = true
+                        binding.tvMapLink.movementMethod = LinkMovementMethod()
                     }
                     else {
                         Log.d("LocationCheck", "getGPSLocation4")
@@ -310,9 +308,9 @@ class TakeOrderFragment: BaseFragment(), ClickListener {
                     Log.d("LocationCheck", "getGPSLocation5")
                     viewModel.latitude  = location.latitude
                     viewModel.longtidue = location.longitude
-                    tvMapLink.text = "http://maps.google.com/maps?q=${viewModel.latitude},${viewModel.longtidue}"
-                    tvMapLink.linksClickable = true
-                    tvMapLink.movementMethod = LinkMovementMethod()
+                    binding.tvMapLink.text = "http://maps.google.com/maps?q=${viewModel.latitude},${viewModel.longtidue}"
+                    binding.tvMapLink.linksClickable = true
+                    binding.tvMapLink.movementMethod = LinkMovementMethod()
                 }
                 Log.d("LocationCheck", "getGPSLocation6")
             }
@@ -405,7 +403,7 @@ class TakeOrderFragment: BaseFragment(), ClickListener {
                 .apply(RequestOptions.centerCropTransform())
                 .thumbnail(0.1f)
                 .into(iv)
-        imagesContainer.addView(v)
+        binding.imagesContainer.addView(v)
     }
 
     lateinit var filePickUtils: FilePickUtils

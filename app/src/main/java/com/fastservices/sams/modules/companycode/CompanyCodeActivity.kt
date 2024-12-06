@@ -16,11 +16,8 @@ import com.fastservices.sams.databinding.ActivityCompanyCodeBinding
 import com.fastservices.sams.modules.base.BaseActivity
 import com.fastservices.sams.modules.base.BaseVM
 import com.fastservices.sams.modules.login.LoginActivity
-import kotlinx.android.synthetic.main.activity_company_code.*
 
-
-class CompanyCodeActivity : BaseActivity(), View.OnClickListener {
-
+class CompanyCodeActivity: BaseActivity(), View.OnClickListener {
 
     private lateinit var viewModel: CompanyCodeVM
 
@@ -29,7 +26,6 @@ class CompanyCodeActivity : BaseActivity(), View.OnClickListener {
     var handler: Handler? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_company_code)
         viewModel = ViewModelProviders.of(this).get(CompanyCodeVM::class.java)
         binding.viewModel = viewModel
@@ -45,8 +41,8 @@ class CompanyCodeActivity : BaseActivity(), View.OnClickListener {
         })
 
         handler?.postDelayed({
-            if (SamsApplication.getPreferenceManager().hasUserLoggedIn() == false) {
-                viewsContainer.visibility = View.VISIBLE
+            if (!SamsApplication.getPreferenceManager().hasUserLoggedIn()) {
+                binding.viewsContainer.visibility = View.VISIBLE
             } else {
                 finish()
                 startActivity(Intent(applicationContext, MainActivity::class.java))

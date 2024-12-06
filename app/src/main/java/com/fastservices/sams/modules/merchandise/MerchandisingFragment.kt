@@ -21,8 +21,6 @@ import com.fastservices.sams.outletselector.OutletSelectorActivity
 import com.imagepicker.FilePickUtils
 import com.imagepicker.LifeCycleCallBackManager
 import io.reactivex.annotations.NonNull
-import kotlinx.android.synthetic.main.fragment_merchandising.*
-
 
 class MerchandisingFragment : BaseFragment(), View.OnClickListener {
 
@@ -58,16 +56,16 @@ class MerchandisingFragment : BaseFragment(), View.OnClickListener {
         Glide.with(this)
                 .load(fileUri)
                 .apply(RequestOptions.centerCropTransform())
-                .into(ivFullImage)
+                .into(binding.ivFullImage)
 
         when (requestCode) {
             CAMERA_BEFORE_MERCH -> {
-                imageContainerBefore.addView(v)
+                binding.imageContainerBefore.addView(v)
                 viewModel.imageTakenBeforeMerchandising(fileUri)
 
             }
             CAMERA_AFTER_MERCH -> {
-                imageContainerAfter.addView(v)
+                binding.imageContainerAfter.addView(v)
                 viewModel.imageTakenAfterMerchandising(fileUri)
             }
         }
@@ -78,9 +76,9 @@ class MerchandisingFragment : BaseFragment(), View.OnClickListener {
     override fun onClick(v: View?) {
 
         when (v?.id) {
-            ivCameraBeforeMerchandise.id -> if (imageContainerBefore.childCount < 5) takePicture(CAMERA_BEFORE_MERCH)
-            ivCameraAfterMerchandise.id -> if (imageContainerAfter.childCount < 5) takePicture(CAMERA_AFTER_MERCH)
-            tvSelectedOutlet.id -> OutletSelectorActivity.startActivity(this)
+            binding.ivCameraBeforeMerchandise.id -> if (binding.imageContainerBefore.childCount < 5) takePicture(CAMERA_BEFORE_MERCH)
+            binding.ivCameraAfterMerchandise.id -> if (binding.imageContainerAfter.childCount < 5) takePicture(CAMERA_AFTER_MERCH)
+            binding.tvSelectedOutlet.id -> OutletSelectorActivity.startActivity(this)
             R.id.iv -> {
                 val alert = AlertDialog.Builder(v.context)
                 alert.setTitle("Warning")
@@ -141,16 +139,13 @@ class MerchandisingFragment : BaseFragment(), View.OnClickListener {
 //        }
 //    }
 
-
     override fun setUp() {
         filePickUtils = FilePickUtils(this, onFileChoose)
         lifeCycleCallBackManager = filePickUtils.callBackManager
-        ivCameraAfterMerchandise.setOnClickListener(this)
-        ivCameraBeforeMerchandise.setOnClickListener(this)
-        tvSelectedOutlet.setOnClickListener(this)
-
+        binding.ivCameraAfterMerchandise.setOnClickListener(this)
+        binding.ivCameraBeforeMerchandise.setOnClickListener(this)
+        binding.tvSelectedOutlet.setOnClickListener(this)
     }
-
 
     override fun onRequestPermissionsResult(requestCode: Int, @NonNull permissions: Array<String>, @NonNull grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
@@ -163,19 +158,16 @@ class MerchandisingFragment : BaseFragment(), View.OnClickListener {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == OutletSelectorActivity.REQ_CODE) {
             if (resultCode == Activity.RESULT_OK) {
-                // outlet selected
                 viewModel.selectedOutlet = data?.getSerializableExtra(OutletSelectorFragment.EXTRA_SELECTED_OUTLET) as? Outlet
                 viewModel.selectedOutlet?.let {
-                    tvSelectedOutlet.text = it.outletName
+                    binding.tvSelectedOutlet.text = it.outletName
                 }
-
             }
-        } else
-
+        }
+        else
             if (lifeCycleCallBackManager != null) {
                 lifeCycleCallBackManager.onActivityResult(requestCode, resultCode, data)
             }
-
     }
 
     companion object {
@@ -185,6 +177,5 @@ class MerchandisingFragment : BaseFragment(), View.OnClickListener {
 
         const val CAMERA_BEFORE_MERCH = 424
         const val CAMERA_AFTER_MERCH = 425
-
     }
 }

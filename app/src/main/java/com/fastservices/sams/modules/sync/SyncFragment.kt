@@ -16,11 +16,10 @@ import com.fastservices.sams.databinding.FragmentSyncBinding
 import com.fastservices.sams.modules.base.BaseFragment
 import com.fastservices.sams.modules.base.BaseVM
 import com.fastservices.sams.network.GoogleDriveClient
-import kotlinx.android.synthetic.main.fragment_sync.*
 
 class SyncFragment : BaseFragment(), View.OnClickListener {
 
-    lateinit var binding: com.fastservices.sams.databinding.FragmentSyncBinding
+    lateinit var binding: FragmentSyncBinding
     override fun doBinding(inflater: LayoutInflater, container: ViewGroup?): View {
         return DataBindingUtil.inflate<FragmentSyncBinding>(inflater, getLayoutResId(), container, false).also {
             binding = it
@@ -35,8 +34,8 @@ class SyncFragment : BaseFragment(), View.OnClickListener {
     private lateinit var viewModel: SyncVM
 
     override fun setUp() {
-        tvLastSync.text = SamsApplication.getPreferenceManager().getLastSync()
-        syncDescritpion.movementMethod = ScrollingMovementMethod()
+        binding.tvLastSync.text = SamsApplication.getPreferenceManager().getLastSync()
+        binding.syncDescritpion.movementMethod = ScrollingMovementMethod()
     }
 
     override fun onClick(v: View?) {
@@ -69,30 +68,30 @@ class SyncFragment : BaseFragment(), View.OnClickListener {
         viewModel.syncLogger.observe(viewLifecycleOwner, Observer { log->
             log?.let {
                 val logLine = it.plus("\n")
-                syncDescritpion.text = syncDescritpion.text.toString().plus(logLine)
+                binding.syncDescritpion.text = binding.syncDescritpion.text.toString().plus(logLine)
             }
         })
     }
 
     @SuppressLint("SetTextI18n")
     private fun syncError() {
-        tvSync.isEnabled = true
-        tvSync.alpha = 1f
-        syncDescritpion.text = syncDescritpion.text.toString().plus("\n") + " ** Sync Error **".plus("\n")
+        binding.tvSync.isEnabled = true
+        binding.tvSync.alpha = 1f
+        binding.syncDescritpion.text = binding.syncDescritpion.text.toString().plus("\n") + " ** Sync Error **".plus("\n")
     }
 
     @SuppressLint("SetTextI18n")
     private fun syncStart() {
-        tvSync.isEnabled = false
-        tvSync.alpha = 0.5f
-        syncDescritpion.text = "--- Sync Started ---".plus("\n")
+        binding.tvSync.isEnabled = false
+        binding.tvSync.alpha = 0.5f
+        binding.syncDescritpion.text = "--- Sync Started ---".plus("\n")
     }
 
     private fun syncComplete() {
-        tvSync.isEnabled = true
-        tvSync.alpha = 1f
-        tvLastSync.text = SamsApplication.getPreferenceManager().getLastSync()
-        showToast("Sync Completed at ${tvLastSync.text}")
+        binding.tvSync.isEnabled = true
+        binding.tvSync.alpha = 1f
+        binding.tvLastSync.text = SamsApplication.getPreferenceManager().getLastSync()
+        showToast("Sync Completed at ${binding.tvLastSync.text}")
 
     }
 

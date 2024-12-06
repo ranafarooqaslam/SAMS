@@ -1,12 +1,15 @@
 package com.fastservices.sams.modules.base
 
 import android.app.AlertDialog
-import androidx.lifecycle.Observer
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.lifecycle.Observer
 import com.fastservices.sams.R
-import dmax.dialog.SpotsDialog
+
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -16,32 +19,32 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        progressDialog = SpotsDialog.Builder().setContext(this).setMessage(R.string.loading).build()
+        val inflater = LayoutInflater.from(this)
+        val progressBar = inflater.inflate(android.R.layout.simple_spinner_item, null) as AppCompatTextView
+
+        progressDialog = AlertDialog.Builder(this)
+            .setTitle(R.string.loading)
+            .setView(progressBar)
+            .setCancelable(false)
+            .create()
+
+//        progressDialog = SpotsDialog.Builder().setContext(this).setMessage(R.string.loading).build()
         setUp(savedInstanceState)
-        getViewModel()?.showLoader?.observe(this, Observer { show ->
+        getViewModel()?.showLoader?.observe(this) { show ->
             if (show == true)
                 showProgressDialog()
             else
                 hideProgressDialog()
-        })
-
-//        getViewModel()?.errorLiveData?.observe(this, Observer { error ->
-//            error?.let {
-//                showDialog(it)
-//            }
-//        })
-
-
+        }
     }
 
-
-    public fun showProgressDialog() {
+    fun showProgressDialog() {
         if (progressDialog?.isShowing != true) {
             progressDialog?.show()
         }
     }
 
-    public fun hideProgressDialog() {
+    fun hideProgressDialog() {
         if (progressDialog?.isShowing == true)
             progressDialog?.dismiss()
     }

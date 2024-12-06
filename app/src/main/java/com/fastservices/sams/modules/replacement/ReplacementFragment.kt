@@ -20,19 +20,14 @@ import com.fastservices.sams.data.entities.SKU
 import com.fastservices.sams.modules.base.BaseFragment
 import com.fastservices.sams.modules.base.BaseVM
 import com.fastservices.sams.modules.outlet.OutletSelectorFragment
-import com.fastservices.sams.modules.stockpositioning.SKUNameID
 import com.fastservices.sams.outletselector.OutletSelectorActivity
 import com.imagepicker.FilePickUtils
 import com.imagepicker.LifeCycleCallBackManager
 import io.reactivex.annotations.NonNull
-import kotlinx.android.synthetic.main.fragment_replacement.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-
-class ReplacementFragment : BaseFragment(), View.OnClickListener {
-
-
+class ReplacementFragment: BaseFragment(), View.OnClickListener {
     private lateinit var viewModel: ReplacementVM
     private lateinit var binding: com.fastservices.sams.databinding.FragmentReplacementBinding
     override fun doBinding(inflater: LayoutInflater, container: ViewGroup?): View {
@@ -59,38 +54,37 @@ class ReplacementFragment : BaseFragment(), View.OnClickListener {
 
         when (requestCode) {
             CAMERA_STOCK_IMAGES -> {
-                imagesContainerStock.addView(v)
+                binding.imagesContainerStock.addView(v)
                 viewModel.stockImageTaken(fileUri)
             }
             CAMERA_INVOICE_IMAGES -> {
-                imagesContainerInvoice.addView(v)
+                binding.imagesContainerInvoice.addView(v)
                 viewModel.invoiceImageTaken(fileUri)
             }
 
         }
     }
-    lateinit var filePickUtils: FilePickUtils
-    lateinit var lifeCycleCallBackManager: LifeCycleCallBackManager
+    private lateinit var filePickUtils: FilePickUtils
+    private lateinit var lifeCycleCallBackManager: LifeCycleCallBackManager
 
     override fun onClick(v: View?) {
-
         when (v?.id) {
             R.id.ivCameraStockImage -> takePicture(CAMERA_STOCK_IMAGES)
             R.id.ivCameraInvoice -> takePicture(CAMERA_INVOICE_IMAGES)
-            tvSelectedOutlet.id -> OutletSelectorActivity.startActivity(this)
-            ivCalender.id,tvPurchaseDate.id -> openDatePicker()
+            binding.tvSelectedOutlet.id -> OutletSelectorActivity.startActivity(this)
+            binding.ivCalender.id, binding.tvPurchaseDate.id -> openDatePicker()
             R.id.iv -> {
                 val alert = AlertDialog.Builder(v.context)
                 alert.setTitle("Warning")
                 alert.setMessage("Do you want to delete this picture?")
-                alert.setPositiveButton("YES") { dialog, which ->
+                alert.setPositiveButton("YES") { dialog, _ ->
                     dialog.dismiss()
                     val fl = v.parent as FrameLayout
                     val uri = fl.tag as String
                     (fl.parent as? LinearLayout)?.removeView(fl)
                     viewModel.removeFileUri(uri)
                 }
-                alert.setNegativeButton("NO") { dialog, which ->
+                alert.setNegativeButton("NO") { dialog, _ ->
                     dialog.dismiss()
                 }
                 alert.show()
@@ -98,7 +92,6 @@ class ReplacementFragment : BaseFragment(), View.OnClickListener {
             }
             else -> super.onClick(v)
         }
-
     }
 
     private fun openDatePicker() {
@@ -107,11 +100,12 @@ class ReplacementFragment : BaseFragment(), View.OnClickListener {
 
             calendar.time = it
         }
-        val dialog = DatePickerDialog(activity!!, { view, year, month, dayOfMonth ->
+        val dialog = DatePickerDialog(requireActivity(), { view, year, month, dayOfMonth ->
             val selected = "$year-${month + 1}-$dayOfMonth"
             viewModel.selectedDate = SimpleDateFormat("yyyy-MM-dd", Locale.US).parse(selected)
             viewModel.purchaseDate = selected
-            tvPurchaseDate.text = SimpleDateFormat("dd, MMM yyyy", Locale.US).format(viewModel.selectedDate)
+            binding.tvPurchaseDate.text =
+                viewModel.selectedDate?.let { SimpleDateFormat("dd, MMM yyyy", Locale.US).format(it) }
 
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
         dialog.show()
@@ -119,83 +113,65 @@ class ReplacementFragment : BaseFragment(), View.OnClickListener {
 
     override fun setVM() {
         viewModel = ViewModelProviders.of(this).get(ReplacementVM::class.java)
-
     }
 
     override fun setObservers() {
-
-        viewModel.skusLoaded.observe(viewLifecycleOwner, Observer { value ->
+        viewModel.skusLoaded.observe(viewLifecycleOwner) { value ->
             if (value == true) {
                 viewModel.skusLoaded.value = false
                 populateSKUs()
                 populateReasons()
-
             }
-        })
+        }
 
-        viewModel.dataSubmitted.observe(viewLifecycleOwner, Observer { value->
-            if(value == true){
+        viewModel.dataSubmitted.observe(viewLifecycleOwner) { value ->
+            if (value == true) {
                 activity?.supportFragmentManager?.popBackStack()
             }
-
-        })
-
+        }
     }
 
     private fun populateSKUs() {
-
-        val adapter = ArrayAdapter<SKU>(activity!!, android.R.layout.simple_spinner_item, viewModel.sku)
+        val adapter = ArrayAdapter<SKU>(requireActivity(), android.R.layout.simple_spinner_item, viewModel.sku)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spSKU.adapter = adapter
-        spSKU.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        binding.spSKU.adapter = adapter
+        binding.spSKU.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 viewModel.selectedSkuID = -1
                 viewModel.totalPrice.set("0.0")
                 viewModel.selectedSkuPrice = 0.0
                 viewModel.quantity.set("")
             }
-
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 (parent?.getItemAtPosition(position) as? SKU)?.let {
                     viewModel.selectedSkuID = it.SKU_ID
                     viewModel.selectedSkuPrice = it.TRADE_PRICE
                     viewModel.totalPrice.set("0.0")
                     viewModel.quantity.set("")
-
                 }
             }
         }
-
-
     }
 
     private fun populateReasons() {
-
-        val adapter = ArrayAdapter<ReplacementReason>(activity!!, android.R.layout.simple_spinner_item, viewModel.replacementReasons)
+        val adapter = ArrayAdapter<ReplacementReason>(requireActivity(), android.R.layout.simple_spinner_item, viewModel.replacementReasons)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spReason.adapter = adapter
-        spReason.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        binding.spReason.adapter = adapter
+        binding.spReason.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 viewModel.selectedReasonId = -1
             }
-
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 (parent?.getItemAtPosition(position) as? ReplacementReason)?.let {
                     viewModel.selectedReasonId = it.replacementReasonID
-
                 }
             }
         }
-
-
     }
 
     private fun takePicture(requestCode: Int) {
-
         filePickUtils.requestImageCamera(requestCode, false, true);
-
     }
-
 
     override fun getTitle() = "Replacement"
 
@@ -204,14 +180,12 @@ class ReplacementFragment : BaseFragment(), View.OnClickListener {
     override fun setUp() {
         filePickUtils = FilePickUtils(this, onFileChoose)
         lifeCycleCallBackManager = filePickUtils.callBackManager
-        ivCameraStockImage.setOnClickListener(this)
-        ivCameraInvoice.setOnClickListener(this)
-        tvSelectedOutlet.setOnClickListener(this)
-        tvPurchaseDate.setOnClickListener(this)
-        ivCalender.setOnClickListener(this)
-
+        binding.ivCameraStockImage.setOnClickListener(this)
+        binding.ivCameraInvoice.setOnClickListener(this)
+        binding.tvSelectedOutlet.setOnClickListener(this)
+        binding.tvPurchaseDate.setOnClickListener(this)
+        binding.ivCalender.setOnClickListener(this)
     }
-
 
     override fun onRequestPermissionsResult(requestCode: Int, @NonNull permissions: Array<String>, @NonNull grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
@@ -228,23 +202,19 @@ class ReplacementFragment : BaseFragment(), View.OnClickListener {
                 // outlet selected
                 viewModel.selectedOutlet = data?.getSerializableExtra(OutletSelectorFragment.EXTRA_SELECTED_OUTLET) as? Outlet
                 viewModel.selectedOutlet?.let {
-                    tvSelectedOutlet.text = it.outletName
+                    binding.tvSelectedOutlet.text = it.outletName
                 }
                 viewModel.outletSelected()
-
             }
-        } else if (lifeCycleCallBackManager != null) {
+        }
+        else if (lifeCycleCallBackManager != null) {
             lifeCycleCallBackManager.onActivityResult(requestCode, resultCode, data)
         }
     }
 
     companion object {
-        fun newInstance() = ReplacementFragment().apply {
-
-        }
-
+        fun newInstance() = ReplacementFragment().apply { }
         const val CAMERA_STOCK_IMAGES = 424
         const val CAMERA_INVOICE_IMAGES = 425
-
     }
 }

@@ -21,7 +21,6 @@ import com.fastservices.sams.modules.base.BaseFragment
 import com.fastservices.sams.modules.base.BaseVM
 import com.fastservices.sams.modules.outletnoorder.OutletNoOrderFragment
 import com.fastservices.sams.modules.takeorder.TakeOrderActivity
-import kotlinx.android.synthetic.main.fragment_outlet.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -52,34 +51,34 @@ open class OutletFragment: BaseFragment(), ClickListener, View.OnClickListener {
     @SuppressLint("ClickableViewAccessibility")
     override fun setUp() {
         val manager: RecyclerView.LayoutManager = LinearLayoutManager(context)
-        rvOutlets.layoutManager = manager
-        rvOutlets.adapter = outletsAdapter
-        btnSection.setOnClickListener(this)
-        btnOutOfArea.setOnClickListener(this)
+        binding.rvOutlets.layoutManager = manager
+        binding.rvOutlets.adapter = outletsAdapter
+        binding.btnSection.setOnClickListener(this)
+        binding.btnOutOfArea.setOnClickListener(this)
 
-        rvOutlets.setOnTouchListener { _, _ ->
+        binding.rvOutlets.setOnTouchListener { _, _ ->
             val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
-            imm?.hideSoftInputFromWindow(etFilter.windowToken, 0)
+            imm?.hideSoftInputFromWindow(binding.etFilter.windowToken, 0)
             false
         }
 
         viewModel.outOfAreaAvailable.observe(this) { t ->
             if (t == true) {
-                checkBoxLayout.visibility = View.VISIBLE
+                binding.checkBoxLayout.visibility = View.VISIBLE
             } else {
-                checkBoxLayout.visibility = View.GONE
+                binding.checkBoxLayout.visibility = View.GONE
             }
         }
 
-        checkOutOfArea.setOnCheckedChangeListener { _, b ->
+        binding.checkOutOfArea.setOnCheckedChangeListener { _, b ->
             if(b) {
-                btnOutOfArea.visibility = View.VISIBLE
+                binding.btnOutOfArea.visibility = View.VISIBLE
             }
             else {
-                btnOutOfArea.visibility = View.GONE
-                btnSection.text = viewModel.sections!![0].sectionName
+                binding.btnOutOfArea.visibility = View.GONE
+                binding.btnSection.text = viewModel.sections!![0].sectionName
                 sectionPopup?.menu?.get(0)?.itemId?.let { viewModel.applyAreaFilter(it) }
-                btnOutOfArea.text = "Out of Area"
+                binding.btnOutOfArea.text = "Out of Area"
             }
         }
     }
@@ -100,7 +99,7 @@ open class OutletFragment: BaseFragment(), ClickListener, View.OnClickListener {
         viewModel.notifyAdapter.observe(viewLifecycleOwner) { _ ->
             if (outletsAdapter == null) {
                 outletsAdapter = OutletsAdapter(viewModel.outletList, viewModel.noOrdersList, this, requireActivity())
-                rvOutlets.adapter = outletsAdapter
+                binding.rvOutlets.adapter = outletsAdapter
             }
             outletsAdapter?.notifyDataSetChanged()
         }
@@ -110,26 +109,26 @@ open class OutletFragment: BaseFragment(), ClickListener, View.OnClickListener {
     private var sectionOutOfAreaPopup: PopupMenu? = null
 
     private fun populateSectionSpinner() {
-        sectionPopup = PopupMenu(activity, btnSection)
+        sectionPopup = PopupMenu(activity, binding.btnSection)
         viewModel.sections?.forEach {
             sectionPopup?.menu?.add(0, it.sectionID, 0, it.sectionName)
         }
 
         sectionPopup?.setOnMenuItemClickListener { item ->
-            btnSection.text = item.title
+            binding.btnSection.text = item.title
             viewModel.applyAreaFilter(item.itemId)
             true
         }
     }
 
     private fun populateOutOfAreaSectionSpinner() {
-        sectionOutOfAreaPopup = PopupMenu(activity, btnOutOfArea)
+        sectionOutOfAreaPopup = PopupMenu(activity, binding.btnOutOfArea)
         viewModel.sectionsOutOfArea?.forEach {
             sectionOutOfAreaPopup?.menu?.add(0, it.sectionID, 0, it.sectionName)
         }
 
         sectionOutOfAreaPopup?.setOnMenuItemClickListener { item ->
-            btnOutOfArea.text = item.title
+            binding.btnOutOfArea.text = item.title
             viewModel.applyOutOfAreaFilter(item.itemId)
             true
         }
@@ -144,7 +143,7 @@ open class OutletFragment: BaseFragment(), ClickListener, View.OnClickListener {
             if (!viewModel.sections.isNullOrEmpty()) {
                 populateSectionSpinner()
                 populateOutOfAreaSectionSpinner()
-                btnSection.text = viewModel.sections!![0].sectionName
+                binding.btnSection.text = viewModel.sections!![0].sectionName
                 sectionPopup?.menu?.get(0)?.itemId?.let { viewModel.applyAreaFilter(it) }
             }
         }
@@ -152,12 +151,12 @@ open class OutletFragment: BaseFragment(), ClickListener, View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            btnSection.id -> {
+            binding.btnSection.id -> {
                 if (sectionPopup == null)
                     populateSectionSpinner()
                 sectionPopup?.show()
             }
-            btnOutOfArea.id -> {
+            binding.btnOutOfArea.id -> {
                 if (sectionOutOfAreaPopup == null)
                     populateOutOfAreaSectionSpinner()
                 sectionOutOfAreaPopup?.show()

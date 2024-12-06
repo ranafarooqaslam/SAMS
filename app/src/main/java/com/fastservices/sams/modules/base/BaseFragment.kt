@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.annotation.LayoutRes
@@ -15,7 +16,6 @@ import com.fastservices.sams.R
 import com.fastservices.sams.SamsApplication
 import com.fastservices.sams.modules.companycode.CompanyCodeActivity
 import com.fastservices.sams.modules.dashboard.DashboardFragment
-import kotlinx.android.synthetic.main.layout_bottom_bar.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -54,8 +54,8 @@ abstract class BaseFragment : androidx.fragment.app.Fragment(), View.OnClickList
         if (context != null)
             setUp()
 
-        ivOverflow?.setOnClickListener(this)
-        ivHome?.setOnClickListener(this)
+        view.findViewById<ImageView>(R.id.ivOverflow)?.setOnClickListener(this)
+        view.findViewById<ImageView>(R.id.ivHome)?.setOnClickListener(this)
     }
 
     abstract fun getVM(): BaseVM?
@@ -99,8 +99,8 @@ abstract class BaseFragment : androidx.fragment.app.Fragment(), View.OnClickList
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            ivOverflow.id -> showPopupMenu()
-            ivHome.id -> {
+            view?.findViewById<ImageView>(R.id.ivOverflow)?.id -> showPopupMenu()
+            view?.findViewById<ImageView>(R.id.ivHome)?.id -> {
                 if (this !is DashboardFragment)
                     activity?.supportFragmentManager?.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
             }
@@ -120,7 +120,7 @@ abstract class BaseFragment : androidx.fragment.app.Fragment(), View.OnClickList
         }
         var appVersion = ""
 
-        val popupmenu = PopupMenu(activity, ivOverflow)
+        val popupmenu = PopupMenu(activity, view?.findViewById(R.id.ivOverflow))
         popupmenu.menuInflater.inflate(R.menu.overflow, popupmenu.menu)
 
         popupmenu.show()

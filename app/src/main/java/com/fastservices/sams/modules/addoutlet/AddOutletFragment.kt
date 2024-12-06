@@ -32,7 +32,6 @@ import com.imagepicker.LifeCycleCallBackManager
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.annotations.NonNull
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.fragment_add_outlet.*
 
 class AddOutletFragment : BaseFragment(), View.OnClickListener {
 
@@ -56,13 +55,13 @@ class AddOutletFragment : BaseFragment(), View.OnClickListener {
     override fun setUp() {
         filePickUtils = FilePickUtils(this, onFileChoose)
         lifeCycleCallBackManager = filePickUtils.callBackManager
-        btnTakeGPS.setOnClickListener(this)
-        ivCamera.setOnClickListener(this)
-        tvSubmit.setOnClickListener(this)
+        binding.btnTakeGPS.setOnClickListener(this)
+        binding.ivCamera.setOnClickListener(this)
+        binding.tvSubmit.setOnClickListener(this)
 
-        scrollView.setOnTouchListener { _, _ ->
+        binding.scrollView.setOnTouchListener { _, _ ->
             val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
-            imm?.hideSoftInputFromWindow(etComment.windowToken, 0)
+            imm?.hideSoftInputFromWindow(binding.etComment.windowToken, 0)
             false
         }
     }
@@ -96,8 +95,8 @@ class AddOutletFragment : BaseFragment(), View.OnClickListener {
 
         val adapterChannel = ArrayAdapter<Channel>(requireActivity(), android.R.layout.simple_spinner_item, viewModel.channels)
         adapterChannel.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spChannel.adapter = adapterChannel
-        spChannel.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        binding.spChannel.adapter = adapterChannel
+        binding.spChannel.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
 
@@ -115,8 +114,8 @@ class AddOutletFragment : BaseFragment(), View.OnClickListener {
     private fun populateSections() {
         val adapterSections = ArrayAdapter<Section>(requireActivity(), android.R.layout.simple_spinner_item, viewModel.sections)
         adapterSections.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spSector.adapter = adapterSections
-        spSector.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        binding.spSector.adapter = adapterSections
+        binding.spSector.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) { }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -131,8 +130,8 @@ class AddOutletFragment : BaseFragment(), View.OnClickListener {
     fun populateLocalities() {
         val adapterLocality = ArrayAdapter<Locality>(requireActivity(), android.R.layout.simple_spinner_item, viewModel.localities.filter { it.sectionID == viewModel.outlet.SectionID })
         adapterLocality.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spLocality.adapter = adapterLocality
-        spLocality.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        binding.spLocality.adapter = adapterLocality
+        binding.spLocality.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
 
@@ -147,8 +146,8 @@ class AddOutletFragment : BaseFragment(), View.OnClickListener {
     fun populateSubChannels() {
         val adapterSubChannel = ArrayAdapter<SubChannel>(requireActivity(), android.R.layout.simple_spinner_item, viewModel.subChannels.filter { it.parentID == viewModel.outlet.ChannelID })
         adapterSubChannel.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spSubchannel.adapter = adapterSubChannel
-        spSubchannel.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        binding.spSubchannel.adapter = adapterSubChannel
+        binding.spSubchannel.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
 
@@ -173,7 +172,7 @@ class AddOutletFragment : BaseFragment(), View.OnClickListener {
 
 
         viewModel.imageTaken(fileUri)
-        imagesContainer.addView(v)
+        binding.imagesContainer.addView(v)
 
     }
     lateinit var filePickUtils: FilePickUtils
@@ -184,7 +183,7 @@ class AddOutletFragment : BaseFragment(), View.OnClickListener {
         when (v?.id) {
             R.id.btnTakeGPS -> getGPSLocation()
             R.id.ivCamera -> takePicture()
-            tvSubmit.id -> viewModel.submitRequest()
+            binding.tvSubmit.id -> viewModel.submitRequest()
             R.id.iv -> {
                 val alert = AlertDialog.Builder(v.context)
                 alert.setTitle("Warning")
@@ -206,9 +205,8 @@ class AddOutletFragment : BaseFragment(), View.OnClickListener {
     }
 
     private fun takePicture() {
-        if (imagesContainer.childCount < 5)
-            filePickUtils.requestImageCamera(CAMERA_PERMISSION, false, false);
-
+        if (binding.imagesContainer.childCount < 5)
+            filePickUtils.requestImageCamera(CAMERA_PERMISSION, false, false)
     }
 
     @SuppressLint("CheckResult")
@@ -229,15 +227,13 @@ class AddOutletFragment : BaseFragment(), View.OnClickListener {
         RxGps(activity).locationHight()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        { location ->
-                            viewModel.outlet.Latitude = location.latitude
-                            viewModel.outlet.Longtidue = location.longitude
-                            tvMapLink.setText("http://maps.google.com/maps?q=${viewModel.outlet.Latitude},${viewModel.outlet.Longtidue}")
-                            tvMapLink.linksClickable = true
-                            tvMapLink.movementMethod = LinkMovementMethod()
-
-                        }, { throwable ->
+                .subscribe({ location ->
+                        viewModel.outlet.Latitude = location.latitude
+                        viewModel.outlet.Longtidue = location.longitude
+                        binding.tvMapLink.text = "http://maps.google.com/maps?q=${viewModel.outlet.Latitude},${viewModel.outlet.Longtidue}"
+                        binding.tvMapLink.linksClickable = true
+                        binding.tvMapLink.movementMethod = LinkMovementMethod()
+                    }, { throwable ->
                     if (throwable is RxGps.PermissionException) {
                         Log.d(TAG, "exception")
                         //the user does not allow the permission
@@ -246,7 +242,6 @@ class AddOutletFragment : BaseFragment(), View.OnClickListener {
                         Log.d(TAG, "exception")
                     }
                 }
-
                 )
 
     }
@@ -272,7 +267,6 @@ class AddOutletFragment : BaseFragment(), View.OnClickListener {
         fun newInstance() = AddOutletFragment().apply {
 
         }
-
         const val MAPS_API_KEY = "AIzaSyDaZG2HhTFBIrjJxsrVipT4f466uvJNGFE"
     }
 }

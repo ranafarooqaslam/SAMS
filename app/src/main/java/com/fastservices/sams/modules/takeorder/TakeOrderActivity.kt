@@ -10,16 +10,15 @@ import com.fastservices.sams.R
 import com.fastservices.sams.data.entities.Outlet
 import com.fastservices.sams.modules.base.BaseActivity
 import com.fastservices.sams.modules.base.BaseVM
-import kotlinx.android.synthetic.main.app_bar_main.*
 
-class TakeOrderActivity : BaseActivity() {
+class TakeOrderActivity: BaseActivity() {
 
     private lateinit var viewModel: OrderVM
 
     override fun setUp(savedInstanceState: Bundle?) {
         viewModel = ViewModelProviders.of(this).get(OrderVM::class.java)
         setContentView(R.layout.activity_outlet_selector)
-        setSupportActionBar(toolbar)
+        setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.title = "Take Order"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         if (savedInstanceState == null) {
@@ -42,7 +41,6 @@ class TakeOrderActivity : BaseActivity() {
         if (supportFragmentManager.fragments.size > 1||supportFragmentManager.backStackEntryCount>0)
             super.onBackPressed()
         else {
-            // activity is about to finish, lets ask user confirmation
             if (viewModel.containsAnyOrder()) {
                 val builder = AlertDialog.Builder(this)
                 builder.setTitle("Cancel Order")

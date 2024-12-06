@@ -7,12 +7,13 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.ObservableArrayList
 import androidx.recyclerview.widget.RecyclerView
 import com.fastservices.sams.R
 import com.fastservices.sams.data.entities.Outlet
-import kotlinx.android.synthetic.main.item_list_outlet.view.*
 import java.lang.ref.WeakReference
 
 class OutletsAdapter(var data: ObservableArrayList<Outlet>, val noOrders: List<Int>?, private val clickListener: ClickListener?, private val activity: Activity) : RecyclerView.Adapter<OutletVH>() {
@@ -93,15 +94,15 @@ class OutletsAdapter(var data: ObservableArrayList<Outlet>, val noOrders: List<I
     }
 
 class OutletVH(view: View, listener: ClickListener?) : RecyclerView.ViewHolder(view), View.OnClickListener {
-    val rootLayout = view.rootLayout
-    val tvOutletName = view.tvOutletName
-    val btGetDirection = view.btGetDirection
-    val tvAddress = view.tvAddress
-    val tvOwner = view.tvOwner
-    val unOrder = view.tvUnorder
-    val outletIcon = view.ivOutletIcon
-    val tvLabelUnitCarton = view.tvLabelUnitCarton
-    val tvValueUnitCarton = view.tvValueUnitCarton
+    val rootLayout: View = view
+    val tvOutletName = view.findViewById<TextView>(R.id.tvOutletName)
+    val btGetDirection = view.findViewById<TextView>(R.id.btGetDirection)
+    val tvAddress = view.findViewById<TextView>(R.id.tvAddress)
+    val tvOwner = view.findViewById<TextView>(R.id.tvOwner)
+    val unOrder = view.findViewById<TextView>(R.id.tvUnorder)
+    val outletIcon = view.findViewById<ImageView>(R.id.ivOutletIcon)
+    val tvLabelUnitCarton = view.findViewById<TextView>(R.id.tvLabelUnitCarton)
+    val tvValueUnitCarton = view.findViewById<TextView>(R.id.tvValueUnitCarton)
     var listenerRef: WeakReference<ClickListener?>? = null
 
     init {

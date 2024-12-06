@@ -7,11 +7,12 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.TextView
 import com.fastservices.sams.R
 import com.fastservices.sams.data.entities.SKU
-import kotlinx.android.synthetic.main.dialog_quatitiy_selection.*
 
 class QuantityDialogFragment : androidx.fragment.app.DialogFragment(), View.OnClickListener {
     lateinit var item: SKU
@@ -94,17 +95,17 @@ class QuantityDialogFragment : androidx.fragment.app.DialogFragment(), View.OnCl
             }
         })
 
-        tvItemName.text = item.SKU_NAME
-        tvItemName.isSelected = true
+        view.findViewById<TextView>(R.id.tvItemName).text = item.SKU_NAME
+        view.findViewById<TextView>(R.id.tvItemName).isSelected = true
 
-        tvUnitPlus.setOnClickListener(this)
-        tvUnitSubtract.setOnClickListener(this)
-        tvDiscountPlus.setOnClickListener(this)
-        tvDiscountSubtract.setOnClickListener(this)
-        tvCartonPlus.setOnClickListener(this)
-        tvCartonSubtract.setOnClickListener(this)
-        btnCancel.setOnClickListener(this)
-        btnSave.setOnClickListener(this)
+        view.findViewById<TextView>(R.id.tvUnitPlus).setOnClickListener(this)
+        view.findViewById<TextView>(R.id.tvUnitSubtract).setOnClickListener(this)
+        view.findViewById<TextView>(R.id.tvDiscountPlus).setOnClickListener(this)
+        view.findViewById<TextView>(R.id.tvDiscountSubtract).setOnClickListener(this)
+        view.findViewById<TextView>(R.id.tvCartonPlus).setOnClickListener(this)
+        view.findViewById<TextView>(R.id.tvCartonSubtract).setOnClickListener(this)
+        view.findViewById<Button>(R.id.btnCancel).setOnClickListener(this)
+        view.findViewById<Button>(R.id.btnSave).setOnClickListener(this)
 
         unitsET!!.text = Editable.Factory.getInstance().newEditable(units.toString())
         discountET!!.text = Editable.Factory.getInstance().newEditable(discount.toString())
@@ -113,14 +114,14 @@ class QuantityDialogFragment : androidx.fragment.app.DialogFragment(), View.OnCl
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            tvUnitPlus.id -> units++
-            tvUnitSubtract.id -> units = Math.max(0, units - 1)
-            tvDiscountPlus.id -> discount++
-            tvDiscountSubtract.id -> discount = Math.max(0, discount - 1)
-            tvCartonPlus.id -> cartons++
-            tvCartonSubtract.id -> cartons = Math.max(0, cartons - 1)
-            btnSave.id -> saveCounts()
-            btnCancel.id -> dismiss()
+            v?.findViewById<TextView>(R.id.tvUnitPlus)?.id -> units++
+            v?.findViewById<TextView>(R.id.tvUnitSubtract)?.id -> units = Math.max(0, units - 1)
+            v?.findViewById<TextView>(R.id.tvDiscountPlus)?.id -> discount++
+            v?.findViewById<TextView>(R.id.tvDiscountSubtract)?.id -> discount = Math.max(0, discount - 1)
+            v?.findViewById<TextView>(R.id.tvCartonPlus)?.id -> cartons++
+            v?.findViewById<TextView>(R.id.tvCartonSubtract)?.id -> cartons = Math.max(0, cartons - 1)
+            v?.findViewById<Button>(R.id.btnSave)?.id -> saveCounts()
+            v?.findViewById<Button>(R.id.btnCancel)?.id -> dismiss()
         }
 
         unitsET!!.text = Editable.Factory.getInstance().newEditable(units.toString())

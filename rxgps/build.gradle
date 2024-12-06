@@ -1,0 +1,56 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdk 34
+
+    defaultConfig {
+        minSdkVersion 25
+        targetSdkVersion 34
+        versionCode 1
+        versionName "1.0"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
+    implementation 'com.google.android.gms:play-services-location:21.3.0'
+    implementation project(':RxPermission')
+    implementation 'androidx.annotation:annotation-jvm:1.9.1'
+//    implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5'
+}
+
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'RxGps'
+    orgName = 'florent37'
+
+    publishedGroupId = 'com.github.florent37'
+    libraryName = 'RxGps'
+    artifact = 'rxgps'
+
+    libraryDescription = 'RxGps'
+
+    siteUrl = 'https://github.com/florent37/RxGps'
+    gitUrl = 'https://github.com/florent37/RxGps.git'
+
+    libraryVersion = "1.0.2"
+
+    developerId = 'florent37'
+    developerName = 'Florent Champigny'
+    developerEmail = 'champigny.florent@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+//if (project.rootProject.file('local.properties').exists()) {
+//    apply from: rootProject.file('gradle/install-v1.gradle')
+//    apply from: rootProject.file('gradle/bintray-android-v1.gradle')
+//}

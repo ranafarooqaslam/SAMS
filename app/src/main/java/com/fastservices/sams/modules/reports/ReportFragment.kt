@@ -12,20 +12,15 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProviders
 import com.fastservices.sams.R
 import com.fastservices.sams.SamsApplication
-import com.fastservices.sams.databinding.FragmentOutletBinding
 import com.fastservices.sams.databinding.FragmentReportsBinding
 import com.fastservices.sams.modules.base.BaseActivity
 import com.fastservices.sams.modules.base.BaseFragment
 import com.fastservices.sams.modules.base.BaseVM
 import com.fastservices.sams.modules.companycode.CompanyCodeActivity
 import com.fastservices.sams.modules.dailyproductivity.DailyProductivityFragment
-import com.fastservices.sams.modules.dashboard.DashboardFragment
-import com.fastservices.sams.modules.outlet.OutletsVM
 import com.fastservices.sams.modules.outletwise.OutletWiseSummary
 import com.fastservices.sams.modules.pricing.PricingFragment
 import com.fastservices.sams.modules.skuwise.SKUWiseSummary
-import kotlinx.android.synthetic.main.fragment_reports.*
-import kotlinx.android.synthetic.main.layout_bottom_bar.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -51,13 +46,13 @@ class ReportFragment : BaseFragment() {
     private lateinit var binding: FragmentReportsBinding
 
     override fun setUp() {
-        tvDailyProductivity.setOnClickListener(this)
-        tvSKUWiseSummary.setOnClickListener(this)
-        tvOutletWiseSummay.setOnClickListener(this)
-        tvPricing.setOnClickListener(this)
-        bottomLayout.bringToFront()
-        ivHome.setOnClickListener(this)
-        ivOverflow.setOnClickListener(this)
+        binding.tvDailyProductivity.setOnClickListener(this)
+        binding.tvSKUWiseSummary.setOnClickListener(this)
+        binding.tvOutletWiseSummay.setOnClickListener(this)
+        binding.tvPricing.setOnClickListener(this)
+        binding.bottomLayout.root.bringToFront()
+        binding.bottomLayout.ivHome.setOnClickListener(this)
+        binding.bottomLayout.ivOverflow.setOnClickListener(this)
     }
 
     override fun setVM() {
@@ -70,12 +65,12 @@ class ReportFragment : BaseFragment() {
 
     override fun onClick(v: View?) {
         when(v?.id) {
-            tvDailyProductivity.id ->  (activity as? BaseActivity)?.replaceFragment(DailyProductivityFragment.newInstance(), true)
-            tvSKUWiseSummary.id -> (activity as? BaseActivity)?.replaceFragment(SKUWiseSummary.newInstance(), true)
-            tvOutletWiseSummay.id -> (activity as? BaseActivity)?.replaceFragment(OutletWiseSummary.newInstance(), true)
-            tvPricing.id -> (activity as? BaseActivity)?.replaceFragment(PricingFragment.newInstance(), true)
-            ivHome.id -> activity?.supportFragmentManager?.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-            ivOverflow.id -> showPopupMenu()
+            binding.tvDailyProductivity.id ->  (activity as? BaseActivity)?.replaceFragment(DailyProductivityFragment.newInstance(), true)
+            binding.tvSKUWiseSummary.id -> (activity as? BaseActivity)?.replaceFragment(SKUWiseSummary.newInstance(), true)
+            binding.tvOutletWiseSummay.id -> (activity as? BaseActivity)?.replaceFragment(OutletWiseSummary.newInstance(), true)
+            binding.tvPricing.id -> (activity as? BaseActivity)?.replaceFragment(PricingFragment.newInstance(), true)
+            binding.bottomLayout.ivHome.id -> activity?.supportFragmentManager?.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+            binding.bottomLayout.ivOverflow.id -> showPopupMenu()
         }
     }
 
@@ -92,7 +87,7 @@ class ReportFragment : BaseFragment() {
         }
         var appVersion = ""
 
-        val popupmenu = PopupMenu(activity, ivOverflow)
+        val popupmenu = PopupMenu(activity, binding.bottomLayout.ivOverflow)
         popupmenu.menuInflater.inflate(R.menu.overflow, popupmenu.menu)
 
         popupmenu.show()

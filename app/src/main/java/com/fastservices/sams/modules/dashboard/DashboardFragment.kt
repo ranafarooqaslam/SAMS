@@ -20,7 +20,6 @@ import com.fastservices.sams.modules.replacement.ReplacementFragment
 import com.fastservices.sams.modules.reports.ReportFragment
 import com.fastservices.sams.modules.stockpositioning.StockPositioningFragment
 import com.fastservices.sams.modules.sync.SyncFragment
-import kotlinx.android.synthetic.main.fragment_dashboard.*
 
 class DashboardFragment: BaseFragment(), View.OnClickListener {
 
@@ -39,15 +38,15 @@ class DashboardFragment: BaseFragment(), View.OnClickListener {
     private lateinit var viewModel: DashboardVM
 
     override fun setUp() {
-        tvTakeOrder.setOnClickListener(this)
-        tvAddOutlet.setOnClickListener(this)
-        tvStockReturn.setOnClickListener(this)
-        tvViewReport.setOnClickListener(this)
-        tvStockPositioning.setOnClickListener(this)
-        tvDataSync.setOnClickListener(this)
-        tvMerchendising.setOnClickListener(this)
-        tvEndMyDay.setOnClickListener(this)
-        tvOutletCompaint.setOnClickListener(this)
+        binding.tvTakeOrder.setOnClickListener(this)
+        binding.tvAddOutlet.setOnClickListener(this)
+        binding.tvStockReturn.setOnClickListener(this)
+        binding.tvViewReport.setOnClickListener(this)
+        binding.tvStockPositioning.setOnClickListener(this)
+        binding.tvDataSync.setOnClickListener(this)
+        binding.tvMerchendising.setOnClickListener(this)
+        binding.tvEndMyDay.setOnClickListener(this)
+        binding.tvOutletCompaint.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -58,9 +57,9 @@ class DashboardFragment: BaseFragment(), View.OnClickListener {
             R.id.tvViewReport -> (activity as? BaseActivity)?.replaceFragment(ReportFragment.newInstance(), true)
             R.id.tvStockPositioning -> (activity as? BaseActivity)?.replaceFragment(StockPositioningFragment.newInstance(), true)
             R.id.tvDataSync -> (activity as? BaseActivity)?.replaceFragment(SyncFragment.newInstance(), true)
-            tvMerchendising.id -> (activity as? BaseActivity)?.replaceFragment(MerchandisingFragment.newInstance(), true)
-            tvOutletCompaint.id ->   (activity as? BaseActivity)?.replaceFragment(ComplaintsFragment.newInstance(), true)
-            tvEndMyDay.id -> showConfirmationDialog()
+            binding.tvMerchendising.id -> (activity as? BaseActivity)?.replaceFragment(MerchandisingFragment.newInstance(), true)
+            binding.tvOutletCompaint.id ->   (activity as? BaseActivity)?.replaceFragment(ComplaintsFragment.newInstance(), true)
+            binding.tvEndMyDay.id -> showConfirmationDialog()
             else -> super.onClick(v)
         }
     }
@@ -95,8 +94,8 @@ class DashboardFragment: BaseFragment(), View.OnClickListener {
             if (res == true) {
                 binding.viewModel = viewModel
                 binding.notifyChange()
-                tvStartMyDay.visibility = View.GONE
-                tvEndMyDay.visibility = View.VISIBLE
+                binding.tvStartMyDay.visibility = View.GONE
+                binding.tvEndMyDay.visibility = View.VISIBLE
             }
         }
 
@@ -104,8 +103,8 @@ class DashboardFragment: BaseFragment(), View.OnClickListener {
             if (res == true) {
                 binding.viewModel = viewModel
                 binding.notifyChange()
-                tvStartMyDay.visibility = View.VISIBLE
-                tvEndMyDay.visibility = View.GONE
+                binding.tvStartMyDay.visibility = View.VISIBLE
+                binding.tvEndMyDay.visibility = View.GONE
             }
         }
     }

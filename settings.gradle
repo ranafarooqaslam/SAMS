@@ -1,3 +1,5 @@
 include ':app', ':imagepicker'
 /*
 project(':imagepicker').projectDir = new File('app/libs/imagepicker')*/
+include ':rxgps'
+include ':RxPermission'

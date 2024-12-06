@@ -4,7 +4,7 @@ import android.os.Bundle
 import com.fastservices.sams.modules.base.BaseActivity
 import com.fastservices.sams.modules.base.BaseVM
 import com.fastservices.sams.modules.dashboard.DashboardFragment
-import kotlinx.android.synthetic.main.app_bar_main.*
+//import kotlinx.android.synthetic.main.app_bar_main.*
 
 class MainActivity : BaseActivity() {
     override fun setUp(savedInstanceState: Bundle?) {
@@ -14,10 +14,7 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
-
-//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                    .setAction("Action", null).show()
+        setSupportActionBar(findViewById(R.id.toolbar))
 
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
@@ -43,7 +40,6 @@ class MainActivity : BaseActivity() {
                 super.onBackPressed()
             }
         }
-
     }
 }
 

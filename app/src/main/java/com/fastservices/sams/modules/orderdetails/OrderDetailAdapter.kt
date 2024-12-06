@@ -3,10 +3,11 @@ package com.fastservices.sams.modules.orderdetails
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
 import com.fastservices.sams.R
 import com.fastservices.sams.data.entities.OrderItem
 import com.fastservices.sams.data.entities.RoundUp2Decimal
-import kotlinx.android.synthetic.main.item_order_details.view.*
 import java.lang.ref.WeakReference
 import java.util.*
 
@@ -35,13 +36,13 @@ class OrderRowVH(view: View, clicklistner: DeleteClickListener): androidx.recycl
         ref.get()?.onItemDeleted(item)
     }
 
-    val lblItemName = view.lblItemName
-    val lblNumberOfPieces = view.lblNumberOfPieces
-    val lblUnitPricesOfPieces = view.lblUnitPricesOfPieces
-    val lblNumberCarton = view.lblNumberCarton
-    val lblUnitPriceCarton = view.lblUnitPriceCarton
-    val lblTotalPrice = view.lblTotalPrice
-    val ivDelete = view.ivDelete
+    val lblItemName = view.findViewById<TextView>(R.id.lblItemName)
+    val lblNumberOfPieces = view.findViewById<TextView>(R.id.lblNumberOfPieces)
+    val lblUnitPricesOfPieces = view.findViewById<TextView>(R.id.lblUnitPricesOfPieces)
+    val lblNumberCarton = view.findViewById<TextView>(R.id.lblNumberCarton)
+    val lblUnitPriceCarton = view.findViewById<TextView>(R.id.lblUnitPriceCarton)
+    val lblTotalPrice = view.findViewById<TextView>(R.id.lblTotalPrice)
+    val ivDelete = view.findViewById<AppCompatImageView>(R.id.ivDelete)
 
     fun bind(orderItem: OrderItem) {
         item = orderItem

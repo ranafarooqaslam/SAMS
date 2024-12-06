@@ -11,7 +11,6 @@ import com.fastservices.sams.R
 import com.fastservices.sams.data.entities.RoundUp2Decimal
 import com.fastservices.sams.data.entities.SKU
 import java.lang.ref.WeakReference
-import com.amulyakhare.textdrawable.TextDrawable
 
 class SkuAdapter(val data: List<SKU>, val clickListener: ClickListener): RecyclerView.Adapter<SkuVH>() {
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): SkuVH {
@@ -43,6 +42,8 @@ class SkuVH(val view: View, listener: ClickListener) : RecyclerView.ViewHolder(v
     val tvSubtotal = view.findViewById<TextView>(R.id.tvSubtotal)
 
     val ivIcon = view.findViewById<ImageView>(R.id.ivSkuImage)
+    val ivSkuText = view.findViewById<TextView>(R.id.ivSkuText)
+
     override fun onClick(v: View?) {
         when (v?.id) {
             rootLayout.id -> refListener.get()?.onItemClicked(item)
@@ -65,11 +66,15 @@ class SkuVH(val view: View, listener: ClickListener) : RecyclerView.ViewHolder(v
         tvStockRemainPrice.text = item.closingStockToShow
 
         if (item.NO_OF_UNITS > 0 || item.NO_OF_CARTONS > 0) {
+            ivSkuText.visibility = View.GONE
+            ivIcon.visibility = View.VISIBLE
             ivIcon.setImageResource(R.drawable.ic_green_tick)
         } else {
-            val drawable = TextDrawable.builder()
-                    .buildRound(item.SKU_NAME[0].toString(), Color.parseColor("#989898"))
-            ivIcon.setImageDrawable(drawable)
+            ivSkuText.visibility = View.VISIBLE
+            ivIcon.visibility = View.GONE
+            ivSkuText.text = item.SKU_NAME[0].toString()
+//            val drawable = TextDrawable.builder().buildRound(item.SKU_NAME[0].toString(), Color.parseColor("#989898"))
+//            ivIcon.setImageDrawable(drawable)
         }
 
         tvItemName.setOnClickListener(this)

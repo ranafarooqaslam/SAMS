@@ -16,8 +16,6 @@ import com.fastservices.sams.data.models.ClientInfo
 import com.fastservices.sams.databinding.ActivityLoginBinding
 import com.fastservices.sams.modules.base.BaseActivity
 import com.fastservices.sams.modules.base.BaseVM
-import com.fastservices.sams.modules.companycode.CompanyCodeVM
-import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : BaseActivity(), View.OnClickListener {
     lateinit var binding: ActivityLoginBinding
@@ -29,16 +27,16 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         viewModel = ViewModelProviders.of(this).get(LoginVM::class.java)
         binding.viewModel = viewModel
 
-        ImageLoader.loadImage(ivLogo, intent.getStringExtra(EXTRA_LOGO).toString())
+        ImageLoader.loadImage(binding.ivLogo, intent.getStringExtra(EXTRA_LOGO).toString())
         Log.d("logoUrl", "onCreate: ")
-        ImageLoader.loadImage(ivCustomBackground, intent.getStringExtra(EXTRA_BACKGROUND_IMAGE).toString())
+        ImageLoader.loadImage(binding.ivCustomBackground, intent.getStringExtra(EXTRA_BACKGROUND_IMAGE).toString())
         super.onCreate(savedInstanceState)
     }
 
     override fun setUp(savedInstanceState: Bundle?) {
-        viewModel.loginSuccess.observe(this, Observer { _ ->
+        viewModel.loginSuccess.observe(this) { _ ->
             openMainActivity()
-        })
+        }
 
         if (Constants.DEBUG) {
             viewModel.username = "Daud"
