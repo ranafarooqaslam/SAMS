@@ -150,7 +150,6 @@ class OutletNoOrderFragment : BaseFragment() {
 
     @SuppressLint("CheckResult", "SetTextI18n")
     private fun getGPSLocation() {
-
         Log.d("LocationCheck", "getGPSLocation")
         if(!isLocationEnabled(requireContext())){
             Log.d("LocationCheck", "getGPSLocation1")
@@ -190,21 +189,21 @@ class OutletNoOrderFragment : BaseFragment() {
             // Got last known location. In some rare situations this can be null.
             Log.d("LocationCheck", "getGPSLocation2")
             if(location != null) {
-                if(viewModel.outlet!!.validateRadius==1){
+                if(viewModel.outlet!!.validateRadius==1) {
                     Log.d("LocationCheck", "getGPSLocation3")
-                    var currentLocation = location
+                    val currentLocation = location
 
 
-                    var outletLocation = Location("")
-                    outletLocation.setLatitude(viewModel.outlet!!.latitude)
-                    outletLocation.setLongitude(viewModel.outlet!!.longtidue)
+                    val outletLocation = Location("")
+                    outletLocation.latitude = viewModel.outlet!!.latitude
+                    outletLocation.longitude = viewModel.outlet!!.longtidue
 
-                    var distance = currentLocation!!.distanceTo(outletLocation)
+                    val distance = currentLocation!!.distanceTo(outletLocation)
                     if (distance < viewModel.outlet!!.radius) {
                         Log.d("LocationCheck", "orderSummaryClicked: Within Radius")
                         viewModel.latitude = location!!.latitude
                         viewModel.longtidue = location!!.longitude
-                        binding.tvMapLink.setText("http://maps.google.com/maps?q=${viewModel.latitude},${viewModel.longtidue}")
+                        binding.tvMapLink.text = "http://maps.google.com/maps?q=${viewModel.latitude},${viewModel.longtidue}"
                         binding.tvMapLink.linksClickable = true
                         binding.tvMapLink.movementMethod = LinkMovementMethod()
                     } else {

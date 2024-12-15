@@ -1,10 +1,13 @@
 package com.fastservices.sams.modules.addoutlet
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import androidx.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Location
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import android.provider.Settings
@@ -15,6 +18,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
+import androidx.core.app.ActivityCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.fastservices.sams.R
@@ -26,6 +30,8 @@ import com.fastservices.sams.databinding.FragmentAddOutletBinding
 import com.fastservices.sams.modules.base.BaseFragment
 import com.fastservices.sams.modules.base.BaseVM
 import com.github.florent37.rxgps.RxGps
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.imagepicker.FilePickUtils
 import com.imagepicker.FilePickUtils.CAMERA_PERMISSION
 import com.imagepicker.LifeCycleCallBackManager
@@ -209,41 +215,75 @@ class AddOutletFragment : BaseFragment(), View.OnClickListener {
             filePickUtils.requestImageCamera(CAMERA_PERMISSION, false, false)
     }
 
-    @SuppressLint("CheckResult")
+    @SuppressLint("CheckResult", "SetTextI18n")
     private fun getGPSLocation() {
         if(!isLocationEnabled(requireContext())) {
             val alert = AlertDialog.Builder(context)
             alert.setTitle("Location")
             alert.setMessage("Please enable location services")
-            alert.setPositiveButton("OK") { dialog, which ->
-                startActivity( Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+            alert.setPositiveButton("OK") { dialog, _ ->
+                startActivity( Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
                 dialog.dismiss()
             }
             alert.show()
-
             return
         }
 
-        RxGps(activity).locationHight()
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ location ->
-                        viewModel.outlet.Latitude = location.latitude
-                        viewModel.outlet.Longtidue = location.longitude
-                        binding.tvMapLink.text = "http://maps.google.com/maps?q=${viewModel.outlet.Latitude},${viewModel.outlet.Longtidue}"
-                        binding.tvMapLink.linksClickable = true
-                        binding.tvMapLink.movementMethod = LinkMovementMethod()
-                    }, { throwable ->
-                    if (throwable is RxGps.PermissionException) {
-                        Log.d(TAG, "exception")
-                        //the user does not allow the permission
-                    } else if (throwable is RxGps.PlayServicesNotAvailableException) {
-                        // play services not found
-                        Log.d(TAG, "exception")
-                    }
-                }
-                )
+        val fusedLocationClient: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext())
 
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            Log.d("LocationCheck", "getGPSLocation222")
+            Log.d("LocationCheck", "getGPSLocation1")
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION
+                ),
+                1223
+            )
+            return
+        }
+
+        fusedLocationClient.lastLocation.addOnSuccessListener { location : Location? ->
+            Log.d("LocationCheck", "getGPSLocation2")
+            if(location != null) {
+                viewModel.outlet.Latitude = location.latitude
+                viewModel.outlet.Longtidue = location.longitude
+                binding.tvMapLink.text = "http://maps.google.com/maps?q=${viewModel.outlet.Latitude},${viewModel.outlet.Longtidue}"
+                binding.tvMapLink.linksClickable = true
+                binding.tvMapLink.movementMethod = LinkMovementMethod()
+                Log.d("LocationCheck", "getGPSLocation6")
+            }
+            else {
+                Toast.makeText(context, "Unable to get Location", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+//        RxGps(activity).locationHight()
+//            .subscribeOn(Schedulers.newThread())
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribe({ location ->
+//                    viewModel.outlet.Latitude = location.latitude
+//                    viewModel.outlet.Longtidue = location.longitude
+//                    binding.tvMapLink.text = "http://maps.google.com/maps?q=${viewModel.outlet.Latitude},${viewModel.outlet.Longtidue}"
+//                    binding.tvMapLink.linksClickable = true
+//                    binding.tvMapLink.movementMethod = LinkMovementMethod()
+//                }, { throwable ->
+//                if (throwable is RxGps.PermissionException) {
+//                    Log.d(TAG, "exception")
+//                    //the user does not allow the permission
+//                } else if (throwable is RxGps.PlayServicesNotAvailableException) {
+//                    // play services not found
+//                    Log.d(TAG, "exception")
+//                }
+//            })
     }
 
 

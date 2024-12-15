@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.lifecycle.Observer
 import com.fastservices.sams.R
+import com.satyajit.thespotsdialog.SpotsDialog
 
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -28,13 +29,18 @@ abstract class BaseActivity : AppCompatActivity() {
             .setCancelable(false)
             .create()
 
+        progressDialog = SpotsDialog.Builder()
+            .setMessage(R.string.loading)
+            .setCancelable(false)
+            .setContext(this)
+            .build()
+
 //        progressDialog = SpotsDialog.Builder().setContext(this).setMessage(R.string.loading).build()
+
         setUp(savedInstanceState)
         getViewModel()?.showLoader?.observe(this) { show ->
-            if (show == true)
-                showProgressDialog()
-            else
-                hideProgressDialog()
+            if (show == true) showProgressDialog()
+            else hideProgressDialog()
         }
     }
 

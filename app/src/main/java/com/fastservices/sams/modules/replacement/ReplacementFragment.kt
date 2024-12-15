@@ -154,7 +154,7 @@ class ReplacementFragment: BaseFragment(), View.OnClickListener {
     }
 
     private fun populateReasons() {
-        val adapter = ArrayAdapter<ReplacementReason>(requireActivity(), android.R.layout.simple_spinner_item, viewModel.replacementReasons)
+        val adapter = ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item, viewModel.replacementReasons)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spReason.adapter = adapter
         binding.spReason.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {

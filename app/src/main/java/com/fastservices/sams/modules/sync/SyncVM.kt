@@ -124,7 +124,7 @@ class SyncVM() : BaseVM() {
                     }
 
                     if (!merchandises.isNullOrEmpty()) {
-                        syncLogger.postValue("Inserting merchandizings...")
+                        syncLogger.postValue("Inserting merchandising...")
 
                         val response = SamsApplication.getWebService()
                             .insertMerchandising(user.DistributionID, user.UserId, merchandises)

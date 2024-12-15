@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import com.fastservices.sams.SamsApplication
 import com.fastservices.sams.data.models.UserInfo
 import com.fastservices.sams.data.repos.*
-import com.fastservices.sams.data.repos.promotions.*
 import com.fastservices.sams.modules.base.BaseVM
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -33,6 +32,7 @@ class LoginVM : BaseVM() {
                 SamsApplication.getPreferenceManager().saveToken("${login.token_type} ${login.access_token}")
 
                 RepoMenu(login).loadAndSaveMenu()
+
 //                RepoOutlet(login).syncDownOutlets()
 //                RepoSection(login).syncDownSections()
 //                RepoChannel(login).syncDownChannels()

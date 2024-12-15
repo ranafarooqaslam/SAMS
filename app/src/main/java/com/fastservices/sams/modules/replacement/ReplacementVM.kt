@@ -50,7 +50,6 @@ class ReplacementVM() : BaseVM() {
     }
 
     fun outletSelected() {
-
         GlobalScope.launch {
             sku.clear()
             replacementReasons.clear()
@@ -76,9 +75,7 @@ class ReplacementVM() : BaseVM() {
 
     fun replacementRadioSelected() {
         ReplacementTypeID = 1
-
     }
-
 
     fun damageRadioSelected() {
         ReplacementTypeID = 0

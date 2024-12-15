@@ -57,7 +57,7 @@
 
                     <RadioButton
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="19dp"
                         android:layout_marginRight="20dp"
                         android:onCheckedChanged="@{()->viewModel.replacementRadioSelected()}"
                         android:text="Replacement" />

@@ -67,6 +67,7 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.1'
     // UI
 //    implementation 'com.github.d-max:spots-dialog:1.1@aar'
+    implementation 'com.github.satyajiit:TheSpotsDialog:0.94'
     implementation 'com.github.ganfra:material-spinner:2.0.0'
 //    implementation 'com.github.florent37:rxgps:1.0.2'
     implementation 'com.github.alirezaashrafi:GoogleMapView:1.0.4'

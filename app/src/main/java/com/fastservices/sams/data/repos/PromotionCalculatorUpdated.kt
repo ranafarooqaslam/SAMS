@@ -504,7 +504,7 @@ class PromotionCalculatorUpdated(
                                                 tempSKU.tsT_AMOUNT = rowSku
                                                     .GST_RATE * tempSKU.quantity
                                             }
-                                            if (DistributorTypeID == 6 || DistributorTypeID == 9)
+                                            if (DistributorTypeID == 6 || DistributorTypeID == 9 || DistributorTypeID == 2)
                                             // If
                                             // Location
                                             // Type
@@ -589,7 +589,7 @@ class PromotionCalculatorUpdated(
                                                     .quantity
                                             }
 
-                                            if (DistributorTypeID == 6 || DistributorTypeID == 9)
+                                            if (DistributorTypeID == 6 || DistributorTypeID == 9 || DistributorTypeID == 2)
                                             // If
                                             // Location
                                             // Type
@@ -680,7 +680,7 @@ class PromotionCalculatorUpdated(
                                     else if (rowSku.GST_ON.contains("R")) {
                                         tempSKU.tsT_AMOUNT = rowSku.GST_RATE * tempSKU.quantity
                                     }
-                                    if (DistributorTypeID == 6 || DistributorTypeID == 9)
+                                    if (DistributorTypeID == 6 || DistributorTypeID == 9 || DistributorTypeID == 2)
                                     // If
                                     // Location
                                     // Type
@@ -755,7 +755,7 @@ class PromotionCalculatorUpdated(
                                             .GST_RATE * rowUpdateSku.quantity
                                     }
 
-                                    if (DistributorTypeID == 6 || DistributorTypeID == 9)
+                                    if (DistributorTypeID == 6 || DistributorTypeID == 9 || DistributorTypeID == 2)
                                     // If
                                     // Location
                                     // Type
@@ -1012,7 +1012,7 @@ class PromotionCalculatorUpdated(
                                                 tempSKU.tsT_AMOUNT = rowSku
                                                     .GST_RATE * tempSKU.quantity
                                             }
-                                            if (DistributorTypeID == 6 || DistributorTypeID == 9)
+                                            if (DistributorTypeID == 6 || DistributorTypeID == 9 || DistributorTypeID == 2)
                                             // If
                                             // Location
                                             // Type
@@ -1102,7 +1102,7 @@ class PromotionCalculatorUpdated(
                                                     .quantity
                                             }
 
-                                            if (DistributorTypeID == 6 || DistributorTypeID == 9)
+                                            if (DistributorTypeID == 6 || DistributorTypeID == 9 || DistributorTypeID == 2)
                                             // If
                                             // Location
                                             // Type
@@ -1193,7 +1193,7 @@ class PromotionCalculatorUpdated(
                                         tempSKU.tsT_AMOUNT = rowSku
                                             .GST_RATE * tempSKU.quantity
                                     }
-                                    if (DistributorTypeID == 6 || DistributorTypeID == 9)
+                                    if (DistributorTypeID == 6 || DistributorTypeID == 9 || DistributorTypeID == 2)
                                     // If
                                     // Location
                                     // Type
@@ -1266,7 +1266,7 @@ class PromotionCalculatorUpdated(
                                             .GST_RATE * rowUpdateSku.quantity
                                     }
 
-                                    if (DistributorTypeID == 6 || DistributorTypeID == 9)
+                                    if (DistributorTypeID == 6 || DistributorTypeID == 9 || DistributorTypeID == 2)
                                     // If
                                     // Location
                                     // Type
@@ -1472,7 +1472,7 @@ class PromotionCalculatorUpdated(
                         if ((Customer.registered == 0 && IsDistributorRegister == 0) || (Customer.registered == 1 && IsDistributorRegister == 0)) tempObj.skuItem.DISTRIBUTOR_PRICE else tempObj.price
 
                     val totalCalcualtedDistDiscount = ObjStandardDiscount_PER_VALUE
-                    if (DistributorTypeID == 6 || DistributorTypeID == 9)
+                    if (DistributorTypeID == 6 || DistributorTypeID == 9 || DistributorTypeID == 2)
                     // If Location Type is
                     // 6=Distributor or
                     // 9=Regional
@@ -1530,7 +1530,7 @@ class PromotionCalculatorUpdated(
                         }
                     }
 
-                    if (DistributorTypeID == 6 || DistributorTypeID == 9)
+                    if (DistributorTypeID == 6 || DistributorTypeID == 9 || DistributorTypeID == 2)
                     // If Location Type is
                     // 6=Distributor or
                     // 9=Regional
