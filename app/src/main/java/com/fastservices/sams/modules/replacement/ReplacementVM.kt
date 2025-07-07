@@ -44,10 +44,7 @@ class ReplacementVM() : BaseVM() {
     var selectedReasonId: Int = -1
     val replacementReasons = ArrayList<ReplacementReason>()
 
-    init {
-
-
-    }
+    init { }
 
     fun outletSelected() {
         GlobalScope.launch {
@@ -57,8 +54,6 @@ class ReplacementVM() : BaseVM() {
             sku.addAll(SamsApplication.getDB().SKUDao().getAll())
             skusLoaded.postValue(true)
         }
-
-
     }
 
     fun onQuantityTextChanged() {
