@@ -45,3 +45,8 @@ output.json
 #NDK
 obj/
 .externalNativeBuild
+
+# Gradle build output (regenerated) — keep local, do not sync
+app/build/
+app/libs/*/build/
+.DS_Store
